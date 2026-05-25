@@ -14,9 +14,25 @@
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
 :root{--bg:#eef4fb;--panel:#ffffff;--panel2:#f8fbff;--text:#0f172a;--muted:#64748b;--line:#dbe6f2;--primary:#2563eb;--primary2:#1d4ed8;--danger:#dc2626;--ok:#16a34a;--shadow:0 10px 30px rgba(15,23,42,.08);--radius:18px}
-*{box-sizing:border-box} html,body{margin:0;padding:0;overscroll-behavior-y:none} body{font-family:Inter,sans-serif;background:linear-gradient(180deg,#f4f8fc 0%,#edf3fa 100%);color:var(--text);overscroll-behavior-y:none}
-header{position:sticky;top:0;z-index:20;background:rgba(15,23,42,.92);backdrop-filter:blur(10px);color:#fff;padding:calc(env(safe-area-inset-top,0px) + 18px) 20px 16px;min-height:calc(env(safe-area-inset-top,0px) + 70px);box-shadow:0 8px 24px rgba(15,23,42,.22);overscroll-behavior:none;display:flex;align-items:flex-end;}
-.header-title{font-size:1.15rem;font-weight:700;line-height:1.25}.test-badge{display:inline-flex;margin-left:8px;padding:3px 8px;border-radius:999px;background:#dc2626;color:#fff;font-size:.72rem;vertical-align:middle}.photo-preview{margin-top:12px;border:1px solid var(--line);border-radius:14px;overflow:hidden;background:#f8fbff}.photo-preview img{display:block;width:100%;height:auto}.photo-grid{display:grid;grid-template-columns:repeat(6,1fr);gap:6px;margin:6px 0}.photo-box{border:1px solid #000;min-height:82px;text-align:center;font-size:8.2px;padding:3px}.photo-box img{width:100%;height:62px;object-fit:cover;display:block;margin-bottom:3px;cursor:zoom-in}.issue-photo-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:8px;margin:8px 0}.issue-photo-box{border:1px solid #000;min-height:92px;text-align:center;font-size:8.2px;padding:4px}.issue-photo-box img{width:100%;height:74px;object-fit:cover;display:block;margin-bottom:3px;cursor:zoom-in}.photo-tools{display:flex;gap:8px;flex-wrap:wrap;margin-top:8px}.photo-thumb{margin-top:10px;border:1px solid var(--line);border-radius:14px;overflow:hidden;background:#f8fbff}.photo-thumb img{display:block;width:100%;max-height:220px;object-fit:contain;cursor:zoom-in}.lightbox{position:fixed;inset:0;background:rgba(0,0,0,.88);display:none;align-items:center;justify-content:center;z-index:80;padding:16px}.lightbox.show{display:flex}.lightbox img{max-width:96vw;max-height:88vh;object-fit:contain}.lightbox-close{display:none}.header-sub{font-size:.82rem;color:#cbd5e1;margin-top:4px}
+body.dark{--bg:#0b1220;--panel:#111827;--panel2:#0f172a;--text:#e5e7eb;--muted:#94a3b8;--line:#243244;--primary:#3b82f6;--primary2:#2563eb;--danger:#ef4444;--ok:#22c55e;--shadow:0 10px 30px rgba(0,0,0,.28)}
+body.red{--bg:#fff1f2;--panel:#ffffff;--panel2:#fff7f7;--text:#1f0a0a;--muted:#7f1d1d;--line:#fecaca;--primary:#dc2626;--primary2:#b91c1c;--danger:#991b1b;--ok:#16a34a;--shadow:0 10px 30px rgba(127,29,29,.10)}
+*{box-sizing:border-box} html,body{margin:0;padding:0;overscroll-behavior-y:none} body{font-family:Inter,sans-serif;background:linear-gradient(180deg,var(--bg) 0%,var(--panel2) 100%);color:var(--text);overscroll-behavior-y:none}
+body.dark header{background:rgba(2,6,23,.94)}
+body.red header{background:rgba(127,29,29,.94)}
+header{position:sticky;top:0;z-index:20;background:rgba(15,23,42,.92);backdrop-filter:blur(10px);color:#fff;padding:calc(env(safe-area-inset-top,0px) + 18px) 20px 16px;min-height:calc(env(safe-area-inset-top,0px) + 70px);box-shadow:0 8px 24px rgba(15,23,42,.22);overscroll-behavior:none;display:flex;align-items:flex-end;justify-content:space-between;gap:12px;}
+.theme-toggle,.settings-gear{background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.25);color:#fff;border-radius:14px;padding:9px 12px;font-size:1.05rem;white-space:nowrap;min-width:44px}
+.settings-backdrop{position:fixed;inset:0;background:rgba(15,23,42,.45);display:none;z-index:75}.settings-backdrop.show{display:block}
+.settings-panel{position:fixed;top:0;right:0;width:min(92vw,380px);height:100vh;background:var(--panel);color:var(--text);box-shadow:-18px 0 40px rgba(15,23,42,.25);z-index:76;transform:translateX(105%);transition:transform .22s ease;padding:calc(env(safe-area-inset-top,0px) + 18px) 18px 18px;overflow:auto;border-left:1px solid var(--line)}.settings-panel.show{transform:translateX(0)}
+.settings-head{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-bottom:18px}.settings-title{font-size:1.25rem;font-weight:800}.settings-close{background:var(--panel2);border:1px solid var(--line);color:var(--text);border-radius:12px;padding:8px 11px}.settings-group{border:1px solid var(--line);background:var(--panel2);border-radius:16px;padding:12px;margin-bottom:12px}.settings-group-title{font-size:.82rem;font-weight:800;color:var(--muted);margin-bottom:9px;text-transform:uppercase;letter-spacing:.04em}.settings-panel .settings-btn{width:100%;justify-content:flex-start;text-align:left;margin:5px 0;border-radius:12px}.theme-options{display:grid;grid-template-columns:1fr;gap:8px}.theme-option.active{outline:2px solid var(--primary);background:var(--primary);color:#fff}
+.header-title{font-size:1.15rem;font-weight:700;line-height:1.25}.test-badge{display:inline-flex;margin-left:8px;padding:3px 8px;border-radius:999px;background:#dc2626;color:#fff;font-size:.72rem;vertical-align:middle}.photo-preview{margin-top:12px;border:1px solid var(--line);border-radius:14px;overflow:hidden;background:#f8fbff}.photo-preview img{display:block;width:100%;height:auto}.photo-grid{display:grid;grid-template-columns:repeat(6,1fr);gap:6px;margin:6px 0}.photo-box{border:1px solid #000;min-height:82px;text-align:center;font-size:8.2px;padding:3px}.photo-box img{width:100%;height:62px;object-fit:cover;display:block;margin-bottom:3px;cursor:zoom-in}.issue-photo-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:8px;margin:8px 0}.issue-photo-box{border:1px solid #000;min-height:92px;text-align:center;font-size:8.2px;padding:4px}.issue-photo-box img{width:100%;height:74px;object-fit:cover;display:block;margin-bottom:3px;cursor:zoom-in}.photo-tools{display:flex;gap:8px;flex-wrap:wrap;margin-top:8px}.photo-thumb{margin-top:10px;border:1px solid var(--line);border-radius:14px;overflow:hidden;background:#f8fbff}.photo-thumb img{display:block;width:100%;max-height:220px;object-fit:contain;cursor:zoom-in}.lightbox{position:fixed;inset:0;background:rgba(0,0,0,.88);display:none;align-items:center;justify-content:center;z-index:80;padding:16px}.lightbox.show{display:flex}.lightbox img{max-width:96vw;max-height:88vh;object-fit:contain}.lightbox-close{display:none}.lightbox-nav{position:absolute;top:50%;transform:translateY(-50%);width:46px;height:58px;border-radius:16px;background:rgba(255,255,255,.14);color:#fff;font-size:38px;line-height:1;display:flex;align-items:center;justify-content:center}.lightbox-prev{left:14px}.lightbox-next{right:14px}.lightbox-counter{position:absolute;bottom:16px;left:50%;transform:translateX(-50%);color:#fff;background:rgba(0,0,0,.45);border-radius:999px;padding:6px 12px;font-size:.9rem}.header-sub{font-size:.82rem;color:#cbd5e1;margin-top:4px}
+body.dark .hero,body.dark .summary-card,body.dark .card,body.dark .wizard-shell,body.dark .preview-shell,body.red .hero,body.red .summary-card,body.red .card,body.red .wizard-shell,body.red .preview-shell{background:var(--panel);border-color:var(--line)}
+body.dark .hero,body.dark .wizard-shell{background:linear-gradient(180deg,#111827 0%,#0f172a 100%)}
+body.dark .stat,body.dark .meta,body.dark .empty,body.dark .photo-preview,body.dark .photo-thumb,body.red .stat,body.red .meta,body.red .empty,body.red .photo-preview,body.red .photo-thumb{background:var(--panel2);border-color:var(--line)}
+body.dark .search,body.dark .filter,body.dark input,body.dark textarea,body.dark select,body.dark .modal-content,body.dark .ghost{background:#0f172a;color:var(--text);border-color:var(--line)}
+body.dark .secondary{background:#243244;color:var(--text)}
+body.dark input::placeholder,body.dark textarea::placeholder{color:#94a3b8}
+body.dark .paper{background:#fff;color:#111827}
+body.dark .paper *{color:inherit}
 .container{max-width:1100px;margin:0 auto;padding:22px}.dashboard{display:grid;grid-template-columns:1.2fr .8fr;gap:18px;margin-bottom:18px}
 .hero,.summary-card,.card,.wizard-shell,.preview-shell{background:var(--panel);border:1px solid rgba(219,230,242,.8);border-radius:var(--radius);box-shadow:var(--shadow)}
 .hero{padding:18px;background:linear-gradient(135deg,#ffffff 0%,#f6faff 100%)}.hero h1,.hero p{display:none}.hero-actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:0}
@@ -51,15 +67,35 @@ input::placeholder, textarea::placeholder{color:#334155;font-weight:600;font-siz
 <body>
 <header>
   <div class="header-title">Kontrolní protokoly <span class="test-badge">TEST</span></div>
+  <button id="settingsBtn" class="settings-gear" type="button" title="Nastavení">⚙</button>
 </header>
+<div id="settingsBackdrop" class="settings-backdrop"></div>
+<aside id="settingsPanel" class="settings-panel" aria-label="Nastavení aplikace">
+  <div class="settings-head">
+    <div class="settings-title">Nastavení</div>
+    <button id="settingsCloseBtn" class="settings-close" type="button">Zavřít</button>
+  </div>
+  <div class="settings-group">
+    <div class="settings-group-title">Data</div>
+    <button class="ghost settings-btn" type="button" id="settingsExportBtn">Export zálohy</button>
+    <button class="ghost settings-btn" type="button" id="settingsHistoryBtn">Historie protokolů</button>
+    <button class="danger settings-btn" type="button" id="settingsClearAllBtn">Vymazat všechny protokoly</button>
+  </div>
+  <div class="settings-group">
+    <div class="settings-group-title">Vzhled</div>
+    <div class="theme-options">
+      <button class="secondary settings-btn theme-option" type="button" data-theme="light">Světlý režim</button>
+      <button class="secondary settings-btn theme-option" type="button" data-theme="dark">Tmavý režim</button>
+      <button class="secondary settings-btn theme-option" type="button" data-theme="red">Červený režim</button>
+    </div>
+  </div>
+</aside>
 
 <div class="container" id="appRoot">
   <div class="dashboard">
     <section class="hero">
       <div class="hero-actions">
         <button class="primary" id="newProtocolBtn" type="button" onclick="window._openWizard()">Začít nový protokol</button>
-        <button class="ghost" id="clearAllBtn" type="button">Vymazat všechny uložené protokoly</button>
-        <button class="ghost" type="button" onclick="exportBackup()">Export zálohy</button>
       </div>
     </section>
     <aside class="summary-card">
@@ -121,7 +157,10 @@ input::placeholder, textarea::placeholder{color:#334155;font-weight:600;font-siz
 </div></div></div>
 
 <div class="lightbox" id="lightbox" onclick="closeLightbox()">
-  <img id="lightboxImg" alt="Zvětšená fotka">
+  <button class="lightbox-nav lightbox-prev" type="button" onclick="event.stopPropagation(); prevLightboxPhoto();">‹</button>
+  <img id="lightboxImg" alt="Zvětšená fotka" onclick="event.stopPropagation(); nextLightboxPhoto();">
+  <button class="lightbox-nav lightbox-next" type="button" onclick="event.stopPropagation(); nextLightboxPhoto();">›</button>
+  <div class="lightbox-counter" id="lightboxCounter"></div>
 </div>
 
 <script src="https://unpkg.com/html5-qrcode"></script>
@@ -674,7 +713,7 @@ function showStep(){
         <label>Fotka k závadě / poškození</label>
         <input id="issuePhotoInput" type="file" accept="image/*" capture="environment">
         <div class="helper">Volitelné. Aplikace fotku automaticky zmenší na max. cca 500 kB.</div>
-        ${issueSrc ? `<div class="photo-thumb"><img src="${escapeHtml(issueSrc)}" onclick="openLightbox(this.src)" alt="Fotka závady"></div><div class="helper">Fotka uložena${issueSize}</div><div class="photo-tools"><button class="danger mini" type="button" id="deleteIssuePhotoBtn">Smazat fotku závady</button></div>` : ''}
+        ${issueSrc ? `<div class="photo-thumb"><img src="${escapeHtml(issueSrc)}" data-full-src="${escapeHtml(issueSrc)}" onclick="openLightbox(this.dataset.fullSrc)" alt="Fotka závady"></div><div class="helper">Fotka uložena${issueSize}</div><div class="photo-tools"><button class="danger mini" type="button" id="deleteIssuePhotoBtn">Smazat fotku závady</button></div>` : ''}
       </div>` : '';
     html = `<div class="yesno"><button class="yn-btn ${yesClass}" data-answer-text="ANO">✔ ANO</button><button class="yn-btn ${noClass}" data-answer-text="NE">✖ NE</button></div><div class="field ${needsNote ? '' : 'hidden'}" id="descWrap"><label>${label}</label><textarea id="descInput">${escapeHtml(rec[s.textKey]||'')}</textarea></div>${issuePhotoHtml}`;
   } else if(s.type === 'photo'){
@@ -682,7 +721,7 @@ function showStep(){
     const p = rec.photos[s.photoKey] || {};
     const src = p.dataUrl || p.url || '';
     const size = p.bytes ? ` · ${Math.round(p.bytes/1024)} kB` : '';
-    html = `<div class="field"><label>${s.t}</label><input id="photoInput" type="file" accept="image/*" capture="environment"><div class="helper">Max. 500 kB po automatické kompresi. Fotku můžeš přeskočit tlačítkem Další.</div>${src ? `<div class="photo-preview"><img src="${escapeHtml(src)}" onclick="openLightbox(this.src)" alt="${escapeHtml(s.t)}"></div><div class="helper">Uloženo v kroku${size}</div><div class="photo-tools"><button class="danger mini" type="button" id="deleteMainPhotoBtn">Smazat tuto fotku</button></div>` : ''}</div>`;
+    html = `<div class="field"><label>${s.t}</label><input id="photoInput" type="file" accept="image/*" capture="environment"><div class="helper">Max. 500 kB po automatické kompresi. Fotku můžeš přeskočit tlačítkem Další.</div>${src ? `<div class="photo-preview"><img src="${escapeHtml(src)}" data-full-src="${escapeHtml(src)}" onclick="openLightbox(this.dataset.fullSrc)" alt="${escapeHtml(s.t)}"></div><div class="helper">Uloženo v kroku${size}</div><div class="photo-tools"><button class="danger mini" type="button" id="deleteMainPhotoBtn">Smazat tuto fotku</button></div>` : ''}</div>`;
   } else if(s.type === 'textarea'){
     html = `<div class="field suggest-wrap"><textarea id="mainTextarea">${escapeHtml(rec[s.k]||'')}</textarea><div id="suggestHost"></div></div>`;
   } else if(s.type === 'date'){
@@ -842,12 +881,35 @@ function shouldShowIssuePhoto(step, value){
   return value === 'NE';
 }
 function getPhotoSrc(photo){ return photo ? (photo.url || photo.dataUrl || '') : ''; }
+let lightboxImages = [];
+let lightboxIndex = 0;
+let lightboxTouchStartX = 0;
+
+function collectLightboxImages(){
+  const list = Array.from(document.querySelectorAll('img[data-full-src]'))
+    .map(img => img.dataset.fullSrc || img.src)
+    .filter(Boolean);
+  return [...new Set(list)];
+}
+function updateLightbox(){
+  const lb = document.getElementById('lightbox');
+  const img = document.getElementById('lightboxImg');
+  const counter = document.getElementById('lightboxCounter');
+  if(!lb || !img) return;
+  const src = lightboxImages[lightboxIndex];
+  if(!src) return;
+  img.src = src;
+  if(counter) counter.textContent = `${lightboxIndex + 1} / ${lightboxImages.length}`;
+}
 function openLightbox(src){
   if(!src) return;
   const lb = document.getElementById('lightbox');
   const img = document.getElementById('lightboxImg');
   if(!lb || !img){ window.open(src,'_blank'); return; }
-  img.src = src;
+  lightboxImages = collectLightboxImages();
+  if(!lightboxImages.includes(src)) lightboxImages.unshift(src);
+  lightboxIndex = Math.max(0, lightboxImages.indexOf(src));
+  updateLightbox();
   lb.classList.add('show');
 }
 function closeLightbox(){
@@ -856,8 +918,40 @@ function closeLightbox(){
   if(img) img.src = '';
   if(lb) lb.classList.remove('show');
 }
+function nextLightboxPhoto(){
+  if(!lightboxImages.length) return;
+  lightboxIndex = (lightboxIndex + 1) % lightboxImages.length;
+  updateLightbox();
+}
+function prevLightboxPhoto(){
+  if(!lightboxImages.length) return;
+  lightboxIndex = (lightboxIndex - 1 + lightboxImages.length) % lightboxImages.length;
+  updateLightbox();
+}
+window.addEventListener('keydown', (e) => {
+  const lb = document.getElementById('lightbox');
+  if(!lb || !lb.classList.contains('show')) return;
+  if(e.key === 'ArrowRight') nextLightboxPhoto();
+  if(e.key === 'ArrowLeft') prevLightboxPhoto();
+  if(e.key === 'Escape') closeLightbox();
+});
+window.addEventListener('touchstart', (e) => {
+  const lb = document.getElementById('lightbox');
+  if(!lb || !lb.classList.contains('show')) return;
+  lightboxTouchStartX = e.changedTouches[0].clientX;
+}, {passive:true});
+window.addEventListener('touchend', (e) => {
+  const lb = document.getElementById('lightbox');
+  if(!lb || !lb.classList.contains('show')) return;
+  const dx = e.changedTouches[0].clientX - lightboxTouchStartX;
+  if(Math.abs(dx) > 45){
+    dx < 0 ? nextLightboxPhoto() : prevLightboxPhoto();
+  }
+}, {passive:true});
 window.openLightbox = openLightbox;
 window.closeLightbox = closeLightbox;
+window.nextLightboxPhoto = nextLightboxPhoto;
+window.prevLightboxPhoto = prevLightboxPhoto;
 
 async function nextStep(){
   const activeSteps = getStepsForRecord(rec);
@@ -1178,11 +1272,41 @@ function renderPaper(r){
     </div>
   </div>`;
 }
+
+function applyTheme(mode){
+  const safeMode = ['light','dark','red'].includes(mode) ? mode : 'light';
+  document.body.classList.toggle('dark', safeMode === 'dark');
+  document.body.classList.toggle('red', safeMode === 'red');
+  const meta = document.querySelector('meta[name="theme-color"]');
+  if(meta) meta.setAttribute('content', safeMode === 'dark' ? '#020617' : (safeMode === 'red' ? '#7f1d1d' : '#0f172a'));
+  document.querySelectorAll('.theme-option').forEach(btn => btn.classList.toggle('active', btn.dataset.theme === safeMode));
+}
+function setTheme(mode){
+  localStorage.setItem('doctypeTheme', mode);
+  applyTheme(mode);
+}
+function openSettings(){
+  document.getElementById('settingsPanel')?.classList.add('show');
+  document.getElementById('settingsBackdrop')?.classList.add('show');
+}
+function closeSettings(){
+  document.getElementById('settingsPanel')?.classList.remove('show');
+  document.getElementById('settingsBackdrop')?.classList.remove('show');
+}
+applyTheme(localStorage.getItem('doctypeTheme') || 'light');
+
 // events
+document.getElementById('settingsBtn')?.addEventListener('click', openSettings);
+document.getElementById('settingsCloseBtn')?.addEventListener('click', closeSettings);
+document.getElementById('settingsBackdrop')?.addEventListener('click', closeSettings);
+document.querySelectorAll('.theme-option').forEach(btn => btn.addEventListener('click', () => setTheme(btn.dataset.theme)));
+document.getElementById('settingsExportBtn')?.addEventListener('click', () => { closeSettings(); exportBackup(); });
+document.getElementById('settingsHistoryBtn')?.addEventListener('click', () => { closeSettings(); document.getElementById('list')?.scrollIntoView({behavior:'smooth'}); });
+document.getElementById('settingsClearAllBtn')?.addEventListener('click', () => { closeSettings(); clearAllData(); });
 els.searchInput.addEventListener('input', render);
 els.statusFilter.addEventListener('change', render);
 document.getElementById('newProtocolBtn').addEventListener('click', () => openWizard());
-document.getElementById('clearAllBtn').addEventListener('click', clearAllData);
+document.getElementById('clearAllBtn')?.addEventListener('click', clearAllData);
 document.getElementById('closeWizardBtn').addEventListener('click', closeWizard);
 document.getElementById('prevStepBtn').addEventListener('click', prevStep);
 document.getElementById('nextBtn').addEventListener('click', nextStep);

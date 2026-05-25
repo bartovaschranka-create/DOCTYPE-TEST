@@ -59,6 +59,7 @@ input::placeholder, textarea::placeholder{color:#334155;font-weight:600;font-siz
       <div class="hero-actions">
         <button class="primary" id="newProtocolBtn" type="button" onclick="window._openWizard()">Začít nový protokol</button>
         <button class="ghost" id="clearAllBtn" type="button">Vymazat všechny uložené protokoly</button>
+        <button class="ghost" type="button" onclick="exportBackup()">Export zálohy</button>
       </div>
     </section>
     <aside class="summary-card">
@@ -126,12 +127,12 @@ input::placeholder, textarea::placeholder{color:#334155;font-weight:600;font-siz
 <script>
 
 const firebaseConfig = {
-  apiKey: 'AIzaSyAd6tzkBeYEm9SM7wlxO0T1w_7v1KXtUJM',
-  authDomain: 'doctype-50e67.firebaseapp.com',
-  projectId: 'doctype-50e67',
-  storageBucket: 'doctype-50e67.firebasestorage.app',
-  messagingSenderId: '680393523188',
-  appId: '1:680393523188:web:95986486036306672143a1'
+  apiKey: 'AIzaSyAwWq_3iHtTYEMxFeo0CY30gqF3XzALBjI',
+  authDomain: 'doctype-test.firebaseapp.com',
+  projectId: 'doctype-test',
+  storageBucket: 'doctype-test.firebasestorage.app',
+  messagingSenderId: '248395640600',
+  appId: '1:248395640600:web:6bb92e4cf075801966786d'
 };
 
 const COLLECTION_NAME = 'protokoly_test';
@@ -374,6 +375,38 @@ async function deleteAllProtocols(){
     render();
   }
 }
+
+async function exportBackup(){
+  try{
+    let rows = [];
+    if(firebaseAvailable && db){
+      const snap = await db.collection(COLLECTION_NAME).get();
+      rows = snap.docs.map(d => ({id:d.id, ...d.data()}));
+    } else {
+      rows = loadLocalData();
+    }
+    const payload = {
+      app: 'Kontrolní protokoly TEST',
+      collection: COLLECTION_NAME,
+      exportedAt: new Date().toISOString(),
+      count: rows.length,
+      data: rows
+    };
+    const blob = new Blob([JSON.stringify(payload, null, 2)], {type:'application/json'});
+    const a = document.createElement('a');
+    const stamp = new Date().toISOString().slice(0,19).replace(/[:T]/g,'-');
+    a.href = URL.createObjectURL(blob);
+    a.download = `protokoly_TEST_backup_${stamp}.json`;
+    document.body.appendChild(a);
+    a.click();
+    a.remove();
+    URL.revokeObjectURL(a.href);
+  }catch(e){
+    console.error('Export zálohy selhal:', e);
+    alert('Export zálohy selhal. Zkontroluj konzoli / Firebase oprávnění.');
+  }
+}
+window.exportBackup = exportBackup;
 function startLocalMode(){
   data = loadLocalData();
   render();

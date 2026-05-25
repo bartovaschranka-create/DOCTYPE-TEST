@@ -137,16 +137,17 @@ const firebaseConfig = {
 
 const COLLECTION_NAME = 'protokoly_test';
 const STORAGE_PREFIX = 'ctvrtletni-test';
-const MAX_PHOTOS = 5;
+const MAX_PHOTOS = 6;
 const MAX_PHOTO_BYTES = 500 * 1024;
 const PHOTO_STEPS = [
-  {k:'photo_right', photoKey:'right', t:'Fotka 1/5 – pravý boční pohled', type:'photo', section:'Fotky'},
-  {k:'photo_front', photoKey:'front', t:'Fotka 2/5 – čelní pohled', type:'photo', section:'Fotky'},
-  {k:'photo_left', photoKey:'left', t:'Fotka 3/5 – levý boční pohled', type:'photo', section:'Fotky'},
-  {k:'photo_rear', photoKey:'rear', t:'Fotka 4/5 – zadní část', type:'photo', section:'Fotky'},
-  {k:'photo_control', photoKey:'control', t:'Fotka 5/5 – ovladač / ovládací panel', type:'photo', section:'Fotky'}
+  {k:'photo_right', photoKey:'right', t:'Fotka 1/6 – pravý boční pohled', type:'photo', section:'Fotky'},
+  {k:'photo_front', photoKey:'front', t:'Fotka 2/6 – čelní pohled', type:'photo', section:'Fotky'},
+  {k:'photo_left', photoKey:'left', t:'Fotka 3/6 – levý boční pohled', type:'photo', section:'Fotky'},
+  {k:'photo_rear', photoKey:'rear', t:'Fotka 4/6 – zadní část', type:'photo', section:'Fotky'},
+  {k:'photo_control', photoKey:'control', t:'Fotka 5/6 – ovladač / ovládací panel', type:'photo', section:'Fotky'},
+  {k:'photo_plate', photoKey:'plate', t:'Fotka 6/6 – výrobní štítek', type:'photo', section:'Fotky'}
 ];
-const PHOTO_LABELS = {right:'Pravý bok',front:'Čelo',left:'Levý bok',rear:'Zadní část',control:'Ovladač'};
+const PHOTO_LABELS = {right:'Pravý bok',front:'Čelo',left:'Levý bok',rear:'Zadní část',control:'Ovladač',plate:'Výrobní štítek'};
 
 const BRANCHES = ['Praha','Brno','Ostrava','Plzeň','Liberec','Olomouc','České Budějovice','Hradec Králové','Pardubice','Zlín','Most','Jihlava','Znojmo','Sokolov'];
 const TECHNICI = ['Jan Bartoš','Petr Čáp','Lukáš Machačka','Vít Procházka','Ondřej Lakva'];
@@ -533,7 +534,7 @@ function isProblemAnswer(key, value){
   if(value !== 'ANO' && value !== 'NE') return false;
   return isInvertedIssueKey(key) ? value === 'ANO' : value === 'NE';
 }
-function countIssues(r){ return getStepsForRecord(r).filter(s => (s.type === 'yn' || s.type === 'yntext') && isProblemAnswer(s.k, r[s.k])).length + (isRevizeExpired(r) ? 1 : 0); }
+function countIssues(r){ return getStepsForRecord(r).filter(s => (s.type === 'yn' || s.type === 'yntext' || s.type === 'yntextphoto') && isProblemAnswer(s.k, r[s.k])).length + (isRevizeExpired(r) ? 1 : 0); }
 function hasIssue(r){ return countIssues(r) > 0 || r.zaverOprava === 'ANO' || r.zaverBezpecny === 'NE' || isRevizeExpired(r); }
 function yn(v){ if(v === 'ANO') return '☑ ANO   ☐ NE'; if(v === 'NE') return '☐ ANO   ☑ NE'; return '☐ ANO   ☐ NE'; }
 function isGeneralCheckKey(key){ return /^C[0-9]+$/.test(String(key||'')); }
@@ -642,7 +643,7 @@ function showStep(){
   let html = '';
   if(s.type === 'yn'){
     html = `<div class="yesno"><button class="yn-btn ${yesClass}" data-answer="ANO">✔ ANO</button><button class="yn-btn ${noClass}" data-answer="NE">✖ NE</button></div>`;
-  } else if(s.type === 'yntext'){
+  } else if(s.type === 'yntext' || s.type === 'yntextphoto'){
     const needsNote = s.k === 'B1' ? rec[s.k]==='NE' : (isGeneralCheckKey(s.k) ? rec[s.k]==='ANO' : rec[s.k]==='NE');
     const label = s.k === 'B1' ? 'Závady' : 'Popis závady';
     html = `<div class="yesno"><button class="yn-btn ${yesClass}" data-answer-text="ANO">✔ ANO</button><button class="yn-btn ${noClass}" data-answer-text="NE">✖ NE</button></div><div class="field ${needsNote ? '' : 'hidden'}" id="descWrap"><label>${label}</label><textarea id="descInput">${escapeHtml(rec[s.textKey]||'')}</textarea></div>`;
@@ -739,7 +740,7 @@ function hideSuggestions(){ const host = document.getElementById('suggestHost');
 async function nextStep(){
   const activeSteps = getStepsForRecord(rec);
   const s = activeSteps[stepIndex];
-  if(s.type === 'yntext'){
+  if(s.type === 'yntext' || s.type === 'yntextphoto'){
     const needsNote = s.k === 'B1' ? rec[s.k] === 'NE' : (isGeneralCheckKey(s.k) ? rec[s.k] === 'ANO' : rec[s.k] === 'NE');
     if(needsNote) rec[s.textKey] = document.getElementById('descInput')?.value || rec[s.textKey] || '';
   }
@@ -950,7 +951,7 @@ function renderPhotoSection(r){
   const cells = PHOTO_STEPS.map(s => {
     const p = photos[s.photoKey] || {};
     const src = p.url || p.dataUrl || '';
-    return `<div class="photo-box">${src ? `<img src="${src}">` : '<div style="height:62px"></div>'}<strong>${escapeHtml(PHOTO_LABELS[s.photoKey])}</strong></div>`;
+    return `<div class="photo-box">${src ? `<img src="${escapeHtml(src)}" data-full-src="${escapeHtml(src)}" onclick="window.open(this.dataset.fullSrc,'_blank')" style="cursor:zoom-in">` : '<div style="height:62px"></div>'}<strong>${escapeHtml(PHOTO_LABELS[s.photoKey])}</strong></div>`;
   }).join('');
   return `<div class="section-block"><div class="section-title">Fotodokumentace</div><div class="photo-grid">${cells}</div></div>`;
 }

@@ -533,7 +533,7 @@ function isProblemAnswer(key, value){
   if(value !== 'ANO' && value !== 'NE') return false;
   return isInvertedIssueKey(key) ? value === 'ANO' : value === 'NE';
 }
-function countIssues(r){ return getStepsForRecord(r).filter(s => (s.type === 'yn' || s.type === 'yntext') && isProblemAnswer(s.k, r[s.k])).length + (isRevizeExpired(r) ? 1 : 0); }
+function countIssues(r){ return getStepsForRecord(r).filter(s => (s.type === 'yn' || s.type === 'yntext' || s.type === 'yntextphoto') && isProblemAnswer(s.k, r[s.k])).length + (isRevizeExpired(r) ? 1 : 0); }
 function hasIssue(r){ return countIssues(r) > 0 || r.zaverOprava === 'ANO' || r.zaverBezpecny === 'NE' || isRevizeExpired(r); }
 function yn(v){ if(v === 'ANO') return '☑ ANO   ☐ NE'; if(v === 'NE') return '☐ ANO   ☑ NE'; return '☐ ANO   ☐ NE'; }
 function isGeneralCheckKey(key){ return /^C[0-9]+$/.test(String(key||'')); }
@@ -642,7 +642,7 @@ function showStep(){
   let html = '';
   if(s.type === 'yn'){
     html = `<div class="yesno"><button class="yn-btn ${yesClass}" data-answer="ANO">✔ ANO</button><button class="yn-btn ${noClass}" data-answer="NE">✖ NE</button></div>`;
-  } else if(s.type === 'yntext'){
+ } else if(s.type === 'yntext' || s.type === 'yntextphoto'){
     const needsNote = s.k === 'B1' ? rec[s.k]==='NE' : (isGeneralCheckKey(s.k) ? rec[s.k]==='ANO' : rec[s.k]==='NE');
     const label = s.k === 'B1' ? 'Závady' : 'Popis závady';
     html = `<div class="yesno"><button class="yn-btn ${yesClass}" data-answer-text="ANO">✔ ANO</button><button class="yn-btn ${noClass}" data-answer-text="NE">✖ NE</button></div><div class="field ${needsNote ? '' : 'hidden'}" id="descWrap"><label>${label}</label><textarea id="descInput">${escapeHtml(rec[s.textKey]||'')}</textarea></div>`;

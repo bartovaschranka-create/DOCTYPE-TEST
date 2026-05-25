@@ -951,7 +951,7 @@ function renderPhotoSection(r){
   const cells = PHOTO_STEPS.map(s => {
     const p = photos[s.photoKey] || {};
     const src = p.url || p.dataUrl || '';
-    return `<div class="photo-box">${src ? `<img src="${src}">` : '<div style="height:62px"></div>'}<strong>${escapeHtml(PHOTO_LABELS[s.photoKey])}</strong></div>`;
+    return `<div class="photo-box">${src ? `<img src="${src}" onclick="window.open('${src}','_blank')" style="cursor:zoom-in">` : `<div style="height:62px"></div>`}
   }).join('');
   return `<div class="section-block"><div class="section-title">Fotodokumentace</div><div class="photo-grid">${cells}</div></div>`;
 }

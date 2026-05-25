@@ -16,7 +16,7 @@
 :root{--bg:#eef4fb;--panel:#ffffff;--panel2:#f8fbff;--text:#0f172a;--muted:#64748b;--line:#dbe6f2;--primary:#2563eb;--primary2:#1d4ed8;--danger:#dc2626;--ok:#16a34a;--shadow:0 10px 30px rgba(15,23,42,.08);--radius:18px}
 *{box-sizing:border-box} html,body{margin:0;padding:0;overscroll-behavior-y:none} body{font-family:Inter,sans-serif;background:linear-gradient(180deg,#f4f8fc 0%,#edf3fa 100%);color:var(--text);overscroll-behavior-y:none}
 header{position:sticky;top:0;z-index:20;background:rgba(15,23,42,.92);backdrop-filter:blur(10px);color:#fff;padding:16px 20px;box-shadow:0 8px 24px rgba(15,23,42,.22); overscroll-behavior: none;}
-.header-title{font-size:1.15rem;font-weight:700}.test-badge{display:inline-flex;margin-left:8px;padding:3px 8px;border-radius:999px;background:#dc2626;color:#fff;font-size:.72rem;vertical-align:middle}.photo-preview{margin-top:12px;border:1px solid var(--line);border-radius:14px;overflow:hidden;background:#f8fbff}.photo-preview img{display:block;width:100%;height:auto}.photo-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:6px;margin:6px 0}.photo-box{border:1px solid #000;min-height:82px;text-align:center;font-size:8.2px;padding:3px}.photo-box img{width:100%;height:62px;object-fit:cover;display:block;margin-bottom:3px}.header-sub{font-size:.82rem;color:#cbd5e1;margin-top:4px}
+.header-title{font-size:1.15rem;font-weight:700}.test-badge{display:inline-flex;margin-left:8px;padding:3px 8px;border-radius:999px;background:#dc2626;color:#fff;font-size:.72rem;vertical-align:middle}.photo-preview{margin-top:12px;border:1px solid var(--line);border-radius:14px;overflow:hidden;background:#f8fbff}.photo-preview img{display:block;width:100%;height:auto}.photo-grid{display:grid;grid-template-columns:repeat(6,1fr);gap:6px;margin:6px 0}.photo-box{border:1px solid #000;min-height:82px;text-align:center;font-size:8.2px;padding:3px}.photo-box img{width:100%;height:62px;object-fit:cover;display:block;margin-bottom:3px;cursor:zoom-in}.issue-photo-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:8px;margin:8px 0}.issue-photo-box{border:1px solid #000;min-height:92px;text-align:center;font-size:8.2px;padding:4px}.issue-photo-box img{width:100%;height:74px;object-fit:cover;display:block;margin-bottom:3px;cursor:zoom-in}.photo-tools{display:flex;gap:8px;flex-wrap:wrap;margin-top:8px}.photo-thumb{margin-top:10px;border:1px solid var(--line);border-radius:14px;overflow:hidden;background:#f8fbff}.photo-thumb img{display:block;width:100%;max-height:220px;object-fit:contain;cursor:zoom-in}.lightbox{position:fixed;inset:0;background:rgba(0,0,0,.88);display:none;align-items:center;justify-content:center;z-index:80;padding:16px}.lightbox.show{display:flex}.lightbox img{max-width:96vw;max-height:88vh;object-fit:contain}.lightbox-close{position:fixed;right:16px;top:16px;background:#fff;color:#000;border-radius:999px;padding:10px 14px;font-weight:700}.header-sub{font-size:.82rem;color:#cbd5e1;margin-top:4px}
 .container{max-width:1100px;margin:0 auto;padding:22px}.dashboard{display:grid;grid-template-columns:1.2fr .8fr;gap:18px;margin-bottom:18px}
 .hero,.summary-card,.card,.wizard-shell,.preview-shell{background:var(--panel);border:1px solid rgba(219,230,242,.8);border-radius:var(--radius);box-shadow:var(--shadow)}
 .hero{padding:18px;background:linear-gradient(135deg,#ffffff 0%,#f6faff 100%)}.hero h1,.hero p{display:none}.hero-actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:0}
@@ -119,6 +119,11 @@ input::placeholder, textarea::placeholder{color:#334155;font-weight:600;font-siz
   <div class="paper-wrap print-root"><div id="previewBody"></div></div>
   <div class="preview-actions"><div class="preview-actions-left"><button id="closePreviewBtn" class="secondary" type="button">Ukončit</button></div><div class="preview-actions-right"><button id="savePreviewBtn" class="ghost" type="button">Uložit protokol</button><button id="printPreviewBtn" class="primary" type="button">Tisk / Uložit jako PDF</button></div></div>
 </div></div></div>
+
+<div class="lightbox" id="lightbox" onclick="closeLightbox()">
+  <button class="lightbox-close" type="button" onclick="closeLightbox();event.stopPropagation();">Zavřít</button>
+  <img id="lightboxImg" alt="Zvětšená fotka" onclick="event.stopPropagation();">
+</div>
 
 <script src="https://unpkg.com/html5-qrcode"></script>
 <script src="https://www.gstatic.com/firebasejs/10.12.5/firebase-app-compat.js"></script>
@@ -332,6 +337,7 @@ async function uploadDataUrl(path, dataUrl){
 }
 async function prepareRecordForSave(record){
   record.photos = record.photos || {};
+  record.issuePhotos = record.issuePhotos || {};
   if(!(firebaseAvailable && storageAvailable && storage)) return record;
   for(const step of PHOTO_STEPS){
     const key = step.photoKey;
@@ -340,6 +346,14 @@ async function prepareRecordForSave(record){
       const path = `${STORAGE_PREFIX}/${record.id}/${key}.jpg`;
       const url = await uploadDataUrl(path, p.dataUrl);
       record.photos[key] = {url, path, label:PHOTO_LABELS[key], bytes:p.bytes||0, updatedAt:new Date().toISOString()};
+    }
+  }
+  for(const [key,p] of Object.entries(record.issuePhotos || {})){
+    if(p && p.dataUrl){
+      const safeKey = String(key).replace(/[^a-zA-Z0-9_-]/g,'_');
+      const path = `${STORAGE_PREFIX}/${record.id}/issue_${safeKey}.jpg`;
+      const url = await uploadDataUrl(path, p.dataUrl);
+      record.issuePhotos[key] = {url, path, label:p.label || key, question:p.question || '', bytes:p.bytes||0, updatedAt:new Date().toISOString()};
     }
   }
   return record;
@@ -646,13 +660,23 @@ function showStep(){
   } else if(s.type === 'yntext' || s.type === 'yntextphoto'){
     const needsNote = s.k === 'B1' ? rec[s.k]==='NE' : (isGeneralCheckKey(s.k) ? rec[s.k]==='ANO' : rec[s.k]==='NE');
     const label = s.k === 'B1' ? 'Závady' : 'Popis závady';
-    html = `<div class="yesno"><button class="yn-btn ${yesClass}" data-answer-text="ANO">✔ ANO</button><button class="yn-btn ${noClass}" data-answer-text="NE">✖ NE</button></div><div class="field ${needsNote ? '' : 'hidden'}" id="descWrap"><label>${label}</label><textarea id="descInput">${escapeHtml(rec[s.textKey]||'')}</textarea></div>`;
+    const issuePhoto = (rec.issuePhotos || {})[s.k] || {};
+    const issueSrc = getPhotoSrc(issuePhoto);
+    const issueSize = issuePhoto.bytes ? ` · ${Math.round(issuePhoto.bytes/1024)} kB` : '';
+    const issuePhotoHtml = (s.type === 'yntextphoto' && needsNote) ? `
+      <div class="field" id="issuePhotoWrap">
+        <label>Fotka k závadě / poškození</label>
+        <input id="issuePhotoInput" type="file" accept="image/*" capture="environment">
+        <div class="helper">Volitelné. Aplikace fotku automaticky zmenší na max. cca 500 kB.</div>
+        ${issueSrc ? `<div class="photo-thumb"><img src="${escapeHtml(issueSrc)}" onclick="openLightbox(this.src)" alt="Fotka závady"></div><div class="helper">Fotka uložena${issueSize}</div><div class="photo-tools"><button class="danger mini" type="button" id="deleteIssuePhotoBtn">Smazat fotku závady</button></div>` : ''}
+      </div>` : '';
+    html = `<div class="yesno"><button class="yn-btn ${yesClass}" data-answer-text="ANO">✔ ANO</button><button class="yn-btn ${noClass}" data-answer-text="NE">✖ NE</button></div><div class="field ${needsNote ? '' : 'hidden'}" id="descWrap"><label>${label}</label><textarea id="descInput">${escapeHtml(rec[s.textKey]||'')}</textarea></div>${issuePhotoHtml}`;
   } else if(s.type === 'photo'){
     rec.photos = rec.photos || {};
     const p = rec.photos[s.photoKey] || {};
     const src = p.dataUrl || p.url || '';
     const size = p.bytes ? ` · ${Math.round(p.bytes/1024)} kB` : '';
-    html = `<div class="field"><label>${s.t}</label><input id="photoInput" type="file" accept="image/*" capture="environment"><div class="helper">Max. 500 kB po automatické kompresi. Fotku můžeš přeskočit tlačítkem Další.</div>${src ? `<div class="photo-preview"><img src="${src}" alt="${escapeHtml(s.t)}"></div><div class="helper">Uloženo v kroku${size}</div>` : ''}</div>`;
+    html = `<div class="field"><label>${s.t}</label><input id="photoInput" type="file" accept="image/*" capture="environment"><div class="helper">Max. 500 kB po automatické kompresi. Fotku můžeš přeskočit tlačítkem Další.</div>${src ? `<div class="photo-preview"><img src="${escapeHtml(src)}" onclick="openLightbox(this.src)" alt="${escapeHtml(s.t)}"></div><div class="helper">Uloženo v kroku${size}</div><div class="photo-tools"><button class="danger mini" type="button" id="deleteMainPhotoBtn">Smazat tuto fotku</button></div>` : ''}</div>`;
   } else if(s.type === 'textarea'){
     html = `<div class="field suggest-wrap"><textarea id="mainTextarea">${escapeHtml(rec[s.k]||'')}</textarea><div id="suggestHost"></div></div>`;
   } else if(s.type === 'date'){
@@ -697,6 +721,43 @@ function showStep(){
       }
     });
   }
+  const deleteMainPhotoBtn = document.getElementById('deleteMainPhotoBtn');
+  if(deleteMainPhotoBtn){
+    deleteMainPhotoBtn.addEventListener('click', () => {
+      if(confirm('Smazat tuto fotku z rozpracovaného protokolu?')){
+        rec.photos = rec.photos || {};
+        delete rec.photos[s.photoKey];
+        showStep();
+      }
+    });
+  }
+  const issuePhotoInput = document.getElementById('issuePhotoInput');
+  if(issuePhotoInput){
+    issuePhotoInput.addEventListener('change', async (e) => {
+      const file = e.target.files && e.target.files[0];
+      if(!file) return;
+      els.stepDesc.textContent = 'Zpracovávám fotku závady...';
+      try{
+        const out = await compressPhoto(file, MAX_PHOTO_BYTES);
+        rec.issuePhotos = rec.issuePhotos || {};
+        rec.issuePhotos[s.k] = {dataUrl:out.dataUrl, bytes:out.bytes, label:s.k, question:s.t, width:out.width, height:out.height};
+        showStep();
+      }catch(err){
+        console.error(err);
+        alert('Fotku závady se nepodařilo zpracovat. Zkus jinou fotku.');
+      }
+    });
+  }
+  const deleteIssuePhotoBtn = document.getElementById('deleteIssuePhotoBtn');
+  if(deleteIssuePhotoBtn){
+    deleteIssuePhotoBtn.addEventListener('click', () => {
+      if(confirm('Smazat fotku závady z rozpracovaného protokolu?')){
+        rec.issuePhotos = rec.issuePhotos || {};
+        delete rec.issuePhotos[s.k];
+        showStep();
+      }
+    });
+  }
   els.content.querySelectorAll('[data-answer]').forEach(btn => btn.addEventListener('click', () => { rec[s.k] = btn.dataset.answer; nextStep(); }));
   els.content.querySelectorAll('[data-answer-text]').forEach(btn => btn.addEventListener('click', () => {
     rec[s.k] = btn.dataset.answerText;
@@ -737,6 +798,30 @@ function refreshSuggestions(){
 }
 function hideSuggestions(){ const host = document.getElementById('suggestHost'); if(host) host.innerHTML = ''; }
 
+function shouldShowIssuePhoto(step, value){
+  if(!step || step.type !== 'yntextphoto') return false;
+  if(step.k === 'B1') return value === 'NE';
+  if(isGeneralCheckKey(step.k)) return value === 'ANO';
+  return value === 'NE';
+}
+function getPhotoSrc(photo){ return photo ? (photo.url || photo.dataUrl || '') : ''; }
+function openLightbox(src){
+  if(!src) return;
+  const lb = document.getElementById('lightbox');
+  const img = document.getElementById('lightboxImg');
+  if(!lb || !img){ window.open(src,'_blank'); return; }
+  img.src = src;
+  lb.classList.add('show');
+}
+function closeLightbox(){
+  const lb = document.getElementById('lightbox');
+  const img = document.getElementById('lightboxImg');
+  if(img) img.src = '';
+  if(lb) lb.classList.remove('show');
+}
+window.openLightbox = openLightbox;
+window.closeLightbox = closeLightbox;
+
 async function nextStep(){
   const activeSteps = getStepsForRecord(rec);
   const s = activeSteps[stepIndex];
@@ -760,6 +845,8 @@ async function nextStep(){
   }
   syncRevizeIssue(rec);
   syncModelPreferences(rec);
+  const okSave = confirm('Chceš protokol uložit?');
+  if(!okSave) return;
   rec.savedAt = new Date().toISOString();
   await saveProtocol(rec);
   closeWizard();
@@ -951,9 +1038,21 @@ function renderPhotoSection(r){
   const cells = PHOTO_STEPS.map(s => {
     const p = photos[s.photoKey] || {};
     const src = p.url || p.dataUrl || '';
-    return `<div class="photo-box">${src ? `<img src="${escapeHtml(src)}" data-full-src="${escapeHtml(src)}" onclick="window.open(this.dataset.fullSrc,'_blank')" style="cursor:zoom-in">` : '<div style="height:62px"></div>'}<strong>${escapeHtml(PHOTO_LABELS[s.photoKey])}</strong></div>`;
+    return `<div class="photo-box">${src ? `<img src="${escapeHtml(src)}" data-full-src="${escapeHtml(src)}" onclick="openLightbox(this.dataset.fullSrc)">` : '<div style="height:62px"></div>'}<strong>${escapeHtml(PHOTO_LABELS[s.photoKey])}</strong></div>`;
   }).join('');
   return `<div class="section-block"><div class="section-title">Fotodokumentace</div><div class="photo-grid">${cells}</div></div>`;
+}
+function renderIssuePhotosSection(r){
+  const issuePhotos = r.issuePhotos || {};
+  const entries = Object.entries(issuePhotos).filter(([k,p]) => p && (p.url || p.dataUrl));
+  if(!entries.length) return '';
+  const cells = entries.map(([k,p]) => {
+    const src = p.url || p.dataUrl || '';
+    const q = p.question || k;
+    const note = r[k + '_p'] || '';
+    return `<div class="issue-photo-box"><img src="${escapeHtml(src)}" data-full-src="${escapeHtml(src)}" onclick="openLightbox(this.dataset.fullSrc)"><strong>${escapeHtml(q)}</strong>${note ? `<div>${escapeHtml(note)}</div>` : ''}</div>`;
+  }).join('');
+  return `<div class="section-block"><div class="section-title">Fotky závad / poškození</div><div class="issue-photo-grid">${cells}</div></div>`;
 }
 function renderPaper(r){
   const sections = getSectionsForRecord(r);
@@ -1033,6 +1132,7 @@ function renderPaper(r){
     </div>
 
     ${renderPhotoSection(r)}
+    ${renderIssuePhotosSection(r)}
 
     <div class="footer-grid">
       <div class="sign-box"><strong>Podpis technika:</strong></div>
@@ -1051,6 +1151,7 @@ document.getElementById('nextBtn').addEventListener('click', nextStep);
 document.getElementById('closePreviewBtn').addEventListener('click', closePreview);
 document.getElementById('savePreviewBtn').addEventListener('click', savePreviewRecord);
 document.getElementById('printPreviewBtn').addEventListener('click', printCurrent);
+document.addEventListener('keydown', (e) => { if(e.key === 'Escape') closeLightbox(); });
 document.getElementById('closeQrBtn').addEventListener('click', () => closeQrModal());
 document.getElementById('clearQrBtn').addEventListener('click', () => {
   resetQr();

@@ -251,12 +251,12 @@ function getStepsForRecord(record){
       if(item.chargerCheck){
         if(!knownCharger){
           dynamicSteps.push({k:'chargerPresent',t:'Zařízení má nabíječ',type:'yn',section:'E'});
-          dynamicSteps.push({k:item.k,t:item.l,type:item.desc?'yntext':'yn',textKey:item.k+'_p',section:sec,chargerCheck:true});
+          dynamicSteps.push({k:item.k,t:item.l,type:item.desc?'yntextphoto':'yn',textKey:item.k+'_p',section:sec,chargerCheck:true});
         } else if(knownCharger === 'ANO'){
-          dynamicSteps.push({k:item.k,t:item.l,type:item.desc?'yntext':'yn',textKey:item.k+'_p',section:sec,chargerCheck:true});
+          dynamicSteps.push({k:item.k,t:item.l,type:item.desc?'yntextphoto':'yn',textKey:item.k+'_p',section:sec,chargerCheck:true});
         }
       } else {
-        dynamicSteps.push({k:item.k,t:item.l,type:item.desc?'yntext':'yn',textKey:item.k+'_p',section:sec});
+        dynamicSteps.push({k:item.k,t:item.l,type:item.desc?'yntextphoto':'yn',textKey:item.k+'_p',section:sec});
       }
     });
   });

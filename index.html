@@ -15,19 +15,19 @@
 <style>
 :root{--bg:#eef4fb;--panel:#ffffff;--panel2:#f8fbff;--text:#0f172a;--muted:#64748b;--line:#dbe6f2;--primary:#2563eb;--primary2:#1d4ed8;--danger:#dc2626;--ok:#16a34a;--shadow:0 10px 30px rgba(15,23,42,.08);--radius:18px}
 body.dark{--bg:#0b1220;--panel:#111827;--panel2:#0f172a;--text:#e5e7eb;--muted:#94a3b8;--line:#243244;--primary:#3b82f6;--primary2:#2563eb;--danger:#ef4444;--ok:#22c55e;--shadow:0 10px 30px rgba(0,0,0,.28)}
-body.red{--bg:#fff1f2;--panel:#ffffff;--panel2:#fff7f7;--text:#1f0a0a;--muted:#7f1d1d;--line:#fecaca;--primary:#dc2626;--primary2:#b91c1c;--danger:#991b1b;--ok:#16a34a;--shadow:0 10px 30px rgba(127,29,29,.10)}
 *{box-sizing:border-box} html,body{margin:0;padding:0;overscroll-behavior-y:none} body{font-family:Inter,sans-serif;background:linear-gradient(180deg,var(--bg) 0%,var(--panel2) 100%);color:var(--text);overscroll-behavior-y:none}
 body.dark header{background:rgba(2,6,23,.94)}
-body.red header{background:rgba(127,29,29,.94)}
 header{position:sticky;top:0;z-index:20;background:rgba(15,23,42,.92);backdrop-filter:blur(10px);color:#fff;padding:calc(env(safe-area-inset-top,0px) + 18px) 20px 16px;min-height:calc(env(safe-area-inset-top,0px) + 70px);box-shadow:0 8px 24px rgba(15,23,42,.22);overscroll-behavior:none;display:flex;align-items:flex-end;justify-content:space-between;gap:12px;}
-.theme-toggle,.settings-gear{background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.25);color:#fff;border-radius:14px;padding:9px 12px;font-size:1.05rem;white-space:nowrap;min-width:44px}
-.settings-backdrop{position:fixed;inset:0;background:rgba(15,23,42,.45);display:none;z-index:75}.settings-backdrop.show{display:block}
-.settings-panel{position:fixed;top:0;right:0;width:min(92vw,380px);height:100vh;background:var(--panel);color:var(--text);box-shadow:-18px 0 40px rgba(15,23,42,.25);z-index:76;transform:translateX(105%);transition:transform .22s ease;padding:calc(env(safe-area-inset-top,0px) + 18px) 18px 18px;overflow:auto;border-left:1px solid var(--line)}.settings-panel.show{transform:translateX(0)}
-.settings-head{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-bottom:18px}.settings-title{font-size:1.25rem;font-weight:800}.settings-close{background:var(--panel2);border:1px solid var(--line);color:var(--text);border-radius:12px;padding:8px 11px}.settings-group{border:1px solid var(--line);background:var(--panel2);border-radius:16px;padding:12px;margin-bottom:12px}.settings-group-title{font-size:.82rem;font-weight:800;color:var(--muted);margin-bottom:9px;text-transform:uppercase;letter-spacing:.04em}.settings-panel .settings-btn{width:100%;justify-content:flex-start;text-align:left;margin:5px 0;border-radius:12px}.theme-options{display:grid;grid-template-columns:1fr;gap:8px}.theme-option.active{outline:2px solid var(--primary);background:var(--primary);color:#fff}
+.theme-toggle{background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.25);color:#fff;border-radius:999px;padding:8px 11px;font-size:.82rem;white-space:nowrap}
+.settings-gear{background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.25);color:#fff;border-radius:14px;width:42px;height:42px;display:inline-flex;align-items:center;justify-content:center;font-size:1.2rem;line-height:1}
+.settings-grid{display:grid;gap:10px}.settings-grid button{width:100%;text-align:left}.stat-total{background:#fef9c3!important;border-color:#fde68a!important}.stat-issues{background:#fee2e2!important;border-color:#fecaca!important}.stat-okbox{background:#dcfce7!important;border-color:#bbf7d0!important}.stat-total .stat-value{color:#854d0e}.stat-issues .stat-value{color:#991b1b}.stat-okbox .stat-value{color:#166534}
 .header-title{font-size:1.15rem;font-weight:700;line-height:1.25}.test-badge{display:inline-flex;margin-left:8px;padding:3px 8px;border-radius:999px;background:#dc2626;color:#fff;font-size:.72rem;vertical-align:middle}.photo-preview{margin-top:12px;border:1px solid var(--line);border-radius:14px;overflow:hidden;background:#f8fbff}.photo-preview img{display:block;width:100%;height:auto}.photo-grid{display:grid;grid-template-columns:repeat(6,1fr);gap:6px;margin:6px 0}.photo-box{border:1px solid #000;min-height:82px;text-align:center;font-size:8.2px;padding:3px}.photo-box img{width:100%;height:62px;object-fit:cover;display:block;margin-bottom:3px;cursor:zoom-in}.issue-photo-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:8px;margin:8px 0}.issue-photo-box{border:1px solid #000;min-height:92px;text-align:center;font-size:8.2px;padding:4px}.issue-photo-box img{width:100%;height:74px;object-fit:cover;display:block;margin-bottom:3px;cursor:zoom-in}.photo-tools{display:flex;gap:8px;flex-wrap:wrap;margin-top:8px}.photo-thumb{margin-top:10px;border:1px solid var(--line);border-radius:14px;overflow:hidden;background:#f8fbff}.photo-thumb img{display:block;width:100%;max-height:220px;object-fit:contain;cursor:zoom-in}.lightbox{position:fixed;inset:0;background:rgba(0,0,0,.88);display:none;align-items:center;justify-content:center;z-index:80;padding:16px}.lightbox.show{display:flex}.lightbox img{max-width:96vw;max-height:88vh;object-fit:contain}.lightbox-close{display:none}.lightbox-nav{position:absolute;top:50%;transform:translateY(-50%);width:46px;height:58px;border-radius:16px;background:rgba(255,255,255,.14);color:#fff;font-size:38px;line-height:1;display:flex;align-items:center;justify-content:center}.lightbox-prev{left:14px}.lightbox-next{right:14px}.lightbox-counter{position:absolute;bottom:16px;left:50%;transform:translateX(-50%);color:#fff;background:rgba(0,0,0,.45);border-radius:999px;padding:6px 12px;font-size:.9rem}.header-sub{font-size:.82rem;color:#cbd5e1;margin-top:4px}
-body.dark .hero,body.dark .summary-card,body.dark .card,body.dark .wizard-shell,body.dark .preview-shell,body.red .hero,body.red .summary-card,body.red .card,body.red .wizard-shell,body.red .preview-shell{background:var(--panel);border-color:var(--line)}
+body.dark .hero,body.dark .summary-card,body.dark .card,body.dark .wizard-shell,body.dark .preview-shell{background:var(--panel);border-color:var(--line)}
 body.dark .hero,body.dark .wizard-shell{background:linear-gradient(180deg,#111827 0%,#0f172a 100%)}
-body.dark .stat,body.dark .meta,body.dark .empty,body.dark .photo-preview,body.dark .photo-thumb,body.red .stat,body.red .meta,body.red .empty,body.red .photo-preview,body.red .photo-thumb{background:var(--panel2);border-color:var(--line)}
+body.dark .stat,body.dark .meta,body.dark .empty,body.dark .photo-preview,body.dark .photo-thumb{background:var(--panel2);border-color:var(--line)}
+body.dark .stat-total{background:#3b2f10!important;border-color:#854d0e!important}.stat-issues{ }.stat-okbox{ }
+body.dark .stat-issues{background:#3f1518!important;border-color:#7f1d1d!important}
+body.dark .stat-okbox{background:#12351f!important;border-color:#166534!important}
 body.dark .search,body.dark .filter,body.dark input,body.dark textarea,body.dark select,body.dark .modal-content,body.dark .ghost{background:#0f172a;color:var(--text);border-color:var(--line)}
 body.dark .secondary{background:#243244;color:var(--text)}
 body.dark input::placeholder,body.dark textarea::placeholder{color:#94a3b8}
@@ -67,29 +67,8 @@ input::placeholder, textarea::placeholder{color:#334155;font-weight:600;font-siz
 <body>
 <header>
   <div class="header-title">Kontrolní protokoly <span class="test-badge">TEST</span></div>
-  <button id="settingsBtn" class="settings-gear" type="button" title="Nastavení">⚙</button>
+  <button id="settingsBtn" class="settings-gear" type="button" aria-label="Nastavení">⚙</button>
 </header>
-<div id="settingsBackdrop" class="settings-backdrop"></div>
-<aside id="settingsPanel" class="settings-panel" aria-label="Nastavení aplikace">
-  <div class="settings-head">
-    <div class="settings-title">Nastavení</div>
-    <button id="settingsCloseBtn" class="settings-close" type="button">Zavřít</button>
-  </div>
-  <div class="settings-group">
-    <div class="settings-group-title">Data</div>
-    <button class="ghost settings-btn" type="button" id="settingsExportBtn">Export zálohy</button>
-    <button class="ghost settings-btn" type="button" id="settingsHistoryBtn">Historie protokolů</button>
-    <button class="danger settings-btn" type="button" id="settingsClearAllBtn">Vymazat všechny protokoly</button>
-  </div>
-  <div class="settings-group">
-    <div class="settings-group-title">Vzhled</div>
-    <div class="theme-options">
-      <button class="secondary settings-btn theme-option" type="button" data-theme="light">Světlý režim</button>
-      <button class="secondary settings-btn theme-option" type="button" data-theme="dark">Tmavý režim</button>
-      <button class="secondary settings-btn theme-option" type="button" data-theme="red">Červený režim</button>
-    </div>
-  </div>
-</aside>
 
 <div class="container" id="appRoot">
   <div class="dashboard">
@@ -101,9 +80,9 @@ input::placeholder, textarea::placeholder{color:#334155;font-weight:600;font-siz
     <aside class="summary-card">
       <div class="card-title">Přehled</div>
       <div class="summary-grid">
-        <div class="stat"><div class="stat-label">Celkem protokolů</div><div class="stat-value" id="statTotal">0</div></div>
-        <div class="stat"><div class="stat-label">Se závadou</div><div class="stat-value" id="statIssues">0</div></div>
-        <div class="stat"><div class="stat-label">Bez závad</div><div class="stat-value" id="statOk">0</div></div>
+        <div class="stat stat-total"><div class="stat-label">Celkem protokolů</div><div class="stat-value" id="statTotal">0</div></div>
+        <div class="stat stat-issues"><div class="stat-label">Se závadou</div><div class="stat-value" id="statIssues">0</div></div>
+        <div class="stat stat-okbox"><div class="stat-label">Bez závad</div><div class="stat-value" id="statOk">0</div></div>
         <div class="stat"><div class="stat-label">Poslední datum</div><div class="stat-value" id="statLast">—</div></div>
       </div>
     </aside>
@@ -123,6 +102,17 @@ input::placeholder, textarea::placeholder{color:#334155;font-weight:600;font-siz
 
   <div id="list" class="list"></div>
 </div>
+
+<div class="modal" id="settingsModal"><div class="modal-content"><div class="wizard-shell">
+  <h3 class="step-title">Nastavení</h3>
+  <p class="step-desc">Správa dat a vzhledu aplikace.</p>
+  <div class="settings-grid">
+    <button id="themeToggle" class="secondary" type="button">Tmavý režim</button>
+    <button class="ghost" type="button" onclick="exportBackup()">Export zálohy</button>
+    <button class="danger" id="clearAllBtn" type="button">Vymazat všechny uložené protokoly</button>
+  </div>
+  <div class="wizard-actions"><button id="closeSettingsBtn" class="secondary" type="button">Zavřít</button></div>
+</div></div></div>
 
 <div class="modal" id="wizard"><div class="modal-content"><div class="wizard-shell">
   <div class="progress-wrap"><div class="progress-label" id="progressLabel">Krok 1</div><div class="progress-label" id="progressPercent">0 %</div></div>
@@ -605,7 +595,7 @@ function render(){
   if(filter === 'issues') rows = rows.filter(hasIssue);
   if(filter === 'ok') rows = rows.filter(r => !hasIssue(r));
   rows.sort((a,b)=>String(b.datum||'').localeCompare(String(a.datum||'')));
-  if(!rows.length){ els.list.innerHTML = '<div class="empty"><span class="badge badge-info">Sdílení zapnuté</span><div style="margin-top:10px">Zatím tu nic není.</div></div>'; updateStats([]); return; }
+  if(!rows.length){ els.list.innerHTML = '<div class="empty"><div>Zatím tu nic není.</div></div>'; updateStats([]); return; }
   els.list.innerHTML = rows.map(r => `
     <div class="card">
       <div class="card-head">
@@ -614,8 +604,7 @@ function render(){
           <div class="card-sub">${escapeHtml(r.typ||'')} ${r.umisteni ? '· '+escapeHtml(r.umisteni) : ''}</div><div class="card-sub">Uloženo: ${escapeHtml(formatDateTime(r.savedAt || r.datum))}</div>
           <div class="badges">
             <span class="badge ${hasIssue(r)?'badge-warn':'badge-ok'}">${hasIssue(r)?'Se závadou':'Bez závad'}</span>
-            <span class="badge badge-info">${countIssues(r)} × závada</span>
-            <span class="badge badge-info">Sdílení zapnuté</span>
+            ${firebaseAvailable ? '' : '<span class="badge badge-warn">Sdílení vypnuté</span>'}
           </div>
         </div>
         <div class="card-sub">${escapeHtml(formatDate(r.datum))}</div>
@@ -628,7 +617,6 @@ function render(){
       </div>
       <div class="actions">
         <button class="secondary mini" data-action="preview" data-id="${r.id}">Náhled</button>
-        <button class="ghost mini" data-action="history" data-vc="${escapeHtml(r.vc||'')}">Historie</button>
         <button class="ghost mini" data-action="edit" data-id="${r.id}">Upravit</button>
         <button class="primary mini" data-action="pdf" data-id="${r.id}">Tisk / PDF</button>
         <button class="danger mini" data-action="delete" data-id="${r.id}">Smazat</button>
@@ -991,7 +979,7 @@ function openPreviewById(id){
   syncRevizeIssue(record);
   currentPreview = record;
   els.previewBody.innerHTML = renderPaper(record);
-  els.previewBadges.innerHTML = `<span class="badge ${hasIssue(record)?'badge-warn':'badge-ok'}">${hasIssue(record)?'Se závadou':'Bez závad'}</span><span class="badge badge-info">${countIssues(record)} × závada</span><span class="badge badge-info">Historie: ${record.vc ? findProtocolsByMachine(record.vc).length : 0}</span>`;
+  els.previewBadges.innerHTML = `<span class="badge ${hasIssue(record)?'badge-warn':'badge-ok'}">${hasIssue(record)?'Se závadou':'Bez závad'}</span>${firebaseAvailable ? '' : '<span class="badge badge-warn">Sdílení vypnuté</span>'}`;
   openModal(els.preview);
 }
 function closePreview(){
@@ -1274,39 +1262,26 @@ function renderPaper(r){
 }
 
 function applyTheme(mode){
-  const safeMode = ['light','dark','red'].includes(mode) ? mode : 'light';
-  document.body.classList.toggle('dark', safeMode === 'dark');
-  document.body.classList.toggle('red', safeMode === 'red');
+  const dark = mode === 'dark';
+  document.body.classList.toggle('dark', dark);
+  const btn = document.getElementById('themeToggle');
+  if(btn) btn.textContent = dark ? 'Světlý režim' : 'Tmavý režim';
   const meta = document.querySelector('meta[name="theme-color"]');
-  if(meta) meta.setAttribute('content', safeMode === 'dark' ? '#020617' : (safeMode === 'red' ? '#7f1d1d' : '#0f172a'));
-  document.querySelectorAll('.theme-option').forEach(btn => btn.classList.toggle('active', btn.dataset.theme === safeMode));
+  if(meta) meta.setAttribute('content', dark ? '#020617' : '#0f172a');
 }
-function setTheme(mode){
-  localStorage.setItem('doctypeTheme', mode);
-  applyTheme(mode);
-}
-function openSettings(){
-  document.getElementById('settingsPanel')?.classList.add('show');
-  document.getElementById('settingsBackdrop')?.classList.add('show');
-}
-function closeSettings(){
-  document.getElementById('settingsPanel')?.classList.remove('show');
-  document.getElementById('settingsBackdrop')?.classList.remove('show');
+function toggleTheme(){
+  const next = document.body.classList.contains('dark') ? 'light' : 'dark';
+  localStorage.setItem('doctypeTheme', next);
+  applyTheme(next);
 }
 applyTheme(localStorage.getItem('doctypeTheme') || 'light');
 
 // events
-document.getElementById('settingsBtn')?.addEventListener('click', openSettings);
-document.getElementById('settingsCloseBtn')?.addEventListener('click', closeSettings);
-document.getElementById('settingsBackdrop')?.addEventListener('click', closeSettings);
-document.querySelectorAll('.theme-option').forEach(btn => btn.addEventListener('click', () => setTheme(btn.dataset.theme)));
-document.getElementById('settingsExportBtn')?.addEventListener('click', () => { closeSettings(); exportBackup(); });
-document.getElementById('settingsHistoryBtn')?.addEventListener('click', () => { closeSettings(); document.getElementById('list')?.scrollIntoView({behavior:'smooth'}); });
-document.getElementById('settingsClearAllBtn')?.addEventListener('click', () => { closeSettings(); clearAllData(); });
+document.getElementById('themeToggle')?.addEventListener('click', toggleTheme);
 els.searchInput.addEventListener('input', render);
 els.statusFilter.addEventListener('change', render);
 document.getElementById('newProtocolBtn').addEventListener('click', () => openWizard());
-document.getElementById('clearAllBtn')?.addEventListener('click', clearAllData);
+document.getElementById('clearAllBtn').addEventListener('click', clearAllData);
 document.getElementById('closeWizardBtn').addEventListener('click', closeWizard);
 document.getElementById('prevStepBtn').addEventListener('click', prevStep);
 document.getElementById('nextBtn').addEventListener('click', nextStep);

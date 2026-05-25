@@ -16,7 +16,7 @@
 :root{--bg:#eef4fb;--panel:#ffffff;--panel2:#f8fbff;--text:#0f172a;--muted:#64748b;--line:#dbe6f2;--primary:#2563eb;--primary2:#1d4ed8;--danger:#dc2626;--ok:#16a34a;--shadow:0 10px 30px rgba(15,23,42,.08);--radius:18px}
 *{box-sizing:border-box} html,body{margin:0;padding:0;overscroll-behavior-y:none} body{font-family:Inter,sans-serif;background:linear-gradient(180deg,#f4f8fc 0%,#edf3fa 100%);color:var(--text);overscroll-behavior-y:none}
 header{position:sticky;top:0;z-index:20;background:rgba(15,23,42,.92);backdrop-filter:blur(10px);color:#fff;padding:calc(env(safe-area-inset-top,0px) + 18px) 20px 16px;min-height:calc(env(safe-area-inset-top,0px) + 70px);box-shadow:0 8px 24px rgba(15,23,42,.22);overscroll-behavior:none;display:flex;align-items:flex-end;}
-.header-title{font-size:1.15rem;font-weight:700;line-height:1.25}.test-badge{display:inline-flex;margin-left:8px;padding:3px 8px;border-radius:999px;background:#dc2626;color:#fff;font-size:.72rem;vertical-align:middle}.photo-preview{margin-top:12px;border:1px solid var(--line);border-radius:14px;overflow:hidden;background:#f8fbff}.photo-preview img{display:block;width:100%;height:auto}.photo-grid{display:grid;grid-template-columns:repeat(6,1fr);gap:6px;margin:6px 0}.photo-box{border:1px solid #000;min-height:82px;text-align:center;font-size:8.2px;padding:3px}.photo-box img{width:100%;height:62px;object-fit:cover;display:block;margin-bottom:3px;cursor:zoom-in}.issue-photo-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:8px;margin:8px 0}.issue-photo-box{border:1px solid #000;min-height:92px;text-align:center;font-size:8.2px;padding:4px}.issue-photo-box img{width:100%;height:74px;object-fit:cover;display:block;margin-bottom:3px;cursor:zoom-in}.photo-tools{display:flex;gap:8px;flex-wrap:wrap;margin-top:8px}.photo-thumb{margin-top:10px;border:1px solid var(--line);border-radius:14px;overflow:hidden;background:#f8fbff}.photo-thumb img{display:block;width:100%;max-height:220px;object-fit:contain;cursor:zoom-in}.lightbox{position:fixed;inset:0;background:rgba(0,0,0,.88);display:none;align-items:center;justify-content:center;z-index:80;padding:16px}.lightbox.show{display:flex}.lightbox img{max-width:96vw;max-height:88vh;object-fit:contain}.lightbox-close{position:fixed;right:16px;top:16px;background:#fff;color:#000;border-radius:999px;padding:10px 14px;font-weight:700}.header-sub{font-size:.82rem;color:#cbd5e1;margin-top:4px}
+.header-title{font-size:1.15rem;font-weight:700;line-height:1.25}.test-badge{display:inline-flex;margin-left:8px;padding:3px 8px;border-radius:999px;background:#dc2626;color:#fff;font-size:.72rem;vertical-align:middle}.photo-preview{margin-top:12px;border:1px solid var(--line);border-radius:14px;overflow:hidden;background:#f8fbff}.photo-preview img{display:block;width:100%;height:auto}.photo-grid{display:grid;grid-template-columns:repeat(6,1fr);gap:6px;margin:6px 0}.photo-box{border:1px solid #000;min-height:82px;text-align:center;font-size:8.2px;padding:3px}.photo-box img{width:100%;height:62px;object-fit:cover;display:block;margin-bottom:3px;cursor:zoom-in}.issue-photo-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:8px;margin:8px 0}.issue-photo-box{border:1px solid #000;min-height:92px;text-align:center;font-size:8.2px;padding:4px}.issue-photo-box img{width:100%;height:74px;object-fit:cover;display:block;margin-bottom:3px;cursor:zoom-in}.photo-tools{display:flex;gap:8px;flex-wrap:wrap;margin-top:8px}.photo-thumb{margin-top:10px;border:1px solid var(--line);border-radius:14px;overflow:hidden;background:#f8fbff}.photo-thumb img{display:block;width:100%;max-height:220px;object-fit:contain;cursor:zoom-in}.lightbox{position:fixed;inset:0;background:rgba(0,0,0,.88);display:none;align-items:center;justify-content:center;z-index:80;padding:16px}.lightbox.show{display:flex}.lightbox img{max-width:96vw;max-height:88vh;object-fit:contain}.lightbox-close{display:none}.header-sub{font-size:.82rem;color:#cbd5e1;margin-top:4px}
 .container{max-width:1100px;margin:0 auto;padding:22px}.dashboard{display:grid;grid-template-columns:1.2fr .8fr;gap:18px;margin-bottom:18px}
 .hero,.summary-card,.card,.wizard-shell,.preview-shell{background:var(--panel);border:1px solid rgba(219,230,242,.8);border-radius:var(--radius);box-shadow:var(--shadow)}
 .hero{padding:18px;background:linear-gradient(135deg,#ffffff 0%,#f6faff 100%)}.hero h1,.hero p{display:none}.hero-actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:0}
@@ -40,7 +40,7 @@ input::placeholder, textarea::placeholder{color:#334155;font-weight:600;font-siz
 .paper-wrap{background:#fff;padding:12px;border-radius:18px;overflow:auto}.paper{background:#fff;color:#000;padding:9mm 8mm 8mm 8mm;font-size:10.9px;line-height:1.24;border:none;box-shadow:none;width:210mm;max-width:100%;margin:0 auto}.paper h2{margin:0 0 6px;text-align:center;font-size:18px;letter-spacing:.6px;font-weight:700}.paper .subhead{margin:0 0 9px;text-align:center;font-size:10.2px;color:#000}.paper table{width:100%;border-collapse:collapse;margin-bottom:6px;table-layout:auto}
 .paper table tr{page-break-inside:avoid;break-inside:avoid}
 .paper table thead,.paper table tbody{page-break-inside:avoid;break-inside:avoid}.paper td,.paper th{border:1px solid #000;padding:5px 6px;vertical-align:top}.paper th{font-weight:700;text-align:left;background:#fff}.paper .top-table td{padding:4px 5px}.paper .section-block{margin-bottom:7px}
-.paper .section-block{page-break-before:auto}.paper .section-title{font-weight:700;margin:9px 0 4px;font-size:11.1px;background:#fff;color:#000;border-top:2px solid #000;border-bottom:2px solid #000;border-left:1px solid #000;border-right:1px solid #000;padding:4px 7px;letter-spacing:.1px}.paper .check-col{width:18%;font-weight:600;white-space:nowrap}.paper .desc-col{width:22%}.paper .status-ok{background:#fff}.paper .status-bad{background:#fff}.paper .crossed-out td{color:#666;text-decoration:line-through}.paper .expired{background:#fff;color:#000;font-weight:700}.paper .notes{min-height:34px}.paper .footer-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:8px;page-break-inside:avoid;break-inside:avoid}.paper .sign-box{border:1px solid #000;padding:12px;min-height:80px}.paper .mono{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-weight:400;letter-spacing:.2px}.paper .evaluation-text{font-weight:700}
+.paper .section-block{page-break-before:auto}.paper .section-title{font-weight:700;margin:9px 0 4px;font-size:11.1px;background:#fff;color:#000;border-top:2px solid #000;border-bottom:2px solid #000;border-left:1px solid #000;border-right:1px solid #000;padding:4px 7px;letter-spacing:.1px}.paper .check-col{width:18%;font-weight:600;white-space:nowrap}.paper .desc-col{width:22%}.paper .status-ok{background:#fff}.paper tr.status-bad td,.paper tr.status-bad th{background:#fee2e2!important;border:2px solid #dc2626!important}.issue-label{display:inline-block;margin-right:4px;padding:2px 5px;border:1px solid #dc2626;color:#991b1b;font-weight:700;font-size:8px;background:#fff1f2}.paper .crossed-out td{color:#666;text-decoration:line-through}.paper .expired{background:#fff;color:#000;font-weight:700}.paper .notes{min-height:34px}.paper .footer-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:8px;page-break-inside:avoid;break-inside:avoid}.paper .sign-box{border:1px solid #000;padding:12px;min-height:80px}.paper .mono{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-weight:400;letter-spacing:.2px}.paper .evaluation-text{font-weight:700}
 .qr-reader{width:100%;min-height:280px;border:1px dashed var(--line);border-radius:18px;overflow:hidden;background:#0f172a}.qr-help{margin-top:10px;padding:12px 14px;border-radius:14px;background:#f8fbff;border:1px solid var(--line);font-size:.9rem;color:var(--muted)}.history-list{display:grid;gap:10px}.history-item{padding:12px;border:1px solid var(--line);border-radius:14px;background:#fff}
 .hidden{display:none !important}
 @media print{body{background:#fff}body *{visibility:hidden}#preview,#preview *{visibility:visible}#preview{position:absolute;left:0;top:0;width:100%;display:block !important;background:#fff;padding:0;margin:0}#preview .modal-content{width:100% !important;max-height:none !important;overflow:visible !important;border-radius:0 !important;box-shadow:none !important;background:#fff !important}#preview .preview-shell{padding:0 !important;background:#fff !important;overflow:visible !important}#preview .preview-header,#preview .preview-actions{display:none !important}#preview .paper-wrap{padding:0;background:#fff;border-radius:0;overflow:visible !important}#preview .paper{box-shadow:none;width:auto;max-width:none;margin:0;padding:7mm 7mm 6mm 7mm}#preview .paper table tr{page-break-inside:avoid;break-inside:avoid}#preview .paper .section-title{page-break-after:avoid}#preview .paper .footer-grid{page-break-inside:avoid;break-inside:avoid}@page{size:A4 portrait;margin:6mm}}
@@ -121,8 +121,7 @@ input::placeholder, textarea::placeholder{color:#334155;font-weight:600;font-siz
 </div></div></div>
 
 <div class="lightbox" id="lightbox" onclick="closeLightbox()">
-  <button class="lightbox-close" type="button" onclick="closeLightbox();event.stopPropagation();">Zavřít</button>
-  <img id="lightboxImg" alt="Zvětšená fotka" onclick="event.stopPropagation();">
+  <img id="lightboxImg" alt="Zvětšená fotka">
 </div>
 
 <script src="https://unpkg.com/html5-qrcode"></script>
@@ -194,13 +193,13 @@ function getModelPref(model){ const key = normalizeModelKey(model); return key ?
 function setModelPref(model, patch){ const key = normalizeModelKey(model); if(!key) return; const prefs = getModelPrefs(); prefs[key] = Object.assign({}, prefs[key] || {}, patch); saveModelPrefs(prefs); }
 function getChargerItem(record){ const sections = getSectionsForRecord(record || {}); return (sections.E || []).find(it => it.chargerCheck) || null; }
 function getKnownChargerPresence(record){
-  if(record && (record.chargerPresent === 'ANO' || record.chargerPresent === 'NE')) return record.chargerPresent;
+  if(record && ['ANO','BEZ','ZAVADA'].includes(record.chargerPresent)) return record.chargerPresent;
   const pref = getModelPref(record && record.typ);
-  if(pref && (pref.chargerPresent === 'ANO' || pref.chargerPresent === 'NE')) return pref.chargerPresent;
+  if(pref && ['ANO','BEZ','ZAVADA'].includes(pref.chargerPresent)) return pref.chargerPresent;
   return '';
 }
 function syncModelPreferences(record){
-  if(record && record.typ && (record.chargerPresent === 'ANO' || record.chargerPresent === 'NE')){
+  if(record && record.typ && ['ANO','BEZ','ZAVADA'].includes(record.chargerPresent)){
     setModelPref(record.typ, { chargerPresent: record.chargerPresent });
   }
 }
@@ -256,10 +255,11 @@ function getStepsForRecord(record){
     sections[sec].forEach(item => {
       if(item.chargerCheck){
         if(!knownCharger){
-          dynamicSteps.push({k:'chargerPresent',t:'Zařízení má nabíječ',type:'yn',section:'E'});
-          dynamicSteps.push({k:item.k,t:item.l,type:item.desc?'yntextphoto':'yn',textKey:item.k+'_p',section:sec,chargerCheck:true});
+          dynamicSteps.push({k:'chargerPresent',t:'Zařízení má nabíječ',type:'chargerPresence',section:'E'});
         } else if(knownCharger === 'ANO'){
           dynamicSteps.push({k:item.k,t:item.l,type:item.desc?'yntextphoto':'yn',textKey:item.k+'_p',section:sec,chargerCheck:true});
+        } else if(knownCharger === 'ZAVADA'){
+          dynamicSteps.push({k:'chargerMissingIssue',t:'Nabíječ chybí / závada',type:'yntextphoto',textKey:'chargerMissingIssue_p',section:'E',chargerMissing:true});
         }
       } else {
         dynamicSteps.push({k:item.k,t:item.l,type:item.desc?'yntextphoto':'yn',textKey:item.k+'_p',section:sec});
@@ -618,7 +618,7 @@ function openWizard(editId=null, prefill={}){
         rec.rok = last.rok;
       }
       // Platnost revize do se z historie nepředvyplňuje – technik ji zadá ručně jen jako měsíc/rok.
-      if((!rec.chargerPresent) && (last.chargerPresent === 'ANO' || last.chargerPresent === 'NE')){
+      if((!rec.chargerPresent) && (['ANO','BEZ','ZAVADA'].includes(last.chargerPresent))){
         rec.chargerPresent = last.chargerPresent;
       }
     }
@@ -626,7 +626,7 @@ function openWizard(editId=null, prefill={}){
 
   if((!rec.chargerPresent) && rec.typ){
     const pref = getModelPref(rec.typ);
-    if(pref && (pref.chargerPresent === 'ANO' || pref.chargerPresent === 'NE')) rec.chargerPresent = pref.chargerPresent;
+    if(pref && ['ANO','BEZ','ZAVADA'].includes(pref.chargerPresent)) rec.chargerPresent = pref.chargerPresent;
   }
 
   autoFillDefaults();
@@ -655,7 +655,13 @@ function showStep(){
   const noClass = invertedVisual ? 'yes' : 'no';
 
   let html = '';
-  if(s.type === 'yn'){
+  if(s.type === 'chargerPresence'){
+    if(rec._chargerNoMode){
+      html = `<div class="yesno"><button class="yn-btn no" data-charger-reason="zavada">✖ Závada</button><button class="yn-btn yes" data-charger-reason="bez">✔ Bez nabíječe</button></div><div class="helper">„Bez nabíječe“ není závada – typicky dieselové plošiny bez nabíječe.</div>`;
+    } else {
+      html = `<div class="yesno"><button class="yn-btn yes" data-charger-answer="ANO">✔ ANO</button><button class="yn-btn no" data-charger-answer="NE">✖ NE</button></div>`;
+    }
+  } else if(s.type === 'yn'){
     html = `<div class="yesno"><button class="yn-btn ${yesClass}" data-answer="ANO">✔ ANO</button><button class="yn-btn ${noClass}" data-answer="NE">✖ NE</button></div>`;
   } else if(s.type === 'yntext' || s.type === 'yntextphoto'){
     const needsNote = s.k === 'B1' ? rec[s.k]==='NE' : (isGeneralCheckKey(s.k) ? rec[s.k]==='ANO' : rec[s.k]==='NE');
@@ -763,6 +769,32 @@ function showStep(){
       }
     });
   }
+  els.content.querySelectorAll('[data-charger-answer]').forEach(btn => btn.addEventListener('click', () => {
+    const ans = btn.dataset.chargerAnswer;
+    if(ans === 'ANO'){
+      rec.chargerPresent = 'ANO';
+      rec._chargerNoMode = false;
+      nextStep();
+    } else {
+      rec._chargerNoMode = true;
+      showStep();
+    }
+  }));
+  els.content.querySelectorAll('[data-charger-reason]').forEach(btn => btn.addEventListener('click', () => {
+    const reason = btn.dataset.chargerReason;
+    rec._chargerNoMode = false;
+    if(reason === 'bez'){
+      rec.chargerPresent = 'BEZ';
+      rec.chargerMissingIssue = '';
+      rec.chargerMissingIssue_p = '';
+      if(rec.issuePhotos) delete rec.issuePhotos.chargerMissingIssue;
+    } else {
+      rec.chargerPresent = 'ZAVADA';
+      rec.chargerMissingIssue = 'NE';
+      rec.chargerMissingIssue_p = rec.chargerMissingIssue_p || '';
+    }
+    nextStep();
+  }));
   els.content.querySelectorAll('[data-answer]').forEach(btn => btn.addEventListener('click', () => { rec[s.k] = btn.dataset.answer; nextStep(); }));
   els.content.querySelectorAll('[data-answer-text]').forEach(btn => btn.addEventListener('click', () => {
     rec[s.k] = btn.dataset.answerText;
@@ -837,7 +869,7 @@ async function nextStep(){
   if(['text','textarea','branchSelect','technikSelect','yearInput','date','modelSelect','number'].includes(s.type)) addSuggestion(s.k, rec[s.k]);
   if(s.k === 'typ' && rec.typ){
     const pref = getModelPref(rec.typ);
-    if(pref && (pref.chargerPresent === 'ANO' || pref.chargerPresent === 'NE')) rec.chargerPresent = pref.chargerPresent;
+    if(pref && ['ANO','BEZ','ZAVADA'].includes(pref.chargerPresent)) rec.chargerPresent = pref.chargerPresent;
   }
   if(stepIndex < activeSteps.length-1){
     if(s.k === 'datum'){
@@ -1037,7 +1069,7 @@ async function handleQrDecoded(decodedText){
   openWizard(null, prefill);
 }
 
-function rowsHtml(items,r){ return items.map(it => { const cls = isProblemAnswer(it.k, r[it.k]) ? 'status-bad' : ((r[it.k] === 'ANO' || r[it.k] === 'NE') ? 'status-ok' : ''); if(it.chargerCheck && getKnownChargerPresence(r) === 'NE'){ return `<tr class="crossed-out"><td>${escapeHtml(it.printLabel||it.l)}</td><td class="check-col">—</td><td class="desc-col"></td></tr>`; } return `<tr class="${cls}"><td>${escapeHtml(it.printLabel||it.l)}</td><td class="check-col">${yn(r[it.k])}</td><td class="desc-col">${escapeHtml(r[it.k+'_p']||'')}</td></tr>`; }).join(''); }
+function rowsHtml(items,r){ return items.map(it => { const problem = isProblemAnswer(it.k, r[it.k]); const cls = problem ? 'status-bad' : ((r[it.k] === 'ANO' || r[it.k] === 'NE') ? 'status-ok' : ''); const ch = getKnownChargerPresence(r); if(it.chargerCheck && ch === 'BEZ'){ return `<tr class="crossed-out"><td>${escapeHtml(it.printLabel||it.l)}</td><td class="check-col">—</td><td class="desc-col">Bez nabíječe – není závada</td></tr>`; } const note = r[it.k+'_p'] || ''; const label = problem ? '<span class="issue-label">ZÁVADA</span>' : ''; return `<tr class="${cls}"><td>${escapeHtml(it.printLabel||it.l)}</td><td class="check-col">${yn(r[it.k])}</td><td class="desc-col">${label}${escapeHtml(note)}</td></tr>`; }).join(''); }
 function renderConclusion(r){ return `<table><thead><tr><th></th><th>ANO / NE</th><th>Poznámky</th></tr></thead><tbody><tr class="${isProblemAnswer('zaverServis', r.zaverServis) ? 'status-bad' : (r.zaverServis ? 'status-ok' : '')}"><th>Nutná běžná servisní kontrola</th><td class="check-col">${yn(r.zaverServis)}</td><td></td></tr><tr class="${isProblemAnswer('zaverOprava', r.zaverOprava) ? 'status-bad' : (r.zaverOprava ? 'status-ok' : '')}"><th>Nutná oprava</th><td class="check-col">${yn(r.zaverOprava)}</td><td></td></tr><tr class="${r.zaverBezpecny==='NE'?'status-bad':'status-ok'}"><th>Zařízení je schopné bezpečného provozu</th><td class="check-col">${yn(r.zaverBezpecny)}</td><td></td></tr></tbody></table>`; }
 function renderPhotoSection(r){
   const photos = r.photos || {};
@@ -1105,7 +1137,7 @@ function renderPaper(r){
 
     <div class="section-block">
       <div class="section-title">B. Stav zařízení</div>
-      <table><tbody><tr class="${r.B1==='NE' ? 'status-bad' : (r.B1==='ANO' ? 'status-ok' : '')}"><td>Bez závad</td><td class="check-col">${yn(r.B1)}</td><td class="desc-col"></td></tr><tr class="${r.B1==='NE' ? 'status-bad' : (r.B1==='ANO' ? 'status-ok' : '')}"><td>Závady</td><td class="check-col">${r.B1==='NE' ? '☑ ANO   ☐ NE' : r.B1==='ANO' ? '☐ ANO   ☑ NE' : '☐ ANO   ☐ NE'}</td><td class="desc-col">${escapeHtml(r.B1_p||'')}</td></tr></tbody></table>
+      <table><tbody><tr class="${r.B1==='NE' ? 'status-bad' : (r.B1==='ANO' ? 'status-ok' : '')}"><td>Bez závad</td><td class="check-col">${yn(r.B1)}</td><td class="desc-col"></td></tr><tr class="${r.B1==='NE' ? 'status-bad' : (r.B1==='ANO' ? 'status-ok' : '')}"><td>Závady</td><td class="check-col">${r.B1==='NE' ? '☑ ANO   ☐ NE' : r.B1==='ANO' ? '☐ ANO   ☑ NE' : '☐ ANO   ☐ NE'}</td><td class="desc-col">${r.B1==='NE' ? '<span class="issue-label">ZÁVADA</span>' : ''}${escapeHtml(r.B1_p||'')}</td></tr></tbody></table>
       ${isRevizeExpired(r)?'<table><tr class="status-bad"><td>Platnost revize</td><td class="check-col">☐ ANO   ☑ NE</td><td class="desc-col">Prošlá platnost revize.</td></tr></table>':''}
     </div>
 

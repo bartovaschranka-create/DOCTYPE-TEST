@@ -7,8 +7,8 @@
 <meta name="mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-<meta name="apple-mobile-web-app-title" content="Čtvrtletní kontroly">
-<title>Čtvrtletní kontroly</title>
+<meta name="apple-mobile-web-app-title" content="Čtvrtletní kontroly TEST">
+<title>Čtvrtletní kontroly TEST</title>
 <link rel="manifest" href="manifest.json">
 <link rel="apple-touch-icon" href="icon-192.png">
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -220,36 +220,65 @@ body.dark .summary-card .summary-grid .stat.stat-ok{background:#16a34a!important
 
 
 
-/* v41: collapsible sidebar, cleaner print, natural control labels */
-.header-left{display:flex;align-items:center;gap:12px;min-width:0}
-.sidebar-toggle{display:inline-flex;align-items:center;justify-content:center;width:42px;height:42px;border-radius:12px;border:1px solid var(--line);background:#fff;color:#0f172a;font-size:1.1rem;padding:0}
-.app-sidebar{transition:transform .22s ease, width .22s ease}
+/* v42 corrections: collapsible sidebar, clean mobile menu, compact two-page print */
+.sidebar-toggle{background:#fff;border:1px solid #dbe6f2;color:#0f172a;border-radius:10px;padding:8px 11px;font-size:1.05rem;line-height:1;min-width:42px}
+.sidebar-overlay{display:none;position:fixed;inset:0;background:rgba(15,23,42,.42);z-index:34}
 @media (min-width:921px){
-  body.sidebar-collapsed .app-sidebar{transform:translateX(-100%)}
-  body.sidebar-collapsed header{left:0!important;width:100%!important}
-  body.sidebar-collapsed .container{margin-left:0!important}
-  .sidebar-toggle:hover{background:#f8fafc}
+  .app-sidebar{transition:transform .22s ease;width:190px}
+  header,.container{transition:left .22s ease,width .22s ease,margin-left .22s ease}
+  body.sidebar-collapsed .app-sidebar{transform:translateX(-190px)}
+  body.sidebar-collapsed header{left:0;width:100%}
+  body.sidebar-collapsed .container{margin-left:0}
+  .side-bottom{line-height:1.45;color:#cbd5e1}
 }
 @media (max-width:920px){
-  .app-sidebar{display:flex!important;position:fixed;left:0;top:0;bottom:0;width:250px;background:linear-gradient(180deg,#061426 0%,#0b1b2f 100%);color:#e5eefb;z-index:60;padding:18px 14px;flex-direction:column;box-shadow:8px 0 24px rgba(15,23,42,.22);transform:translateX(-105%);transition:transform .22s ease}
+  .app-sidebar{display:flex!important;position:fixed;left:0;top:0;bottom:0;width:min(82vw,280px);background:#061426;color:#e5eefb;z-index:35;padding:14px 12px;flex-direction:column;box-shadow:8px 0 24px rgba(15,23,42,.25);transform:translateX(-105%);transition:transform .22s ease}
   body.sidebar-open .app-sidebar{transform:translateX(0)}
-  .sidebar-toggle{background:rgba(255,255,255,.12);border-color:rgba(255,255,255,.25);color:#fff}
+  body.sidebar-open .sidebar-overlay{display:block}
+  .side-brand{display:flex;align-items:center;gap:9px;margin-bottom:14px;font-size:.76rem;line-height:1.12;letter-spacing:.02em}
+  .side-brand span{display:block;color:#86efac;font-weight:800;margin-top:2px}
+  .side-logo{width:34px;height:34px;border-radius:8px;object-fit:cover}
+  .side-nav{display:grid;gap:4px}
+  .side-nav a,.side-nav button{display:flex;align-items:center;width:100%;border:0;background:transparent;color:#dbeafe;text-align:left;text-decoration:none;padding:9px 10px;border-radius:9px;font-weight:650;font-size:.88rem}
+  .side-nav a.active,.side-nav a:hover,.side-nav button:hover{background:#132b4a;color:#fff}
+  .side-bottom{margin-top:auto;border-top:1px solid rgba(255,255,255,.12);padding-top:12px;color:#cbd5e1;font-size:.76rem;line-height:1.4}
+  header{display:flex;align-items:center;justify-content:space-between;gap:10px}
+  .header-title{flex:1;font-size:1.05rem}
 }
-.paper{border:1px solid #d1d5db;box-shadow:none!important}
-.paper-page{min-height:287mm;display:flex;flex-direction:column}
-.paper-head{border-bottom:1.5px solid #111827!important}
-.paper-kicker{color:#111827!important}
-.paper th{background:#fff!important;color:#111827!important}
-.paper .section-title{background:#fff!important;border-color:#111827!important;border-top:1.5px solid #111827!important;border-bottom:1.5px solid #111827!important;color:#111827!important}
-.paper tr.status-bad td,.paper tr.status-bad th{background:#fff!important;border-color:#dc2626!important;border-width:1.2px!important}
-.paper .issue-label{background:#fff!important}
-.paper .photo-box,.paper .issue-photo-box{border:1px solid #9ca3af!important;background:#fff!important}
+.paper .markbox{display:inline-flex;align-items:center;justify-content:center;width:14px;height:14px;border:1px solid #111;font-size:10px;line-height:1;font-weight:700;font-family:Arial,sans-serif;background:#fff;color:#111}
+.paper-two-col{display:grid;grid-template-columns:0.72fr 1.28fr;gap:5mm;align-items:start}
+.paper tr.status-bad td,.paper tr.status-bad th{background:#fff!important;border:1px solid #000!important}
+.paper .issue-label{border:1px solid #000;color:#000;background:#fff;font-size:7.2px;padding:1px 3px;margin-right:3px}
+.paper th{background:#fff!important}
 @media print{
-  #preview .paper{width:100%!important;max-width:none!important;border:0!important;font-size:8.25px!important;line-height:1.08!important;padding:0!important}
-  #preview .paper-page{min-height:287mm!important;padding:4.5mm 5mm!important;display:flex!important;flex-direction:column!important}
-  #preview .paper th{background:#fff!important}
-  #preview .paper .section-title{background:#fff!important;border-top:1.5px solid #000!important;border-bottom:1.5px solid #000!important;border-left:1px solid #000!important;border-right:1px solid #000!important}
-  #preview .paper tr.status-bad td,#preview .paper tr.status-bad th{background:#fff!important;border-color:#dc2626!important}
+  body{background:#fff!important}
+  #preview .paper{width:100%!important;max-width:none!important;margin:0!important;padding:0!important;font-size:7.4px!important;line-height:1.04!important}
+  #preview .paper h2{font-size:11.2px!important;margin:0 0 1.5px!important;letter-spacing:.15px!important}
+  #preview .paper .subhead{font-size:6.8px!important;margin-bottom:2px!important;line-height:1.05!important}
+  #preview .paper .paper-head{margin-bottom:2px!important;padding-bottom:2px!important;border-bottom:1px solid #000!important}
+  #preview .paper .paper-kicker{font-size:6.6px!important;letter-spacing:.08em!important;color:#000!important}
+  #preview .paper .paper-no{font-size:6.8px!important;border:1px solid #000!important;padding:2px 3px!important;background:#fff!important;color:#000!important}
+  #preview .paper table{margin-bottom:1.6px!important;table-layout:fixed!important;width:100%!important}
+  #preview .paper td,#preview .paper th{padding:1.1px 1.8px!important;border:1px solid #000!important;vertical-align:top!important}
+  #preview .paper .top-table td{padding:1.1px 1.7px!important}
+  #preview .paper .section-block{margin-bottom:2px!important;break-inside:avoid;page-break-inside:avoid}
+  #preview .paper .section-title{font-size:7.5px!important;margin:2px 0 1px!important;padding:1px 2px!important;border:1px solid #000!important;background:#fff!important;color:#000!important;letter-spacing:0!important}
+  #preview .paper .check-col{width:8%!important;text-align:center!important;white-space:nowrap!important}
+  #preview .paper .desc-col{width:24%!important}
+  #preview .paper .markbox{width:10px!important;height:10px!important;font-size:7px!important;border:1px solid #000!important}
+  #preview .paper .issue-label{font-size:5.8px!important;padding:0 2px!important;border:1px solid #000!important;background:#fff!important;color:#000!important}
+  #preview .paper .notes{min-height:11px!important}
+  #preview .paper .paper-page{min-height:calc(297mm - 10mm)!important;display:block!important;overflow:hidden!important}
+  #preview .paper .photo-grid{grid-template-columns:repeat(6,1fr)!important;gap:2px!important;margin:1.5px 0!important}
+  #preview .paper .photo-box{min-height:30px!important;font-size:5.6px!important;padding:1px!important;border:1px solid #000!important}
+  #preview .paper .photo-box img{height:22px!important;margin-bottom:1px!important;object-fit:cover!important}
+  #preview .paper .issue-photo-grid{grid-template-columns:repeat(4,1fr)!important;gap:2px!important;margin:1.5px 0!important}
+  #preview .paper .issue-photo-box{min-height:33px!important;font-size:5.6px!important;padding:1px!important;border:1px solid #000!important}
+  #preview .paper .issue-photo-box img{height:24px!important;margin-bottom:1px!important;object-fit:cover!important}
+  #preview .paper .footer-grid{gap:3px!important;margin-top:2px!important}
+  #preview .paper .sign-box{min-height:24px!important;padding:3px!important;border:1px solid #000!important}
+  #preview .paper .print-page-break{break-before:page!important;page-break-before:always!important;height:0!important;margin:0!important;padding:0!important}
+  @page{size:A4 portrait;margin:5mm!important}
 }
 
 </style>
@@ -267,13 +296,12 @@ body.dark .summary-card .summary-grid .stat.stat-ok{background:#16a34a!important
     <button type="button" onclick="window._openWizard()">Nový protokol</button>
     <a href="#settings" onclick="document.getElementById('settingsBtn').click();return false;">Nastavení</a>
   </nav>
-  <div class="side-bottom">TEST verze</div>
+  <div class="side-bottom"><strong>Verze:</strong><br>TEST v42</div>
 </aside>
+<div id="sidebarOverlay" class="sidebar-overlay"></div>
 <header>
-  <div class="header-left">
-    <button id="sidebarToggle" class="sidebar-toggle" type="button" aria-label="Menu">☰</button>
-    <div class="header-title">Čtvrtletní kontroly <span class="test-badge">TEST</span></div>
-  </div>
+  <button id="sidebarToggle" class="sidebar-toggle" type="button" aria-label="Menu">☰</button>
+  <div class="header-title">Čtvrtletní kontroly</div>
   <button id="settingsBtn" class="settings-btn" type="button" aria-label="Nastavení">⚙</button>
 </header>
 
@@ -281,8 +309,8 @@ body.dark .summary-card .summary-grid .stat.stat-ok{background:#16a34a!important
   <div class="dashboard">
     <section class="dashboard-head">
       <div>
-        <div class="dash-title">Přehled kontrol</div>
-        <div class="dash-sub">Čtvrtletní kontroly pracovních plošin</div>
+        <div class="dash-title">Přehled protokolů</div>
+        <div class="dash-sub">Běžné prohlídky pracovních plošin dle NV č. 193/2022 Sb.</div>
       </div>
       <button class="primary new-top-btn" id="newProtocolBtn" type="button" onclick="window._openWizard()">+ Nový protokol</button>
     </section>
@@ -416,16 +444,61 @@ const COMMON_SECTIONS = {
 };
 const SECTION_VARIANTS = {
   scissor: {
-    C:makeCheckItems([['C1','Celkový stav / čistota'],['C5','Kola'],['C_chassis','Podvozek / základna'],['C10','Sestava nůžek'],['C7','Ovládací kabel'],['C3','Schody / přístup do koše'],['C9','Akumulátory'],['C8','Podlaha koše / protiskluz'],['C4','Zábradlí'],['C_gate','Vstupní dvířka / hrazda'],['C_complete','Kontrola kompletnosti konstrukce'],['C11','Hydraulické válce'],['C12','Hydraulické hadice'],['C13','Kontrola těsnosti hydraulické soustavy']]),
-    E:[{k:'E16',l:'Funkce nabíječe',printLabel:'16. Funkce nabíječe',desc:true,chargerCheck:true},{k:'E_socket230',l:'Kontrola zásuvky v koši 230 V',printLabel:'17. Kontrola zásuvky v koši 230 V',desc:true,socketCheck:true},{k:'E19',l:'Funkce spodního ovládacího panelu',printLabel:'18. Funkce spodního ovládacího panelu',desc:true},{k:'E21',l:'Funkce horního ovládacího panelu',printLabel:'19. Funkce horního ovládacího panelu',desc:true},{k:'E_safety',l:'Funkce bezpečnostních prvků / blokací',printLabel:'20. Funkce bezpečnostních prvků / blokací',desc:true},{k:'E20',l:'Funkce nouzového spouštění',printLabel:'21. Funkce nouzového spouštění',desc:true}]
+    C:makeCheckItems([
+      ['C1','Kontrola celkového stavu a čistoty'],
+      ['C5','Kontrola stavu kol a pneumatik'],
+      ['C_chassis','Kontrola podvozku a základny'],
+      ['C10','Kontrola sestavy nůžek'],
+      ['C7','Kontrola ovládacího kabelu'],
+      ['C3','Kontrola schodů a přístupu do koše'],
+      ['C9','Kontrola akumulátorů'],
+      ['C8','Kontrola podlahy koše a protiskluzu'],
+      ['C4','Kontrola zábradlí'],
+      ['C_gate','Kontrola vstupních dvířek a hrazdy'],
+      ['C_complete','Kontrola kompletnosti konstrukce'],
+      ['C11','Kontrola hydraulických válců'],
+      ['C12','Kontrola hydraulických hadic'],
+      ['C13','Kontrola těsnosti hydraulické soustavy']
+    ]),
+    E:[{k:'E16',l:'Funkce nabíječe',printLabel:'16. Funkce nabíječe',desc:true,chargerCheck:true},{k:'E_socket230',l:'Kontrola zásuvky v koši 230 V',printLabel:'17. Kontrola zásuvky v koši 230 V',desc:true,socketCheck:true},{k:'E19',l:'Funkce spodního ovládacího panelu',printLabel:'18. Funkce spodního ovládacího panelu',desc:true},{k:'E21',l:'Funkce horního ovládacího panelu',printLabel:'19. Funkce horního ovládacího panelu',desc:true},{k:'E_safety',l:'Funkce bezpečnostních prvků a blokací',printLabel:'20. Funkce bezpečnostních prvků a blokací',desc:true},{k:'E_tilt',l:'Funkce náklonového čidla',printLabel:'21. Funkce náklonového čidla',desc:true},{k:'E20',l:'Funkce nouzového spouštění',printLabel:'22. Funkce nouzového spouštění',desc:true}]
   },
   boom: {
-    C:makeCheckItems([['C1','Celkový stav / čistota'],['C4','Kola'],['C_chassis','Podvozek / základna'],['C9','Rameno'],['C10','Kloub'],['C6','Ovládací kabel'],['C2','Schody / přístup do koše'],['C8','Akumulátory'],['C7','Podlaha koše / protiskluz'],['C3','Zábradlí'],['C_gate','Vstupní dvířka / hrazda'],['C_complete','Kontrola kompletnosti konstrukce'],['C11','Hydraulické válce'],['C12','Hydraulické hadice'],['C13','Kontrola těsnosti hydraulické soustavy']]),
-    E:[{k:'E16',l:'Funkce nouzového spouštění',printLabel:'16. Funkce nouzového spouštění',desc:true},{k:'E17',l:'Funkce nosnosti koše',printLabel:'17. Funkce nosnosti koše',desc:true},{k:'E18',l:'Funkce nabíječe',printLabel:'18. Funkce nabíječe',desc:true,chargerCheck:true},{k:'E_socket230',l:'Kontrola zásuvky v koši 230 V',printLabel:'19. Kontrola zásuvky v koši 230 V',desc:true,socketCheck:true},{k:'E19',l:'Funkce spodního ovládacího panelu',printLabel:'20. Funkce spodního ovládacího panelu',desc:true},{k:'E20',l:'Funkce horního ovládacího panelu',printLabel:'21. Funkce horního ovládacího panelu',desc:true},{k:'E_safety',l:'Funkce bezpečnostních prvků / blokací',printLabel:'22. Funkce bezpečnostních prvků / blokací',desc:true}]
+    C:makeCheckItems([
+      ['C1','Kontrola celkového stavu a čistoty'],
+      ['C4','Kontrola stavu kol a pneumatik'],
+      ['C_chassis','Kontrola podvozku a základny'],
+      ['C9','Kontrola ramene'],
+      ['C10','Kontrola kloubu'],
+      ['C6','Kontrola ovládacího kabelu'],
+      ['C2','Kontrola schodů a přístupu do koše'],
+      ['C8','Kontrola akumulátorů'],
+      ['C7','Kontrola podlahy koše a protiskluzu'],
+      ['C3','Kontrola zábradlí'],
+      ['C_gate','Kontrola vstupních dvířek a hrazdy'],
+      ['C_complete','Kontrola kompletnosti konstrukce'],
+      ['C11','Kontrola hydraulických válců'],
+      ['C12','Kontrola hydraulických hadic'],
+      ['C13','Kontrola těsnosti hydraulické soustavy']
+    ]),
+    E:[{k:'E16',l:'Funkce nouzového spouštění',printLabel:'16. Funkce nouzového spouštění',desc:true},{k:'E17',l:'Funkce nosnosti koše',printLabel:'17. Funkce nosnosti koše',desc:true},{k:'E18',l:'Funkce nabíječe',printLabel:'18. Funkce nabíječe',desc:true,chargerCheck:true},{k:'E_socket230',l:'Kontrola zásuvky v koši 230 V',printLabel:'19. Kontrola zásuvky v koši 230 V',desc:true,socketCheck:true},{k:'E19',l:'Funkce spodního ovládacího panelu',printLabel:'20. Funkce spodního ovládacího panelu',desc:true},{k:'E20',l:'Funkce horního ovládacího panelu',printLabel:'21. Funkce horního ovládacího panelu',desc:true},{k:'E_safety',l:'Funkce bezpečnostních prvků a blokací',printLabel:'22. Funkce bezpečnostních prvků a blokací',desc:true},{k:'E_tilt',l:'Funkce náklonového čidla',printLabel:'23. Funkce náklonového čidla',desc:true}]
   },
   mast: {
-    C:makeCheckItems([['C1','Celkový stav / čistota'],['C3','Kola'],['C_chassis','Podvozek / základna'],['C8','Sloup'],['C5','Ovládací kabel'],['C7','Akumulátory'],['C6','Podlaha koše / protiskluz'],['C2b','Zábradlí'],['C_gate','Vstupní dvířka / hrazda'],['C_complete','Kontrola kompletnosti konstrukce'],['C9','Hydraulické válce'],['C10','Hydraulické hadice'],['C11','Kontrola těsnosti hydraulické soustavy']]),
-    E:[{k:'E14',l:'Funkce nouzového spouštění',printLabel:'14. Funkce nouzového spouštění',desc:true},{k:'E15',l:'Funkce nosnosti koše',printLabel:'15. Funkce nosnosti koše',desc:true},{k:'E16',l:'Funkce nabíječe',printLabel:'16. Funkce nabíječe',desc:true,chargerCheck:true},{k:'E_socket230',l:'Kontrola zásuvky v koši 230 V',printLabel:'17. Kontrola zásuvky v koši 230 V',desc:true,socketCheck:true},{k:'E17',l:'Funkce spodního ovládacího panelu',printLabel:'18. Funkce spodního ovládacího panelu',desc:true},{k:'E18',l:'Funkce horního ovládacího panelu',printLabel:'19. Funkce horního ovládacího panelu',desc:true},{k:'E_safety',l:'Funkce bezpečnostních prvků / blokací',printLabel:'20. Funkce bezpečnostních prvků / blokací',desc:true}]
+    C:makeCheckItems([
+      ['C1','Kontrola celkového stavu a čistoty'],
+      ['C3','Kontrola stavu kol a pneumatik'],
+      ['C_chassis','Kontrola podvozku a základny'],
+      ['C8','Kontrola sloupu'],
+      ['C5','Kontrola ovládacího kabelu'],
+      ['C7','Kontrola akumulátorů'],
+      ['C6','Kontrola podlahy koše a protiskluzu'],
+      ['C2b','Kontrola zábradlí'],
+      ['C_gate','Kontrola vstupních dvířek a hrazdy'],
+      ['C_complete','Kontrola kompletnosti konstrukce'],
+      ['C9','Kontrola hydraulických válců'],
+      ['C10','Kontrola hydraulických hadic'],
+      ['C11','Kontrola těsnosti hydraulické soustavy']
+    ]),
+    E:[{k:'E14',l:'Funkce nouzového spouštění',printLabel:'14. Funkce nouzového spouštění',desc:true},{k:'E15',l:'Funkce nosnosti koše',printLabel:'15. Funkce nosnosti koše',desc:true},{k:'E16',l:'Funkce nabíječe',printLabel:'16. Funkce nabíječe',desc:true,chargerCheck:true},{k:'E_socket230',l:'Kontrola zásuvky v koši 230 V',printLabel:'17. Kontrola zásuvky v koši 230 V',desc:true,socketCheck:true},{k:'E17',l:'Funkce spodního ovládacího panelu',printLabel:'18. Funkce spodního ovládacího panelu',desc:true},{k:'E18',l:'Funkce horního ovládacího panelu',printLabel:'19. Funkce horního ovládacího panelu',desc:true},{k:'E_safety',l:'Funkce bezpečnostních prvků a blokací',printLabel:'20. Funkce bezpečnostních prvků a blokací',desc:true},{k:'E_tilt',l:'Funkce náklonového čidla',printLabel:'21. Funkce náklonového čidla',desc:true}]
   }
 };
 const MODEL_PREFS_KEY = 'platform_protocol_model_prefs_v1';
@@ -490,9 +563,23 @@ function hasStabilizers(model){
 }
 function getBoomC(model){
   const base = [
-    ['C1','Celkový stav / čistota'],['C4','Kola'],['C_chassis','Podvozek / základna'],['C9','Rameno'],['C10','Kloub'],['C6','Ovládací kabel'],['C2b','Schody / přístup do koše'],['C8','Akumulátory'],['C7','Podlaha koše / protiskluz'],['C3','Zábradlí'],['C_gate','Vstupní dvířka / hrazda'],['C_complete','Kontrola kompletnosti konstrukce'],['C11','Hydraulické válce'],['C12','Hydraulické hadice'],['C13','Kontrola těsnosti hydraulické soustavy']
+    ['C1','Kontrola celkového stavu a čistoty'],
+    ['C4','Kontrola stavu kol a pneumatik'],
+    ['C_chassis','Kontrola podvozku a základny'],
+    ['C9','Kontrola ramene'],
+    ['C10','Kontrola kloubu'],
+    ['C6','Kontrola ovládacího kabelu'],
+    ['C2b','Kontrola schodů a přístupu do koše'],
+    ['C8','Kontrola akumulátorů'],
+    ['C7','Kontrola podlahy koše a protiskluzu'],
+    ['C3','Kontrola zábradlí'],
+    ['C_gate','Kontrola vstupních dvířek a hrazdy'],
+    ['C_complete','Kontrola kompletnosti konstrukce'],
+    ['C11','Kontrola hydraulických válců'],
+    ['C12','Kontrola hydraulických hadic'],
+    ['C13','Kontrola těsnosti hydraulické soustavy']
   ];
-  if(hasStabilizers(model)) base.splice(3, 0, ['C_stabilizers','Stabilizátory']);
+  if(hasStabilizers(model)) base.splice(3, 0, ['C_stabilizers','Kontrola stabilizátorů']);
   return makeCheckItems(base);
 }
 function getSectionsForRecord(record){
@@ -682,7 +769,7 @@ async function exportBackup(){
       rows = loadLocalData();
     }
     const payload = {
-      app: 'Čtvrtletní kontroly',
+      app: 'Kontrolní protokoly TEST',
       collection: COLLECTION_NAME,
       exportedAt: new Date().toISOString(),
       count: rows.length,
@@ -1311,17 +1398,7 @@ function printCurrent(){
     .paper-no span{display:block;text-transform:uppercase;font-size:5.8px;color:#64748b;font-weight:800}
     .paper-no strong{display:block;font-size:8.5px;margin-top:1px}
 
-
-    .paper-page{min-height:287mm;display:flex;flex-direction:column;padding:4.5mm 5mm}
-    .paper-head{border-bottom:1.5px solid #000;color:#000}
-    .paper-kicker{color:#000}
-    .paper th{background:#fff!important;color:#000}
-    .paper .section-title{background:#fff!important;color:#000;border-top:1.5px solid #000;border-bottom:1.5px solid #000;border-left:1px solid #000;border-right:1px solid #000}
-    .paper tr.status-bad td,.paper tr.status-bad th{background:#fff!important;border-color:#dc2626!important;border-width:1.2px!important}
-    .issue-label{background:#fff!important}
-    .paper .sign-box{min-height:42px}
-
-    @media screen{body{background:#eee}.paper{width:210mm;margin:12px auto;box-shadow:none;border:1px solid #d1d5db}}
+    @media screen{body{background:#eee}.paper{width:210mm;margin:12px auto;box-shadow:0 4px 18px rgba(0,0,0,.12)}}
   `;
 
   const popup = window.open('', '_blank');
@@ -1431,36 +1508,65 @@ function printCurrent(){
 
 
 
-/* v41: collapsible sidebar, cleaner print, natural control labels */
-.header-left{display:flex;align-items:center;gap:12px;min-width:0}
-.sidebar-toggle{display:inline-flex;align-items:center;justify-content:center;width:42px;height:42px;border-radius:12px;border:1px solid var(--line);background:#fff;color:#0f172a;font-size:1.1rem;padding:0}
-.app-sidebar{transition:transform .22s ease, width .22s ease}
+/* v42 corrections: collapsible sidebar, clean mobile menu, compact two-page print */
+.sidebar-toggle{background:#fff;border:1px solid #dbe6f2;color:#0f172a;border-radius:10px;padding:8px 11px;font-size:1.05rem;line-height:1;min-width:42px}
+.sidebar-overlay{display:none;position:fixed;inset:0;background:rgba(15,23,42,.42);z-index:34}
 @media (min-width:921px){
-  body.sidebar-collapsed .app-sidebar{transform:translateX(-100%)}
-  body.sidebar-collapsed header{left:0!important;width:100%!important}
-  body.sidebar-collapsed .container{margin-left:0!important}
-  .sidebar-toggle:hover{background:#f8fafc}
+  .app-sidebar{transition:transform .22s ease;width:190px}
+  header,.container{transition:left .22s ease,width .22s ease,margin-left .22s ease}
+  body.sidebar-collapsed .app-sidebar{transform:translateX(-190px)}
+  body.sidebar-collapsed header{left:0;width:100%}
+  body.sidebar-collapsed .container{margin-left:0}
+  .side-bottom{line-height:1.45;color:#cbd5e1}
 }
 @media (max-width:920px){
-  .app-sidebar{display:flex!important;position:fixed;left:0;top:0;bottom:0;width:250px;background:linear-gradient(180deg,#061426 0%,#0b1b2f 100%);color:#e5eefb;z-index:60;padding:18px 14px;flex-direction:column;box-shadow:8px 0 24px rgba(15,23,42,.22);transform:translateX(-105%);transition:transform .22s ease}
+  .app-sidebar{display:flex!important;position:fixed;left:0;top:0;bottom:0;width:min(82vw,280px);background:#061426;color:#e5eefb;z-index:35;padding:14px 12px;flex-direction:column;box-shadow:8px 0 24px rgba(15,23,42,.25);transform:translateX(-105%);transition:transform .22s ease}
   body.sidebar-open .app-sidebar{transform:translateX(0)}
-  .sidebar-toggle{background:rgba(255,255,255,.12);border-color:rgba(255,255,255,.25);color:#fff}
+  body.sidebar-open .sidebar-overlay{display:block}
+  .side-brand{display:flex;align-items:center;gap:9px;margin-bottom:14px;font-size:.76rem;line-height:1.12;letter-spacing:.02em}
+  .side-brand span{display:block;color:#86efac;font-weight:800;margin-top:2px}
+  .side-logo{width:34px;height:34px;border-radius:8px;object-fit:cover}
+  .side-nav{display:grid;gap:4px}
+  .side-nav a,.side-nav button{display:flex;align-items:center;width:100%;border:0;background:transparent;color:#dbeafe;text-align:left;text-decoration:none;padding:9px 10px;border-radius:9px;font-weight:650;font-size:.88rem}
+  .side-nav a.active,.side-nav a:hover,.side-nav button:hover{background:#132b4a;color:#fff}
+  .side-bottom{margin-top:auto;border-top:1px solid rgba(255,255,255,.12);padding-top:12px;color:#cbd5e1;font-size:.76rem;line-height:1.4}
+  header{display:flex;align-items:center;justify-content:space-between;gap:10px}
+  .header-title{flex:1;font-size:1.05rem}
 }
-.paper{border:1px solid #d1d5db;box-shadow:none!important}
-.paper-page{min-height:287mm;display:flex;flex-direction:column}
-.paper-head{border-bottom:1.5px solid #111827!important}
-.paper-kicker{color:#111827!important}
-.paper th{background:#fff!important;color:#111827!important}
-.paper .section-title{background:#fff!important;border-color:#111827!important;border-top:1.5px solid #111827!important;border-bottom:1.5px solid #111827!important;color:#111827!important}
-.paper tr.status-bad td,.paper tr.status-bad th{background:#fff!important;border-color:#dc2626!important;border-width:1.2px!important}
-.paper .issue-label{background:#fff!important}
-.paper .photo-box,.paper .issue-photo-box{border:1px solid #9ca3af!important;background:#fff!important}
+.paper .markbox{display:inline-flex;align-items:center;justify-content:center;width:14px;height:14px;border:1px solid #111;font-size:10px;line-height:1;font-weight:700;font-family:Arial,sans-serif;background:#fff;color:#111}
+.paper-two-col{display:grid;grid-template-columns:0.72fr 1.28fr;gap:5mm;align-items:start}
+.paper tr.status-bad td,.paper tr.status-bad th{background:#fff!important;border:1px solid #000!important}
+.paper .issue-label{border:1px solid #000;color:#000;background:#fff;font-size:7.2px;padding:1px 3px;margin-right:3px}
+.paper th{background:#fff!important}
 @media print{
-  #preview .paper{width:100%!important;max-width:none!important;border:0!important;font-size:8.25px!important;line-height:1.08!important;padding:0!important}
-  #preview .paper-page{min-height:287mm!important;padding:4.5mm 5mm!important;display:flex!important;flex-direction:column!important}
-  #preview .paper th{background:#fff!important}
-  #preview .paper .section-title{background:#fff!important;border-top:1.5px solid #000!important;border-bottom:1.5px solid #000!important;border-left:1px solid #000!important;border-right:1px solid #000!important}
-  #preview .paper tr.status-bad td,#preview .paper tr.status-bad th{background:#fff!important;border-color:#dc2626!important}
+  body{background:#fff!important}
+  #preview .paper{width:100%!important;max-width:none!important;margin:0!important;padding:0!important;font-size:7.4px!important;line-height:1.04!important}
+  #preview .paper h2{font-size:11.2px!important;margin:0 0 1.5px!important;letter-spacing:.15px!important}
+  #preview .paper .subhead{font-size:6.8px!important;margin-bottom:2px!important;line-height:1.05!important}
+  #preview .paper .paper-head{margin-bottom:2px!important;padding-bottom:2px!important;border-bottom:1px solid #000!important}
+  #preview .paper .paper-kicker{font-size:6.6px!important;letter-spacing:.08em!important;color:#000!important}
+  #preview .paper .paper-no{font-size:6.8px!important;border:1px solid #000!important;padding:2px 3px!important;background:#fff!important;color:#000!important}
+  #preview .paper table{margin-bottom:1.6px!important;table-layout:fixed!important;width:100%!important}
+  #preview .paper td,#preview .paper th{padding:1.1px 1.8px!important;border:1px solid #000!important;vertical-align:top!important}
+  #preview .paper .top-table td{padding:1.1px 1.7px!important}
+  #preview .paper .section-block{margin-bottom:2px!important;break-inside:avoid;page-break-inside:avoid}
+  #preview .paper .section-title{font-size:7.5px!important;margin:2px 0 1px!important;padding:1px 2px!important;border:1px solid #000!important;background:#fff!important;color:#000!important;letter-spacing:0!important}
+  #preview .paper .check-col{width:8%!important;text-align:center!important;white-space:nowrap!important}
+  #preview .paper .desc-col{width:24%!important}
+  #preview .paper .markbox{width:10px!important;height:10px!important;font-size:7px!important;border:1px solid #000!important}
+  #preview .paper .issue-label{font-size:5.8px!important;padding:0 2px!important;border:1px solid #000!important;background:#fff!important;color:#000!important}
+  #preview .paper .notes{min-height:11px!important}
+  #preview .paper .paper-page{min-height:calc(297mm - 10mm)!important;display:block!important;overflow:hidden!important}
+  #preview .paper .photo-grid{grid-template-columns:repeat(6,1fr)!important;gap:2px!important;margin:1.5px 0!important}
+  #preview .paper .photo-box{min-height:30px!important;font-size:5.6px!important;padding:1px!important;border:1px solid #000!important}
+  #preview .paper .photo-box img{height:22px!important;margin-bottom:1px!important;object-fit:cover!important}
+  #preview .paper .issue-photo-grid{grid-template-columns:repeat(4,1fr)!important;gap:2px!important;margin:1.5px 0!important}
+  #preview .paper .issue-photo-box{min-height:33px!important;font-size:5.6px!important;padding:1px!important;border:1px solid #000!important}
+  #preview .paper .issue-photo-box img{height:24px!important;margin-bottom:1px!important;object-fit:cover!important}
+  #preview .paper .footer-grid{gap:3px!important;margin-top:2px!important}
+  #preview .paper .sign-box{min-height:24px!important;padding:3px!important;border:1px solid #000!important}
+  #preview .paper .print-page-break{break-before:page!important;page-break-before:always!important;height:0!important;margin:0!important;padding:0!important}
+  @page{size:A4 portrait;margin:5mm!important}
 }
 
 </style></head><body>${paperHtml}<scr` + `ipt>function doPrint(){setTimeout(function(){window.focus();window.print();},250)}; if(document.readyState === 'complete'){doPrint()} else {window.onload=doPrint;}</scr` + `ipt></body></html>`);
@@ -1625,10 +1731,9 @@ function cleanPrintLabel(label){
     .replace(/\s*[–-]\s*vyhovuje/gi, '')
     .trim();
 }
+function markCell(checked){ return '<span class="markbox">' + (checked ? 'X' : '') + '</span>'; }
 function ynColumns(v){
-  const a = v === 'ANO' ? '☑' : '☐';
-  const n = v === 'NE' ? '☑' : '☐';
-  return {ano:a, ne:n};
+  return {ano: markCell(v === 'ANO'), ne: markCell(v === 'NE')};
 }
 function rowsHtml(items,r,sectionKey=''){
   return items.map(it => {
@@ -1689,12 +1794,12 @@ function renderPaper(r){
     <div class="paper-page">
       <div class="paper-head">
         <div>
-          <div class="paper-kicker">ČTVRTLETNÍ KONTROLY</div>
+          <div class="paper-kicker">ČTVRTLETNÍ KONTROLA</div>
           <h2>Záznam o běžné prohlídce pracovní plošiny</h2>
           <div class="subhead">dle NV č. 193/2022 Sb., příloha č. 2, čl. 3.2 · interval nejpozději do 3 měsíců</div>
         </div>
         <div class="paper-no">
-          <span>Číslo protokolu</span>
+          <span>ID protokolu</span>
           <strong>${escapeHtml(r.id ? String(r.id).slice(0,12) : '—')}</strong>
         </div>
       </div>
@@ -1736,11 +1841,11 @@ function renderPaper(r){
               <td>Bez závad</td><td class="check-col">${ynColumns(r.B1).ano}</td><td class="check-col">${ynColumns(r.B1).ne}</td><td class="desc-col"></td>
             </tr>
             <tr class="${r.B1==='NE' ? 'status-bad' : ''}">
-              <td>Závady</td><td class="check-col">${r.B1==='NE' ? '☑' : '☐'}</td><td class="check-col">${r.B1==='ANO' ? '☑' : '☐'}</td><td class="desc-col">${r.B1==='NE' ? '<span class="issue-label">ZÁVADA</span>' : ''}${escapeHtml(r.B1_p||'')}</td>
+              <td>Závady</td><td class="check-col">${markCell(r.B1==='NE')}</td><td class="check-col">${markCell(r.B1==='ANO')}</td><td class="desc-col">${r.B1==='NE' ? '<span class="issue-label">ZÁVADA</span>' : ''}${escapeHtml(r.B1_p||'')}</td>
             </tr>
           </tbody>
         </table>
-        ${isRevizeExpired(r)?'<table><tr class="status-bad"><td>Platnost revize</td><td class="check-col">☐</td><td class="check-col">☑</td><td class="desc-col">Prošlá platnost revize.</td></tr></table>':''}
+        ${isRevizeExpired(r)?'<table><tr class="status-bad"><td>Platnost revize</td><td class="check-col">${markCell(false)}</td><td class="check-col">${markCell(true)}</td><td class="desc-col">Prošlá platnost revize.</td></tr></table>':''}
       </div>
 
       <div class="section-block">
@@ -1754,20 +1859,21 @@ function renderPaper(r){
     <div class="paper-page">
       <div class="paper-head compact">
         <div>
-          <div class="paper-kicker">ČTVRTLETNÍ KONTROLY</div>
+          <div class="paper-kicker">ČTVRTLETNÍ KONTROLA</div>
           <h2>Dokončení protokolu</h2>
         </div>
         <div class="paper-no"><span>Zařízení</span><strong>${escapeHtml(r.vc||'')}</strong></div>
       </div>
 
-      <div class="section-block">
-        <div class="section-title">D. Kontrola provozních náplní</div>
-        <table><thead><tr><th>Kontrola</th><th>ANO</th><th>NE</th><th>Poznámky</th></tr></thead><tbody>${rowsHtml(sections.D,r,'D')}</tbody></table>
-      </div>
-
-      <div class="section-block">
-        <div class="section-title">E. Kontrola funkcí</div>
-        <table><thead><tr><th>Kontrola</th><th>ANO</th><th>NE</th><th>Poznámky</th></tr></thead><tbody>${rowsHtml(sections.E,r,'E')}</tbody></table>
+      <div class="paper-two-col">
+        <div class="section-block">
+          <div class="section-title">D. Kontrola provozních náplní</div>
+          <table><thead><tr><th>Kontrola</th><th>ANO</th><th>NE</th><th>Poznámka</th></tr></thead><tbody>${rowsHtml(sections.D,r,'D')}</tbody></table>
+        </div>
+        <div class="section-block">
+          <div class="section-title">E. Kontrola funkcí</div>
+          <table><thead><tr><th>Kontrola</th><th>ANO</th><th>NE</th><th>Poznámka</th></tr></thead><tbody>${rowsHtml(sections.E,r,'E')}</tbody></table>
+        </div>
       </div>
 
       ${renderPhotoSection(r)}
@@ -1793,6 +1899,26 @@ function renderPaper(r){
     </div>
   </div>`;
 }
+
+function closeSidebarMenu(){ document.body.classList.remove('sidebar-open'); }
+function toggleSidebarMenu(){
+  if(window.matchMedia('(max-width: 920px)').matches){
+    document.body.classList.toggle('sidebar-open');
+  } else {
+    document.body.classList.toggle('sidebar-collapsed');
+    localStorage.setItem('sidebarCollapsed', document.body.classList.contains('sidebar-collapsed') ? '1' : '0');
+  }
+}
+function initSidebarMenu(){
+  if(localStorage.getItem('sidebarCollapsed') === '1') document.body.classList.add('sidebar-collapsed');
+  document.getElementById('sidebarToggle')?.addEventListener('click', toggleSidebarMenu);
+  document.getElementById('sidebarOverlay')?.addEventListener('click', closeSidebarMenu);
+  document.querySelectorAll('.side-nav a,.side-nav button').forEach(el => el.addEventListener('click', () => {
+    if(window.matchMedia('(max-width: 920px)').matches) closeSidebarMenu();
+  }));
+}
+initSidebarMenu();
+
 function applyTheme(mode){
   const dark = mode === 'dark';
   document.body.classList.toggle('dark', dark);
@@ -1813,25 +1939,6 @@ document.getElementById('themeToggle')?.addEventListener('click', toggleTheme);
 els.searchInput.addEventListener('input', render);
 els.statusFilter.addEventListener('change', render);
 document.getElementById('settingsBtn')?.addEventListener('click', () => openModal(document.getElementById('settingsModal')));
-
-const sidebarToggle = document.getElementById('sidebarToggle');
-if(sidebarToggle){
-  sidebarToggle.addEventListener('click', () => {
-    if(window.matchMedia('(max-width: 920px)').matches){
-      document.body.classList.toggle('sidebar-open');
-    } else {
-      document.body.classList.toggle('sidebar-collapsed');
-      localStorage.setItem('sidebarCollapsed', document.body.classList.contains('sidebar-collapsed') ? '1' : '0');
-    }
-  });
-}
-if(localStorage.getItem('sidebarCollapsed') === '1' && window.matchMedia('(min-width: 921px)').matches){
-  document.body.classList.add('sidebar-collapsed');
-}
-document.querySelectorAll('.app-sidebar a,.app-sidebar button').forEach(el => el.addEventListener('click', () => {
-  if(window.matchMedia('(max-width: 920px)').matches) document.body.classList.remove('sidebar-open');
-}));
-
 document.getElementById('closeSettingsBtn')?.addEventListener('click', () => closeModal(document.getElementById('settingsModal')));
 document.getElementById('newProtocolBtn').addEventListener('click', () => openWizard());
 document.getElementById('clearAllBtn').addEventListener('click', clearAllData);

@@ -69,7 +69,36 @@ input::placeholder, textarea::placeholder{color:#334155;font-weight:600;font-siz
 .paper .section-block{page-break-before:auto}.paper .section-title{font-weight:700;margin:9px 0 4px;font-size:11.1px;background:#fff;color:#000;border-top:2px solid #000;border-bottom:2px solid #000;border-left:1px solid #000;border-right:1px solid #000;padding:4px 7px;letter-spacing:.1px}.paper .check-col{width:18%;font-weight:600;white-space:nowrap}.paper .desc-col{width:22%}.paper .status-ok{background:#fff}.paper tr.status-bad td,.paper tr.status-bad th{background:#fee2e2!important;border:2px solid #dc2626!important}.issue-label{display:inline-block;margin-right:4px;padding:2px 5px;border:1px solid #dc2626;color:#991b1b;font-weight:700;font-size:8px;background:#fff1f2}.paper .crossed-out td{color:#666;text-decoration:line-through}.paper .expired{background:#fff;color:#000;font-weight:700}.paper .notes{min-height:34px}.paper .footer-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:8px;page-break-inside:avoid;break-inside:avoid}.paper .sign-box{border:1px solid #000;padding:12px;min-height:80px}.paper .mono{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-weight:400;letter-spacing:.2px}.paper .evaluation-text{font-weight:700}
 .qr-reader{width:100%;min-height:280px;border:1px dashed var(--line);border-radius:18px;overflow:hidden;background:#0f172a}.qr-help{margin-top:10px;padding:12px 14px;border-radius:14px;background:#f8fbff;border:1px solid var(--line);font-size:.9rem;color:var(--muted)}.history-list{display:grid;gap:10px}.history-item{padding:12px;border:1px solid var(--line);border-radius:14px;background:#fff}
 .hidden{display:none !important}
-@media print{body{background:#fff}body *{visibility:hidden}#preview,#preview *{visibility:visible}#preview{position:absolute;left:0;top:0;width:100%;display:block !important;background:#fff;padding:0;margin:0}#preview .modal-content{width:100% !important;max-height:none !important;overflow:visible !important;border-radius:0 !important;box-shadow:none !important;background:#fff !important}#preview .preview-shell{padding:0 !important;background:#fff !important;overflow:visible !important}#preview .preview-header,#preview .preview-actions{display:none !important}#preview .paper-wrap{padding:0;background:#fff;border-radius:0;overflow:visible !important}#preview .paper{box-shadow:none;width:auto;max-width:none;margin:0;padding:7mm 7mm 6mm 7mm}#preview .paper table tr{page-break-inside:avoid;break-inside:avoid}#preview .paper .section-title{page-break-after:avoid}#preview .paper .footer-grid{page-break-inside:avoid;break-inside:avoid}@page{size:A4 portrait;margin:6mm}}
+@media print{
+body{background:#fff}body *{visibility:hidden}#preview,#preview *{visibility:visible}
+#preview{position:absolute;left:0;top:0;width:100%;display:block !important;background:#fff;padding:0;margin:0}
+#preview .modal-content{width:100% !important;max-height:none !important;overflow:visible !important;border-radius:0 !important;box-shadow:none !important;background:#fff !important}
+#preview .preview-shell{padding:0 !important;background:#fff !important;overflow:visible !important}
+#preview .preview-header,#preview .preview-actions{display:none !important}
+#preview .paper-wrap{padding:0;background:#fff;border-radius:0;overflow:visible !important}
+#preview .paper{box-shadow:none;width:auto;max-width:none;margin:0;padding:3.8mm 4.2mm 3.8mm 4.2mm;font-size:8.65px;line-height:1.08}
+#preview .paper h2{font-size:13.5px;margin-bottom:2px;letter-spacing:.35px}
+#preview .paper .subhead{font-size:7.9px;margin-bottom:3px;line-height:1.08}
+#preview .paper table{margin-bottom:2.6px}
+#preview .paper td,#preview .paper th{padding:1.8px 2.6px}
+#preview .paper .top-table td{padding:1.7px 2.5px}
+#preview .paper .section-block{margin-bottom:2.8px;page-break-inside:avoid;break-inside:avoid}
+#preview .paper .section-title{font-size:8.9px;margin:3.4px 0 1.8px;padding:1.8px 3.8px;page-break-after:avoid;break-after:avoid}
+#preview .paper table tr{page-break-inside:avoid;break-inside:avoid}
+#preview .paper .check-col{width:16%}.paper .desc-col{width:20%}
+#preview .paper .issue-label{font-size:6.8px;padding:1px 3px}
+#preview .paper .notes{min-height:15px}
+#preview .paper .footer-grid{gap:5px;margin-top:3px;page-break-inside:avoid;break-inside:avoid}
+#preview .paper .sign-box{min-height:34px;padding:5px}
+#preview .paper .photo-grid{gap:3px;margin:2.5px 0;grid-template-columns:repeat(6,1fr)}
+#preview .paper .photo-box{min-height:45px;font-size:6.4px;padding:1.8px}
+#preview .paper .photo-box img{height:34px;margin-bottom:1.6px}
+#preview .paper .issue-photo-grid{gap:4px;margin:3px 0;grid-template-columns:repeat(3,1fr)}
+#preview .paper .issue-photo-box{min-height:52px;font-size:6.4px;padding:2px}
+#preview .paper .issue-photo-box img{height:38px;margin-bottom:1.6px}
+#preview .paper .print-page-break{break-before:page;page-break-before:always;height:0;margin:0;padding:0}
+@page{size:A4 portrait;margin:5mm}
+}
 @media (max-width:920px){.dashboard{grid-template-columns:1fr}.meta-grid{grid-template-columns:1fr 1fr}}
 @media (max-width:640px){.container{padding:14px}.toolbar,.preview-header,.preview-actions{flex-direction:column;align-items:stretch}.meta-grid,.yesno,.summary-grid{grid-template-columns:1fr}.modal-content{width:100%;max-height:100vh;border-radius:18px}.search{min-width:0;width:100%}.toolbar-right{width:100%}.hero-actions{flex-direction:column}.hero-actions button{width:100%}}
 
@@ -85,6 +114,7 @@ body.dark .summary-card .summary-grid .stat.stat-total{background:var(--panel2)!
 body.dark .summary-card .summary-grid .stat.stat-issues{background:#dc2626!important;color:#fff!important;border-color:#b91c1c!important;}
 body.dark .summary-card .summary-grid .stat.stat-ok{background:#16a34a!important;color:#fff!important;border-color:#15803d!important;}
 </style>
+<!-- v27_print_duplex_sections -->
 </head>
 <body>
 <header>
@@ -230,16 +260,16 @@ const COMMON_SECTIONS = {
 };
 const SECTION_VARIANTS = {
   scissor: {
-    C:makeCheckItems([['C1','Celkové znečištění'],['C2','Poškození nátěru'],['C3','Poškození schodů'],['C4','Poškození zábradlí'],['C5','Poškození kol'],['C_chassis','Poškození podvozku / základny'],['C_complete','Nekompletnost konstrukce'],['C7','Poškození ovládacího kabelu'],['C8','Poškození podlahy'],['C9','Poškození akumulátorů'],['C10','Poškození sestavy nůžek'],['C11','Poškození hydr. válce'],['C12','Poškození hydr. hadic'],['C13','Netěsnost hydr. soustavy']]),
-    E:[{k:'E16',l:'Funkce nabíječe',printLabel:'16. Funkce nabíječe',desc:true,chargerCheck:true},{k:'E_socket230',l:'Kontrola zásuvky v koši 230 V',printLabel:'17. Kontrola zásuvky v koši 230 V',desc:true,socketCheck:true},{k:'E19',l:'Funkce spodního ovládacího panelu',printLabel:'18. Funkce spodního ovládacího panelu',desc:true},{k:'E20',l:'Funkce nouzového spouštění',printLabel:'19. Funkce nouzového spouštění',desc:true},{k:'E21',l:'Funkce horního ovládacího panelu',printLabel:'20. Funkce horního ovládacího panelu',desc:true}]
+    C:makeCheckItems([['C1','Celkové znečištění'],['C2','Poškození nátěru'],['C5','Poškození kol'],['C_chassis','Poškození podvozku / základny'],['C_complete','Nekompletnost konstrukce'],['C9','Poškození akumulátorů'],['C10','Poškození sestavy nůžek'],['C11','Poškození hydr. válce'],['C12','Poškození hydr. hadic'],['C13','Netěsnost hydr. soustavy'],['C7','Poškození ovládacího kabelu'],['C3','Poškození schodů'],['C8','Poškození podlahy koše / protiskluzu'],['C4','Poškození zábradlí'],['C_gate','Poškození vstupní branky / uzávěru koše']]),
+    E:[{k:'E16',l:'Funkce nabíječe',printLabel:'16. Funkce nabíječe',desc:true,chargerCheck:true},{k:'E_socket230',l:'Kontrola zásuvky v koši 230 V',printLabel:'17. Kontrola zásuvky v koši 230 V',desc:true,socketCheck:true},{k:'E19',l:'Funkce spodního ovládacího panelu',printLabel:'18. Funkce spodního ovládacího panelu',desc:true},{k:'E21',l:'Funkce horního ovládacího panelu',printLabel:'19. Funkce horního ovládacího panelu',desc:true},{k:'E_safety',l:'Funkce bezpečnostních prvků / blokací',printLabel:'20. Funkce bezpečnostních prvků / blokací',desc:true},{k:'E20',l:'Funkce nouzového spouštění',printLabel:'21. Funkce nouzového spouštění',desc:true}]
   },
   boom: {
-    C:makeCheckItems([['C1','Celkové znečištění'],['C2','Poškození schodů'],['C3','Poškození zábradlí'],['C4','Poškození kol'],['C_chassis','Poškození podvozku / základny'],['C_complete','Nekompletnost konstrukce'],['C6','Poškození ovládacího kabelu'],['C7','Poškození podlahy'],['C8','Poškození akumulátorů'],['C9','Poškození ramene'],['C10','Poškození kloubu'],['C11','Poškození hydr. válců'],['C12','Poškození hydr. hadic'],['C13','Netěsnost hydr. soustavy']]),
-    E:[{k:'E16',l:'Funkce nouzového spouštění',printLabel:'16. Funkce nouzového spouštění',desc:true},{k:'E17',l:'Funkce nosnosti koše',printLabel:'17. Funkce nosnosti koše',desc:true},{k:'E18',l:'Funkce nabíječe',printLabel:'18. Funkce nabíječe',desc:true,chargerCheck:true},{k:'E_socket230',l:'Kontrola zásuvky v koši 230 V',printLabel:'19. Kontrola zásuvky v koši 230 V',desc:true,socketCheck:true},{k:'E19',l:'Funkce spodního ovládacího panelu',printLabel:'20. Funkce spodního ovládacího panelu',desc:true},{k:'E20',l:'Funkce horního ovládacího panelu',printLabel:'21. Funkce horního ovládacího panelu',desc:true}]
+    C:makeCheckItems([['C1','Celkové znečištění'],['C4','Poškození kol'],['C_chassis','Poškození podvozku / základny'],['C_complete','Nekompletnost konstrukce'],['C8','Poškození akumulátorů'],['C9','Poškození ramene'],['C10','Poškození kloubu'],['C11','Poškození hydr. válců'],['C12','Poškození hydr. hadic'],['C13','Netěsnost hydr. soustavy'],['C6','Poškození ovládacího kabelu'],['C2','Poškození schodů'],['C7','Poškození podlahy koše / protiskluzu'],['C3','Poškození zábradlí'],['C_gate','Poškození vstupní branky / uzávěru koše']]),
+    E:[{k:'E16',l:'Funkce nouzového spouštění',printLabel:'16. Funkce nouzového spouštění',desc:true},{k:'E17',l:'Funkce nosnosti koše',printLabel:'17. Funkce nosnosti koše',desc:true},{k:'E18',l:'Funkce nabíječe',printLabel:'18. Funkce nabíječe',desc:true,chargerCheck:true},{k:'E_socket230',l:'Kontrola zásuvky v koši 230 V',printLabel:'19. Kontrola zásuvky v koši 230 V',desc:true,socketCheck:true},{k:'E19',l:'Funkce spodního ovládacího panelu',printLabel:'20. Funkce spodního ovládacího panelu',desc:true},{k:'E20',l:'Funkce horního ovládacího panelu',printLabel:'21. Funkce horního ovládacího panelu',desc:true},{k:'E_safety',l:'Funkce bezpečnostních prvků / blokací',printLabel:'22. Funkce bezpečnostních prvků / blokací',desc:true}]
   },
   mast: {
-    C:makeCheckItems([['C1','Celkové znečištění'],['C2','Poškození zábradlí'],['C3','Poškození kol'],['C_chassis','Poškození podvozku / základny'],['C_complete','Nekompletnost konstrukce'],['C5','Poškození ovládacího kabelu'],['C6','Poškození podlahy'],['C7','Poškození akumulátorů'],['C8','Poškození ramene'],['C9','Poškození hydr. válců'],['C10','Poškození hydr. hadic'],['C11','Netěsnost hydr. soustavy']]),
-    E:[{k:'E14',l:'Funkce nouzového spouštění',printLabel:'14. Funkce nouzového spouštění',desc:true},{k:'E15',l:'Funkce nosnosti koše',printLabel:'15. Funkce nosnosti koše',desc:true},{k:'E16',l:'Funkce nabíječe',printLabel:'16. Funkce nabíječe',desc:true,chargerCheck:true},{k:'E_socket230',l:'Kontrola zásuvky v koši 230 V',printLabel:'17. Kontrola zásuvky v koši 230 V',desc:true,socketCheck:true},{k:'E17',l:'Funkce spodního ovládacího panelu',printLabel:'18. Funkce spodního ovládacího panelu',desc:true},{k:'E18',l:'Funkce horního ovládacího panelu',printLabel:'19. Funkce horního ovládacího panelu',desc:true}]
+    C:makeCheckItems([['C1','Celkové znečištění'],['C3','Poškození kol'],['C_chassis','Poškození podvozku / základny'],['C_complete','Nekompletnost konstrukce'],['C7','Poškození akumulátorů'],['C8','Poškození ramene'],['C9','Poškození hydr. válců'],['C10','Poškození hydr. hadic'],['C11','Netěsnost hydr. soustavy'],['C5','Poškození ovládacího kabelu'],['C6','Poškození podlahy koše / protiskluzu'],['C2','Poškození zábradlí'],['C_gate','Poškození vstupní branky / uzávěru koše']]),
+    E:[{k:'E14',l:'Funkce nouzového spouštění',printLabel:'14. Funkce nouzového spouštění',desc:true},{k:'E15',l:'Funkce nosnosti koše',printLabel:'15. Funkce nosnosti koše',desc:true},{k:'E16',l:'Funkce nabíječe',printLabel:'16. Funkce nabíječe',desc:true,chargerCheck:true},{k:'E_socket230',l:'Kontrola zásuvky v koši 230 V',printLabel:'17. Kontrola zásuvky v koši 230 V',desc:true,socketCheck:true},{k:'E17',l:'Funkce spodního ovládacího panelu',printLabel:'18. Funkce spodního ovládacího panelu',desc:true},{k:'E18',l:'Funkce horního ovládacího panelu',printLabel:'19. Funkce horního ovládacího panelu',desc:true},{k:'E_safety',l:'Funkce bezpečnostních prvků / blokací',printLabel:'20. Funkce bezpečnostních prvků / blokací',desc:true}]
   }
 };
 const MODEL_PREFS_KEY = 'platform_protocol_model_prefs_v1';
@@ -304,9 +334,9 @@ function hasStabilizers(model){
 }
 function getBoomC(model){
   const base = [
-    ['C1','Celkové znečištění'],['C2','Poškození schodů'],['C3','Poškození zábradlí'],['C4','Poškození kol'],['C_chassis','Poškození podvozku / základny'],['C_complete','Nekompletnost konstrukce'],['C6','Poškození ovládacího kabelu'],['C7','Poškození podlahy'],['C8','Poškození akumulátorů'],['C9','Poškození ramene'],['C10','Poškození kloubu'],['C11','Poškození hydr. válců'],['C12','Poškození hydr. hadic'],['C13','Netěsnost hydr. soustavy']
+    ['C1','Celkové znečištění'],['C4','Poškození kol'],['C_chassis','Poškození podvozku / základny'],['C_complete','Nekompletnost konstrukce'],['C8','Poškození akumulátorů'],['C9','Poškození ramene'],['C10','Poškození kloubu'],['C11','Poškození hydr. válců'],['C12','Poškození hydr. hadic'],['C13','Netěsnost hydr. soustavy'],['C6','Poškození ovládacího kabelu'],['C2','Poškození schodů'],['C7','Poškození podlahy koše / protiskluzu'],['C3','Poškození zábradlí'],['C_gate','Poškození vstupní branky / uzávěru koše']
   ];
-  if(hasStabilizers(model)) base.splice(10, 0, ['C_stabilizers','Poškození stabilizátorů']);
+  if(hasStabilizers(model)) base.splice(3, 0, ['C_stabilizers','Poškození stabilizátorů']);
   return makeCheckItems(base);
 }
 function getSectionsForRecord(record){
@@ -1320,6 +1350,7 @@ function renderPaper(r){
       <table><tbody>${rowsHtml(sections.C,r)}</tbody></table>
     </div>
 
+    <div class="print-page-break"></div>
     <div class="section-block">
       <div class="section-title">D. Kontrola provozních náplní</div>
       <table><tbody>${rowsHtml(sections.D,r)}</tbody></table>

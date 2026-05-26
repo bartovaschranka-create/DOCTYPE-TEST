@@ -98,6 +98,8 @@ body{background:#fff}body *{visibility:hidden}#preview,#preview *{visibility:vis
 #preview .paper .issue-photo-box img{height:38px;margin-bottom:1.6px}
 #preview .paper .print-page-break{break-before:page;page-break-before:always;height:0;margin:0;padding:0}
 @page{size:A4 portrait;margin:5mm}
+html,body{width:auto;height:auto}
+*{-webkit-print-color-adjust:exact;print-color-adjust:exact}
 }
 @media (max-width:920px){.dashboard{grid-template-columns:1fr}.meta-grid{grid-template-columns:1fr 1fr}}
 @media (max-width:640px){.container{padding:14px}.toolbar,.preview-header,.preview-actions{flex-direction:column;align-items:stretch}.meta-grid,.yesno,.summary-grid{grid-template-columns:1fr}.modal-content{width:100%;max-height:100vh;border-radius:18px}.search{min-width:0;width:100%}.toolbar-right{width:100%}.hero-actions{flex-direction:column}.hero-actions button{width:100%}}
@@ -114,7 +116,7 @@ body.dark .summary-card .summary-grid .stat.stat-total{background:var(--panel2)!
 body.dark .summary-card .summary-grid .stat.stat-issues{background:#dc2626!important;color:#fff!important;border-color:#b91c1c!important;}
 body.dark .summary-card .summary-grid .stat.stat-ok{background:#16a34a!important;color:#fff!important;border-color:#15803d!important;}
 </style>
-<!-- v27_print_duplex_sections -->
+<!-- v28_print_fix_order -->
 </head>
 <body>
 <header>
@@ -260,7 +262,7 @@ const COMMON_SECTIONS = {
 };
 const SECTION_VARIANTS = {
   scissor: {
-    C:makeCheckItems([['C1','Celkové znečištění'],['C2','Poškození nátěru'],['C5','Poškození kol'],['C_chassis','Poškození podvozku / základny'],['C_complete','Nekompletnost konstrukce'],['C9','Poškození akumulátorů'],['C10','Poškození sestavy nůžek'],['C11','Poškození hydr. válce'],['C12','Poškození hydr. hadic'],['C13','Netěsnost hydr. soustavy'],['C7','Poškození ovládacího kabelu'],['C3','Poškození schodů'],['C8','Poškození podlahy koše / protiskluzu'],['C4','Poškození zábradlí'],['C_gate','Poškození vstupní branky / uzávěru koše']]),
+    C:makeCheckItems([['C1','Celkové znečištění'],['C2','Poškození nátěru'],['C5','Poškození kol'],['C_chassis','Poškození podvozku / základny'],['C_complete','Nekompletnost konstrukce'],['C9','Poškození akumulátorů'],['C10','Poškození sestavy nůžek'],['C11','Poškození hydr. válce'],['C12','Poškození hydr. hadic'],['C13','Netěsnost hydr. soustavy'],['C7','Poškození ovládacího kabelu'],['C3','Poškození schodů / přístupu do koše'],['C8','Poškození podlahy koše / protiskluzu'],['C4','Poškození zábradlí'],['C_gate','Poškození vstupní branky / uzávěru koše']]),
     E:[{k:'E16',l:'Funkce nabíječe',printLabel:'16. Funkce nabíječe',desc:true,chargerCheck:true},{k:'E_socket230',l:'Kontrola zásuvky v koši 230 V',printLabel:'17. Kontrola zásuvky v koši 230 V',desc:true,socketCheck:true},{k:'E19',l:'Funkce spodního ovládacího panelu',printLabel:'18. Funkce spodního ovládacího panelu',desc:true},{k:'E21',l:'Funkce horního ovládacího panelu',printLabel:'19. Funkce horního ovládacího panelu',desc:true},{k:'E_safety',l:'Funkce bezpečnostních prvků / blokací',printLabel:'20. Funkce bezpečnostních prvků / blokací',desc:true},{k:'E20',l:'Funkce nouzového spouštění',printLabel:'21. Funkce nouzového spouštění',desc:true}]
   },
   boom: {
@@ -268,7 +270,7 @@ const SECTION_VARIANTS = {
     E:[{k:'E16',l:'Funkce nouzového spouštění',printLabel:'16. Funkce nouzového spouštění',desc:true},{k:'E17',l:'Funkce nosnosti koše',printLabel:'17. Funkce nosnosti koše',desc:true},{k:'E18',l:'Funkce nabíječe',printLabel:'18. Funkce nabíječe',desc:true,chargerCheck:true},{k:'E_socket230',l:'Kontrola zásuvky v koši 230 V',printLabel:'19. Kontrola zásuvky v koši 230 V',desc:true,socketCheck:true},{k:'E19',l:'Funkce spodního ovládacího panelu',printLabel:'20. Funkce spodního ovládacího panelu',desc:true},{k:'E20',l:'Funkce horního ovládacího panelu',printLabel:'21. Funkce horního ovládacího panelu',desc:true},{k:'E_safety',l:'Funkce bezpečnostních prvků / blokací',printLabel:'22. Funkce bezpečnostních prvků / blokací',desc:true}]
   },
   mast: {
-    C:makeCheckItems([['C1','Celkové znečištění'],['C3','Poškození kol'],['C_chassis','Poškození podvozku / základny'],['C_complete','Nekompletnost konstrukce'],['C7','Poškození akumulátorů'],['C8','Poškození ramene'],['C9','Poškození hydr. válců'],['C10','Poškození hydr. hadic'],['C11','Netěsnost hydr. soustavy'],['C5','Poškození ovládacího kabelu'],['C6','Poškození podlahy koše / protiskluzu'],['C2','Poškození zábradlí'],['C_gate','Poškození vstupní branky / uzávěru koše']]),
+    C:makeCheckItems([['C1','Celkové znečištění'],['C2','Poškození nátěru'],['C3','Poškození kol'],['C_chassis','Poškození podvozku / základny'],['C_complete','Nekompletnost konstrukce'],['C7','Poškození akumulátorů'],['C8','Poškození sloupu / ramene'],['C9','Poškození hydr. válců'],['C10','Poškození hydr. hadic'],['C11','Netěsnost hydr. soustavy'],['C5','Poškození ovládacího kabelu'],['C6','Poškození podlahy koše / protiskluzu'],['C2b','Poškození zábradlí'],['C_gate','Poškození vstupní branky / uzávěru koše']]),
     E:[{k:'E14',l:'Funkce nouzového spouštění',printLabel:'14. Funkce nouzového spouštění',desc:true},{k:'E15',l:'Funkce nosnosti koše',printLabel:'15. Funkce nosnosti koše',desc:true},{k:'E16',l:'Funkce nabíječe',printLabel:'16. Funkce nabíječe',desc:true,chargerCheck:true},{k:'E_socket230',l:'Kontrola zásuvky v koši 230 V',printLabel:'17. Kontrola zásuvky v koši 230 V',desc:true,socketCheck:true},{k:'E17',l:'Funkce spodního ovládacího panelu',printLabel:'18. Funkce spodního ovládacího panelu',desc:true},{k:'E18',l:'Funkce horního ovládacího panelu',printLabel:'19. Funkce horního ovládacího panelu',desc:true},{k:'E_safety',l:'Funkce bezpečnostních prvků / blokací',printLabel:'20. Funkce bezpečnostních prvků / blokací',desc:true}]
   }
 };
@@ -334,9 +336,9 @@ function hasStabilizers(model){
 }
 function getBoomC(model){
   const base = [
-    ['C1','Celkové znečištění'],['C4','Poškození kol'],['C_chassis','Poškození podvozku / základny'],['C_complete','Nekompletnost konstrukce'],['C8','Poškození akumulátorů'],['C9','Poškození ramene'],['C10','Poškození kloubu'],['C11','Poškození hydr. válců'],['C12','Poškození hydr. hadic'],['C13','Netěsnost hydr. soustavy'],['C6','Poškození ovládacího kabelu'],['C2','Poškození schodů'],['C7','Poškození podlahy koše / protiskluzu'],['C3','Poškození zábradlí'],['C_gate','Poškození vstupní branky / uzávěru koše']
+    ['C1','Celkové znečištění'],['C2','Poškození nátěru'],['C4','Poškození kol'],['C_chassis','Poškození podvozku / základny'],['C_complete','Nekompletnost konstrukce'],['C8','Poškození akumulátorů'],['C9','Poškození ramene'],['C10','Poškození kloubu'],['C11','Poškození hydr. válců'],['C12','Poškození hydr. hadic'],['C13','Netěsnost hydr. soustavy'],['C6','Poškození ovládacího kabelu'],['C2b','Poškození schodů / přístupu do koše'],['C7','Poškození podlahy koše / protiskluzu'],['C3','Poškození zábradlí'],['C_gate','Poškození vstupní branky / uzávěru koše']
   ];
-  if(hasStabilizers(model)) base.splice(3, 0, ['C_stabilizers','Poškození stabilizátorů']);
+  if(hasStabilizers(model)) base.splice(4, 0, ['C_stabilizers','Poškození stabilizátorů']);
   return makeCheckItems(base);
 }
 function getSectionsForRecord(record){
@@ -1122,16 +1124,53 @@ function printCurrent(){
     alert('Není otevřený protokol.');
     return;
   }
-  els.previewBody.innerHTML = renderPaper(currentPreview);
+  const paperHtml = renderPaper(currentPreview);
+  els.previewBody.innerHTML = paperHtml;
   if(!els.preview.classList.contains('show')) openModal(els.preview);
-  // vynutit překreslení a spustit tisk přímo z kliknutí uživatele
-  void els.previewBody.offsetHeight;
-  try {
-    window.print();
-  } catch (e) {
-    console.error('Print error', e);
-    alert('Nepodařilo se otevřít tisk.');
+
+  const printCss = `
+    @page{size:A4 portrait;margin:5mm}
+    *{box-sizing:border-box;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+    html,body{margin:0;padding:0;background:#fff;color:#000;font-family:Inter,Arial,sans-serif}
+    .paper{background:#fff;color:#000;width:auto;max-width:none;margin:0;padding:3.8mm 4.2mm;font-size:8.45px;line-height:1.06;border:none;box-shadow:none}
+    .paper h2{margin:0 0 2px;text-align:center;font-size:13px;letter-spacing:.35px;font-weight:700}
+    .paper .subhead{margin:0 0 3px;text-align:center;font-size:7.8px;color:#000;line-height:1.08}
+    .paper table{width:100%;border-collapse:collapse;margin-bottom:2.3px;table-layout:auto}
+    .paper td,.paper th{border:1px solid #000;padding:1.6px 2.4px;vertical-align:top}
+    .paper th{font-weight:700;text-align:left;background:#fff}
+    .paper .top-table td{padding:1.6px 2.4px}
+    .paper .section-block{margin-bottom:2.5px;page-break-inside:avoid;break-inside:avoid}
+    .paper .section-title{font-weight:700;margin:3px 0 1.6px;font-size:8.7px;background:#fff;color:#000;border-top:1.6px solid #000;border-bottom:1.6px solid #000;border-left:1px solid #000;border-right:1px solid #000;padding:1.6px 3.6px;page-break-after:avoid;break-after:avoid}
+    .paper table tr{page-break-inside:avoid;break-inside:avoid}
+    .paper .check-col{width:16%;font-weight:600;white-space:nowrap}.paper .desc-col{width:19%}
+    .paper tr.status-bad td,.paper tr.status-bad th{background:#fee2e2!important;border:1.6px solid #dc2626!important}
+    .issue-label{display:inline-block;margin-right:3px;padding:.7px 2.8px;border:1px solid #dc2626;color:#991b1b;font-weight:700;font-size:6.5px;background:#fff1f2}
+    .paper .crossed-out td{color:#666;text-decoration:line-through}.paper .expired{background:#fff;color:#000;font-weight:700}.paper .notes{min-height:13px}
+    .paper .footer-grid{display:grid;grid-template-columns:1fr 1fr;gap:5px;margin-top:3px;page-break-inside:avoid;break-inside:avoid}
+    .paper .sign-box{border:1px solid #000;min-height:32px;padding:5px}.paper .mono{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-weight:400;letter-spacing:.2px}.paper .evaluation-text{font-weight:700}
+    .photo-grid{display:grid;grid-template-columns:repeat(6,1fr);gap:3px;margin:2.2px 0}.photo-box{border:1px solid #000;min-height:42px;text-align:center;font-size:6.2px;padding:1.6px}.photo-box img{width:100%;height:31px;object-fit:cover;display:block;margin-bottom:1.4px}
+    .issue-photo-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:3px;margin:2.5px 0}.issue-photo-box{border:1px solid #000;min-height:48px;text-align:center;font-size:6.2px;padding:1.8px}.issue-photo-box img{width:100%;height:35px;object-fit:cover;display:block;margin-bottom:1.4px}
+    .print-page-break{break-before:page;page-break-before:always;height:0;margin:0;padding:0}
+    @media screen{body{background:#eee}.paper{width:210mm;margin:12px auto;box-shadow:0 4px 18px rgba(0,0,0,.12)}}
+  `;
+
+  const popup = window.open('', '_blank');
+  if(popup && popup.document){
+    popup.document.open();
+    popup.document.write(`<!DOCTYPE html><html lang="cs"><head><meta charset="UTF-8"><title>Tisk protokolu</title><style>${printCss}</style></head><body>${paperHtml}<scr` + `ipt>function doPrint(){setTimeout(function(){window.focus();window.print();},250)}; if(document.readyState === 'complete'){doPrint()} else {window.onload=doPrint;}</scr` + `ipt></body></html>`);
+    popup.document.close();
+    return;
   }
+
+  // Záloha pro prohlížeč, který zablokuje nové okno.
+  void els.previewBody.offsetHeight;
+  setTimeout(() => {
+    try { window.print(); }
+    catch (e) {
+      console.error('Print error', e);
+      alert('Nepodařilo se otevřít tisk. Zkuste povolit vyskakovací okno, případně tisk přes prohlížeč.');
+    }
+  }, 50);
 }
 window._printNow = printCurrent;
 

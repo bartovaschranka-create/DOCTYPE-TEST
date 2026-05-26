@@ -67,42 +67,6 @@ body.dark .suggest-item{color:#000!important;-webkit-text-fill-color:#000!import
 body.dark .suggest-item:hover{background:#e5e7eb!important;color:#000!important;-webkit-text-fill-color:#000!important}
 .suggest-box,.suggest-box *,.suggest-item{color:#000!important;-webkit-text-fill-color:#000!important}
 input:-webkit-autofill,input:-webkit-autofill:hover,input:-webkit-autofill:focus{-webkit-text-fill-color:#111827!important;box-shadow:0 0 0 1000px #fff inset!important}
-
-/* v34: pevně čitelný našeptávač i v tmavém režimu */
-.suggest-wrap{position:relative;z-index:1000}
-.suggest-box{
-  background:#ffffff!important;
-  color:#000000!important;
-  -webkit-text-fill-color:#000000!important;
-  opacity:1!important;
-  z-index:9999!important;
-  border:1px solid #94a3b8!important;
-  box-shadow:0 14px 32px rgba(0,0,0,.28)!important;
-}
-.suggest-box *,.suggest-item{
-  color:#000000!important;
-  -webkit-text-fill-color:#000000!important;
-  opacity:1!important;
-  text-shadow:none!important;
-}
-.suggest-item{
-  background:#ffffff!important;
-  border-bottom:1px solid #d1d5db!important;
-  font-weight:700!important;
-}
-.suggest-item:hover,.suggest-item:focus{
-  background:#e5e7eb!important;
-  color:#000000!important;
-  -webkit-text-fill-color:#000000!important;
-}
-body.dark .suggest-box,body.dark .suggest-item,body.dark .suggest-box *{
-  background-color:#ffffff!important;
-  color:#000000!important;
-  -webkit-text-fill-color:#000000!important;
-  opacity:1!important;
-}
-body.dark .suggest-item:hover,body.dark .suggest-item:focus{background:#e5e7eb!important;color:#000000!important;-webkit-text-fill-color:#000000!important}
-
 .wizard-actions{display:flex;justify-content:space-between;gap:10px;margin-top:18px;position:sticky;bottom:0;background:linear-gradient(180deg,rgba(255,255,255,0) 0%,#fff 20%);padding-top:16px}body.dark .wizard-actions{background:linear-gradient(180deg,rgba(17,24,39,0) 0%,#111827 20%)}
 .preview-header{display:flex;justify-content:space-between;gap:10px;align-items:center;margin-bottom:12px}.preview-title{font-size:1.05rem;font-weight:700}.preview-actions{display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap;margin-top:14px}.preview-actions-left,.preview-actions-right{display:flex;gap:10px;flex-wrap:wrap}
 .paper-wrap{background:#fff;padding:12px;border-radius:18px;overflow:auto}.paper{background:#fff;color:#000;padding:9mm 8mm 8mm 8mm;font-size:10.9px;line-height:1.24;border:none;box-shadow:none;width:210mm;max-width:100%;margin:0 auto}.paper h2{margin:0 0 6px;text-align:center;font-size:18px;letter-spacing:.6px;font-weight:700}.paper .subhead{margin:0 0 9px;text-align:center;font-size:10.2px;color:#000}.paper table{width:100%;border-collapse:collapse;margin-bottom:6px;table-layout:auto}
@@ -157,8 +121,20 @@ html,body{width:auto;height:auto}
 body.dark .summary-card .summary-grid .stat.stat-total{background:var(--panel2)!important;color:var(--text)!important;border-color:var(--line)!important;}
 body.dark .summary-card .summary-grid .stat.stat-issues{background:#dc2626!important;color:#fff!important;border-color:#b91c1c!important;}
 body.dark .summary-card .summary-grid .stat.stat-ok{background:#16a34a!important;color:#fff!important;border-color:#15803d!important;}
+
+/* v35 UI redesign + print cleanup */
+.app-sidebar{position:fixed;left:0;top:0;bottom:0;width:220px;background:linear-gradient(180deg,#052e16 0%,#03190d 100%);color:#fff;z-index:18;padding:18px 14px;display:flex;flex-direction:column;gap:18px;box-shadow:6px 0 24px rgba(2,6,23,.16)}
+.side-logo{display:flex;align-items:center;gap:10px;padding:4px 4px 14px;border-bottom:1px solid rgba(255,255,255,.12);font-size:.86rem;line-height:1.08;letter-spacing:.03em}.side-logo img{width:54px;height:54px;border-radius:14px}.side-logo span{color:#86efac}.side-nav{display:grid;gap:8px}.side-nav a{color:#d1fae5;text-decoration:none;padding:11px 12px;border-radius:12px;font-weight:650;font-size:.92rem}.side-nav a.active,.side-nav a:hover{background:rgba(34,197,94,.22);color:#fff}.side-user{margin-top:auto;border-top:1px solid rgba(255,255,255,.12);padding-top:14px;display:flex;align-items:center;gap:10px;font-size:.86rem}.side-user span{color:#bbf7d0}.avatar{width:36px;height:36px;border-radius:999px;background:#16a34a;display:flex;align-items:center;justify-content:center;font-weight:800}
+@media (min-width:921px){body{padding-left:220px} header{left:220px}.container{max-width:1280px}.dashboard{grid-template-columns:1fr 310px;align-items:stretch}.summary-card{grid-column:1;grid-row:1}.hero{grid-column:2;grid-row:1}.summary-card .summary-grid{grid-template-columns:repeat(4,1fr)}.summary-card{padding:16px}.hero{padding:16px}.quick-title{font-weight:800;font-size:1.08rem;margin-bottom:4px}.quick-sub{color:var(--muted);font-size:.86rem;margin-bottom:12px}.hero-actions button{width:100%;background:#15803d}.toolbar{background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:14px;box-shadow:var(--shadow)}}
+.print-btn{background:#60a5fa!important;color:#fff!important}.print-btn:hover{background:#3b82f6!important}.download-btn{border-color:#86efac!important;color:#166534!important;background:#f0fdf4!important}.download-btn:hover{background:#dcfce7!important}
+.stat{position:relative;overflow:hidden}.stat:before{display:inline-flex;width:36px;height:36px;border-radius:12px;align-items:center;justify-content:center;margin-bottom:8px;font-size:20px}.stat-total:before{content:'📋';background:#dbeafe}.stat-issues:before{content:'⚠';background:rgba(255,255,255,.18)}.stat-ok:before{content:'✓';background:rgba(255,255,255,.18);font-weight:900}.summary-card .summary-grid .stat:not(.stat-total):not(.stat-issues):not(.stat-ok):before{content:'📅';background:#ede9fe}
+.paper .check-mark{text-align:center;width:11%;white-space:nowrap;font-weight:700}.paper .c-head-yes{color:#166534}.paper .c-head-no{color:#991b1b}.paper .section-title{background:#f8fafc}.paper .photo-box,.paper .issue-photo-box{break-inside:avoid;page-break-inside:avoid}.paper .photo-box img,.paper .issue-photo-box img{cursor:zoom-in}
+@media print{#preview .paper .check-mark{text-align:center;width:11%;white-space:nowrap;font-weight:700}#preview .paper .section-title{background:#f8fafc!important}#preview .paper .photo-box img,#preview .paper .issue-photo-box img{cursor:default}#preview .paper .photo-grid{grid-template-columns:repeat(6,1fr)}#preview .paper .photo-box img{height:30px}#preview .paper .issue-photo-box img{height:34px}}
+@media (max-width:920px){.app-sidebar{display:none}body{padding-left:0}.dashboard{grid-template-columns:1fr}.summary-card{order:1}.hero{order:2}.quick-title{font-weight:800;margin-bottom:4px}.quick-sub{color:var(--muted);font-size:.86rem;margin-bottom:10px}.summary-card .summary-grid{grid-template-columns:repeat(2,1fr)}.summary-card .summary-grid .stat-total{grid-column:1/-1}.summary-card .summary-grid .stat:not(.stat-total):not(.stat-issues):not(.stat-ok){grid-column:1/-1}.hero{padding:14px}.hero-actions button{width:100%;background:#15803d}.toolbar{align-items:stretch}.toolbar-right{width:100%}}
+@media (max-width:640px){.summary-card .summary-grid{grid-template-columns:repeat(2,1fr)!important}.summary-card .summary-grid .stat-total{grid-column:1/-1}.summary-card .summary-grid .stat:not(.stat-total):not(.stat-issues):not(.stat-ok){grid-column:1/-1}.stat{padding:12px}.stat-value{font-size:1.45rem}.photo-grid{grid-template-columns:repeat(3,1fr)}.preview-actions-right{display:grid;grid-template-columns:1fr 1fr;width:100%}.preview-actions-right #savePreviewBtn{grid-column:1/-1}}
+
 </style>
-<!-- v34_controlled_fix_C_positive_order_autocomplete -->
+<!-- v35_ui_print_nv193_layout -->
 </head>
 <body>
 <header>
@@ -166,11 +142,24 @@ body.dark .summary-card .summary-grid .stat.stat-ok{background:#16a34a!important
   <button id="settingsBtn" class="settings-btn" type="button" aria-label="Nastavení">⚙</button>
 </header>
 
+<aside class="app-sidebar" aria-label="Hlavní navigace">
+  <div class="side-logo"><img src="icon-192.png" alt="JB Kontrolní protokol"><div><strong>KONTROLNÍ</strong><br><span>PROTOKOL</span></div></div>
+  <nav class="side-nav">
+    <a class="active" href="#appRoot">Přehled</a>
+    <a href="#list">Protokoly</a>
+    <a href="javascript:void(0)" onclick="window._openWizard()">Nový protokol</a>
+    <a href="javascript:void(0)" onclick="openModal(document.getElementById('settingsModal'))">Nastavení</a>
+  </nav>
+  <div class="side-user"><div class="avatar">JB</div><div><strong>Jan Bartoš</strong><br><span>Kontrolor</span></div></div>
+</aside>
+
 <div class="container" id="appRoot">
   <div class="dashboard">
     <section class="hero">
+      <div class="quick-title">Nový protokol</div>
+      <div class="quick-sub">Rychlé založení nové kontroly.</div>
       <div class="hero-actions">
-        <button class="primary" id="newProtocolBtn" type="button" onclick="window._openWizard()">Začít nový protokol</button>
+        <button class="primary" id="newProtocolBtn" type="button" onclick="window._openWizard()">+ Nový protokol</button>
       </div>
     </section>
     <aside class="summary-card">
@@ -245,7 +234,7 @@ body.dark .summary-card .summary-grid .stat.stat-ok{background:#16a34a!important
 <div class="modal" id="preview"><div class="modal-content"><div class="preview-shell">
   <div class="preview-header"><div><div class="preview-title">Náhled vyplněného formuláře</div><div class="card-sub">Připravené pro tisk nebo uložení jako PDF</div></div><div class="badges" id="previewBadges"></div></div>
   <div class="paper-wrap print-root"><div id="previewBody"></div></div>
-  <div class="preview-actions"><div class="preview-actions-left"><button id="closePreviewBtn" class="secondary" type="button">Ukončit</button></div><div class="preview-actions-right"><button id="savePreviewBtn" class="ghost" type="button">Uložit protokol</button><button id="printPreviewBtn" class="primary" type="button">Tisk / Uložit jako PDF</button></div></div>
+  <div class="preview-actions"><div class="preview-actions-left"><button id="closePreviewBtn" class="secondary" type="button">Ukončit</button></div><div class="preview-actions-right"><button id="savePreviewBtn" class="ghost" type="button">Uložit protokol</button><button id="printPreviewBtn" class="primary print-btn" type="button">Tisk</button><button id="downloadPreviewBtn" class="ghost download-btn" type="button">Stáhnout</button></div></div>
 </div></div></div>
 
 <div class="lightbox" id="lightbox" onclick="closeLightbox()">
@@ -304,15 +293,15 @@ const COMMON_SECTIONS = {
 };
 const SECTION_VARIANTS = {
   scissor: {
-    C:makeCheckItems([['C1','Celkový stav / čistota – vyhovuje'],['C5','Kola – stav vyhovuje'],['C_chassis','Podvozek / základna – stav vyhovuje'],['C10','Sestava nůžek – stav vyhovuje'],['C7','Ovládací kabel – stav vyhovuje'],['C3','Schody / přístup do koše – stav vyhovuje'],['C9','Akumulátory – stav vyhovuje'],['C8','Podlaha koše / protiskluz – stav vyhovuje'],['C4','Zábradlí – stav vyhovuje'],['C_complete','Konstrukce kompletní'],['C_gate','Vstupní dvířka / hrazda – stav vyhovuje'],['C11','Hydraulické válce – stav vyhovuje'],['C12','Hydraulické hadice – stav vyhovuje'],['C13','Hydraulická soustava těsná']]),
+    C:makeCheckItems([['C1','Celkový stav / čistota'],['C5','Kola'],['C_chassis','Podvozek / základna'],['C10','Sestava nůžek'],['C7','Ovládací kabel'],['C3','Schody / přístup do koše'],['C9','Akumulátory'],['C8','Podlaha koše / protiskluz'],['C4','Zábradlí'],['C_complete','Konstrukce kompletní'],['C_gate','Vstupní dvířka / hrazda'],['C11','Hydraulické válce'],['C12','Hydraulické hadice'],['C13','Hydraulická soustava těsná']]),
     E:[{k:'E16',l:'Funkce nabíječe',printLabel:'16. Funkce nabíječe',desc:true,chargerCheck:true},{k:'E_socket230',l:'Kontrola zásuvky v koši 230 V',printLabel:'17. Kontrola zásuvky v koši 230 V',desc:true,socketCheck:true},{k:'E19',l:'Funkce spodního ovládacího panelu',printLabel:'18. Funkce spodního ovládacího panelu',desc:true},{k:'E21',l:'Funkce horního ovládacího panelu',printLabel:'19. Funkce horního ovládacího panelu',desc:true},{k:'E_safety',l:'Funkce bezpečnostních prvků / blokací',printLabel:'20. Funkce bezpečnostních prvků / blokací',desc:true},{k:'E20',l:'Funkce nouzového spouštění',printLabel:'21. Funkce nouzového spouštění',desc:true}]
   },
   boom: {
-    C:makeCheckItems([['C1','Celkový stav / čistota – vyhovuje'],['C4','Kola – stav vyhovuje'],['C_chassis','Podvozek / základna – stav vyhovuje'],['C9','Rameno – stav vyhovuje'],['C10','Kloub – stav vyhovuje'],['C6','Ovládací kabel – stav vyhovuje'],['C2b','Schody / přístup do koše – stav vyhovuje'],['C8','Akumulátory – stav vyhovuje'],['C7','Podlaha koše / protiskluz – stav vyhovuje'],['C3','Zábradlí – stav vyhovuje'],['C_complete','Konstrukce kompletní'],['C_gate','Vstupní dvířka / hrazda – stav vyhovuje'],['C11','Hydraulické válce – stav vyhovuje'],['C12','Hydraulické hadice – stav vyhovuje'],['C13','Hydraulická soustava těsná']]),
+    C:makeCheckItems([['C1','Celkový stav / čistota'],['C4','Kola'],['C_chassis','Podvozek / základna'],['C9','Rameno'],['C10','Kloub'],['C6','Ovládací kabel'],['C2','Schody / přístup do koše'],['C8','Akumulátory'],['C7','Podlaha koše / protiskluz'],['C3','Zábradlí'],['C_complete','Konstrukce kompletní'],['C_gate','Vstupní dvířka / hrazda'],['C11','Hydraulické válce'],['C12','Hydraulické hadice'],['C13','Hydraulická soustava těsná']]),
     E:[{k:'E16',l:'Funkce nouzového spouštění',printLabel:'16. Funkce nouzového spouštění',desc:true},{k:'E17',l:'Funkce nosnosti koše',printLabel:'17. Funkce nosnosti koše',desc:true},{k:'E18',l:'Funkce nabíječe',printLabel:'18. Funkce nabíječe',desc:true,chargerCheck:true},{k:'E_socket230',l:'Kontrola zásuvky v koši 230 V',printLabel:'19. Kontrola zásuvky v koši 230 V',desc:true,socketCheck:true},{k:'E19',l:'Funkce spodního ovládacího panelu',printLabel:'20. Funkce spodního ovládacího panelu',desc:true},{k:'E20',l:'Funkce horního ovládacího panelu',printLabel:'21. Funkce horního ovládacího panelu',desc:true},{k:'E_safety',l:'Funkce bezpečnostních prvků / blokací',printLabel:'22. Funkce bezpečnostních prvků / blokací',desc:true}]
   },
   mast: {
-    C:makeCheckItems([['C1','Celkový stav / čistota – vyhovuje'],['C3','Kola – stav vyhovuje'],['C_chassis','Podvozek / základna – stav vyhovuje'],['C8','Sloup – stav vyhovuje'],['C5','Ovládací kabel – stav vyhovuje'],['C2','Schody / přístup do koše – stav vyhovuje'],['C7','Akumulátory – stav vyhovuje'],['C6','Podlaha koše / protiskluz – stav vyhovuje'],['C2b','Zábradlí – stav vyhovuje'],['C_complete','Konstrukce kompletní'],['C_gate','Vstupní dvířka / hrazda – stav vyhovuje'],['C9','Hydraulické válce – stav vyhovuje'],['C10','Hydraulické hadice – stav vyhovuje'],['C11','Hydraulická soustava těsná']]),
+    C:makeCheckItems([['C1','Celkový stav / čistota'],['C3','Kola'],['C_chassis','Podvozek / základna'],['C8','Sloup'],['C5','Ovládací kabel'],['C2','Schody / přístup do koše'],['C7','Akumulátory'],['C6','Podlaha koše / protiskluz'],['C2b','Zábradlí'],['C_complete','Konstrukce kompletní'],['C_gate','Vstupní dvířka / hrazda'],['C9','Hydraulické válce'],['C10','Hydraulické hadice'],['C11','Hydraulická soustava těsná']]),
     E:[{k:'E14',l:'Funkce nouzového spouštění',printLabel:'14. Funkce nouzového spouštění',desc:true},{k:'E15',l:'Funkce nosnosti koše',printLabel:'15. Funkce nosnosti koše',desc:true},{k:'E16',l:'Funkce nabíječe',printLabel:'16. Funkce nabíječe',desc:true,chargerCheck:true},{k:'E_socket230',l:'Kontrola zásuvky v koši 230 V',printLabel:'17. Kontrola zásuvky v koši 230 V',desc:true,socketCheck:true},{k:'E17',l:'Funkce spodního ovládacího panelu',printLabel:'18. Funkce spodního ovládacího panelu',desc:true},{k:'E18',l:'Funkce horního ovládacího panelu',printLabel:'19. Funkce horního ovládacího panelu',desc:true},{k:'E_safety',l:'Funkce bezpečnostních prvků / blokací',printLabel:'20. Funkce bezpečnostních prvků / blokací',desc:true}]
   }
 };
@@ -378,23 +367,23 @@ function hasStabilizers(model){
 }
 function getBoomC(model){
   const base = [
-    ['C1','Celkový stav / čistota – vyhovuje'],
-    ['C4','Kola – stav vyhovuje'],
-    ['C_chassis','Podvozek / základna – stav vyhovuje'],
-    ['C9','Rameno – stav vyhovuje'],
-    ['C10','Kloub – stav vyhovuje'],
-    ['C6','Ovládací kabel – stav vyhovuje'],
-    ['C2b','Schody / přístup do koše – stav vyhovuje'],
-    ['C8','Akumulátory – stav vyhovuje'],
-    ['C7','Podlaha koše / protiskluz – stav vyhovuje'],
-    ['C3','Zábradlí – stav vyhovuje'],
+    ['C1','Celkový stav / čistota'],
+    ['C4','Kola'],
+    ['C_chassis','Podvozek / základna'],
+    ['C9','Rameno'],
+    ['C10','Kloub'],
+    ['C6','Ovládací kabel'],
+    ['C2b','Schody / přístup do koše'],
+    ['C8','Akumulátory'],
+    ['C7','Podlaha koše / protiskluz'],
+    ['C3','Zábradlí'],
     ['C_complete','Konstrukce kompletní'],
-    ['C_gate','Vstupní dvířka / hrazda – stav vyhovuje'],
-    ['C11','Hydraulické válce – stav vyhovuje'],
-    ['C12','Hydraulické hadice – stav vyhovuje'],
+    ['C_gate','Vstupní dvířka / hrazda'],
+    ['C11','Hydraulické válce'],
+    ['C12','Hydraulické hadice'],
     ['C13','Hydraulická soustava těsná']
   ];
-  if(hasStabilizers(model)) base.splice(3, 0, ['C_stabilizers','Stabilizátory – stav vyhovuje']);
+  if(hasStabilizers(model)) base.splice(3, 0, ['C_stabilizers','Stabilizátory, pokud jsou']);
   return makeCheckItems(base);
 }
 function getSectionsForRecord(record){
@@ -715,10 +704,7 @@ function filterSuggestions(items,q){
 
   return out;
 }
-function renderSuggestBox(items,key,isTextarea=false){
-  if(!items.length) return '';
-  return `<div class="suggest-box" style="background:#ffffff!important;color:#000000!important;-webkit-text-fill-color:#000000!important;opacity:1!important;z-index:9999!important;border:1px solid #94a3b8!important;box-shadow:0 14px 32px rgba(0,0,0,.28)!important;">${items.map(v => `<div class="suggest-item" style="background:#ffffff!important;color:#000000!important;-webkit-text-fill-color:#000000!important;opacity:1!important;font-weight:700!important;border-bottom:1px solid #d1d5db!important;" data-key="${key}" data-value="${escapeHtml(v)}" data-textarea="${isTextarea ? '1':'0'}">${escapeHtml(v)}</div>`).join('')}</div>`;
-}
+function renderSuggestBox(items,key,isTextarea=false){ if(!items.length) return ''; return `<div class="suggest-box" style="background:#fff!important;color:#000!important;-webkit-text-fill-color:#000!important;opacity:1!important;">${items.map(v => `<div class="suggest-item" style="background:#fff!important;color:#000!important;-webkit-text-fill-color:#000!important;opacity:1!important;font-weight:700!important;" data-key="${key}" data-value="${escapeHtml(v)}" data-textarea="${isTextarea ? '1':'0'}">${escapeHtml(v)}</div>`).join('')}</div>`; }
 function yearOptions(baseDate){ const y = Number(String(baseDate||todayLocal()).slice(0,4)) || new Date().getFullYear(); return Array.from({length:11}, (_,idx) => String(y-idx)); }
 function autoFillDefaults(){ if(!rec.datum) rec.datum = todayLocal(); if(!rec.dalsiKontrola) rec.dalsiKontrola = addMonthsToDate(rec.datum,3); }
 function isRevizeExpired(r){
@@ -732,8 +718,6 @@ function syncRevizeIssue(r){ if(!isRevizeExpired(r)) return; r.B2 = 'NE'; r.zave
 function isInvertedIssueKey(key){ return key === 'zaverServis' || key === 'zaverOprava'; }
 function isProblemAnswer(key, value){
   if(value !== 'ANO' && value !== 'NE') return false;
-  // Sekce C je od v34 pozitivní: ANO = vyhovuje, NE = závada.
-  if(isGeneralCheckKey(key)) return value === 'NE';
   return isInvertedIssueKey(key) ? value === 'ANO' : value === 'NE';
 }
 function countIssues(r){ return getStepsForRecord(r).filter(s => (s.type === 'yn' || s.type === 'yntext' || s.type === 'yntextphoto') && isProblemAnswer(s.k, r[s.k])).length + (isRevizeExpired(r) ? 1 : 0); }
@@ -777,7 +761,7 @@ function render(){
       <div class="actions">
         <button class="secondary mini" data-action="preview" data-id="${r.id}">Náhled</button>
         <button class="ghost mini" data-action="edit" data-id="${r.id}">Upravit</button>
-        <button class="primary mini" data-action="pdf" data-id="${r.id}">Tisk / PDF</button>
+        <button class="primary mini" data-action="pdf" data-id="${r.id}">Tisk</button>
         <button class="danger mini" data-action="delete" data-id="${r.id}">Smazat</button>
       </div>
     </div>`).join('');
@@ -889,13 +873,11 @@ function showStep(){
 
   if(mainInput){
     mainInput.addEventListener('input', () => { rec[s.k] = mainInput.value; refreshSuggestions(); });
-    mainInput.addEventListener('focus', () => refreshSuggestions());
-    mainInput.addEventListener('blur', () => setTimeout(hideSuggestions, 180));
+    mainInput.addEventListener('blur', () => setTimeout(hideSuggestions, 120));
   }
   if(mainTextarea){
     mainTextarea.addEventListener('input', () => { rec[s.k] = mainTextarea.value; refreshSuggestions(); });
-    mainTextarea.addEventListener('focus', () => refreshSuggestions());
-    mainTextarea.addEventListener('blur', () => setTimeout(hideSuggestions, 180));
+    mainTextarea.addEventListener('blur', () => setTimeout(hideSuggestions, 120));
   }
   if(descInput){
     descInput.addEventListener('input', () => { rec[s.textKey] = descInput.value; });
@@ -1148,7 +1130,6 @@ async function nextStep(){
     return;
   }
   syncRevizeIssue(rec);
-  rec.cLogicVersion = 'positive_v34';
   syncModelPreferences(rec);
   const okSave = confirm('Chceš protokol uložit?');
   if(!okSave) return;
@@ -1204,7 +1185,7 @@ function printCurrent(){
     .paper .section-block{margin-bottom:2.5px;page-break-inside:avoid;break-inside:avoid}
     .paper .section-title{font-weight:700;margin:3px 0 1.6px;font-size:8.7px;background:#fff;color:#000;border-top:1.6px solid #000;border-bottom:1.6px solid #000;border-left:1px solid #000;border-right:1px solid #000;padding:1.6px 3.6px;page-break-after:avoid;break-after:avoid}
     .paper table tr{page-break-inside:avoid;break-inside:avoid}
-    .paper .check-col{width:16%;font-weight:600;white-space:nowrap}.paper .desc-col{width:19%}
+    .paper .check-col{width:16%;font-weight:600;white-space:nowrap}.paper .desc-col{width:19%}.paper .check-mark{text-align:center;width:11%;white-space:nowrap;font-weight:700}.paper .c-head-yes{color:#166534}.paper .c-head-no{color:#991b1b}
     .paper tr.status-bad td,.paper tr.status-bad th{background:#fee2e2!important;border:1.6px solid #dc2626!important}
     .issue-label{display:inline-block;margin-right:3px;padding:.7px 2.8px;border:1px solid #dc2626;color:#991b1b;font-weight:700;font-size:6.5px;background:#fff1f2}
     .paper .crossed-out td{color:#666;text-decoration:line-through}.paper .expired{background:#fff;color:#000;font-weight:700}.paper .notes{min-height:13px}
@@ -1219,7 +1200,19 @@ function printCurrent(){
   const popup = window.open('', '_blank');
   if(popup && popup.document){
     popup.document.open();
-    popup.document.write(`<!DOCTYPE html><html lang="cs"><head><meta charset="UTF-8"><title>Tisk protokolu</title><style>${printCss}</style></head><body>${paperHtml}<scr` + `ipt>function doPrint(){setTimeout(function(){window.focus();window.print();},250)}; if(document.readyState === 'complete'){doPrint()} else {window.onload=doPrint;}</scr` + `ipt></body></html>`);
+    popup.document.write(`<!DOCTYPE html><html lang="cs"><head><meta charset="UTF-8"><title>Tisk protokolu</title><style>${printCss}
+/* v35 UI redesign + print cleanup */
+.app-sidebar{position:fixed;left:0;top:0;bottom:0;width:220px;background:linear-gradient(180deg,#052e16 0%,#03190d 100%);color:#fff;z-index:18;padding:18px 14px;display:flex;flex-direction:column;gap:18px;box-shadow:6px 0 24px rgba(2,6,23,.16)}
+.side-logo{display:flex;align-items:center;gap:10px;padding:4px 4px 14px;border-bottom:1px solid rgba(255,255,255,.12);font-size:.86rem;line-height:1.08;letter-spacing:.03em}.side-logo img{width:54px;height:54px;border-radius:14px}.side-logo span{color:#86efac}.side-nav{display:grid;gap:8px}.side-nav a{color:#d1fae5;text-decoration:none;padding:11px 12px;border-radius:12px;font-weight:650;font-size:.92rem}.side-nav a.active,.side-nav a:hover{background:rgba(34,197,94,.22);color:#fff}.side-user{margin-top:auto;border-top:1px solid rgba(255,255,255,.12);padding-top:14px;display:flex;align-items:center;gap:10px;font-size:.86rem}.side-user span{color:#bbf7d0}.avatar{width:36px;height:36px;border-radius:999px;background:#16a34a;display:flex;align-items:center;justify-content:center;font-weight:800}
+@media (min-width:921px){body{padding-left:220px} header{left:220px}.container{max-width:1280px}.dashboard{grid-template-columns:1fr 310px;align-items:stretch}.summary-card{grid-column:1;grid-row:1}.hero{grid-column:2;grid-row:1}.summary-card .summary-grid{grid-template-columns:repeat(4,1fr)}.summary-card{padding:16px}.hero{padding:16px}.quick-title{font-weight:800;font-size:1.08rem;margin-bottom:4px}.quick-sub{color:var(--muted);font-size:.86rem;margin-bottom:12px}.hero-actions button{width:100%;background:#15803d}.toolbar{background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:14px;box-shadow:var(--shadow)}}
+.print-btn{background:#60a5fa!important;color:#fff!important}.print-btn:hover{background:#3b82f6!important}.download-btn{border-color:#86efac!important;color:#166534!important;background:#f0fdf4!important}.download-btn:hover{background:#dcfce7!important}
+.stat{position:relative;overflow:hidden}.stat:before{display:inline-flex;width:36px;height:36px;border-radius:12px;align-items:center;justify-content:center;margin-bottom:8px;font-size:20px}.stat-total:before{content:'📋';background:#dbeafe}.stat-issues:before{content:'⚠';background:rgba(255,255,255,.18)}.stat-ok:before{content:'✓';background:rgba(255,255,255,.18);font-weight:900}.summary-card .summary-grid .stat:not(.stat-total):not(.stat-issues):not(.stat-ok):before{content:'📅';background:#ede9fe}
+.paper .check-mark{text-align:center;width:11%;white-space:nowrap;font-weight:700}.paper .c-head-yes{color:#166534}.paper .c-head-no{color:#991b1b}.paper .section-title{background:#f8fafc}.paper .photo-box,.paper .issue-photo-box{break-inside:avoid;page-break-inside:avoid}.paper .photo-box img,.paper .issue-photo-box img{cursor:zoom-in}
+@media print{#preview .paper .check-mark{text-align:center;width:11%;white-space:nowrap;font-weight:700}#preview .paper .section-title{background:#f8fafc!important}#preview .paper .photo-box img,#preview .paper .issue-photo-box img{cursor:default}#preview .paper .photo-grid{grid-template-columns:repeat(6,1fr)}#preview .paper .photo-box img{height:30px}#preview .paper .issue-photo-box img{height:34px}}
+@media (max-width:920px){.app-sidebar{display:none}body{padding-left:0}.dashboard{grid-template-columns:1fr}.summary-card{order:1}.hero{order:2}.quick-title{font-weight:800;margin-bottom:4px}.quick-sub{color:var(--muted);font-size:.86rem;margin-bottom:10px}.summary-card .summary-grid{grid-template-columns:repeat(2,1fr)}.summary-card .summary-grid .stat-total{grid-column:1/-1}.summary-card .summary-grid .stat:not(.stat-total):not(.stat-issues):not(.stat-ok){grid-column:1/-1}.hero{padding:14px}.hero-actions button{width:100%;background:#15803d}.toolbar{align-items:stretch}.toolbar-right{width:100%}}
+@media (max-width:640px){.summary-card .summary-grid{grid-template-columns:repeat(2,1fr)!important}.summary-card .summary-grid .stat-total{grid-column:1/-1}.summary-card .summary-grid .stat:not(.stat-total):not(.stat-issues):not(.stat-ok){grid-column:1/-1}.stat{padding:12px}.stat-value{font-size:1.45rem}.photo-grid{grid-template-columns:repeat(3,1fr)}.preview-actions-right{display:grid;grid-template-columns:1fr 1fr;width:100%}.preview-actions-right #savePreviewBtn{grid-column:1/-1}}
+
+</style></head><body>${paperHtml}<scr` + `ipt>function doPrint(){setTimeout(function(){window.focus();window.print();},250)}; if(document.readyState === 'complete'){doPrint()} else {window.onload=doPrint;}</scr` + `ipt></body></html>`);
     popup.document.close();
     return;
   }
@@ -1374,7 +1367,35 @@ async function handleQrDecoded(decodedText){
   openWizard(null, prefill);
 }
 
-function rowsHtml(items,r){ return items.map(it => { const problem = isProblemAnswer(it.k, r[it.k]); const cls = problem ? 'status-bad' : ((r[it.k] === 'ANO' || r[it.k] === 'NE') ? 'status-ok' : ''); const ch = getKnownChargerPresence(r); if(it.chargerCheck && ch === 'BEZ'){ return `<tr class="crossed-out"><td>${escapeHtml(it.printLabel||it.l)}</td><td class="check-col">—</td><td class="desc-col">Bez nabíječe – není závada</td></tr>`; } const sock = getKnownSocket230Presence(r); if(it.socketCheck && sock === 'BEZ'){ return `<tr class="crossed-out"><td>${escapeHtml(it.printLabel||it.l)}</td><td class="check-col">—</td><td class="desc-col">Bez zásuvky v koši 230 V – není závada</td></tr>`; } const note = r[it.k+'_p'] || ''; const label = problem ? '<span class="issue-label">ZÁVADA</span>' : ''; return `<tr class="${cls}"><td>${escapeHtml(it.printLabel||it.l)}</td><td class="check-col">${yn(r[it.k])}</td><td class="desc-col">${label}${escapeHtml(note)}</td></tr>`; }).join(''); }
+function ynCells(v){
+  if(v === 'ANO') return '<td class="check-mark">☑</td><td class="check-mark">☐</td>';
+  if(v === 'NE') return '<td class="check-mark">☐</td><td class="check-mark">☑</td>';
+  return '<td class="check-mark">☐</td><td class="check-mark">☐</td>';
+}
+function rowsHtml(items,r,splitChecks=false){
+  return items.map(it => {
+    const problem = isProblemAnswer(it.k, r[it.k]);
+    const cls = problem ? 'status-bad' : ((r[it.k] === 'ANO' || r[it.k] === 'NE') ? 'status-ok' : '');
+    const ch = getKnownChargerPresence(r);
+    if(it.chargerCheck && ch === 'BEZ'){
+      return splitChecks
+        ? `<tr class="crossed-out"><td>${escapeHtml(it.printLabel||it.l)}</td><td class="check-mark">—</td><td class="check-mark">—</td><td>Bez nabíječe – není závada</td></tr>`
+        : `<tr class="crossed-out"><td>${escapeHtml(it.printLabel||it.l)}</td><td class="check-col">—</td><td class="desc-col">Bez nabíječe – není závada</td></tr>`;
+    }
+    const sock = getKnownSocket230Presence(r);
+    if(it.socketCheck && sock === 'BEZ'){
+      return splitChecks
+        ? `<tr class="crossed-out"><td>${escapeHtml(it.printLabel||it.l)}</td><td class="check-mark">—</td><td class="check-mark">—</td><td>Bez zásuvky v koši 230 V – není závada</td></tr>`
+        : `<tr class="crossed-out"><td>${escapeHtml(it.printLabel||it.l)}</td><td class="check-col">—</td><td class="desc-col">Bez zásuvky v koši 230 V – není závada</td></tr>`;
+    }
+    const note = r[it.k+'_p'] || '';
+    const label = problem ? '<span class="issue-label">ZÁVADA</span>' : '';
+    if(splitChecks){
+      return `<tr class="${cls}"><td>${escapeHtml(it.printLabel||it.l)}</td>${ynCells(r[it.k])}<td>${label}${escapeHtml(note)}</td></tr>`;
+    }
+    return `<tr class="${cls}"><td>${escapeHtml(it.printLabel||it.l)}</td><td class="check-col">${yn(r[it.k])}</td><td class="desc-col">${label}${escapeHtml(note)}</td></tr>`;
+  }).join('');
+}
 function renderConclusion(r){ return `<table><thead><tr><th></th><th>ANO / NE</th><th>Poznámky</th></tr></thead><tbody><tr class="${isProblemAnswer('zaverServis', r.zaverServis) ? 'status-bad' : (r.zaverServis ? 'status-ok' : '')}"><th>Nutná běžná servisní kontrola</th><td class="check-col">${yn(r.zaverServis)}</td><td></td></tr><tr class="${isProblemAnswer('zaverOprava', r.zaverOprava) ? 'status-bad' : (r.zaverOprava ? 'status-ok' : '')}"><th>Nutná oprava</th><td class="check-col">${yn(r.zaverOprava)}</td><td></td></tr><tr class="${r.zaverBezpecny==='NE'?'status-bad':'status-ok'}"><th>Zařízení je schopné bezpečného provozu</th><td class="check-col">${yn(r.zaverBezpecny)}</td><td></td></tr></tbody></table>`; }
 function renderPhotoSection(r){
   const photos = r.photos || {};
@@ -1383,7 +1404,7 @@ function renderPhotoSection(r){
     const src = p.url || p.dataUrl || '';
     return `<div class="photo-box">${src ? `<img src="${escapeHtml(src)}" data-full-src="${escapeHtml(src)}" onclick="openLightbox(this.dataset.fullSrc)">` : '<div style="height:62px"></div>'}<strong>${escapeHtml(PHOTO_LABELS[s.photoKey])}</strong></div>`;
   }).join('');
-  return `<div class="section-block"><div class="section-title">Fotodokumentace</div><div class="photo-grid">${cells}</div></div>`;
+  return `<div class="section-block"><div class="section-title">Fotodokumentace stroje – informační miniatury</div><div class="photo-grid">${cells}</div></div>`;
 }
 function renderIssuePhotosSection(r){
   const issuePhotos = r.issuePhotos || {};
@@ -1395,14 +1416,14 @@ function renderIssuePhotosSection(r){
     const note = r[k + '_p'] || '';
     return `<div class="issue-photo-box"><img src="${escapeHtml(src)}" data-full-src="${escapeHtml(src)}" onclick="openLightbox(this.dataset.fullSrc)"><strong>${escapeHtml(q)}</strong>${note ? `<div>${escapeHtml(note)}</div>` : ''}</div>`;
   }).join('');
-  return `<div class="section-block"><div class="section-title">Fotky závad / poškození</div><div class="issue-photo-grid">${cells}</div></div>`;
+  return `<div class="section-block"><div class="section-title">Zjištěné závady – fotodokumentace miniatur</div><div class="issue-photo-grid">${cells}</div></div>`;
 }
 function renderPaper(r){
   const sections = getSectionsForRecord(r);
   return `
   <div class="paper">
-    <h2>KONTROLNÍ PROTOKOL</h2>
-    <div class="subhead">Záznam o pravidelné prohlídce zdvihací pracovní plošiny<br>dle NV č. 193/2022 Sb., příloha č. 2, čl. 3.2</div>
+    <h2>ZÁZNAM O BĚŽNÉ PROHLÍDCE</h2>
+    <div class="subhead">Čtvrtletní kontrola pracovní plošiny dle NV č. 193/2022 Sb., příloha č. 2, čl. 3.2<br>Podklad kontroly: průvodní dokumentace výrobce, návod k používání a provozní deník</div>
 
     <table class="top-table">
       <tr>
@@ -1430,6 +1451,12 @@ function renderPaper(r){
         <td>${escapeHtml(r.technik||'')}</td>
       </tr>
       <tr>
+        <td><strong>Druh kontroly</strong></td>
+        <td>Běžná prohlídka</td>
+        <td><strong>Interval</strong></td>
+        <td>nejpozději do 3 měsíců</td>
+      </tr>
+      <tr>
         <td><strong>Umístění</strong></td>
         <td colspan="3">${r.umisteni ? 'půjčovna ' + escapeHtml(r.umisteni) : ''}</td>
       </tr>
@@ -1448,7 +1475,7 @@ function renderPaper(r){
 
     <div class="section-block">
       <div class="section-title">C. Všeobecná kontrola zařízení</div>
-      <table><tbody>${rowsHtml(sections.C,r)}</tbody></table>
+      <table><thead><tr><th>Kontrola</th><th class="check-mark c-head-yes">ANO = vyhovuje</th><th class="check-mark c-head-no">NE = závada</th><th>Poznámky</th></tr></thead><tbody>${rowsHtml(sections.C,r,true)}</tbody></table>
     </div>
 
     <div class="print-page-break"></div>
@@ -1514,6 +1541,7 @@ document.getElementById('nextBtn').addEventListener('click', nextStep);
 document.getElementById('closePreviewBtn').addEventListener('click', closePreview);
 document.getElementById('savePreviewBtn').addEventListener('click', savePreviewRecord);
 document.getElementById('printPreviewBtn').addEventListener('click', printCurrent);
+document.getElementById('downloadPreviewBtn')?.addEventListener('click', printCurrent);
 document.addEventListener('keydown', (e) => { if(e.key === 'Escape') closeLightbox(); });
 document.getElementById('closeQrBtn').addEventListener('click', () => closeQrModal());
 document.getElementById('clearQrBtn').addEventListener('click', () => {

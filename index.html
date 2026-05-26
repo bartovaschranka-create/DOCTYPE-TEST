@@ -230,16 +230,16 @@ const COMMON_SECTIONS = {
 };
 const SECTION_VARIANTS = {
   scissor: {
-    C:['Celkové znečištění','Poškození nátěru','Poškození schodů','Poškození zábradlí','Poškození kol','Poškození napájecího kabelu','Poškození ovládacího kabelu','Poškození podlahy','Poškození akumulátorů','Poškození sestavy nůžek','Poškození hydr. válce','Poškození hydr. hadic','Netěsnost hydr. soustavy'].map((l,i)=>({k:'C'+(i+1),l,printLabel:(i+1)+'. '+l,desc:true})),
-    E:[{k:'E16',l:'Funkce nabíječe',printLabel:'16. Funkce nabíječe',desc:true,chargerCheck:true},{k:'E19',l:'Funkce spodního ovládacího panelu',printLabel:'19. Funkce spodního ovládacího panelu',desc:true},{k:'E20',l:'Funkce nouzového spouštění',printLabel:'20. Funkce nouzového spouštění',desc:true},{k:'E21',l:'Funkce horního ovládacího panelu',printLabel:'21. Funkce horního ovládacího panelu',desc:true}]
+    C:makeCheckItems([['C1','Celkové znečištění'],['C2','Poškození nátěru'],['C3','Poškození schodů'],['C4','Poškození zábradlí'],['C5','Poškození kol'],['C7','Poškození ovládacího kabelu'],['C8','Poškození podlahy'],['C9','Poškození akumulátorů'],['C10','Poškození sestavy nůžek'],['C11','Poškození hydr. válce'],['C12','Poškození hydr. hadic'],['C13','Netěsnost hydr. soustavy']]),
+    E:[{k:'E16',l:'Funkce nabíječe',printLabel:'16. Funkce nabíječe',desc:true,chargerCheck:true},{k:'E_socket230',l:'Kontrola zásuvky v koši 230 V',printLabel:'17. Kontrola zásuvky v koši 230 V',desc:true,socketCheck:true},{k:'E19',l:'Funkce spodního ovládacího panelu',printLabel:'18. Funkce spodního ovládacího panelu',desc:true},{k:'E20',l:'Funkce nouzového spouštění',printLabel:'19. Funkce nouzového spouštění',desc:true},{k:'E21',l:'Funkce horního ovládacího panelu',printLabel:'20. Funkce horního ovládacího panelu',desc:true}]
   },
   boom: {
-    C:['Celkové znečištění','Poškození schodů','Poškození zábradlí','Poškození kol','Poškození napájecího kabelu','Poškození ovládacího kabelu','Poškození podlahy','Poškození akumulátorů','Poškození ramene','Poškození kloubu','Poškození hydr. válců','Poškození hydr. hadic','Netěsnost hydr. soustavy'].map((l,i)=>({k:'C'+(i+1),l,printLabel:(i+1)+'. '+l,desc:true})),
-    E:[{k:'E16',l:'Funkce nouzového spouštění',printLabel:'16. Funkce nouzového spouštění',desc:true},{k:'E17',l:'Funkce nosnosti koše',printLabel:'17. Funkce nosnosti koše',desc:true},{k:'E18',l:'Funkce nabíječe',printLabel:'18. Funkce nabíječe',desc:true,chargerCheck:true},{k:'E19',l:'Funkce spodního ovládacího panelu',printLabel:'19. Funkce spodního ovládacího panelu',desc:true},{k:'E20',l:'Funkce horního ovládacího panelu',printLabel:'20. Funkce horního ovládacího panelu',desc:true}]
+    C:makeCheckItems([['C1','Celkové znečištění'],['C2','Poškození schodů'],['C3','Poškození zábradlí'],['C4','Poškození kol'],['C6','Poškození ovládacího kabelu'],['C7','Poškození podlahy'],['C8','Poškození akumulátorů'],['C9','Poškození ramene'],['C10','Poškození kloubu'],['C11','Poškození hydr. válců'],['C12','Poškození hydr. hadic'],['C13','Netěsnost hydr. soustavy']]),
+    E:[{k:'E16',l:'Funkce nouzového spouštění',printLabel:'16. Funkce nouzového spouštění',desc:true},{k:'E17',l:'Funkce nosnosti koše',printLabel:'17. Funkce nosnosti koše',desc:true},{k:'E18',l:'Funkce nabíječe',printLabel:'18. Funkce nabíječe',desc:true,chargerCheck:true},{k:'E_socket230',l:'Kontrola zásuvky v koši 230 V',printLabel:'19. Kontrola zásuvky v koši 230 V',desc:true,socketCheck:true},{k:'E19',l:'Funkce spodního ovládacího panelu',printLabel:'20. Funkce spodního ovládacího panelu',desc:true},{k:'E20',l:'Funkce horního ovládacího panelu',printLabel:'21. Funkce horního ovládacího panelu',desc:true}]
   },
   mast: {
-    C:['Celkové znečištění','Poškození zábradlí','Poškození kol','Poškození napájecího kabelu','Poškození ovládacího kabelu','Poškození podlahy','Poškození akumulátorů','Poškození ramene','Poškození hydr. válců','Poškození hydr. hadic','Netěsnost hydr. soustavy'].map((l,i)=>({k:'C'+(i+1),l,printLabel:(i+1)+'. '+l,desc:true})),
-    E:[{k:'E14',l:'Funkce nouzového spouštění',printLabel:'14. Funkce nouzového spouštění',desc:true},{k:'E15',l:'Funkce nosnosti koše',printLabel:'15. Funkce nosnosti koše',desc:true},{k:'E16',l:'Funkce nabíječe',printLabel:'16. Funkce nabíječe',desc:true,chargerCheck:true},{k:'E17',l:'Funkce spodního ovládacího panelu',printLabel:'17. Funkce spodního ovládacího panelu',desc:true},{k:'E18',l:'Funkce horního ovládacího panelu',printLabel:'18. Funkce horního ovládacího panelu',desc:true}]
+    C:makeCheckItems([['C1','Celkové znečištění'],['C2','Poškození zábradlí'],['C3','Poškození kol'],['C5','Poškození ovládacího kabelu'],['C6','Poškození podlahy'],['C7','Poškození akumulátorů'],['C8','Poškození ramene'],['C9','Poškození hydr. válců'],['C10','Poškození hydr. hadic'],['C11','Netěsnost hydr. soustavy']]),
+    E:[{k:'E14',l:'Funkce nouzového spouštění',printLabel:'14. Funkce nouzového spouštění',desc:true},{k:'E15',l:'Funkce nosnosti koše',printLabel:'15. Funkce nosnosti koše',desc:true},{k:'E16',l:'Funkce nabíječe',printLabel:'16. Funkce nabíječe',desc:true,chargerCheck:true},{k:'E_socket230',l:'Kontrola zásuvky v koši 230 V',printLabel:'17. Kontrola zásuvky v koši 230 V',desc:true,socketCheck:true},{k:'E17',l:'Funkce spodního ovládacího panelu',printLabel:'18. Funkce spodního ovládacího panelu',desc:true},{k:'E18',l:'Funkce horního ovládacího panelu',printLabel:'19. Funkce horního ovládacího panelu',desc:true}]
   }
 };
 const MODEL_PREFS_KEY = 'platform_protocol_model_prefs_v1';
@@ -254,6 +254,19 @@ function getKnownChargerPresence(record){
   const pref = getModelPref(record && record.typ);
   if(pref && ['ANO','BEZ','ZAVADA'].includes(pref.chargerPresent)) return pref.chargerPresent;
   return '';
+}
+function getKnownSocket230Presence(record){
+  if(record && ['ANO','BEZ'].includes(record.socket230Present)) return record.socket230Present;
+  return '';
+}
+function cloneSectionItems(items){ return (items || []).map(it => Object.assign({}, it)); }
+function makeCheckItems(rows){ return rows.map(([k,l]) => ({k,l,desc:true})); }
+function renumberControlSections(sections){
+  let n = 1;
+  ['C','D','E'].forEach(sec => {
+    sections[sec] = cloneSectionItems(sections[sec]).map(it => Object.assign({}, it, { printLabel: (n++) + '. ' + it.l }));
+  });
+  return sections;
 }
 function syncModelPreferences(record){
   if(record && record.typ && ['ANO','BEZ','ZAVADA'].includes(record.chargerPresent)){
@@ -291,20 +304,20 @@ function hasStabilizers(model){
 }
 function getBoomC(model){
   const base = [
-    'Celkové znečištění','Poškození schodů','Poškození zábradlí','Poškození kol','Poškození napájecího kabelu','Poškození ovládacího kabelu','Poškození podlahy','Poškození akumulátorů','Poškození ramene','Poškození kloubu','Poškození hydr. válců','Poškození hydr. hadic','Netěsnost hydr. soustavy'
+    ['C1','Celkové znečištění'],['C2','Poškození schodů'],['C3','Poškození zábradlí'],['C4','Poškození kol'],['C6','Poškození ovládacího kabelu'],['C7','Poškození podlahy'],['C8','Poškození akumulátorů'],['C9','Poškození ramene'],['C10','Poškození kloubu'],['C11','Poškození hydr. válců'],['C12','Poškození hydr. hadic'],['C13','Netěsnost hydr. soustavy']
   ];
-  if(hasStabilizers(model)) base.splice(10, 0, 'Poškození stabilizátorů');
-  return base.map((l,i)=>({k:'C'+(i+1),l,printLabel:(i+1)+'. '+l,desc:true}));
+  if(hasStabilizers(model)) base.splice(10, 0, ['C_stabilizers','Poškození stabilizátorů']);
+  return makeCheckItems(base);
 }
 function getSectionsForRecord(record){
   const type = detectProtocolType(record && record.typ);
-  return {
-    A: COMMON_SECTIONS.A,
-    B: COMMON_SECTIONS.B,
-    C: type === 'boom' ? getBoomC(record && record.typ) : SECTION_VARIANTS[type].C,
-    D: COMMON_SECTIONS.D,
-    E: SECTION_VARIANTS[type].E
-  };
+  return renumberControlSections({
+    A: cloneSectionItems(COMMON_SECTIONS.A),
+    B: cloneSectionItems(COMMON_SECTIONS.B),
+    C: type === 'boom' ? getBoomC(record && record.typ) : cloneSectionItems(SECTION_VARIANTS[type].C),
+    D: cloneSectionItems(COMMON_SECTIONS.D),
+    E: cloneSectionItems(SECTION_VARIANTS[type].E)
+  });
 }
 
 const introSteps = [
@@ -335,6 +348,13 @@ function getStepsForRecord(record){
           dynamicSteps.push({k:item.k,t:item.l,type:item.desc?'yntextphoto':'yn',textKey:item.k+'_p',section:sec,chargerCheck:true});
         } else if(knownCharger === 'ZAVADA'){
           dynamicSteps.push({k:'chargerMissingIssue',t:'Nabíječ chybí / závada',type:'yntextphoto',textKey:'chargerMissingIssue_p',section:'E',chargerMissing:true});
+        }
+      } else if(item.socketCheck){
+        const knownSocket = getKnownSocket230Presence(record);
+        if(!knownSocket){
+          dynamicSteps.push({k:'socket230Present',t:'Zařízení má zásuvku v koši 230 V',type:'socketPresence',section:'E'});
+        } else if(knownSocket === 'ANO'){
+          dynamicSteps.push({k:item.k,t:item.l,type:item.desc?'yntextphoto':'yn',textKey:item.k+'_p',section:sec,socketCheck:true});
         }
       } else {
         dynamicSteps.push({k:item.k,t:item.l,type:item.desc?'yntextphoto':'yn',textKey:item.k+'_p',section:sec});
@@ -734,6 +754,8 @@ function showStep(){
     } else {
       html = `<div class="yesno"><button class="yn-btn yes" data-charger-answer="ANO">✔ ANO</button><button class="yn-btn no" data-charger-answer="NE">✖ NE</button></div>`;
     }
+  } else if(s.type === 'socketPresence'){
+    html = `<div class="yesno"><button class="yn-btn yes" data-socket230-answer="ANO">✔ ANO</button><button class="yn-btn yes" data-socket230-answer="BEZ">— Bez zásuvky</button></div><div class="helper">„Bez zásuvky“ není závada. Pokud zásuvku má, následuje kontrola její funkce/stavu.</div>`;
   } else if(s.type === 'yn'){
     html = `<div class="yesno"><button class="yn-btn ${yesClass}" data-answer="ANO">✔ ANO</button><button class="yn-btn ${noClass}" data-answer="NE">✖ NE</button></div>`;
   } else if(s.type === 'yntext' || s.type === 'yntextphoto'){
@@ -865,6 +887,16 @@ function showStep(){
       rec.chargerPresent = 'ZAVADA';
       rec.chargerMissingIssue = 'NE';
       rec.chargerMissingIssue_p = rec.chargerMissingIssue_p || '';
+    }
+    nextStep();
+  }));
+  els.content.querySelectorAll('[data-socket230-answer]').forEach(btn => btn.addEventListener('click', () => {
+    const ans = btn.dataset.socket230Answer;
+    rec.socket230Present = ans;
+    if(ans === 'BEZ'){
+      rec.E_socket230 = '';
+      rec.E_socket230_p = '';
+      if(rec.issuePhotos) delete rec.issuePhotos.E_socket230;
     }
     nextStep();
   }));
@@ -1211,7 +1243,7 @@ async function handleQrDecoded(decodedText){
   openWizard(null, prefill);
 }
 
-function rowsHtml(items,r){ return items.map(it => { const problem = isProblemAnswer(it.k, r[it.k]); const cls = problem ? 'status-bad' : ((r[it.k] === 'ANO' || r[it.k] === 'NE') ? 'status-ok' : ''); const ch = getKnownChargerPresence(r); if(it.chargerCheck && ch === 'BEZ'){ return `<tr class="crossed-out"><td>${escapeHtml(it.printLabel||it.l)}</td><td class="check-col">—</td><td class="desc-col">Bez nabíječe – není závada</td></tr>`; } const note = r[it.k+'_p'] || ''; const label = problem ? '<span class="issue-label">ZÁVADA</span>' : ''; return `<tr class="${cls}"><td>${escapeHtml(it.printLabel||it.l)}</td><td class="check-col">${yn(r[it.k])}</td><td class="desc-col">${label}${escapeHtml(note)}</td></tr>`; }).join(''); }
+function rowsHtml(items,r){ return items.map(it => { const problem = isProblemAnswer(it.k, r[it.k]); const cls = problem ? 'status-bad' : ((r[it.k] === 'ANO' || r[it.k] === 'NE') ? 'status-ok' : ''); const ch = getKnownChargerPresence(r); if(it.chargerCheck && ch === 'BEZ'){ return `<tr class="crossed-out"><td>${escapeHtml(it.printLabel||it.l)}</td><td class="check-col">—</td><td class="desc-col">Bez nabíječe – není závada</td></tr>`; } const sock = getKnownSocket230Presence(r); if(it.socketCheck && sock === 'BEZ'){ return `<tr class="crossed-out"><td>${escapeHtml(it.printLabel||it.l)}</td><td class="check-col">—</td><td class="desc-col">Bez zásuvky v koši 230 V – není závada</td></tr>`; } const note = r[it.k+'_p'] || ''; const label = problem ? '<span class="issue-label">ZÁVADA</span>' : ''; return `<tr class="${cls}"><td>${escapeHtml(it.printLabel||it.l)}</td><td class="check-col">${yn(r[it.k])}</td><td class="desc-col">${label}${escapeHtml(note)}</td></tr>`; }).join(''); }
 function renderConclusion(r){ return `<table><thead><tr><th></th><th>ANO / NE</th><th>Poznámky</th></tr></thead><tbody><tr class="${isProblemAnswer('zaverServis', r.zaverServis) ? 'status-bad' : (r.zaverServis ? 'status-ok' : '')}"><th>Nutná běžná servisní kontrola</th><td class="check-col">${yn(r.zaverServis)}</td><td></td></tr><tr class="${isProblemAnswer('zaverOprava', r.zaverOprava) ? 'status-bad' : (r.zaverOprava ? 'status-ok' : '')}"><th>Nutná oprava</th><td class="check-col">${yn(r.zaverOprava)}</td><td></td></tr><tr class="${r.zaverBezpecny==='NE'?'status-bad':'status-ok'}"><th>Zařízení je schopné bezpečného provozu</th><td class="check-col">${yn(r.zaverBezpecny)}</td><td></td></tr></tbody></table>`; }
 function renderPhotoSection(r){
   const photos = r.photos || {};

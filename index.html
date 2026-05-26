@@ -72,6 +72,18 @@ input::placeholder, textarea::placeholder{color:#334155;font-weight:600;font-siz
 @media print{body{background:#fff}body *{visibility:hidden}#preview,#preview *{visibility:visible}#preview{position:absolute;left:0;top:0;width:100%;display:block !important;background:#fff;padding:0;margin:0}#preview .modal-content{width:100% !important;max-height:none !important;overflow:visible !important;border-radius:0 !important;box-shadow:none !important;background:#fff !important}#preview .preview-shell{padding:0 !important;background:#fff !important;overflow:visible !important}#preview .preview-header,#preview .preview-actions{display:none !important}#preview .paper-wrap{padding:0;background:#fff;border-radius:0;overflow:visible !important}#preview .paper{box-shadow:none;width:auto;max-width:none;margin:0;padding:7mm 7mm 6mm 7mm}#preview .paper table tr{page-break-inside:avoid;break-inside:avoid}#preview .paper .section-title{page-break-after:avoid}#preview .paper .footer-grid{page-break-inside:avoid;break-inside:avoid}@page{size:A4 portrait;margin:6mm}}
 @media (max-width:920px){.dashboard{grid-template-columns:1fr}.meta-grid{grid-template-columns:1fr 1fr}}
 @media (max-width:640px){.container{padding:14px}.toolbar,.preview-header,.preview-actions{flex-direction:column;align-items:stretch}.meta-grid,.yesno,.summary-grid{grid-template-columns:1fr}.modal-content{width:100%;max-height:100vh;border-radius:18px}.search{min-width:0;width:100%}.toolbar-right{width:100%}.hero-actions{flex-direction:column}.hero-actions button{width:100%}}
+
+/* v19 fix: dashboard stat colors must override base .stat rule */
+.summary-card .summary-grid .stat.stat-total{background:var(--panel2)!important;color:var(--text)!important;border-color:var(--line)!important;}
+.summary-card .summary-grid .stat.stat-issues{background:#dc2626!important;color:#fff!important;border-color:#b91c1c!important;}
+.summary-card .summary-grid .stat.stat-ok{background:#16a34a!important;color:#fff!important;border-color:#15803d!important;}
+.summary-card .summary-grid .stat.stat-issues .stat-label,
+.summary-card .summary-grid .stat.stat-ok .stat-label{color:rgba(255,255,255,.88)!important;}
+.summary-card .summary-grid .stat.stat-issues .stat-value,
+.summary-card .summary-grid .stat.stat-ok .stat-value{color:#fff!important;}
+body.dark .summary-card .summary-grid .stat.stat-total{background:var(--panel2)!important;color:var(--text)!important;border-color:var(--line)!important;}
+body.dark .summary-card .summary-grid .stat.stat-issues{background:#dc2626!important;color:#fff!important;border-color:#b91c1c!important;}
+body.dark .summary-card .summary-grid .stat.stat-ok{background:#16a34a!important;color:#fff!important;border-color:#15803d!important;}
 </style>
 </head>
 <body>
@@ -995,7 +1007,7 @@ function openPreviewById(id){
   syncRevizeIssue(record);
   currentPreview = record;
   els.previewBody.innerHTML = renderPaper(record);
-  els.previewBadges.innerHTML = `<span class="badge ${hasIssue(record)?'badge-warn':'badge-ok'}">${hasIssue(record)?'Se závadou':'Bez závad'}</span><span class="badge badge-info">${countIssues(record)} × závada</span><span class="badge badge-info">Historie: ${record.vc ? findProtocolsByMachine(record.vc).length : 0}</span>`;
+  els.previewBadges.innerHTML = `<span class="badge ${hasIssue(record)?'badge-warn':'badge-ok'}">${hasIssue(record)?'Se závadou':'Bez závad'}</span>`;
   openModal(els.preview);
 }
 function closePreview(){

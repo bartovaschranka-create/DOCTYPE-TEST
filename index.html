@@ -260,11 +260,29 @@ function syncModelPreferences(record){
     setModelPref(record.typ, { chargerPresent: record.chargerPresent });
   }
 }
+function normalizeTypeText(value){
+  return String(value || '').toUpperCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '');
+}
 function detectProtocolType(model){
-  const m = String(model||'').toUpperCase();
+  const m = normalizeTypeText(model);
+  if(!m) return 'boom';
+
+  // Sloupové plošiny – vlastní varianta protokolu.
   if(m.includes('TOUCAN')) return 'mast';
-  if(m.includes('OMMELIFT') || m.includes('NIFTYLIFT') || m.includes('120T')) return 'boom';
-  if(m.includes('GS') || m.includes('ES') || /^R[0-9]/.test(m) || m.includes('RTS') || m.includes('MRT')) return 'scissor';
+
+  // Vlečné / kloubové / teleskopické plošiny – kontrola ramene.
+  if(m.includes('OMMELIFT') || m.includes('NIFTYLIFT') || /(^|\s)120T($|\s)/.test(m)) return 'boom';
+  if(m.includes('GENIE Z') || /\bZ[- ]?\d/.test(m)) return 'boom';
+  if(/\b(450|520)\s?AJ\b/.test(m)) return 'boom';
+  if(/\b(460|660|860)\s?SJ\b/.test(m) || /\b1200\s?SJP\b/.test(m)) return 'boom';
+  if(m.includes('KLOUB') || m.includes('TELESKOP') || m.includes('RAMEN')) return 'boom';
+
+  // Nůžkové plošiny – kontrola sestavy nůžek.
+  if(m.includes('NUZ') || m.includes('SCISSOR')) return 'scissor';
+  if(m.includes('ZOOMLION ZS') || /\bZS\d/.test(m)) return 'scissor';
+  if(/\bGS[- ]?\d/.test(m) || /\bES[- ]?\d/.test(m) || /\bJLG\s?1532\s?R\b/.test(m)) return 'scissor';
+  if(/\bR\d{4}\b/.test(m) || m.includes('RTS') || m.includes('MRT') || m.includes('LRT')) return 'scissor';
+
   return 'boom';
 }
 function hasStabilizers(model){

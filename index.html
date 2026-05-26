@@ -176,31 +176,31 @@ body.dark .summary-card .summary-grid .stat.stat-ok{background:#16a34a!important
   .summary-grid .stat .stat-note{display:none}
 }
 
-/* Print/protocol visual */
-.paper{font-family:Inter,Arial,sans-serif;background:#fff;color:#111827;padding:0;width:210mm;max-width:100%;font-size:9.2px;line-height:1.18;border:1px solid #e5e7eb}
-.paper-page{padding:7mm 7mm 6mm 7mm;min-height:287mm}
-.paper-head{display:flex;justify-content:space-between;gap:12px;align-items:flex-start;border-bottom:2px solid #1e3a8a;padding-bottom:7px;margin-bottom:7px}
+/* Print/protocol visual – čistý formulář ve stylu appky */
+.paper{font-family:Inter,Arial,sans-serif;background:#fff;color:#111827;padding:0;width:210mm;max-width:100%;font-size:9.6px;line-height:1.18;border:1px solid #dbe3ef;border-radius:8px;overflow:hidden}
+.paper-page{padding:7mm 7mm 6mm 7mm;min-height:287mm;background:#fff}
+.paper-head{display:flex;justify-content:space-between;gap:12px;align-items:flex-start;border-bottom:2px solid #2563eb;padding-bottom:7px;margin-bottom:7px}
 .paper-head.compact{margin-bottom:6px}
-.paper-kicker{font-size:8px;font-weight:800;color:#1d4ed8;letter-spacing:.05em}
-.paper h2{margin:2px 0 2px;text-align:left;font-size:17px;letter-spacing:.2px}
-.paper .subhead{text-align:left;margin:0;color:#334155;font-size:8.6px}
-.paper-no{border:1px solid #cbd5e1;border-radius:6px;padding:6px 10px;min-width:35mm;text-align:center}
-.paper-no span{display:block;text-transform:uppercase;font-size:6.8px;color:#64748b;font-weight:800}
-.paper-no strong{display:block;font-size:11px;margin-top:2px}
+.paper-kicker{font-size:8px;font-weight:900;color:#2563eb;letter-spacing:.06em;text-transform:uppercase}
+.paper h2{margin:2px 0 2px;text-align:left;font-size:17px;letter-spacing:.1px;color:#0f172a}
+.paper .subhead{text-align:left;margin:0;color:#334155;font-size:8.4px}
+.paper-no{border:1px solid #cbd5e1;border-radius:8px;padding:6px 10px;min-width:35mm;text-align:center;background:#f8fafc}
+.paper-no span{display:block;text-transform:uppercase;font-size:6.8px;color:#64748b;font-weight:900}
+.paper-no strong{display:block;font-size:11px;margin-top:2px;color:#0f172a}
 .paper table{border-collapse:collapse;width:100%;table-layout:auto;margin-bottom:5px}
-.paper td,.paper th{border:1px solid #cbd5e1;padding:3px 4px;vertical-align:middle}
-.paper th{background:#f8fafc;font-weight:800}
-.paper .top-table td{padding:3px 5px}
-.paper .section-title{margin:7px 0 0;background:#f8fafc;border:1px solid #cbd5e1;border-bottom:0;padding:4px 6px;font-size:10px;font-weight:900;color:#111827}
+.paper td,.paper th{border:1px solid #cbd5e1;padding:3.2px 4.2px;vertical-align:middle}
+.paper th{background:#f1f5f9;font-weight:900;color:#0f172a}
+.paper .top-table td{padding:3.2px 5px}
+.paper .section-title{margin:7px 0 0;background:#eef4ff;border:1px solid #cbd5e1;border-bottom:0;padding:4px 6px;font-size:10px;font-weight:900;color:#0f172a}
 .paper .section-block{margin-bottom:6px;page-break-inside:avoid;break-inside:avoid}
 .paper .check-col{text-align:center;width:13%;font-weight:900;white-space:nowrap;color:#166534}
 .paper th.check-col{color:#111827}
-.paper .desc-col{width:27%}
+.paper .desc-col{width:28%}
 .paper tr.status-bad td,.paper tr.status-bad th{background:#fff1f2!important;border-color:#dc2626!important}
 .paper .issue-label{display:inline-block;margin-right:4px;padding:1px 4px;border:1px solid #dc2626;color:#991b1b;font-weight:900;font-size:7px;background:#fff}
 .paper .notes{min-height:22px}
 .paper .footer-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:6px}
-.paper .sign-box{border:1px solid #cbd5e1;padding:8px;min-height:42px}
+.paper .sign-box{border:1px solid #cbd5e1;padding:8px;min-height:42px;background:#fff}
 .photo-grid{display:grid;grid-template-columns:repeat(6,1fr);gap:4px;margin:0}
 .photo-box{border:1px dashed #cbd5e1;min-height:55px;text-align:center;font-size:7px;padding:2px;background:#fff}
 .photo-box img{height:42px!important;width:100%;object-fit:cover;display:block;margin-bottom:2px}
@@ -208,7 +208,7 @@ body.dark .summary-card .summary-grid .stat.stat-ok{background:#16a34a!important
 .issue-photo-box{border:1px dashed #cbd5e1;min-height:52px;font-size:7px;padding:2px}
 .issue-photo-box img{height:38px!important;width:100%;object-fit:cover;display:block;margin-bottom:2px}
 @media print{
-  #preview .paper{font-size:8.2px;line-height:1.08;border:0;width:auto}
+  #preview .paper{font-size:8.2px;line-height:1.08;border:0;width:auto;border-radius:0}
   #preview .paper-page{padding:3.8mm 4.2mm;min-height:auto}
   #preview .paper-head{padding-bottom:4px;margin-bottom:4px}
   #preview .paper h2{font-size:12.5px}
@@ -320,7 +320,7 @@ body.dark .summary-card .summary-grid .stat.stat-ok{background:#16a34a!important
 <div class="modal" id="preview"><div class="modal-content"><div class="preview-shell">
   <div class="preview-header"><div><div class="preview-title">Náhled vyplněného formuláře</div><div class="card-sub">Náhled tiskového protokolu</div></div><div class="badges" id="previewBadges"></div></div>
   <div class="paper-wrap print-root"><div id="previewBody"></div></div>
-  <div class="preview-actions"><div class="preview-actions-left"><button id="closePreviewBtn" class="secondary" type="button">Ukončit</button></div><div class="preview-actions-right"><button id="savePreviewBtn" class="ghost" type="button">Uložit protokol</button><button id="printPreviewBtn" class="primary btn-print" type="button">Tisk</button><button id="downloadPreviewBtn" class="ghost btn-download" type="button">Stáhnout</button></div></div>
+  <div class="preview-actions"><div class="preview-actions-left"><button id="closePreviewBtn" class="secondary" type="button">Ukončit</button></div><div class="preview-actions-right"><button id="savePreviewBtn" class="ghost" type="button">Uložit záznam</button><button id="printPreviewBtn" class="primary btn-print" type="button">Tisk</button><button id="downloadPreviewBtn" class="ghost btn-download" type="button">Uložit PDF</button></div></div>
 </div></div></div>
 
 <div class="lightbox" id="lightbox" onclick="closeLightbox()">
@@ -330,6 +330,7 @@ body.dark .summary-card .summary-grid .stat.stat-ok{background:#16a34a!important
   <div class="lightbox-counter" id="lightboxCounter"></div>
 </div>
 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
 <script src="https://unpkg.com/html5-qrcode"></script>
 <script src="https://www.gstatic.com/firebasejs/10.12.5/firebase-app-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/10.12.5/firebase-firestore-compat.js"></script>
@@ -379,15 +380,15 @@ const COMMON_SECTIONS = {
 };
 const SECTION_VARIANTS = {
   scissor: {
-    C:makeCheckItems([['C1','Celkový stav / čistota'],['C5','Kola'],['C_chassis','Podvozek / základna'],['C10','Sestava nůžek'],['C7','Ovládací kabel'],['C3','Schody / přístup do koše'],['C9','Akumulátory'],['C8','Podlaha koše / protiskluz'],['C4','Zábradlí'],['C_gate','Vstupní dvířka / hrazda'],['C_complete','Konstrukce kompletní'],['C11','Hydraulické válce'],['C12','Hydraulické hadice'],['C13','Hydraulická soustava těsná']]),
+    C:makeCheckItems([['C1','Kontrola celkového stavu / čistoty zařízení'],['C5','Kontrola stavu kol / pneumatik'],['C_chassis','Kontrola podvozku / základny'],['C10','Kontrola sestavy nůžek'],['C7','Kontrola ovládacího kabelu'],['C3','Kontrola schodů / přístupu do koše'],['C9','Kontrola akumulátorů'],['C8','Kontrola podlahy koše / protiskluzu'],['C4','Kontrola zábradlí'],['C_gate','Kontrola vstupních dvířek / hrazdy'],['C_complete','Kontrola kompletnosti konstrukce'],['C11','Kontrola hydraulických válců'],['C12','Kontrola hydraulických hadic'],['C13','Kontrola těsnosti hydraulické soustavy']]),
     E:[{k:'E16',l:'Funkce nabíječe',printLabel:'16. Funkce nabíječe',desc:true,chargerCheck:true},{k:'E_socket230',l:'Kontrola zásuvky v koši 230 V',printLabel:'17. Kontrola zásuvky v koši 230 V',desc:true,socketCheck:true},{k:'E19',l:'Funkce spodního ovládacího panelu',printLabel:'18. Funkce spodního ovládacího panelu',desc:true},{k:'E21',l:'Funkce horního ovládacího panelu',printLabel:'19. Funkce horního ovládacího panelu',desc:true},{k:'E_safety',l:'Funkce bezpečnostních prvků / blokací',printLabel:'20. Funkce bezpečnostních prvků / blokací',desc:true},{k:'E20',l:'Funkce nouzového spouštění',printLabel:'21. Funkce nouzového spouštění',desc:true}]
   },
   boom: {
-    C:makeCheckItems([['C1','Celkový stav / čistota'],['C4','Kola'],['C_chassis','Podvozek / základna'],['C9','Rameno'],['C10','Kloub'],['C6','Ovládací kabel'],['C2','Schody / přístup do koše'],['C8','Akumulátory'],['C7','Podlaha koše / protiskluz'],['C3','Zábradlí'],['C_gate','Vstupní dvířka / hrazda'],['C_complete','Konstrukce kompletní'],['C11','Hydraulické válce'],['C12','Hydraulické hadice'],['C13','Hydraulická soustava těsná']]),
+    C:makeCheckItems([['C1','Kontrola celkového stavu / čistoty zařízení'],['C4','Kontrola stavu kol / pneumatik'],['C_chassis','Kontrola podvozku / základny'],['C9','Kontrola ramene'],['C10','Kontrola kloubu'],['C6','Kontrola ovládacího kabelu'],['C2','Kontrola schodů / přístupu do koše'],['C8','Kontrola akumulátorů'],['C7','Kontrola podlahy koše / protiskluzu'],['C3','Kontrola zábradlí'],['C_gate','Kontrola vstupních dvířek / hrazdy'],['C_complete','Kontrola kompletnosti konstrukce'],['C11','Kontrola hydraulických válců'],['C12','Kontrola hydraulických hadic'],['C13','Kontrola těsnosti hydraulické soustavy']]),
     E:[{k:'E16',l:'Funkce nouzového spouštění',printLabel:'16. Funkce nouzového spouštění',desc:true},{k:'E17',l:'Funkce nosnosti koše',printLabel:'17. Funkce nosnosti koše',desc:true},{k:'E18',l:'Funkce nabíječe',printLabel:'18. Funkce nabíječe',desc:true,chargerCheck:true},{k:'E_socket230',l:'Kontrola zásuvky v koši 230 V',printLabel:'19. Kontrola zásuvky v koši 230 V',desc:true,socketCheck:true},{k:'E19',l:'Funkce spodního ovládacího panelu',printLabel:'20. Funkce spodního ovládacího panelu',desc:true},{k:'E20',l:'Funkce horního ovládacího panelu',printLabel:'21. Funkce horního ovládacího panelu',desc:true},{k:'E_safety',l:'Funkce bezpečnostních prvků / blokací',printLabel:'22. Funkce bezpečnostních prvků / blokací',desc:true}]
   },
   mast: {
-    C:makeCheckItems([['C1','Celkový stav / čistota'],['C3','Kola'],['C_chassis','Podvozek / základna'],['C8','Sloup'],['C5','Ovládací kabel'],['C7','Akumulátory'],['C6','Podlaha koše / protiskluz'],['C2b','Zábradlí'],['C_gate','Vstupní dvířka / hrazda'],['C_complete','Konstrukce kompletní'],['C9','Hydraulické válce'],['C10','Hydraulické hadice'],['C11','Hydraulická soustava těsná']]),
+    C:makeCheckItems([['C1','Kontrola celkového stavu / čistoty zařízení'],['C3','Kontrola stavu kol / pneumatik'],['C_chassis','Kontrola podvozku / základny'],['C8','Kontrola sloupu / vedení plošiny'],['C5','Kontrola ovládacího kabelu'],['C7','Kontrola akumulátorů'],['C6','Kontrola podlahy koše / protiskluzu'],['C2b','Kontrola zábradlí'],['C_gate','Kontrola vstupních dvířek / hrazdy'],['C_complete','Kontrola kompletnosti konstrukce'],['C9','Kontrola hydraulických válců'],['C10','Kontrola hydraulických hadic'],['C11','Kontrola těsnosti hydraulické soustavy']]),
     E:[{k:'E14',l:'Funkce nouzového spouštění',printLabel:'14. Funkce nouzového spouštění',desc:true},{k:'E15',l:'Funkce nosnosti koše',printLabel:'15. Funkce nosnosti koše',desc:true},{k:'E16',l:'Funkce nabíječe',printLabel:'16. Funkce nabíječe',desc:true,chargerCheck:true},{k:'E_socket230',l:'Kontrola zásuvky v koši 230 V',printLabel:'17. Kontrola zásuvky v koši 230 V',desc:true,socketCheck:true},{k:'E17',l:'Funkce spodního ovládacího panelu',printLabel:'18. Funkce spodního ovládacího panelu',desc:true},{k:'E18',l:'Funkce horního ovládacího panelu',printLabel:'19. Funkce horního ovládacího panelu',desc:true},{k:'E_safety',l:'Funkce bezpečnostních prvků / blokací',printLabel:'20. Funkce bezpečnostních prvků / blokací',desc:true}]
   }
 };
@@ -453,9 +454,9 @@ function hasStabilizers(model){
 }
 function getBoomC(model){
   const base = [
-    ['C1','Celkový stav / čistota'],['C4','Kola'],['C_chassis','Podvozek / základna'],['C9','Rameno'],['C10','Kloub'],['C6','Ovládací kabel'],['C2b','Schody / přístup do koše'],['C8','Akumulátory'],['C7','Podlaha koše / protiskluz'],['C3','Zábradlí'],['C_gate','Vstupní dvířka / hrazda'],['C_complete','Konstrukce kompletní'],['C11','Hydraulické válce'],['C12','Hydraulické hadice'],['C13','Hydraulická soustava těsná']
+    ['C1','Kontrola celkového stavu / čistoty zařízení'],['C4','Kontrola stavu kol / pneumatik'],['C_chassis','Kontrola podvozku / základny'],['C9','Kontrola ramene'],['C10','Kontrola kloubu'],['C6','Kontrola ovládacího kabelu'],['C2b','Kontrola schodů / přístupu do koše'],['C8','Kontrola akumulátorů'],['C7','Kontrola podlahy koše / protiskluzu'],['C3','Kontrola zábradlí'],['C_gate','Kontrola vstupních dvířek / hrazdy'],['C_complete','Kontrola kompletnosti konstrukce'],['C11','Kontrola hydraulických válců'],['C12','Kontrola hydraulických hadic'],['C13','Kontrola těsnosti hydraulické soustavy']
   ];
-  if(hasStabilizers(model)) base.splice(3, 0, ['C_stabilizers','Stabilizátory']);
+  if(hasStabilizers(model)) base.splice(3, 0, ['C_stabilizers','Kontrola stabilizátorů']);
   return makeCheckItems(base);
 }
 function getSectionsForRecord(record){
@@ -833,7 +834,7 @@ function render(){
       <div class="actions">
         <button class="secondary mini" data-action="preview" data-id="${r.id}">Náhled</button>
         <button class="ghost mini" data-action="edit" data-id="${r.id}">Upravit</button>
-        <button class="primary mini" data-action="pdf" data-id="${r.id}">Tisk / PDF</button>
+        <button class="primary mini" data-action="pdf" data-id="${r.id}">Tisk</button>
         <button class="danger mini" data-action="delete" data-id="${r.id}">Smazat</button>
       </div>
     </div>`).join('');
@@ -1340,31 +1341,31 @@ function printCurrent(){
   .summary-grid .stat .stat-note{display:none}
 }
 
-/* Print/protocol visual */
-.paper{font-family:Inter,Arial,sans-serif;background:#fff;color:#111827;padding:0;width:210mm;max-width:100%;font-size:9.2px;line-height:1.18;border:1px solid #e5e7eb}
-.paper-page{padding:7mm 7mm 6mm 7mm;min-height:287mm}
-.paper-head{display:flex;justify-content:space-between;gap:12px;align-items:flex-start;border-bottom:2px solid #1e3a8a;padding-bottom:7px;margin-bottom:7px}
+/* Print/protocol visual – čistý formulář ve stylu appky */
+.paper{font-family:Inter,Arial,sans-serif;background:#fff;color:#111827;padding:0;width:210mm;max-width:100%;font-size:9.6px;line-height:1.18;border:1px solid #dbe3ef;border-radius:8px;overflow:hidden}
+.paper-page{padding:7mm 7mm 6mm 7mm;min-height:287mm;background:#fff}
+.paper-head{display:flex;justify-content:space-between;gap:12px;align-items:flex-start;border-bottom:2px solid #2563eb;padding-bottom:7px;margin-bottom:7px}
 .paper-head.compact{margin-bottom:6px}
-.paper-kicker{font-size:8px;font-weight:800;color:#1d4ed8;letter-spacing:.05em}
-.paper h2{margin:2px 0 2px;text-align:left;font-size:17px;letter-spacing:.2px}
-.paper .subhead{text-align:left;margin:0;color:#334155;font-size:8.6px}
-.paper-no{border:1px solid #cbd5e1;border-radius:6px;padding:6px 10px;min-width:35mm;text-align:center}
-.paper-no span{display:block;text-transform:uppercase;font-size:6.8px;color:#64748b;font-weight:800}
-.paper-no strong{display:block;font-size:11px;margin-top:2px}
+.paper-kicker{font-size:8px;font-weight:900;color:#2563eb;letter-spacing:.06em;text-transform:uppercase}
+.paper h2{margin:2px 0 2px;text-align:left;font-size:17px;letter-spacing:.1px;color:#0f172a}
+.paper .subhead{text-align:left;margin:0;color:#334155;font-size:8.4px}
+.paper-no{border:1px solid #cbd5e1;border-radius:8px;padding:6px 10px;min-width:35mm;text-align:center;background:#f8fafc}
+.paper-no span{display:block;text-transform:uppercase;font-size:6.8px;color:#64748b;font-weight:900}
+.paper-no strong{display:block;font-size:11px;margin-top:2px;color:#0f172a}
 .paper table{border-collapse:collapse;width:100%;table-layout:auto;margin-bottom:5px}
-.paper td,.paper th{border:1px solid #cbd5e1;padding:3px 4px;vertical-align:middle}
-.paper th{background:#f8fafc;font-weight:800}
-.paper .top-table td{padding:3px 5px}
-.paper .section-title{margin:7px 0 0;background:#f8fafc;border:1px solid #cbd5e1;border-bottom:0;padding:4px 6px;font-size:10px;font-weight:900;color:#111827}
+.paper td,.paper th{border:1px solid #cbd5e1;padding:3.2px 4.2px;vertical-align:middle}
+.paper th{background:#f1f5f9;font-weight:900;color:#0f172a}
+.paper .top-table td{padding:3.2px 5px}
+.paper .section-title{margin:7px 0 0;background:#eef4ff;border:1px solid #cbd5e1;border-bottom:0;padding:4px 6px;font-size:10px;font-weight:900;color:#0f172a}
 .paper .section-block{margin-bottom:6px;page-break-inside:avoid;break-inside:avoid}
 .paper .check-col{text-align:center;width:13%;font-weight:900;white-space:nowrap;color:#166534}
 .paper th.check-col{color:#111827}
-.paper .desc-col{width:27%}
+.paper .desc-col{width:28%}
 .paper tr.status-bad td,.paper tr.status-bad th{background:#fff1f2!important;border-color:#dc2626!important}
 .paper .issue-label{display:inline-block;margin-right:4px;padding:1px 4px;border:1px solid #dc2626;color:#991b1b;font-weight:900;font-size:7px;background:#fff}
 .paper .notes{min-height:22px}
 .paper .footer-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:6px}
-.paper .sign-box{border:1px solid #cbd5e1;padding:8px;min-height:42px}
+.paper .sign-box{border:1px solid #cbd5e1;padding:8px;min-height:42px;background:#fff}
 .photo-grid{display:grid;grid-template-columns:repeat(6,1fr);gap:4px;margin:0}
 .photo-box{border:1px dashed #cbd5e1;min-height:55px;text-align:center;font-size:7px;padding:2px;background:#fff}
 .photo-box img{height:42px!important;width:100%;object-fit:cover;display:block;margin-bottom:2px}
@@ -1372,7 +1373,7 @@ function printCurrent(){
 .issue-photo-box{border:1px dashed #cbd5e1;min-height:52px;font-size:7px;padding:2px}
 .issue-photo-box img{height:38px!important;width:100%;object-fit:cover;display:block;margin-bottom:2px}
 @media print{
-  #preview .paper{font-size:8.2px;line-height:1.08;border:0;width:auto}
+  #preview .paper{font-size:8.2px;line-height:1.08;border:0;width:auto;border-radius:0}
   #preview .paper-page{padding:3.8mm 4.2mm;min-height:auto}
   #preview .paper-head{padding-bottom:4px;margin-bottom:4px}
   #preview .paper h2{font-size:12.5px}
@@ -1406,6 +1407,50 @@ function downloadById(id){
   els.previewBody.innerHTML = renderPaper(record);
   openModal(els.preview);
 }
+function safePdfFileName(r){
+  const serial = String((r && r.vc) || 'protokol').replace(/[^0-9a-zA-Z_-]+/g,'_').replace(/^_+|_+$/g,'');
+  const date = String((r && r.datum) || todayLocal()).replace(/[^0-9-]+/g,'_');
+  return `kontrolni_protokol_${serial}_${date}.pdf`;
+}
+async function downloadCurrentPdf(){
+  if(!currentPreview){
+    alert('Není otevřený protokol k uložení do PDF.');
+    return;
+  }
+  const record = currentPreview;
+  if(!window.html2pdf){
+    alert('Přímé uložení PDF není načtené. Otevřu tisk a zvol „Uložit jako PDF“.');
+    printCurrent();
+    return;
+  }
+  const host = document.createElement('div');
+  host.style.position = 'fixed';
+  host.style.left = '-10000px';
+  host.style.top = '0';
+  host.style.width = '210mm';
+  host.style.background = '#fff';
+  host.innerHTML = renderPaper(record);
+  document.body.appendChild(host);
+  try{
+    const opt = {
+      margin: 0,
+      filename: safePdfFileName(record),
+      image: { type: 'jpeg', quality: 0.94 },
+      html2canvas: { scale: 2, useCORS: true, allowTaint: false, backgroundColor: '#ffffff', scrollY: 0 },
+      jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' },
+      pagebreak: { mode: ['css', 'legacy'] }
+    };
+    await html2pdf().set(opt).from(host.querySelector('.paper')).save();
+  }catch(e){
+    console.error('PDF export selhal:', e);
+    alert('Přímé uložení PDF selhalo. Otevřu tisk a zvol „Uložit jako PDF“.');
+    printCurrent();
+  }finally{
+    host.remove();
+  }
+}
+window._downloadPdf = downloadCurrentPdf;
+
 
 async function delById(id){
   if(!confirm('Opravdu smazat uložený protokol?')) return;
@@ -1664,7 +1709,7 @@ function renderPaper(r){
 
       <div class="section-block">
         <div class="section-title">C. Všeobecná kontrola zařízení</div>
-        <table><thead><tr><th>Kontrolní bod</th><th>ANO = vyhovuje</th><th>NE = závada</th><th>Poznámka</th></tr></thead><tbody>${rowsHtml(sections.C,r,'C')}</tbody></table>
+        <table><thead><tr><th>Kontrolovaný bod</th><th>ANO = vyhovuje</th><th>NE = závada</th><th>Poznámka</th></tr></thead><tbody>${rowsHtml(sections.C,r,'C')}</tbody></table>
       </div>
     </div>
 
@@ -1741,7 +1786,7 @@ document.getElementById('nextBtn').addEventListener('click', nextStep);
 document.getElementById('closePreviewBtn').addEventListener('click', closePreview);
 document.getElementById('savePreviewBtn').addEventListener('click', savePreviewRecord);
 document.getElementById('printPreviewBtn').addEventListener('click', printCurrent);
-if(document.getElementById('downloadPreviewBtn')) document.getElementById('downloadPreviewBtn').addEventListener('click', printCurrent);
+if(document.getElementById('downloadPreviewBtn')) document.getElementById('downloadPreviewBtn').addEventListener('click', downloadCurrentPdf);
 document.addEventListener('keydown', (e) => { if(e.key === 'Escape') closeLightbox(); });
 document.getElementById('closeQrBtn').addEventListener('click', () => closeQrModal());
 document.getElementById('clearQrBtn').addEventListener('click', () => {

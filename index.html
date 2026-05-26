@@ -176,7 +176,7 @@ body.dark .summary-card .summary-grid .stat.stat-ok{background:#16a34a!important
 
 <div class="lightbox" id="lightbox" onclick="closeLightbox()">
   <button class="lightbox-nav lightbox-prev" type="button" onclick="event.stopPropagation(); prevLightboxPhoto();">‹</button>
-  <img id="lightboxImg" alt="Zvětšená fotka" onclick="event.stopPropagation(); nextLightboxPhoto();">
+  <img id="lightboxImg" alt="Zvětšená fotka" onclick="event.stopPropagation();">
   <button class="lightbox-nav lightbox-next" type="button" onclick="event.stopPropagation(); nextLightboxPhoto();">›</button>
   <div class="lightbox-counter" id="lightboxCounter"></div>
 </div>
@@ -900,6 +900,9 @@ function getPhotoSrc(photo){ return photo ? (photo.url || photo.dataUrl || '') :
 let lightboxImages = [];
 let lightboxIndex = 0;
 let lightboxTouchStartX = 0;
+let lightboxTouchStartY = 0;
+let lightboxTouchStartTime = 0;
+let lightboxTouchIsMulti = false;
 
 function collectLightboxImages(){
   const list = Array.from(document.querySelectorAll('img[data-full-src]'))
@@ -954,13 +957,24 @@ window.addEventListener('keydown', (e) => {
 window.addEventListener('touchstart', (e) => {
   const lb = document.getElementById('lightbox');
   if(!lb || !lb.classList.contains('show')) return;
-  lightboxTouchStartX = e.changedTouches[0].clientX;
+  lightboxTouchIsMulti = e.touches && e.touches.length > 1;
+  const t = e.changedTouches[0];
+  lightboxTouchStartX = t.clientX;
+  lightboxTouchStartY = t.clientY;
+  lightboxTouchStartTime = Date.now();
 }, {passive:true});
 window.addEventListener('touchend', (e) => {
   const lb = document.getElementById('lightbox');
   if(!lb || !lb.classList.contains('show')) return;
-  const dx = e.changedTouches[0].clientX - lightboxTouchStartX;
-  if(Math.abs(dx) > 45){
+  if(lightboxTouchIsMulti) return;
+  const t = e.changedTouches[0];
+  const dx = t.clientX - lightboxTouchStartX;
+  const dy = t.clientY - lightboxTouchStartY;
+  const dt = Date.now() - lightboxTouchStartTime;
+
+  // Přejetí na další fotku je záměrně méně citlivé:
+  // musí jít o krátký vodorovný flick, ne o delší posouvání přiblížené fotky.
+  if(dt <= 450 && Math.abs(dx) > 80 && Math.abs(dy) < 60){
     dx < 0 ? nextLightboxPhoto() : prevLightboxPhoto();
   }
 }, {passive:true});

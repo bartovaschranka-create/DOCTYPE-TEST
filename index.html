@@ -422,6 +422,59 @@ body.dark .summary-card .summary-grid .stat.stat-ok{background:#16a34a!important
   *{-webkit-print-color-adjust:exact!important;print-color-adjust:exact!important;}
 }
 
+
+
+/* v47 modern print protocol - selected variant 10 */
+.paper-wrap{background:#f8fafc!important;padding:18px!important;border-radius:18px!important;overflow:auto!important}
+.paper{font-family:Inter,Arial,sans-serif!important;background:#fff!important;color:#111827!important;width:210mm!important;max-width:100%!important;margin:0 auto!important;border:1px solid #d7dee8!important;box-shadow:0 12px 32px rgba(15,23,42,.10)!important;font-size:8.6px!important;line-height:1.16!important;padding:0!important}
+.paper-page{width:210mm!important;min-height:297mm!important;padding:7.5mm 8mm 7mm 8mm!important;box-sizing:border-box!important;background:#fff!important;overflow:hidden!important;display:flex!important;flex-direction:column!important;gap:4px!important}
+.paper-head{display:grid!important;grid-template-columns:1fr 42mm!important;gap:8mm!important;align-items:start!important;border-bottom:2px solid #1d4ed8!important;padding-bottom:5px!important;margin-bottom:5px!important}
+.paper-kicker{font-size:7px!important;font-weight:900!important;color:#1d4ed8!important;text-transform:uppercase!important;letter-spacing:.08em!important;margin-bottom:1px!important}
+.paper h2{margin:0 0 2px!important;text-align:left!important;font-size:15.5px!important;line-height:1.05!important;letter-spacing:.08em!important;font-weight:900!important;color:#0f172a!important}
+.paper .subhead{margin:0!important;text-align:left!important;font-size:7.6px!important;line-height:1.18!important;color:#334155!important}
+.paper-no{border:1px solid #cbd5e1!important;border-radius:7px!important;padding:5px 7px!important;text-align:center!important;background:#fff!important;min-width:0!important}
+.paper-no span{display:block!important;font-size:6.4px!important;color:#64748b!important;font-weight:800!important;text-transform:uppercase!important;letter-spacing:.05em!important}
+.paper-no strong{display:block!important;font-size:9.2px!important;color:#0f172a!important;margin-top:2px!important}
+.paper .identity-grid{display:grid!important;grid-template-columns:1.15fr .85fr!important;gap:4mm!important;margin-bottom:4px!important;align-items:stretch!important}
+.paper .info-table,.paper .check-table,.paper .result-table{width:100%!important;border-collapse:collapse!important;table-layout:fixed!important;margin:0!important}
+.paper td,.paper th{border:1px solid #d1d5db!important;padding:2.2px 3px!important;vertical-align:middle!important;background:#fff!important;color:#111827!important}
+.paper th{font-weight:800!important;background:#f3f4f6!important;color:#111827!important;text-align:left!important}
+.paper .info-table th{width:27%!important;background:#fff!important;color:#475569!important;font-size:7.3px!important;text-transform:uppercase!important;letter-spacing:.03em!important}
+.paper .machine-panel{border:1px solid #d1d5db!important;border-radius:8px!important;padding:4px!important;display:grid!important;grid-template-columns:1fr 28mm!important;gap:4px!important;align-items:center!important;background:#fff!important;min-height:29mm!important}
+.paper .machine-title{font-weight:900!important;font-size:9px!important;margin-bottom:2px!important;color:#0f172a!important}
+.paper .machine-sub{font-size:7.3px!important;color:#475569!important;line-height:1.25!important}
+.paper .machine-img{border:1px solid #d1d5db!important;border-radius:6px!important;height:24mm!important;display:flex!important;align-items:center!important;justify-content:center!important;overflow:hidden!important;background:#f8fafc!important;color:#94a3b8!important;font-size:7px!important;text-align:center!important}
+.paper .machine-img img{width:100%!important;height:100%!important;object-fit:cover!important;display:block!important}
+.paper .section-block{margin:0 0 4px!important;break-inside:avoid!important;page-break-inside:avoid!important}
+.paper .section-title{margin:0!important;border:1px solid #d1d5db!important;border-bottom:0!important;background:#f3f4f6!important;color:#0f172a!important;font-size:8.6px!important;font-weight:900!important;letter-spacing:.02em!important;padding:3px 5px!important;text-transform:none!important}
+.paper .check-table th,.paper .check-table td{padding:1.75px 2.4px!important;font-size:7.75px!important;line-height:1.12!important}
+.paper .check-table th{font-size:7.1px!important;text-transform:uppercase!important;letter-spacing:.035em!important;background:#f3f4f6!important;color:#334155!important}
+.paper .check-col{width:13%!important;text-align:center!important;font-weight:800!important;white-space:nowrap!important;color:#111827!important}
+.paper .desc-col{width:30%!important;color:#334155!important}
+.paper .note-col{width:30%!important;color:#334155!important}
+.paper .markbox{display:inline-flex!important;align-items:center!important;justify-content:center!important;width:11px!important;height:11px!important;border:1px solid #9ca3af!important;border-radius:50%!important;background:#fff!important;color:#166534!important;font-size:0!important;font-weight:900!important;line-height:1!important;font-family:Arial,sans-serif!important}
+.paper .markbox:not(:empty){border-color:#166534!important}.paper .markbox:not(:empty)::before{content:'✓'!important;font-size:8px!important}
+.paper tr.status-bad td,.paper tr.status-bad th{background:#fff!important;border-color:#d1d5db!important;color:#111827!important}
+.paper tr.status-bad .markbox:not(:empty){border-color:#b91c1c!important;color:#b91c1c!important}
+.paper .issue-label{display:inline-block!important;margin-right:3px!important;padding:0 3px!important;border:1px solid #b91c1c!important;color:#b91c1c!important;font-weight:900!important;font-size:6.2px!important;background:#fff!important;border-radius:3px!important}
+.paper .paper-two-col{display:grid!important;grid-template-columns:0.72fr 1.28fr!important;gap:4mm!important;align-items:start!important;margin-bottom:4px!important}
+.paper .photo-grid{display:grid!important;grid-template-columns:repeat(6,1fr)!important;gap:3px!important;margin:0!important}
+.paper .photo-box{border:1px solid #d1d5db!important;border-radius:5px!important;min-height:27mm!important;text-align:center!important;font-size:6.5px!important;padding:2px!important;background:#fff!important;overflow:hidden!important}
+.paper .photo-box img{width:100%!important;height:21mm!important;object-fit:cover!important;display:block!important;margin-bottom:1px!important;border-radius:3px!important;cursor:zoom-in!important}
+.paper .photo-box .empty-photo{height:21mm!important;display:flex!important;align-items:center!important;justify-content:center!important;color:#9ca3af!important;background:#f9fafb!important;border-radius:3px!important;margin-bottom:1px!important}
+.paper .issue-photo-grid{display:grid!important;grid-template-columns:repeat(4,1fr)!important;gap:3px!important;margin:0!important}
+.paper .issue-photo-box{border:1px solid #d1d5db!important;border-radius:5px!important;min-height:25mm!important;text-align:center!important;font-size:6.3px!important;padding:2px!important;background:#fff!important;overflow:hidden!important}
+.paper .issue-photo-box img{width:100%!important;height:17mm!important;object-fit:cover!important;display:block!important;margin-bottom:1px!important;border-radius:3px!important;cursor:zoom-in!important}
+.paper .result-cards{display:grid!important;grid-template-columns:repeat(3,1fr)!important;gap:4px!important;margin:3px 0 4px!important}
+.paper .result-card{border:1px solid #d1d5db!important;border-radius:7px!important;padding:5px!important;min-height:22mm!important;background:#fff!important}
+.paper .result-card strong{display:block!important;font-size:8.2px!important;margin-bottom:3px!important}
+.paper .result-ok strong{color:#166534!important}.paper .result-repair strong{color:#b45309!important}.paper .result-bad strong{color:#b91c1c!important}
+.paper .notes{min-height:24px!important}.paper .footer-grid{display:grid!important;grid-template-columns:1fr 1fr!important;gap:5mm!important;margin-top:auto!important}
+.paper .sign-box{border:1px solid #d1d5db!important;border-radius:6px!important;padding:6px!important;min-height:24mm!important;background:#fff!important}
+.paper .evaluation-text{font-weight:800!important}.paper .print-page-break{break-before:page!important;page-break-before:always!important;height:0!important;margin:0!important;padding:0!important}
+.paper .mono{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace!important;letter-spacing:.01em!important}
+@media print{ @page{size:A4 portrait;margin:0!important} html,body{margin:0!important;padding:0!important;background:#fff!important;color:#000!important} body *{visibility:hidden!important} #preview,#preview *{visibility:visible!important} #preview{position:absolute!important;left:0!important;top:0!important;width:100%!important;display:block!important;background:#fff!important;padding:0!important;margin:0!important} #preview .modal-content,#preview .preview-shell,#preview .paper-wrap{width:100%!important;max-width:none!important;padding:0!important;margin:0!important;overflow:visible!important;background:#fff!important;box-shadow:none!important;border:0!important;border-radius:0!important} #preview .preview-header,#preview .preview-actions{display:none!important} #preview .paper{width:210mm!important;max-width:none!important;margin:0!important;border:0!important;box-shadow:none!important;font-size:8.15px!important;line-height:1.08!important} #preview .paper-page{width:210mm!important;min-height:297mm!important;max-height:297mm!important;padding:6.2mm 6.6mm 5.8mm!important;overflow:hidden!important} #preview .paper h2{font-size:14px!important} #preview .paper .subhead{font-size:7.2px!important} #preview .paper td,#preview .paper th{padding:1.75px 2.3px!important} #preview .paper .check-table th,#preview .paper .check-table td{font-size:7.25px!important;padding:1.35px 2px!important} #preview .paper .section-title{font-size:8px!important;padding:2.2px 4px!important} #preview .paper .photo-box{min-height:24mm!important} #preview .paper .photo-box img,#preview .paper .photo-box .empty-photo{height:18.5mm!important} #preview .paper .issue-photo-box{min-height:21mm!important} #preview .paper .issue-photo-box img{height:14.5mm!important} *{-webkit-print-color-adjust:exact!important;print-color-adjust:exact!important}}
+
 </style>
 <!-- v28_print_fix_order -->
 <!-- v45_preview_print_readable -->
@@ -438,7 +491,7 @@ body.dark .summary-card .summary-grid .stat.stat-ok{background:#16a34a!important
     <button type="button" onclick="window._openWizard()">Nový protokol</button>
     <a href="#settings" onclick="document.getElementById('settingsBtn').click();return false;">Nastavení</a>
   </nav>
-  <div class="side-bottom"><strong>Verze:</strong><br>TEST v46</div>
+  <div class="side-bottom"><strong>Verze:</strong><br>TEST v47</div>
 </aside>
 <div id="sidebarOverlay" class="sidebar-overlay"></div>
 <header>
@@ -1500,7 +1553,6 @@ async function savePreviewRecord(){
   closePreview();
 }
 function printCurrent(){
-  console.log('TISK kliknuto');
   if(!currentPreview){
     alert('Není otevřený protokol.');
     return;
@@ -1508,226 +1560,17 @@ function printCurrent(){
   const paperHtml = renderPaper(currentPreview);
   els.previewBody.innerHTML = paperHtml;
   if(!els.preview.classList.contains('show')) openModal(els.preview);
-
-  const printCss = `
-    @page{size:A4 portrait;margin:5mm}
-    *{box-sizing:border-box;-webkit-print-color-adjust:exact;print-color-adjust:exact}
-    html,body{margin:0;padding:0;background:#fff;color:#000;font-family:Inter,Arial,sans-serif}
-    .paper{background:#fff;color:#000;width:auto;max-width:none;margin:0;padding:3.8mm 4.2mm;font-size:8.45px;line-height:1.06;border:none;box-shadow:none}
-    .paper h2{margin:0 0 2px;text-align:center;font-size:13px;letter-spacing:.35px;font-weight:700}
-    .paper .subhead{margin:0 0 3px;text-align:center;font-size:7.8px;color:#000;line-height:1.08}
-    .paper table{width:100%;border-collapse:collapse;margin-bottom:2.3px;table-layout:auto}
-    .paper td,.paper th{border:1px solid #000;padding:1.6px 2.4px;vertical-align:top}
-    .paper th{font-weight:700;text-align:left;background:#fff}
-    .paper .top-table td{padding:1.6px 2.4px}
-    .paper .section-block{margin-bottom:2.5px;page-break-inside:avoid;break-inside:avoid}
-    .paper .section-title{font-weight:700;margin:3px 0 1.6px;font-size:8.7px;background:#fff;color:#000;border-top:1.6px solid #000;border-bottom:1.6px solid #000;border-left:1px solid #000;border-right:1px solid #000;padding:1.6px 3.6px;page-break-after:avoid;break-after:avoid}
-    .paper table tr{page-break-inside:avoid;break-inside:avoid}
-    .paper .check-col{width:16%;font-weight:600;white-space:nowrap}.paper .desc-col{width:19%}
-    .paper tr.status-bad td,.paper tr.status-bad th{background:#fee2e2!important;border:1.6px solid #dc2626!important}
-    .issue-label{display:inline-block;margin-right:3px;padding:.7px 2.8px;border:1px solid #dc2626;color:#991b1b;font-weight:700;font-size:6.5px;background:#fff1f2}
-    .paper .crossed-out td{color:#666;text-decoration:line-through}.paper .expired{background:#fff;color:#000;font-weight:700}.paper .notes{min-height:13px}
-    .paper .footer-grid{display:grid;grid-template-columns:1fr 1fr;gap:5px;margin-top:3px;page-break-inside:avoid;break-inside:avoid}
-    .paper .sign-box{border:1px solid #000;min-height:32px;padding:5px}.paper .mono{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-weight:400;letter-spacing:.2px}.paper .evaluation-text{font-weight:700}
-    .photo-grid{display:grid;grid-template-columns:repeat(6,1fr);gap:3px;margin:2.2px 0}.photo-box{border:1px solid #000;min-height:42px;text-align:center;font-size:6.2px;padding:1.6px}.photo-box img{width:100%;height:31px;object-fit:cover;display:block;margin-bottom:1.4px}
-    .issue-photo-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:3px;margin:2.5px 0}.issue-photo-box{border:1px solid #000;min-height:48px;text-align:center;font-size:6.2px;padding:1.8px}.issue-photo-box img{width:100%;height:35px;object-fit:cover;display:block;margin-bottom:1.4px}
-    .print-page-break{break-before:page;page-break-before:always;height:0;margin:0;padding:0}
-
-    .paper-page{padding:3.8mm 4.2mm;min-height:auto}
-    .paper-head{display:flex;justify-content:space-between;gap:8px;align-items:flex-start;border-bottom:1.6px solid #1e3a8a;padding-bottom:4px;margin-bottom:4px}
-    .paper-kicker{font-size:6.8px;font-weight:800;color:#1d4ed8;letter-spacing:.04em}
-    .paper-no{border:1px solid #cbd5e1;border-radius:4px;padding:2.5px 5px;min-width:30mm;text-align:center}
-    .paper-no span{display:block;text-transform:uppercase;font-size:5.8px;color:#64748b;font-weight:800}
-    .paper-no strong{display:block;font-size:8.5px;margin-top:1px}
-
-    @media screen{body{background:#eee}.paper{width:210mm;margin:12px auto;box-shadow:0 4px 18px rgba(0,0,0,.12)}}
-  `;
-
+  const styles = Array.from(document.querySelectorAll('style')).map(s => s.textContent).join('\n');
   const popup = window.open('', '_blank');
   if(popup && popup.document){
     popup.document.open();
-    popup.document.write(`<!DOCTYPE html><html lang="cs"><head><meta charset="UTF-8"><title>Tisk protokolu</title><style>${printCss}
-/* v39 unified visual from clean base */
-@media (min-width: 921px){
-  body{background:#f6f8fb;}
-  .app-sidebar{position:fixed;left:0;top:0;bottom:0;width:190px;background:linear-gradient(180deg,#061426 0%,#0b1b2f 100%);color:#e5eefb;z-index:35;padding:18px 14px;display:flex;flex-direction:column;box-shadow:8px 0 24px rgba(15,23,42,.14)}
-  .side-brand{display:flex;align-items:center;gap:10px;margin-bottom:22px;font-size:.78rem;line-height:1.1;letter-spacing:.02em}
-  .side-brand span{display:block;color:#22c55e;font-weight:800;margin-top:2px}
-  .side-logo{width:42px;height:42px;border-radius:10px;object-fit:cover}
-  .side-nav{display:grid;gap:6px}
-  .side-nav a,.side-nav button{display:flex;align-items:center;gap:8px;width:100%;border:0;background:transparent;color:#dbeafe;text-align:left;text-decoration:none;padding:11px 12px;border-radius:10px;font-weight:700;font-size:.9rem}
-  .side-nav a.active,.side-nav a:hover,.side-nav button:hover{background:#132b4a;color:#fff}
-  .side-bottom{margin-top:auto;border-top:1px solid rgba(255,255,255,.12);padding-top:14px;color:#94a3b8;font-size:.78rem}
-  header{left:190px;width:calc(100% - 190px);background:#fff!important;color:#0f172a;box-shadow:0 1px 0 #e5eaf2;padding:14px 28px;min-height:64px;align-items:center}
-  header .header-title{font-size:1.32rem;color:#0f172a}
-  header .settings-btn{background:#fff;border:1px solid #dbe6f2;color:#0f172a}
-  .container{max-width:none;margin-left:190px;padding:26px 34px}
-}
-@media (max-width: 920px){
-  .app-sidebar{display:none}
-}
-
-.dashboard{display:grid;grid-template-columns:1fr;gap:14px;margin-bottom:18px}
-.dashboard-head{display:flex;justify-content:space-between;align-items:center;gap:14px;background:transparent;border:0;box-shadow:none;padding:0}
-.dash-title{font-size:1.35rem;font-weight:800}
-.dash-sub{font-size:.86rem;color:var(--muted);margin-top:4px}
-.new-top-btn{border-radius:10px;padding:10px 16px;background:#2563eb}
-.summary-card{padding:0;background:transparent!important;border:0!important;box-shadow:none!important}
-.summary-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:0}
-.summary-grid .stat{display:flex;align-items:center;gap:14px;min-height:92px;border-radius:14px;padding:18px;background:#fff;color:#0f172a;border:1px solid #e1e8f2;box-shadow:0 8px 20px rgba(15,23,42,.05)}
-.summary-grid .stat .stat-icon{width:46px;height:46px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:1.35rem;background:#eff6ff;color:#2563eb}
-.summary-grid .stat.stat-issues .stat-icon{background:#fff1f2;color:#dc2626}
-.summary-grid .stat.stat-ok .stat-icon{background:#ecfdf3;color:#15803d}
-.summary-grid .stat.stat-last .stat-icon{background:#f5f3ff;color:#7c3aed}
-.summary-grid .stat .stat-label{color:#475569;font-weight:800;font-size:.78rem;text-transform:uppercase;letter-spacing:.04em;margin-bottom:3px}
-.summary-grid .stat .stat-value{font-size:1.8rem;color:#0f172a;line-height:1}
-.summary-grid .stat .stat-note{font-size:.76rem;color:#64748b;margin-top:5px}
-.summary-card .summary-grid .stat.stat-issues,.summary-card .summary-grid .stat.stat-ok{background:#fff!important;color:#0f172a!important;border-color:#e1e8f2!important}
-.summary-card .summary-grid .stat.stat-issues .stat-value{color:#dc2626!important}
-.summary-card .summary-grid .stat.stat-ok .stat-value{color:#15803d!important}
-.summary-card .summary-grid .stat.stat-issues .stat-label,.summary-card .summary-grid .stat.stat-ok .stat-label{color:#475569!important}
-
-.toolbar{background:#fff;border:1px solid #e1e8f2;border-radius:14px;padding:14px;box-shadow:0 8px 20px rgba(15,23,42,.04)}
-.card{border-color:#e1e8f2;box-shadow:0 8px 20px rgba(15,23,42,.04)}
-.btn-print{background:#60a5fa!important;color:#fff}
-.btn-download{border-color:#86efac!important;color:#166534!important;background:#f0fdf4!important}
-
-@media (max-width: 640px){
-  header{background:#061426!important}
-  .dashboard-head{display:block}
-  .dash-sub{display:none}
-  .new-top-btn{width:100%;margin-top:10px}
-  .summary-grid{grid-template-columns:repeat(2,1fr)!important;gap:8px}
-  .summary-grid .stat{min-height:70px;padding:10px;gap:8px;border-radius:12px}
-  .summary-grid .stat-total,.summary-grid .stat-last{grid-column:1/-1}
-  .summary-grid .stat .stat-icon{width:34px;height:34px;font-size:1rem}
-  .summary-grid .stat .stat-value{font-size:1.38rem}
-  .summary-grid .stat .stat-label{font-size:.68rem}
-  .summary-grid .stat .stat-note{display:none}
-}
-
-/* Print/protocol visual */
-.paper{font-family:Inter,Arial,sans-serif;background:#fff;color:#111827;padding:0;width:210mm;max-width:100%;font-size:9.2px;line-height:1.18;border:1px solid #e5e7eb}
-.paper-page{padding:7mm 7mm 6mm 7mm;min-height:287mm}
-.paper-head{display:flex;justify-content:space-between;gap:12px;align-items:flex-start;border-bottom:2px solid #1e3a8a;padding-bottom:7px;margin-bottom:7px}
-.paper-head.compact{margin-bottom:6px}
-.paper-kicker{font-size:8px;font-weight:800;color:#1d4ed8;letter-spacing:.05em}
-.paper h2{margin:2px 0 2px;text-align:left;font-size:17px;letter-spacing:.2px}
-.paper .subhead{text-align:left;margin:0;color:#334155;font-size:8.6px}
-.paper-no{border:1px solid #cbd5e1;border-radius:6px;padding:6px 10px;min-width:35mm;text-align:center}
-.paper-no span{display:block;text-transform:uppercase;font-size:6.8px;color:#64748b;font-weight:800}
-.paper-no strong{display:block;font-size:11px;margin-top:2px}
-.paper table{border-collapse:collapse;width:100%;table-layout:auto;margin-bottom:5px}
-.paper td,.paper th{border:1px solid #cbd5e1;padding:3px 4px;vertical-align:middle}
-.paper th{background:#f8fafc;font-weight:800}
-.paper .top-table td{padding:3px 5px}
-.paper .section-title{margin:7px 0 0;background:#f8fafc;border:1px solid #cbd5e1;border-bottom:0;padding:4px 6px;font-size:10px;font-weight:900;color:#111827}
-.paper .section-block{margin-bottom:6px;page-break-inside:avoid;break-inside:avoid}
-.paper .check-col{text-align:center;width:13%;font-weight:900;white-space:nowrap;color:#166534}
-.paper th.check-col{color:#111827}
-.paper .desc-col{width:27%}
-.paper tr.status-bad td,.paper tr.status-bad th{background:#fff1f2!important;border-color:#dc2626!important}
-.paper .issue-label{display:inline-block;margin-right:4px;padding:1px 4px;border:1px solid #dc2626;color:#991b1b;font-weight:900;font-size:7px;background:#fff}
-.paper .notes{min-height:22px}
-.paper .footer-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:6px}
-.paper .sign-box{border:1px solid #cbd5e1;padding:8px;min-height:42px}
-.photo-grid{display:grid;grid-template-columns:repeat(6,1fr);gap:4px;margin:0}
-.photo-box{border:1px dashed #cbd5e1;min-height:55px;text-align:center;font-size:7px;padding:2px;background:#fff}
-.photo-box img{height:42px!important;width:100%;object-fit:cover;display:block;margin-bottom:2px}
-.issue-photo-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:4px}
-.issue-photo-box{border:1px dashed #cbd5e1;min-height:52px;font-size:7px;padding:2px}
-.issue-photo-box img{height:38px!important;width:100%;object-fit:cover;display:block;margin-bottom:2px}
-@media print{
-  #preview .paper{font-size:8.2px;line-height:1.08;border:0;width:auto}
-  #preview .paper-page{padding:3.8mm 4.2mm;min-height:auto}
-  #preview .paper-head{padding-bottom:4px;margin-bottom:4px}
-  #preview .paper h2{font-size:12.5px}
-  #preview .paper .subhead{font-size:7.4px}
-  #preview .paper td,#preview .paper th{padding:1.6px 2.2px}
-  #preview .paper .section-title{font-size:8.4px;margin-top:3px;padding:1.7px 3px}
-  #preview .paper .paper-no{padding:2.5px 5px}
-}
-
-
-
-/* v42 corrections: collapsible sidebar, clean mobile menu, compact two-page print */
-.sidebar-toggle{background:#fff;border:1px solid #dbe6f2;color:#0f172a;border-radius:10px;padding:8px 11px;font-size:1.05rem;line-height:1;min-width:42px}
-.sidebar-overlay{display:none;position:fixed;inset:0;background:rgba(15,23,42,.42);z-index:34}
-@media (min-width:921px){
-  .app-sidebar{transition:transform .22s ease;width:190px}
-  header,.container{transition:left .22s ease,width .22s ease,margin-left .22s ease}
-  body.sidebar-collapsed .app-sidebar{transform:translateX(-190px)}
-  body.sidebar-collapsed header{left:0;width:100%}
-  body.sidebar-collapsed .container{margin-left:0}
-  .side-bottom{line-height:1.45;color:#cbd5e1}
-}
-@media (max-width:920px){
-  .app-sidebar{display:flex!important;position:fixed;left:0;top:0;bottom:0;width:min(82vw,280px);background:#061426;color:#e5eefb;z-index:35;padding:14px 12px;flex-direction:column;box-shadow:8px 0 24px rgba(15,23,42,.25);transform:translateX(-105%);transition:transform .22s ease}
-  body.sidebar-open .app-sidebar{transform:translateX(0)}
-  body.sidebar-open .sidebar-overlay{display:block}
-  .side-brand{display:flex;align-items:center;gap:9px;margin-bottom:14px;font-size:.76rem;line-height:1.12;letter-spacing:.02em}
-  .side-brand span{display:block;color:#86efac;font-weight:800;margin-top:2px}
-  .side-logo{width:34px;height:34px;border-radius:8px;object-fit:cover}
-  .side-nav{display:grid;gap:4px}
-  .side-nav a,.side-nav button{display:flex;align-items:center;width:100%;border:0;background:transparent;color:#dbeafe;text-align:left;text-decoration:none;padding:9px 10px;border-radius:9px;font-weight:650;font-size:.88rem}
-  .side-nav a.active,.side-nav a:hover,.side-nav button:hover{background:#132b4a;color:#fff}
-  .side-bottom{margin-top:auto;border-top:1px solid rgba(255,255,255,.12);padding-top:12px;color:#cbd5e1;font-size:.76rem;line-height:1.4}
-  header{display:flex;align-items:center;justify-content:space-between;gap:10px}
-  .header-title{flex:1;font-size:1.05rem}
-}
-.paper .markbox{display:inline-flex;align-items:center;justify-content:center;width:14px;height:14px;border:1px solid #111;font-size:10px;line-height:1;font-weight:700;font-family:Arial,sans-serif;background:#fff;color:#111}
-.paper-two-col{display:grid;grid-template-columns:0.72fr 1.28fr;gap:5mm;align-items:start}
-.paper tr.status-bad td,.paper tr.status-bad th{background:#fff!important;border:1px solid #000!important}
-.paper .issue-label{border:1px solid #000;color:#000;background:#fff;font-size:7.2px;padding:1px 3px;margin-right:3px}
-.paper th{background:#fff!important}
-@media print{
-  body{background:#fff!important}
-  #preview .paper{width:100%!important;max-width:none!important;margin:0!important;padding:0!important;font-size:7.4px!important;line-height:1.04!important}
-  #preview .paper h2{font-size:11.2px!important;margin:0 0 1.5px!important;letter-spacing:.15px!important}
-  #preview .paper .subhead{font-size:6.8px!important;margin-bottom:2px!important;line-height:1.05!important}
-  #preview .paper .paper-head{margin-bottom:2px!important;padding-bottom:2px!important;border-bottom:1px solid #000!important}
-  #preview .paper .paper-kicker{font-size:6.6px!important;letter-spacing:.08em!important;color:#000!important}
-  #preview .paper .paper-no{font-size:6.8px!important;border:1px solid #000!important;padding:2px 3px!important;background:#fff!important;color:#000!important}
-  #preview .paper table{margin-bottom:1.6px!important;table-layout:fixed!important;width:100%!important}
-  #preview .paper td,#preview .paper th{padding:1.1px 1.8px!important;border:1px solid #000!important;vertical-align:top!important}
-  #preview .paper .top-table td{padding:1.1px 1.7px!important}
-  #preview .paper .section-block{margin-bottom:2px!important;break-inside:avoid;page-break-inside:avoid}
-  #preview .paper .section-title{font-size:7.5px!important;margin:2px 0 1px!important;padding:1px 2px!important;border:1px solid #000!important;background:#fff!important;color:#000!important;letter-spacing:0!important}
-  #preview .paper .check-col{width:8%!important;text-align:center!important;white-space:nowrap!important}
-  #preview .paper .desc-col{width:24%!important}
-  #preview .paper .markbox{width:10px!important;height:10px!important;font-size:7px!important;border:1px solid #000!important}
-  #preview .paper .issue-label{font-size:5.8px!important;padding:0 2px!important;border:1px solid #000!important;background:#fff!important;color:#000!important}
-  #preview .paper .notes{min-height:11px!important}
-  #preview .paper .paper-page{min-height:calc(297mm - 10mm)!important;display:block!important;overflow:hidden!important}
-  #preview .paper .photo-grid{grid-template-columns:repeat(6,1fr)!important;gap:2px!important;margin:1.5px 0!important}
-  #preview .paper .photo-box{min-height:30px!important;font-size:5.6px!important;padding:1px!important;border:1px solid #000!important}
-  #preview .paper .photo-box img{height:22px!important;margin-bottom:1px!important;object-fit:cover!important}
-  #preview .paper .issue-photo-grid{grid-template-columns:repeat(4,1fr)!important;gap:2px!important;margin:1.5px 0!important}
-  #preview .paper .issue-photo-box{min-height:33px!important;font-size:5.6px!important;padding:1px!important;border:1px solid #000!important}
-  #preview .paper .issue-photo-box img{height:24px!important;margin-bottom:1px!important;object-fit:cover!important}
-  #preview .paper .footer-grid{gap:3px!important;margin-top:2px!important}
-  #preview .paper .sign-box{min-height:24px!important;padding:3px!important;border:1px solid #000!important}
-  #preview .paper .print-page-break{break-before:page!important;page-break-before:always!important;height:0!important;margin:0!important;padding:0!important}
-  @page{size:A4 portrait;margin:5mm!important}
-}
-
-</style><!-- v45_preview_print_readable -->
-</head><body>${paperHtml}<scr` + `ipt>function doPrint(){setTimeout(function(){window.focus();window.print();},250)}; if(document.readyState === 'complete'){doPrint()} else {window.onload=doPrint;}</scr` + `ipt></body></html>`);
+    popup.document.write(`<!DOCTYPE html><html lang="cs"><head><meta charset="UTF-8"><title>Tisk protokolu</title><style>${styles}
+@media screen{body{background:#eef2f7;padding:16px}.paper{margin:0 auto}}</style></head><body>${paperHtml}<script>window.onload=function(){setTimeout(function(){window.print();},250)}<\/script></body></html>`);
     popup.document.close();
-    return;
+  } else {
+    window.print();
   }
-
-  // Záloha pro prohlížeč, který zablokuje nové okno.
-  void els.previewBody.offsetHeight;
-  setTimeout(() => {
-    try { window.print(); }
-    catch (e) {
-      console.error('Print error', e);
-      alert('Nepodařilo se otevřít tisk. Zkuste povolit vyskakovací okno, případně tisk přes prohlížeč.');
-    }
-  }, 50);
 }
-window._printNow = printCurrent;
 
 function downloadById(id){
   const record = data.find(r => r.id === id);
@@ -1874,7 +1717,7 @@ function cleanPrintLabel(label){
     .replace(/\s*[–-]\s*vyhovuje/gi, '')
     .trim();
 }
-function markCell(checked){ return '<span class="markbox">' + (checked ? 'X' : '') + '</span>'; }
+function markCell(checked){ return '<span class="markbox">' + (checked ? '1' : '') + '</span>'; }
 function ynColumns(v){
   return {ano: markCell(v === 'ANO'), ne: markCell(v === 'NE')};
 }
@@ -1911,12 +1754,12 @@ function renderConclusion(r){
 }
 function renderPhotoSection(r){
   const photos = r.photos || {};
-  const cells = PHOTO_STEPS.map(s => {
+  const cells = PHOTO_STEPS.map((s,idx) => {
     const p = photos[s.photoKey] || {};
     const src = p.url || p.dataUrl || '';
-    return `<div class="photo-box">${src ? `<img src="${escapeHtml(src)}" data-full-src="${escapeHtml(src)}" onclick="openLightbox(this.dataset.fullSrc)">` : '<div style="height:62px"></div>'}<strong>${escapeHtml(PHOTO_LABELS[s.photoKey])}</strong></div>`;
+    return `<div class="photo-box">${src ? `<img src="${escapeHtml(src)}" data-full-src="${escapeHtml(src)}" onclick="openLightbox(this.dataset.fullSrc)">` : '<div class="empty-photo">bez fotky</div>'}<strong>${idx+1}. ${escapeHtml(PHOTO_LABELS[s.photoKey])}</strong></div>`;
   }).join('');
-  return `<div class="section-block"><div class="section-title">Fotodokumentace</div><div class="photo-grid">${cells}</div></div>`;
+  return `<div class="section-block"><div class="section-title">Fotodokumentace stroje (informační miniatury)</div><div class="photo-grid">${cells}</div></div>`;
 }
 function renderIssuePhotosSection(r){
   const issuePhotos = r.issuePhotos || {};
@@ -1932,6 +1775,11 @@ function renderIssuePhotosSection(r){
 }
 function renderPaper(r){
   const sections = getSectionsForRecord(r);
+  const mainPhoto = (() => {
+    const p = (r.photos || {}).front || (r.photos || {}).right || (r.photos || {}).left || {};
+    return p.url || p.dataUrl || '';
+  })();
+  const safeResult = r.zaverBezpecny === 'NE' ? 'NEZPŮSOBILÁ K PROVOZU' : (hasIssue(r) ? 'PROVOZ S OPATŘENÍM' : 'BEZPEČNÝ PROVOZ');
   return `
   <div class="paper">
     <div class="paper-page">
@@ -1939,106 +1787,34 @@ function renderPaper(r){
         <div>
           <div class="paper-kicker">ČTVRTLETNÍ KONTROLA</div>
           <h2>Záznam o běžné prohlídce pracovní plošiny</h2>
-          <div class="subhead">dle NV č. 193/2022 Sb., příloha č. 2, čl. 3.2 · interval nejpozději do 3 měsíců</div>
+          <div class="subhead">Dle NV č. 193/2022 Sb., příloha č. 2, čl. 3.2. Interval běžné prohlídky nejpozději do 3 měsíců.</div>
         </div>
-        <div class="paper-no">
-          <span>ID protokolu</span>
-          <strong>${escapeHtml(r.id ? String(r.id).slice(0,12) : '—')}</strong>
-        </div>
+        <div class="paper-no"><span>Číslo protokolu</span><strong>${escapeHtml(r.id ? String(r.id).slice(0,12) : '—')}</strong></div>
       </div>
 
-      <table class="top-table">
-        <tr>
-          <td><strong>Typ zařízení</strong></td><td class="mono">${escapeHtml(r.typ||'')}</td>
-          <td><strong>Výrobní číslo</strong></td><td class="mono">${escapeHtml(r.vc||'')}</td>
-        </tr>
-        <tr>
-          <td><strong>Rok výroby</strong></td><td>${escapeHtml(r.rok||'')}</td>
-          <td><strong>Datum kontroly</strong></td><td>${escapeHtml(r.datum||'')}</td>
-        </tr>
-        <tr>
-          <td><strong>Platnost revize do</strong></td><td class="${isRevizeExpired(r)?'expired':''}">${escapeHtml(formatMonthYear(r.revizeDo))}</td>
-          <td><strong>Stav motohodin</strong></td><td class="mono">${escapeHtml(r.mh||'')}</td>
-        </tr>
-        <tr>
-          <td><strong>Následná kontrola do</strong></td><td>${escapeHtml(r.dalsiKontrola||'')}</td>
-          <td><strong>Kontrolu provedl</strong></td><td>${escapeHtml(r.technik||'')}</td>
-        </tr>
-        <tr>
-          <td><strong>Umístění</strong></td><td>${r.umisteni ? 'půjčovna ' + escapeHtml(r.umisteni) : ''}</td>
-          <td><strong>Podklad kontroly</strong></td><td>průvodní dokumentace, návod, provozní deník</td>
-        </tr>
-      </table>
-
-      <div class="section-block">
-        <div class="section-title">A. Průvodní dokumentace a vybavení</div>
-        <table><thead><tr><th>Kontrola</th><th>ANO</th><th>NE</th><th>Poznámky</th></tr></thead><tbody>${rowsHtml(sections.A,r,'A')}</tbody></table>
-      </div>
-
-      <div class="section-block">
-        <div class="section-title">B. Stav zařízení</div>
-        <table>
-          <thead><tr><th>Kontrola</th><th>ANO</th><th>NE</th><th>Poznámky</th></tr></thead>
-          <tbody>
-            <tr class="${r.B1==='NE' ? 'status-bad' : (r.B1==='ANO' ? 'status-ok' : '')}">
-              <td>Bez závad</td><td class="check-col">${ynColumns(r.B1).ano}</td><td class="check-col">${ynColumns(r.B1).ne}</td><td class="desc-col"></td>
-            </tr>
-            <tr class="${r.B1==='NE' ? 'status-bad' : ''}">
-              <td>Závady</td><td class="check-col">${markCell(r.B1==='NE')}</td><td class="check-col">${markCell(r.B1==='ANO')}</td><td class="desc-col">${r.B1==='NE' ? '<span class="issue-label">ZÁVADA</span>' : ''}${escapeHtml(r.B1_p||'')}</td>
-            </tr>
-          </tbody>
+      <div class="identity-grid">
+        <table class="info-table">
+          <tr><th>Typ zařízení</th><td class="mono">${escapeHtml(r.typ||'')}</td><th>Výrobní číslo</th><td class="mono">${escapeHtml(r.vc||'')}</td></tr>
+          <tr><th>Rok výroby</th><td>${escapeHtml(r.rok||'')}</td><th>Datum kontroly</th><td>${escapeHtml(formatDate(r.datum)||'')}</td></tr>
+          <tr><th>Platnost revize do</th><td class="${isRevizeExpired(r)?'expired':''}">${escapeHtml(formatMonthYear(r.revizeDo))}</td><th>Stav motohodin</th><td class="mono">${escapeHtml(r.mh||'')}</td></tr>
+          <tr><th>Následná kontrola do</th><td>${escapeHtml(formatDate(r.dalsiKontrola)||'')}</td><th>Kontrolu provedl</th><td>${escapeHtml(r.technik||'')}</td></tr>
+          <tr><th>Umístění</th><td>${r.umisteni ? 'půjčovna ' + escapeHtml(r.umisteni) : ''}</td><th>Podklad kontroly</th><td>průvodní dokumentace, návod, provozní deník</td></tr>
         </table>
-        ${isRevizeExpired(r)?'<table><tr class="status-bad"><td>Platnost revize</td><td class="check-col">${markCell(false)}</td><td class="check-col">${markCell(true)}</td><td class="desc-col">Prošlá platnost revize.</td></tr></table>':''}
+        <div class="machine-panel"><div><div class="machine-title">Výsledek kontroly</div><div class="machine-sub"><strong>${escapeHtml(safeResult)}</strong><br>ANO znamená vyhovuje. NE znamená závada.</div></div><div class="machine-img">${mainPhoto ? `<img src="${escapeHtml(mainPhoto)}">` : 'foto stroje'}</div></div>
       </div>
 
-      <div class="section-block">
-        <div class="section-title">C. Všeobecná kontrola zařízení</div>
-        <table><thead><tr><th>Kontrolní bod</th><th>ANO = vyhovuje</th><th>NE = závada</th><th>Poznámka</th></tr></thead><tbody>${rowsHtml(sections.C,r,'C')}</tbody></table>
-      </div>
+      <div class="section-block"><div class="section-title">A. Průvodní dokumentace a vybavení</div><table class="check-table"><thead><tr><th>Kontrolní bod</th><th class="check-col">ANO</th><th class="check-col">NE</th><th class="note-col">Poznámka</th></tr></thead><tbody>${rowsHtml(sections.A,r,'A')}</tbody></table></div>
+      <div class="section-block"><div class="section-title">B. Stav zařízení</div><table class="check-table"><thead><tr><th>Kontrolní bod</th><th class="check-col">ANO</th><th class="check-col">NE</th><th class="note-col">Poznámka</th></tr></thead><tbody><tr class="${r.B1==='NE' ? 'status-bad' : (r.B1==='ANO' ? 'status-ok' : '')}"><td>Zařízení bez zjevných závad</td><td class="check-col">${ynColumns(r.B1).ano}</td><td class="check-col">${ynColumns(r.B1).ne}</td><td class="desc-col"></td></tr><tr class="${r.B1==='NE' ? 'status-bad' : ''}"><td>Zjištěné závady zařízení</td><td class="check-col">${markCell(r.B1==='NE')}</td><td class="check-col">${markCell(r.B1==='ANO')}</td><td class="desc-col">${r.B1==='NE' ? '<span class="issue-label">ZÁVADA</span>' : ''}${escapeHtml(r.B1_p||'')}</td></tr>${isRevizeExpired(r)?`<tr class="status-bad"><td>Platnost revize</td><td class="check-col">${markCell(false)}</td><td class="check-col">${markCell(true)}</td><td class="desc-col">Prošlá platnost revize.</td></tr>`:''}</tbody></table></div>
+      <div class="section-block"><div class="section-title">C. Všeobecná kontrola zařízení</div><table class="check-table"><thead><tr><th>Kontrolní bod</th><th class="check-col">ANO = vyhovuje</th><th class="check-col">NE = závada</th><th class="note-col">Poznámka</th></tr></thead><tbody>${rowsHtml(sections.C,r,'C')}</tbody></table></div>
     </div>
-
     <div class="print-page-break"></div>
-
     <div class="paper-page">
-      <div class="paper-head compact">
-        <div>
-          <div class="paper-kicker">ČTVRTLETNÍ KONTROLA</div>
-          <h2>Dokončení protokolu</h2>
-        </div>
-        <div class="paper-no"><span>Zařízení</span><strong>${escapeHtml(r.vc||'')}</strong></div>
-      </div>
-
-      <div class="paper-two-col">
-        <div class="section-block">
-          <div class="section-title">D. Kontrola provozních náplní</div>
-          <table><thead><tr><th>Kontrola</th><th>ANO</th><th>NE</th><th>Poznámka</th></tr></thead><tbody>${rowsHtml(sections.D,r,'D')}</tbody></table>
-        </div>
-        <div class="section-block">
-          <div class="section-title">E. Kontrola funkcí</div>
-          <table><thead><tr><th>Kontrola</th><th>ANO</th><th>NE</th><th>Poznámka</th></tr></thead><tbody>${rowsHtml(sections.E,r,'E')}</tbody></table>
-        </div>
-      </div>
-
-      ${renderPhotoSection(r)}
-      ${renderIssuePhotosSection(r)}
-
-      <div class="section-block">
-        <div class="section-title">Závěr kontroly</div>
-        ${renderConclusion(r)}
-        <table>
-          <tr><td class="evaluation-text">Pojízdná zdvihací pracovní plošina ${escapeHtml(r.typ||'')} vč. ${escapeHtml(r.vc||'')} je z hlediska bezpečnosti ${r.zaverBezpecny==='NE'?'nezpůsobilá':'schopná'} provozu.</td></tr>
-        </table>
-      </div>
-
-      <div class="section-block">
-        <div class="section-title">Poznámka technika</div>
-        <table><tr><td class="notes">${escapeHtml(r.poznamka||'')}</td></tr></table>
-      </div>
-
-      <div class="footer-grid">
-        <div class="sign-box"><strong>Kontrolu provedl:</strong><br>${escapeHtml(r.technik||'')}</div>
-        <div class="sign-box"><strong>Podpis a razítko:</strong></div>
-      </div>
+      <div class="paper-head compact"><div><div class="paper-kicker">ČTVRTLETNÍ KONTROLA</div><h2>Dokončení protokolu</h2><div class="subhead">Zařízení ${escapeHtml(r.typ||'')} · výrobní číslo ${escapeHtml(r.vc||'')}</div></div><div class="paper-no"><span>Datum kontroly</span><strong>${escapeHtml(formatDate(r.datum)||'')}</strong></div></div>
+      <div class="paper-two-col"><div class="section-block"><div class="section-title">D. Kontrola provozních náplní</div><table class="check-table"><thead><tr><th>Kontrolní bod</th><th class="check-col">ANO</th><th class="check-col">NE</th><th class="note-col">Poznámka</th></tr></thead><tbody>${rowsHtml(sections.D,r,'D')}</tbody></table></div><div class="section-block"><div class="section-title">E. Kontrola funkcí</div><table class="check-table"><thead><tr><th>Kontrolní bod</th><th class="check-col">ANO</th><th class="check-col">NE</th><th class="note-col">Poznámka</th></tr></thead><tbody>${rowsHtml(sections.E,r,'E')}</tbody></table></div></div>
+      ${renderPhotoSection(r)}${renderIssuePhotosSection(r)}
+      <div class="section-block"><div class="section-title">Závěr kontroly</div><div class="result-cards"><div class="result-card result-ok"><strong>BEZPEČNÝ PROVOZ</strong>Zařízení je způsobilé k bezpečnému provozu.</div><div class="result-card result-repair"><strong>NUTNÁ OPRAVA</strong>Zařízení lze používat pouze po odstranění závad.</div><div class="result-card result-bad"><strong>NEZPŮSOBILÝ PROVOZ</strong>Zařízení nelze používat do odstranění závad.</div></div>${renderConclusion(r)}<table class="result-table"><tr><td class="evaluation-text">Pojízdná zdvihací pracovní plošina ${escapeHtml(r.typ||'')} vč. ${escapeHtml(r.vc||'')} je z hlediska bezpečnosti ${r.zaverBezpecny==='NE'?'nezpůsobilá':'schopná'} provozu.</td></tr></table></div>
+      <div class="section-block"><div class="section-title">Poznámka technika</div><table class="result-table"><tr><td class="notes">${escapeHtml(r.poznamka||'')}</td></tr></table></div>
+      <div class="footer-grid"><div class="sign-box"><strong>Datum:</strong><br>${escapeHtml(formatDate(r.datum)||'')}<br><br><strong>Kontrolu provedl:</strong><br>${escapeHtml(r.technik||'')}</div><div class="sign-box"><strong>Podpis a razítko:</strong></div></div>
     </div>
   </div>`;
 }

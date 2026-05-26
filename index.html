@@ -61,10 +61,11 @@ button{border:none;border-radius:14px;padding:11px 14px;cursor:pointer;font-weig
 .field{margin-top:12px} label{display:block;font-size:.86rem;color:var(--muted);margin-bottom:7px;font-weight:600} input,textarea,select{width:100%;padding:13px 14px;border-radius:16px;border:1px solid var(--line);font-size:1rem;background:#fff;color:var(--text);outline:none}
 input::placeholder, textarea::placeholder{color:#334155;font-weight:600;font-size:1rem;opacity:1} textarea{min-height:110px;resize:vertical}
 .suggest-wrap{position:relative}.suggest-box{position:absolute;left:0;right:0;top:calc(100% + 8px);border:1px solid var(--line);border-radius:14px;background:#fff;max-height:220px;overflow:auto;box-shadow:0 10px 24px rgba(15,23,42,.08);z-index:20}.suggest-item{padding:10px 12px;cursor:pointer;border-bottom:1px solid #eef2f7;font-size:.95rem}.suggest-item:last-child{border-bottom:none}.suggest-item:hover{background:#f8fbff}.helper{font-size:.8rem;color:var(--muted);margin-top:6px}
-body.dark .suggest-box{background:#fff!important;color:#111827!important;border-color:#94a3b8!important;box-shadow:0 12px 28px rgba(0,0,0,.42)!important}
-body.dark .suggest-item{color:#111827!important;background:#fff!important;border-bottom-color:#d1d5db!important;font-weight:600}
-body.dark .suggest-item:hover{background:#e5eefc!important;color:#000!important}
-.suggest-box,.suggest-item{color:#111827!important}
+body.dark .suggest-box{background:#fff!important;color:#000!important;border-color:#94a3b8!important;box-shadow:0 12px 28px rgba(0,0,0,.42)!important}
+body.dark .suggest-box,body.dark .suggest-box *{color:#000!important;-webkit-text-fill-color:#000!important;text-shadow:none!important;opacity:1!important}
+body.dark .suggest-item{color:#000!important;-webkit-text-fill-color:#000!important;background:#fff!important;border-bottom-color:#d1d5db!important;font-weight:700!important}
+body.dark .suggest-item:hover{background:#e5e7eb!important;color:#000!important;-webkit-text-fill-color:#000!important}
+.suggest-box,.suggest-box *,.suggest-item{color:#000!important;-webkit-text-fill-color:#000!important}
 input:-webkit-autofill,input:-webkit-autofill:hover,input:-webkit-autofill:focus{-webkit-text-fill-color:#111827!important;box-shadow:0 0 0 1000px #fff inset!important}
 .wizard-actions{display:flex;justify-content:space-between;gap:10px;margin-top:18px;position:sticky;bottom:0;background:linear-gradient(180deg,rgba(255,255,255,0) 0%,#fff 20%);padding-top:16px}body.dark .wizard-actions{background:linear-gradient(180deg,rgba(17,24,39,0) 0%,#111827 20%)}
 .preview-header{display:flex;justify-content:space-between;gap:10px;align-items:center;margin-bottom:12px}.preview-title{font-size:1.05rem;font-weight:700}.preview-actions{display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap;margin-top:14px}.preview-actions-left,.preview-actions-right{display:flex;gap:10px;flex-wrap:wrap}
@@ -267,15 +268,15 @@ const COMMON_SECTIONS = {
 };
 const SECTION_VARIANTS = {
   scissor: {
-    C:makeCheckItems([['C1','Celkový stav / znečištění – vyhovuje'],['C5','Kola – stav vyhovuje'],['C_chassis','Podvozek / základna – stav vyhovuje'],['C10','Sestava nůžek – stav vyhovuje'],['C7','Ovládací kabel – stav vyhovuje'],['C3','Schody / přístup do koše – stav vyhovuje'],['C9','Akumulátory – stav vyhovuje'],['C8','Podlaha koše / protiskluz – stav vyhovuje'],['C4','Zábradlí – stav vyhovuje'],['C_complete','Konstrukce kompletní'],['C_gate','Vstupní dvířka / hrazda – stav vyhovuje'],['C11','Hydraulické válce – stav vyhovuje'],['C12','Hydraulické hadice – stav vyhovuje'],['C13','Hydraulická soustava těsná']]),
+    C:makeCheckItems([['C1','Celkový stav / čistota – vyhovuje'],['C5','Kola – stav vyhovuje'],['C_chassis','Podvozek / základna – stav vyhovuje'],['C10','Sestava nůžek – stav vyhovuje'],['C7','Ovládací kabel – stav vyhovuje'],['C3','Schody / přístup do koše – stav vyhovuje'],['C9','Akumulátory – stav vyhovuje'],['C8','Podlaha koše / protiskluz – stav vyhovuje'],['C4','Zábradlí – stav vyhovuje'],['C_complete','Konstrukce kompletní'],['C_gate','Vstupní dvířka / hrazda – stav vyhovuje'],['C11','Hydraulické válce – stav vyhovuje'],['C12','Hydraulické hadice – stav vyhovuje'],['C13','Hydraulická soustava těsná']]),
     E:[{k:'E16',l:'Funkce nabíječe',printLabel:'16. Funkce nabíječe',desc:true,chargerCheck:true},{k:'E_socket230',l:'Kontrola zásuvky v koši 230 V',printLabel:'17. Kontrola zásuvky v koši 230 V',desc:true,socketCheck:true},{k:'E19',l:'Funkce spodního ovládacího panelu',printLabel:'18. Funkce spodního ovládacího panelu',desc:true},{k:'E21',l:'Funkce horního ovládacího panelu',printLabel:'19. Funkce horního ovládacího panelu',desc:true},{k:'E_safety',l:'Funkce bezpečnostních prvků / blokací',printLabel:'20. Funkce bezpečnostních prvků / blokací',desc:true},{k:'E20',l:'Funkce nouzového spouštění',printLabel:'21. Funkce nouzového spouštění',desc:true}]
   },
   boom: {
-    C:makeCheckItems([['C1','Celkový stav / znečištění – vyhovuje'],['C4','Kola – stav vyhovuje'],['C_chassis','Podvozek / základna – stav vyhovuje'],['C9','Rameno – stav vyhovuje'],['C10','Kloub – stav vyhovuje'],['C6','Ovládací kabel – stav vyhovuje'],['C2','Schody / přístup do koše – stav vyhovuje'],['C8','Akumulátory – stav vyhovuje'],['C7','Podlaha koše / protiskluz – stav vyhovuje'],['C3','Zábradlí – stav vyhovuje'],['C_complete','Konstrukce kompletní'],['C_gate','Vstupní dvířka / hrazda – stav vyhovuje'],['C11','Hydraulické válce – stav vyhovuje'],['C12','Hydraulické hadice – stav vyhovuje'],['C13','Hydraulická soustava těsná']]),
+    C:makeCheckItems([['C1','Celkový stav / čistota – vyhovuje'],['C4','Kola – stav vyhovuje'],['C_chassis','Podvozek / základna – stav vyhovuje'],['C9','Rameno – stav vyhovuje'],['C10','Kloub – stav vyhovuje'],['C6','Ovládací kabel – stav vyhovuje'],['C2','Schody / přístup do koše – stav vyhovuje'],['C8','Akumulátory – stav vyhovuje'],['C7','Podlaha koše / protiskluz – stav vyhovuje'],['C3','Zábradlí – stav vyhovuje'],['C_complete','Konstrukce kompletní'],['C_gate','Vstupní dvířka / hrazda – stav vyhovuje'],['C11','Hydraulické válce – stav vyhovuje'],['C12','Hydraulické hadice – stav vyhovuje'],['C13','Hydraulická soustava těsná']]),
     E:[{k:'E16',l:'Funkce nouzového spouštění',printLabel:'16. Funkce nouzového spouštění',desc:true},{k:'E17',l:'Funkce nosnosti koše',printLabel:'17. Funkce nosnosti koše',desc:true},{k:'E18',l:'Funkce nabíječe',printLabel:'18. Funkce nabíječe',desc:true,chargerCheck:true},{k:'E_socket230',l:'Kontrola zásuvky v koši 230 V',printLabel:'19. Kontrola zásuvky v koši 230 V',desc:true,socketCheck:true},{k:'E19',l:'Funkce spodního ovládacího panelu',printLabel:'20. Funkce spodního ovládacího panelu',desc:true},{k:'E20',l:'Funkce horního ovládacího panelu',printLabel:'21. Funkce horního ovládacího panelu',desc:true},{k:'E_safety',l:'Funkce bezpečnostních prvků / blokací',printLabel:'22. Funkce bezpečnostních prvků / blokací',desc:true}]
   },
   mast: {
-    C:makeCheckItems([['C1','Celkový stav / znečištění – vyhovuje'],['C3','Kola – stav vyhovuje'],['C_chassis','Podvozek / základna – stav vyhovuje'],['C8','Sloup / rameno – stav vyhovuje'],['C5','Ovládací kabel – stav vyhovuje'],['C7','Akumulátory – stav vyhovuje'],['C6','Podlaha koše / protiskluz – stav vyhovuje'],['C2b','Zábradlí – stav vyhovuje'],['C_complete','Konstrukce kompletní'],['C_gate','Vstupní dvířka / hrazda – stav vyhovuje'],['C9','Hydraulické válce – stav vyhovuje'],['C10','Hydraulické hadice – stav vyhovuje'],['C11','Hydraulická soustava těsná']]),
+    C:makeCheckItems([['C1','Celkový stav / čistota – vyhovuje'],['C3','Kola – stav vyhovuje'],['C_chassis','Podvozek / základna – stav vyhovuje'],['C8','Sloup – stav vyhovuje'],['C5','Ovládací kabel – stav vyhovuje'],['C2','Schody / přístup do koše – stav vyhovuje'],['C7','Akumulátory – stav vyhovuje'],['C6','Podlaha koše / protiskluz – stav vyhovuje'],['C2b','Zábradlí – stav vyhovuje'],['C_complete','Konstrukce kompletní'],['C_gate','Vstupní dvířka / hrazda – stav vyhovuje'],['C9','Hydraulické válce – stav vyhovuje'],['C10','Hydraulické hadice – stav vyhovuje'],['C11','Hydraulická soustava těsná']]),
     E:[{k:'E14',l:'Funkce nouzového spouštění',printLabel:'14. Funkce nouzového spouštění',desc:true},{k:'E15',l:'Funkce nosnosti koše',printLabel:'15. Funkce nosnosti koše',desc:true},{k:'E16',l:'Funkce nabíječe',printLabel:'16. Funkce nabíječe',desc:true,chargerCheck:true},{k:'E_socket230',l:'Kontrola zásuvky v koši 230 V',printLabel:'17. Kontrola zásuvky v koši 230 V',desc:true,socketCheck:true},{k:'E17',l:'Funkce spodního ovládacího panelu',printLabel:'18. Funkce spodního ovládacího panelu',desc:true},{k:'E18',l:'Funkce horního ovládacího panelu',printLabel:'19. Funkce horního ovládacího panelu',desc:true},{k:'E_safety',l:'Funkce bezpečnostních prvků / blokací',printLabel:'20. Funkce bezpečnostních prvků / blokací',desc:true}]
   }
 };
@@ -341,7 +342,7 @@ function hasStabilizers(model){
 }
 function getBoomC(model){
   const base = [
-    ['C1','Celkový stav / znečištění – vyhovuje'],
+    ['C1','Celkový stav / čistota – vyhovuje'],
     ['C4','Kola – stav vyhovuje'],
     ['C_chassis','Podvozek / základna – stav vyhovuje'],
     ['C9','Rameno – stav vyhovuje'],
@@ -678,7 +679,7 @@ function filterSuggestions(items,q){
 
   return out;
 }
-function renderSuggestBox(items,key,isTextarea=false){ if(!items.length) return ''; return `<div class="suggest-box">${items.map(v => `<div class="suggest-item" data-key="${key}" data-value="${escapeHtml(v)}" data-textarea="${isTextarea ? '1':'0'}">${escapeHtml(v)}</div>`).join('')}</div>`; }
+function renderSuggestBox(items,key,isTextarea=false){ if(!items.length) return ''; return `<div class="suggest-box" style="background:#fff!important;color:#000!important;-webkit-text-fill-color:#000!important;opacity:1!important;">${items.map(v => `<div class="suggest-item" style="background:#fff!important;color:#000!important;-webkit-text-fill-color:#000!important;opacity:1!important;font-weight:700!important;" data-key="${key}" data-value="${escapeHtml(v)}" data-textarea="${isTextarea ? '1':'0'}">${escapeHtml(v)}</div>`).join('')}</div>`; }
 function yearOptions(baseDate){ const y = Number(String(baseDate||todayLocal()).slice(0,4)) || new Date().getFullYear(); return Array.from({length:11}, (_,idx) => String(y-idx)); }
 function autoFillDefaults(){ if(!rec.datum) rec.datum = todayLocal(); if(!rec.dalsiKontrola) rec.dalsiKontrola = addMonthsToDate(rec.datum,3); }
 function isRevizeExpired(r){
@@ -837,7 +838,7 @@ function showStep(){
     html = `<div class="field"><input id="mainInput" type="${dateInputType}" value="${escapeHtml(rec[s.k]||'')}">${help}</div>`;
   } else {
     const inputType = (s.type === 'yearInput' || s.type === 'number') ? 'number' : 'text';
-    html = `<div class="field suggest-wrap"><input id="mainInput" type="${inputType}" value="${escapeHtml(rec[s.k]||'')}" autocomplete="off"><div id="suggestHost"></div></div>`;
+    html = `<div class="field suggest-wrap"><input id="mainInput" type="${inputType}" value="${escapeHtml(rec[s.k]||'')}" autocomplete="off" autocapitalize="off" spellcheck="false"><div id="suggestHost"></div></div>`;
   }
   els.content.innerHTML = html;
 

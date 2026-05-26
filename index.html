@@ -61,6 +61,7 @@ button{border:none;border-radius:14px;padding:11px 14px;cursor:pointer;font-weig
 .field{margin-top:12px} label{display:block;font-size:.86rem;color:var(--muted);margin-bottom:7px;font-weight:600} input,textarea,select{width:100%;padding:13px 14px;border-radius:16px;border:1px solid var(--line);font-size:1rem;background:#fff;color:var(--text);outline:none}
 input::placeholder, textarea::placeholder{color:#334155;font-weight:600;font-size:1rem;opacity:1} textarea{min-height:110px;resize:vertical}
 .suggest-wrap{position:relative}.suggest-box{position:absolute;left:0;right:0;top:calc(100% + 8px);border:1px solid var(--line);border-radius:14px;background:#fff;max-height:220px;overflow:auto;box-shadow:0 10px 24px rgba(15,23,42,.08);z-index:20}.suggest-item{padding:10px 12px;cursor:pointer;border-bottom:1px solid #eef2f7;font-size:.95rem}.suggest-item:last-child{border-bottom:none}.suggest-item:hover{background:#f8fbff}.helper{font-size:.8rem;color:var(--muted);margin-top:6px}
+body.dark .suggest-box{background:#0f172a;color:#e5e7eb;border-color:#334155;box-shadow:0 12px 28px rgba(0,0,0,.38)}body.dark .suggest-item{color:#e5e7eb;border-bottom-color:#243244}body.dark .suggest-item:hover{background:#1e293b;color:#fff}
 .wizard-actions{display:flex;justify-content:space-between;gap:10px;margin-top:18px;position:sticky;bottom:0;background:linear-gradient(180deg,rgba(255,255,255,0) 0%,#fff 20%);padding-top:16px}body.dark .wizard-actions{background:linear-gradient(180deg,rgba(17,24,39,0) 0%,#111827 20%)}
 .preview-header{display:flex;justify-content:space-between;gap:10px;align-items:center;margin-bottom:12px}.preview-title{font-size:1.05rem;font-weight:700}.preview-actions{display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap;margin-top:14px}.preview-actions-left,.preview-actions-right{display:flex;gap:10px;flex-wrap:wrap}
 .paper-wrap{background:#fff;padding:12px;border-radius:18px;overflow:auto}.paper{background:#fff;color:#000;padding:9mm 8mm 8mm 8mm;font-size:10.9px;line-height:1.24;border:none;box-shadow:none;width:210mm;max-width:100%;margin:0 auto}.paper h2{margin:0 0 6px;text-align:center;font-size:18px;letter-spacing:.6px;font-weight:700}.paper .subhead{margin:0 0 9px;text-align:center;font-size:10.2px;color:#000}.paper table{width:100%;border-collapse:collapse;margin-bottom:6px;table-layout:auto}
@@ -262,15 +263,15 @@ const COMMON_SECTIONS = {
 };
 const SECTION_VARIANTS = {
   scissor: {
-    C:makeCheckItems([['C1','Celkové znečištění'],['C2','Poškození nátěru'],['C5','Poškození kol'],['C_chassis','Poškození podvozku / základny'],['C_complete','Nekompletnost konstrukce'],['C9','Poškození akumulátorů'],['C10','Poškození sestavy nůžek'],['C11','Poškození hydr. válce'],['C12','Poškození hydr. hadic'],['C13','Netěsnost hydr. soustavy'],['C7','Poškození ovládacího kabelu'],['C3','Poškození schodů / přístupu do koše'],['C8','Poškození podlahy koše / protiskluzu'],['C4','Poškození zábradlí'],['C_gate','Poškození vstupní branky / uzávěru koše']]),
+    C:makeCheckItems([['C1','Celkový stav / znečištění – vyhovuje'],['C5','Kola – stav vyhovuje'],['C_chassis','Podvozek / základna – stav vyhovuje'],['C10','Sestava nůžek – stav vyhovuje'],['C7','Ovládací kabel – stav vyhovuje'],['C3','Schody / přístup do koše – stav vyhovuje'],['C9','Akumulátory – stav vyhovuje'],['C8','Podlaha koše / protiskluz – stav vyhovuje'],['C4','Zábradlí – stav vyhovuje'],['C_gate','Vstupní dvířka / hrazda – stav vyhovuje'],['C_complete','Konstrukce kompletní'],['C11','Hydraulický válec – stav vyhovuje'],['C12','Hydraulické hadice – stav vyhovuje'],['C13','Hydraulická soustava těsná']]),
     E:[{k:'E16',l:'Funkce nabíječe',printLabel:'16. Funkce nabíječe',desc:true,chargerCheck:true},{k:'E_socket230',l:'Kontrola zásuvky v koši 230 V',printLabel:'17. Kontrola zásuvky v koši 230 V',desc:true,socketCheck:true},{k:'E19',l:'Funkce spodního ovládacího panelu',printLabel:'18. Funkce spodního ovládacího panelu',desc:true},{k:'E21',l:'Funkce horního ovládacího panelu',printLabel:'19. Funkce horního ovládacího panelu',desc:true},{k:'E_safety',l:'Funkce bezpečnostních prvků / blokací',printLabel:'20. Funkce bezpečnostních prvků / blokací',desc:true},{k:'E20',l:'Funkce nouzového spouštění',printLabel:'21. Funkce nouzového spouštění',desc:true}]
   },
   boom: {
-    C:makeCheckItems([['C1','Celkové znečištění'],['C4','Poškození kol'],['C_chassis','Poškození podvozku / základny'],['C_complete','Nekompletnost konstrukce'],['C8','Poškození akumulátorů'],['C9','Poškození ramene'],['C10','Poškození kloubu'],['C11','Poškození hydr. válců'],['C12','Poškození hydr. hadic'],['C13','Netěsnost hydr. soustavy'],['C6','Poškození ovládacího kabelu'],['C2','Poškození schodů'],['C7','Poškození podlahy koše / protiskluzu'],['C3','Poškození zábradlí'],['C_gate','Poškození vstupní branky / uzávěru koše']]),
+    C:makeCheckItems([['C1','Celkový stav / znečištění – vyhovuje'],['C4','Kola – stav vyhovuje'],['C_chassis','Podvozek / základna – stav vyhovuje'],['C9','Rameno – stav vyhovuje'],['C10','Kloub – stav vyhovuje'],['C6','Ovládací kabel – stav vyhovuje'],['C2','Schody / přístup do koše – stav vyhovuje'],['C8','Akumulátory – stav vyhovuje'],['C7','Podlaha koše / protiskluz – stav vyhovuje'],['C3','Zábradlí – stav vyhovuje'],['C_gate','Vstupní dvířka / hrazda – stav vyhovuje'],['C_complete','Konstrukce kompletní'],['C11','Hydraulické válce – stav vyhovuje'],['C12','Hydraulické hadice – stav vyhovuje'],['C13','Hydraulická soustava těsná']]),
     E:[{k:'E16',l:'Funkce nouzového spouštění',printLabel:'16. Funkce nouzového spouštění',desc:true},{k:'E17',l:'Funkce nosnosti koše',printLabel:'17. Funkce nosnosti koše',desc:true},{k:'E18',l:'Funkce nabíječe',printLabel:'18. Funkce nabíječe',desc:true,chargerCheck:true},{k:'E_socket230',l:'Kontrola zásuvky v koši 230 V',printLabel:'19. Kontrola zásuvky v koši 230 V',desc:true,socketCheck:true},{k:'E19',l:'Funkce spodního ovládacího panelu',printLabel:'20. Funkce spodního ovládacího panelu',desc:true},{k:'E20',l:'Funkce horního ovládacího panelu',printLabel:'21. Funkce horního ovládacího panelu',desc:true},{k:'E_safety',l:'Funkce bezpečnostních prvků / blokací',printLabel:'22. Funkce bezpečnostních prvků / blokací',desc:true}]
   },
   mast: {
-    C:makeCheckItems([['C1','Celkové znečištění'],['C2','Poškození nátěru'],['C3','Poškození kol'],['C_chassis','Poškození podvozku / základny'],['C_complete','Nekompletnost konstrukce'],['C7','Poškození akumulátorů'],['C8','Poškození sloupu / ramene'],['C9','Poškození hydr. válců'],['C10','Poškození hydr. hadic'],['C11','Netěsnost hydr. soustavy'],['C5','Poškození ovládacího kabelu'],['C6','Poškození podlahy koše / protiskluzu'],['C2b','Poškození zábradlí'],['C_gate','Poškození vstupní branky / uzávěru koše']]),
+    C:makeCheckItems([['C1','Celkový stav / znečištění – vyhovuje'],['C3','Kola – stav vyhovuje'],['C_chassis','Podvozek / základna – stav vyhovuje'],['C8','Sloup / rameno – stav vyhovuje'],['C5','Ovládací kabel – stav vyhovuje'],['C7','Akumulátory – stav vyhovuje'],['C6','Podlaha koše / protiskluz – stav vyhovuje'],['C2b','Zábradlí – stav vyhovuje'],['C_gate','Vstupní dvířka / hrazda – stav vyhovuje'],['C_complete','Konstrukce kompletní'],['C9','Hydraulické válce – stav vyhovuje'],['C10','Hydraulické hadice – stav vyhovuje'],['C11','Hydraulická soustava těsná']]),
     E:[{k:'E14',l:'Funkce nouzového spouštění',printLabel:'14. Funkce nouzového spouštění',desc:true},{k:'E15',l:'Funkce nosnosti koše',printLabel:'15. Funkce nosnosti koše',desc:true},{k:'E16',l:'Funkce nabíječe',printLabel:'16. Funkce nabíječe',desc:true,chargerCheck:true},{k:'E_socket230',l:'Kontrola zásuvky v koši 230 V',printLabel:'17. Kontrola zásuvky v koši 230 V',desc:true,socketCheck:true},{k:'E17',l:'Funkce spodního ovládacího panelu',printLabel:'18. Funkce spodního ovládacího panelu',desc:true},{k:'E18',l:'Funkce horního ovládacího panelu',printLabel:'19. Funkce horního ovládacího panelu',desc:true},{k:'E_safety',l:'Funkce bezpečnostních prvků / blokací',printLabel:'20. Funkce bezpečnostních prvků / blokací',desc:true}]
   }
 };
@@ -336,9 +337,9 @@ function hasStabilizers(model){
 }
 function getBoomC(model){
   const base = [
-    ['C1','Celkové znečištění'],['C2','Poškození nátěru'],['C4','Poškození kol'],['C_chassis','Poškození podvozku / základny'],['C_complete','Nekompletnost konstrukce'],['C8','Poškození akumulátorů'],['C9','Poškození ramene'],['C10','Poškození kloubu'],['C11','Poškození hydr. válců'],['C12','Poškození hydr. hadic'],['C13','Netěsnost hydr. soustavy'],['C6','Poškození ovládacího kabelu'],['C2b','Poškození schodů / přístupu do koše'],['C7','Poškození podlahy koše / protiskluzu'],['C3','Poškození zábradlí'],['C_gate','Poškození vstupní branky / uzávěru koše']
+    ['C1','Celkový stav / znečištění – vyhovuje'],['C4','Kola – stav vyhovuje'],['C_chassis','Podvozek / základna – stav vyhovuje'],['C9','Rameno – stav vyhovuje'],['C10','Kloub – stav vyhovuje'],['C6','Ovládací kabel – stav vyhovuje'],['C2b','Schody / přístup do koše – stav vyhovuje'],['C8','Akumulátory – stav vyhovuje'],['C7','Podlaha koše / protiskluz – stav vyhovuje'],['C3','Zábradlí – stav vyhovuje'],['C_gate','Vstupní dvířka / hrazda – stav vyhovuje'],['C_complete','Konstrukce kompletní'],['C11','Hydraulické válce – stav vyhovuje'],['C12','Hydraulické hadice – stav vyhovuje'],['C13','Hydraulická soustava těsná']
   ];
-  if(hasStabilizers(model)) base.splice(4, 0, ['C_stabilizers','Poškození stabilizátorů']);
+  if(hasStabilizers(model)) base.splice(3, 0, ['C_stabilizers','Stabilizátory – stav vyhovuje']);
   return makeCheckItems(base);
 }
 function getSectionsForRecord(record){
@@ -670,7 +671,7 @@ function isRevizeExpired(r){
   return revEnd < checkDate;
 }
 function syncRevizeIssue(r){ if(!isRevizeExpired(r)) return; r.B2 = 'NE'; r.zaverOprava = 'ANO'; r.zaverBezpecny = 'NE'; const msg = 'Prošlá platnost revize.'; const cur = String(r.B2_p||'').trim(); r.B2_p = !cur ? msg : (cur.toLowerCase().includes('prošlá platnost revize') ? cur : cur + ' ' + msg); }
-function isInvertedIssueKey(key){ return isGeneralCheckKey(key) || key === 'zaverServis' || key === 'zaverOprava'; }
+function isInvertedIssueKey(key){ return key === 'zaverServis' || key === 'zaverOprava'; }
 function isProblemAnswer(key, value){
   if(value !== 'ANO' && value !== 'NE') return false;
   return isInvertedIssueKey(key) ? value === 'ANO' : value === 'NE';
@@ -791,7 +792,7 @@ function showStep(){
   } else if(s.type === 'yn'){
     html = `<div class="yesno"><button class="yn-btn ${yesClass}" data-answer="ANO">✔ ANO</button><button class="yn-btn ${noClass}" data-answer="NE">✖ NE</button></div>`;
   } else if(s.type === 'yntext' || s.type === 'yntextphoto'){
-    const needsNote = s.k === 'B1' ? rec[s.k]==='NE' : (isGeneralCheckKey(s.k) ? rec[s.k]==='ANO' : rec[s.k]==='NE');
+    const needsNote = isProblemAnswer(s.k, rec[s.k]);
     const label = s.k === 'B1' ? 'Závady' : 'Popis závady';
     const issuePhoto = (rec.issuePhotos || {})[s.k] || {};
     const issueSrc = getPhotoSrc(issuePhoto);
@@ -935,7 +936,7 @@ function showStep(){
   els.content.querySelectorAll('[data-answer]').forEach(btn => btn.addEventListener('click', () => { rec[s.k] = btn.dataset.answer; nextStep(); }));
   els.content.querySelectorAll('[data-answer-text]').forEach(btn => btn.addEventListener('click', () => {
     rec[s.k] = btn.dataset.answerText;
-    const needsNote = s.k === 'B1' ? btn.dataset.answerText === 'NE' : (isGeneralCheckKey(s.k) ? btn.dataset.answerText === 'ANO' : btn.dataset.answerText === 'NE');
+    const needsNote = isProblemAnswer(s.k, btn.dataset.answerText);
     if(!needsNote){
       rec[s.textKey] = '';
       nextStep();
@@ -974,9 +975,7 @@ function hideSuggestions(){ const host = document.getElementById('suggestHost');
 
 function shouldShowIssuePhoto(step, value){
   if(!step || step.type !== 'yntextphoto') return false;
-  if(step.k === 'B1') return value === 'NE';
-  if(isGeneralCheckKey(step.k)) return value === 'ANO';
-  return value === 'NE';
+  return isProblemAnswer(step.k, value);
 }
 function getPhotoSrc(photo){ return photo ? (photo.url || photo.dataUrl || '') : ''; }
 let lightboxImages = [];
@@ -1069,7 +1068,7 @@ async function nextStep(){
   const activeSteps = getStepsForRecord(rec);
   const s = activeSteps[stepIndex];
   if(s.type === 'yntext' || s.type === 'yntextphoto'){
-    const needsNote = s.k === 'B1' ? rec[s.k] === 'NE' : (isGeneralCheckKey(s.k) ? rec[s.k] === 'ANO' : rec[s.k] === 'NE');
+    const needsNote = isProblemAnswer(s.k, rec[s.k]);
     if(needsNote) rec[s.textKey] = document.getElementById('descInput')?.value || rec[s.textKey] || '';
   }
   if(['text','textarea','branchSelect','technikSelect','yearInput','date','modelSelect','number'].includes(s.type)) addSuggestion(s.k, rec[s.k]);

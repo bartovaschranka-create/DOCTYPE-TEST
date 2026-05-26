@@ -349,9 +349,82 @@ body.dark .summary-card .summary-grid .stat.stat-ok{background:#16a34a!important
   #preview .paper .print-page-break{break-before:page!important;page-break-before:always!important;height:0!important;margin:0!important;padding:0!important}
 }
 
+
+
+/* v45 final: readable preview + readable 2-page portrait print, light gray section shading */
+#preview .modal-content{width:min(96vw,1120px)!important;max-height:94vh!important;}
+#preview .preview-shell{background:#f8fafc!important;}
+#preview .paper-wrap{background:#e5e7eb!important;padding:18px!important;border-radius:16px!important;overflow:auto!important;}
+.paper{width:210mm!important;max-width:none!important;margin:0 auto!important;background:#fff!important;color:#111827!important;border:1px solid #d1d5db!important;box-shadow:0 10px 28px rgba(15,23,42,.08)!important;font-size:9.6px!important;line-height:1.22!important;}
+.paper-page{width:210mm!important;min-height:297mm!important;padding:8mm 8mm 7mm 8mm!important;box-sizing:border-box!important;overflow:hidden!important;background:#fff!important;}
+.paper-head{border-bottom:1.5px solid #94a3b8!important;margin-bottom:6px!important;padding-bottom:5px!important;}
+.paper-kicker{color:#334155!important;font-size:7.6px!important;letter-spacing:.06em!important;}
+.paper h2{font-size:16px!important;line-height:1.15!important;margin:1px 0 2px!important;color:#111827!important;}
+.paper .subhead{font-size:8.4px!important;color:#334155!important;line-height:1.15!important;}
+.paper-no{border:1px solid #cbd5e1!important;border-radius:5px!important;background:#f8fafc!important;color:#111827!important;}
+.paper table{width:100%!important;border-collapse:collapse!important;table-layout:auto!important;margin-bottom:4px!important;}
+.paper td,.paper th{border:1px solid #cbd5e1!important;padding:2.6px 3.4px!important;vertical-align:top!important;background:#fff!important;color:#111827!important;}
+.paper th{background:#f3f4f6!important;font-weight:800!important;color:#111827!important;}
+.paper .top-table td{padding:2.8px 4px!important;}
+.paper .section-title{background:#f3f4f6!important;border:1px solid #cbd5e1!important;border-bottom:0!important;color:#111827!important;margin:5px 0 0!important;padding:3.2px 5px!important;font-size:9.3px!important;font-weight:850!important;letter-spacing:.01em!important;}
+.paper .section-block{margin-bottom:4px!important;break-inside:avoid!important;page-break-inside:avoid!important;}
+.paper .check-col{width:10%!important;text-align:center!important;white-space:nowrap!important;color:#111827!important;font-weight:700!important;}
+.paper .desc-col{width:26%!important;}
+.paper .notes{min-height:17px!important;}
+.paper .markbox{display:inline-block!important;border:0!important;background:transparent!important;color:#111827!important;font-family:Arial,sans-serif!important;font-size:9px!important;font-weight:700!important;line-height:1!important;width:auto!important;height:auto!important;}
+.paper .markbox::before{content:''!important;}
+.paper .markbox:not(:empty)::before{content:''!important;}
+.paper tr.status-bad td,.paper tr.status-bad th{background:#fff!important;border-color:#111827!important;}
+.paper .issue-label{background:#fff!important;color:#111827!important;border:1px solid #111827!important;font-size:6.8px!important;padding:0 3px!important;margin-right:3px!important;}
+.paper .photo-grid{grid-template-columns:repeat(6,1fr)!important;gap:3px!important;margin:2px 0!important;}
+.paper .photo-box{border:1px solid #cbd5e1!important;min-height:48px!important;font-size:6.4px!important;padding:1.8px!important;background:#fff!important;}
+.paper .photo-box img{height:35px!important;width:100%!important;object-fit:cover!important;margin-bottom:1px!important;}
+.paper .issue-photo-grid{grid-template-columns:repeat(4,1fr)!important;gap:3px!important;margin:2px 0!important;}
+.paper .issue-photo-box{border:1px solid #cbd5e1!important;min-height:44px!important;font-size:6.4px!important;padding:1.8px!important;background:#fff!important;}
+.paper .issue-photo-box img{height:31px!important;width:100%!important;object-fit:cover!important;margin-bottom:1px!important;}
+.paper .footer-grid{gap:7px!important;margin-top:5px!important;}
+.paper .sign-box{border:1px solid #cbd5e1!important;min-height:36px!important;padding:6px!important;background:#fff!important;}
+.paper-two-col{display:grid!important;grid-template-columns:.7fr 1.3fr!important;gap:5mm!important;align-items:start!important;}
+@media print{
+  @page{size:A4 portrait!important;margin:6mm!important;}
+  html,body{background:#fff!important;width:auto!important;height:auto!important;}
+  #preview .modal-content,#preview .preview-shell,#preview .paper-wrap{width:100%!important;max-width:none!important;max-height:none!important;margin:0!important;padding:0!important;background:#fff!important;border:0!important;border-radius:0!important;box-shadow:none!important;overflow:visible!important;}
+  #preview .paper{width:100%!important;max-width:none!important;margin:0!important;padding:0!important;border:0!important;box-shadow:none!important;font-size:8.45px!important;line-height:1.09!important;color:#111827!important;background:#fff!important;}
+  #preview .paper-page{width:100%!important;min-height:calc(297mm - 12mm)!important;max-height:calc(297mm - 12mm)!important;padding:3.6mm 4.2mm!important;box-sizing:border-box!important;overflow:hidden!important;background:#fff!important;}
+  #preview .paper-head{margin-bottom:3px!important;padding-bottom:3px!important;border-bottom:1px solid #9ca3af!important;}
+  #preview .paper h2{font-size:12.2px!important;line-height:1.1!important;margin:0 0 1px!important;}
+  #preview .paper .subhead{font-size:6.9px!important;line-height:1.08!important;margin:0!important;color:#374151!important;}
+  #preview .paper .paper-kicker{font-size:6.4px!important;color:#374151!important;letter-spacing:.06em!important;}
+  #preview .paper .paper-no{border:1px solid #9ca3af!important;border-radius:3px!important;padding:2px 4px!important;min-width:27mm!important;background:#f3f4f6!important;color:#111827!important;}
+  #preview .paper .paper-no span{font-size:5.8px!important;color:#374151!important;}
+  #preview .paper .paper-no strong{font-size:7.8px!important;margin:0!important;color:#111827!important;}
+  #preview .paper table{table-layout:auto!important;width:100%!important;margin-bottom:2px!important;border-collapse:collapse!important;}
+  #preview .paper td,#preview .paper th{padding:1.35px 2px!important;border:1px solid #9ca3af!important;vertical-align:top!important;color:#111827!important;}
+  #preview .paper th{background:#f3f4f6!important;font-weight:800!important;}
+  #preview .paper .top-table td{padding:1.35px 2px!important;}
+  #preview .paper .section-block{margin-bottom:2.5px!important;break-inside:avoid!important;page-break-inside:avoid!important;}
+  #preview .paper .section-title{font-size:7.8px!important;margin:2.5px 0 0!important;padding:1.5px 2.4px!important;border:1px solid #9ca3af!important;border-bottom:0!important;background:#f3f4f6!important;color:#111827!important;}
+  #preview .paper .check-col{width:9%!important;text-align:center!important;white-space:nowrap!important;color:#111827!important;font-weight:700!important;}
+  #preview .paper .desc-col{width:25%!important;}
+  #preview .paper .markbox{font-size:8.2px!important;border:0!important;background:transparent!important;color:#111827!important;width:auto!important;height:auto!important;}
+  #preview .paper .notes{min-height:12px!important;}
+  #preview .paper .issue-label{font-size:5.8px!important;padding:0 2px!important;border:1px solid #111827!important;background:#fff!important;color:#111827!important;}
+  #preview .paper .paper-two-col{display:grid!important;grid-template-columns:.72fr 1.28fr!important;gap:3.8mm!important;}
+  #preview .paper .photo-grid{grid-template-columns:repeat(6,1fr)!important;gap:2px!important;margin:1.5px 0!important;}
+  #preview .paper .photo-box{min-height:34px!important;font-size:5.5px!important;padding:1px!important;border:1px solid #9ca3af!important;}
+  #preview .paper .photo-box img{height:24px!important;margin-bottom:.8px!important;object-fit:cover!important;}
+  #preview .paper .issue-photo-grid{grid-template-columns:repeat(4,1fr)!important;gap:2px!important;margin:1.5px 0!important;}
+  #preview .paper .issue-photo-box{min-height:35px!important;font-size:5.5px!important;padding:1px!important;border:1px solid #9ca3af!important;}
+  #preview .paper .issue-photo-box img{height:25px!important;margin-bottom:.8px!important;object-fit:cover!important;}
+  #preview .paper .footer-grid{gap:4px!important;margin-top:2.2px!important;}
+  #preview .paper .sign-box{min-height:25px!important;padding:3px!important;border:1px solid #9ca3af!important;}
+  #preview .paper .print-page-break{break-before:page!important;page-break-before:always!important;height:0!important;margin:0!important;padding:0!important;}
+  *{-webkit-print-color-adjust:exact!important;print-color-adjust:exact!important;}
+}
+
 </style>
 <!-- v28_print_fix_order -->
-<!-- v44_panel_print_formal -->
+<!-- v45_preview_print_readable -->
 </head>
 <body>
 <aside class="app-sidebar" aria-label="Hlavní navigace">
@@ -365,7 +438,7 @@ body.dark .summary-card .summary-grid .stat.stat-ok{background:#16a34a!important
     <button type="button" onclick="window._openWizard()">Nový protokol</button>
     <a href="#settings" onclick="document.getElementById('settingsBtn').click();return false;">Nastavení</a>
   </nav>
-  <div class="side-bottom"><strong>Verze:</strong><br>TEST v44</div>
+  <div class="side-bottom"><strong>Verze:</strong><br>TEST v45</div>
 </aside>
 <div id="sidebarOverlay" class="sidebar-overlay"></div>
 <header>
@@ -1638,7 +1711,7 @@ function printCurrent(){
   @page{size:A4 portrait;margin:5mm!important}
 }
 
-</style><!-- v44_panel_print_formal -->
+</style><!-- v45_preview_print_readable -->
 </head><body>${paperHtml}<scr` + `ipt>function doPrint(){setTimeout(function(){window.focus();window.print();},250)}; if(document.readyState === 'complete'){doPrint()} else {window.onload=doPrint;}</scr` + `ipt></body></html>`);
     popup.document.close();
     return;

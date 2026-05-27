@@ -301,13 +301,182 @@ body.dark .summary-card .summary-grid .stat.stat-ok{background:#16a34a!important
   }
 }
 
+
+/* v50 sidebar restore */
+header{
+  justify-content:flex-start!important;
+}
+.menu-toggle{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  margin-right:4px;
+}
+.side-panel{
+  position:fixed;
+  left:0;
+  top:0;
+  bottom:0;
+  width:245px;
+  z-index:35;
+  background:#071120;
+  color:#e5e7eb;
+  border-right:1px solid rgba(255,255,255,.08);
+  box-shadow:12px 0 30px rgba(15,23,42,.18);
+  padding:18px 14px;
+  display:flex;
+  flex-direction:column;
+  gap:18px;
+  transform:translateX(0);
+  transition:transform .22s ease;
+}
+.side-brand{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  padding:6px 4px 14px;
+  border-bottom:1px solid rgba(255,255,255,.1);
+}
+.side-logo{
+  width:34px;
+  height:34px;
+  border-radius:10px;
+  background:#2563eb;
+  color:#fff;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-weight:800;
+}
+.side-title{
+  font-weight:800;
+  font-size:.96rem;
+  letter-spacing:.01em;
+}
+.side-sub{
+  color:#94a3b8;
+  font-size:.78rem;
+  margin-top:2px;
+}
+.side-nav{
+  display:grid;
+  gap:7px;
+}
+.side-link{
+  width:100%;
+  text-align:left;
+  border-radius:12px;
+  padding:11px 12px;
+  background:transparent;
+  color:#cbd5e1;
+  border:1px solid transparent;
+  font-size:.92rem;
+  font-weight:650;
+}
+.side-link:hover,.side-link.active{
+  background:rgba(37,99,235,.16);
+  color:#fff;
+  border-color:rgba(96,165,250,.18);
+}
+.side-bottom{
+  margin-top:auto;
+  display:grid;
+  gap:8px;
+  padding-top:14px;
+  border-top:1px solid rgba(255,255,255,.1);
+}
+.side-small{
+  width:100%;
+  text-align:left;
+  border-radius:10px;
+  padding:9px 10px;
+  background:rgba(255,255,255,.06);
+  color:#dbeafe;
+  border:1px solid rgba(255,255,255,.08);
+  font-size:.82rem;
+}
+.side-version{
+  color:#94a3b8;
+  font-size:.78rem;
+  padding:6px 2px 0;
+}
+.side-overlay{
+  display:none;
+  position:fixed;
+  inset:0;
+  background:rgba(15,23,42,.45);
+  z-index:30;
+}
+.container{
+  transition:margin-left .22s ease, max-width .22s ease;
+}
+@media (min-width:921px){
+  body:not(.side-collapsed) .container{
+    margin-left:245px;
+    max-width:calc(100vw - 285px);
+  }
+  body.side-collapsed .side-panel{
+    transform:translateX(-245px);
+  }
+}
+@media (max-width:920px){
+  .side-panel{
+    width:min(82vw,300px);
+    transform:translateX(-105%);
+    padding-top:calc(env(safe-area-inset-top,0px) + 16px);
+  }
+  body.side-open .side-panel{
+    transform:translateX(0);
+  }
+  body.side-open .side-overlay{
+    display:block;
+  }
+  .side-link{
+    font-size:.9rem;
+    padding:10px 11px;
+  }
+  .side-title{
+    font-size:.92rem;
+  }
+}
+@media print{
+  .side-panel,.side-overlay,header{
+    display:none!important;
+  }
+  body:not(.side-collapsed) .container{
+    margin-left:0!important;
+    max-width:none!important;
+  }
+}
+
 </style>
 </head>
 <body>
 <header>
+  <button id="sideToggleBtn" class="settings-btn menu-toggle" type="button" aria-label="Menu">☰</button>
   <div class="header-title">Čtvrtletní kontroly <span class="test-badge">TEST</span></div>
-  <button id="settingsBtn" class="settings-btn" type="button" aria-label="Nastavení">⚙</button>
 </header>
+<div id="sideOverlay" class="side-overlay"></div>
+<aside id="sidePanel" class="side-panel">
+  <div class="side-brand">
+    <div class="side-logo">✓</div>
+    <div>
+      <div class="side-title">Čtvrtletní kontroly</div>
+      <div class="side-sub">TEST v50</div>
+    </div>
+  </div>
+  <nav class="side-nav">
+    <button type="button" class="side-link active" data-side-action="overview">Přehled</button>
+    <button type="button" class="side-link" onclick="window._openWizard()">Nový protokol</button>
+    <button type="button" class="side-link" data-side-action="protocols">Protokoly</button>
+    <button type="button" class="side-link" id="sideSettingsBtn">Nastavení</button>
+  </nav>
+  <div class="side-bottom">
+    <button type="button" class="side-small" id="sideThemeBtn">Tmavý / světlý režim</button>
+    <button type="button" class="side-small" onclick="exportBackup()">Export zálohy</button>
+    <div class="side-version">Verze: TEST v50</div>
+  </div>
+</aside>
 
 <div class="container" id="appRoot">
   <div class="dashboard">
@@ -1619,7 +1788,25 @@ applyTheme(localStorage.getItem('doctypeTheme') || 'light');
 document.getElementById('themeToggle')?.addEventListener('click', toggleTheme);
 els.searchInput.addEventListener('input', render);
 els.statusFilter.addEventListener('change', render);
-document.getElementById('settingsBtn')?.addEventListener('click', () => openModal(document.getElementById('settingsModal')));
+const sideToggleBtn = document.getElementById('sideToggleBtn');
+const sidePanel = document.getElementById('sidePanel');
+const sideOverlay = document.getElementById('sideOverlay');
+function toggleSidePanel(){
+  if(window.matchMedia('(max-width:920px)').matches){
+    document.body.classList.toggle('side-open');
+  } else {
+    document.body.classList.toggle('side-collapsed');
+  }
+}
+function closeSidePanel(){
+  document.body.classList.remove('side-open');
+}
+sideToggleBtn?.addEventListener('click', toggleSidePanel);
+sideOverlay?.addEventListener('click', closeSidePanel);
+document.getElementById('sideSettingsBtn')?.addEventListener('click', () => { closeSidePanel(); openModal(document.getElementById('settingsModal')); });
+document.getElementById('sideThemeBtn')?.addEventListener('click', toggleTheme);
+document.querySelector('[data-side-action="protocols"]')?.addEventListener('click', () => { closeSidePanel(); document.querySelector('.toolbar')?.scrollIntoView({behavior:'smooth'}); });
+document.querySelector('[data-side-action="overview"]')?.addEventListener('click', () => { closeSidePanel(); window.scrollTo({top:0,behavior:'smooth'}); });
 document.getElementById('closeSettingsBtn')?.addEventListener('click', () => closeModal(document.getElementById('settingsModal')));
 document.getElementById('newProtocolBtn').addEventListener('click', () => openWizard());
 document.getElementById('clearAllBtn').addEventListener('click', clearAllData);

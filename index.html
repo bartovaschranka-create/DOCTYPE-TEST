@@ -7,7 +7,7 @@
 <meta name="mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-<meta name="apple-mobile-web-app-title" content="Čtvrtletní kontroly TEST">
+<meta name="apple-mobile-web-app-title" content="Čtvrtletní kontroly">
 <title>Čtvrtletní kontroly TEST</title>
 <link rel="manifest" href="manifest.json">
 <link rel="apple-touch-icon" href="icon-192.png">
@@ -61,8 +61,7 @@ button{border:none;border-radius:14px;padding:11px 14px;cursor:pointer;font-weig
 .field{margin-top:12px} label{display:block;font-size:.86rem;color:var(--muted);margin-bottom:7px;font-weight:600} input,textarea,select{width:100%;padding:13px 14px;border-radius:16px;border:1px solid var(--line);font-size:1rem;background:#fff;color:var(--text);outline:none}
 input::placeholder, textarea::placeholder{color:#334155;font-weight:600;font-size:1rem;opacity:1} textarea{min-height:110px;resize:vertical}
 .suggest-wrap{position:relative}.suggest-box{position:absolute;left:0;right:0;top:calc(100% + 8px);border:1px solid var(--line);border-radius:14px;background:#fff;max-height:220px;overflow:auto;box-shadow:0 10px 24px rgba(15,23,42,.08);z-index:20}.suggest-item{padding:10px 12px;cursor:pointer;border-bottom:1px solid #eef2f7;font-size:.95rem}.suggest-item:last-child{border-bottom:none}.suggest-item:hover{background:#f8fbff}.helper{font-size:.8rem;color:var(--muted);margin-top:6px}
-body.dark .suggest-box{background:#0f172a;color:#e5e7eb;border-color:#334155;box-shadow:0 12px 28px rgba(0,0,0,.38)}body.dark .suggest-item{color:#e5e7eb;border-bottom-color:#243244}body.dark .suggest-item:hover{background:#1e293b;color:#fff}
-.wizard-actions{display:flex;justify-content:space-between;gap:10px;margin-top:18px;position:sticky;bottom:0;background:linear-gradient(180deg,rgba(255,255,255,0) 0%,#fff 20%);padding-top:16px}body.dark .wizard-actions{background:linear-gradient(180deg,rgba(17,24,39,0) 0%,#111827 20%)}
+.wizard-actions{display:flex;justify-content:space-between;gap:10px;margin-top:18px;position:sticky;bottom:0;background:linear-gradient(180deg,rgba(255,255,255,0) 0%,#fff 20%);padding-top:16px}
 .preview-header{display:flex;justify-content:space-between;gap:10px;align-items:center;margin-bottom:12px}.preview-title{font-size:1.05rem;font-weight:700}.preview-actions{display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap;margin-top:14px}.preview-actions-left,.preview-actions-right{display:flex;gap:10px;flex-wrap:wrap}
 .paper-wrap{background:#fff;padding:12px;border-radius:18px;overflow:auto}.paper{background:#fff;color:#000;padding:9mm 8mm 8mm 8mm;font-size:10.9px;line-height:1.24;border:none;box-shadow:none;width:210mm;max-width:100%;margin:0 auto}.paper h2{margin:0 0 6px;text-align:center;font-size:18px;letter-spacing:.6px;font-weight:700}.paper .subhead{margin:0 0 9px;text-align:center;font-size:10.2px;color:#000}.paper table{width:100%;border-collapse:collapse;margin-bottom:6px;table-layout:auto}
 .paper table tr{page-break-inside:avoid;break-inside:avoid}
@@ -70,38 +69,7 @@ body.dark .suggest-box{background:#0f172a;color:#e5e7eb;border-color:#334155;box
 .paper .section-block{page-break-before:auto}.paper .section-title{font-weight:700;margin:9px 0 4px;font-size:11.1px;background:#fff;color:#000;border-top:2px solid #000;border-bottom:2px solid #000;border-left:1px solid #000;border-right:1px solid #000;padding:4px 7px;letter-spacing:.1px}.paper .check-col{width:18%;font-weight:600;white-space:nowrap}.paper .desc-col{width:22%}.paper .status-ok{background:#fff}.paper tr.status-bad td,.paper tr.status-bad th{background:#fee2e2!important;border:2px solid #dc2626!important}.issue-label{display:inline-block;margin-right:4px;padding:2px 5px;border:1px solid #dc2626;color:#991b1b;font-weight:700;font-size:8px;background:#fff1f2}.paper .crossed-out td{color:#666;text-decoration:line-through}.paper .expired{background:#fff;color:#000;font-weight:700}.paper .notes{min-height:34px}.paper .footer-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:8px;page-break-inside:avoid;break-inside:avoid}.paper .sign-box{border:1px solid #000;padding:12px;min-height:80px}.paper .mono{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-weight:400;letter-spacing:.2px}.paper .evaluation-text{font-weight:700}
 .qr-reader{width:100%;min-height:280px;border:1px dashed var(--line);border-radius:18px;overflow:hidden;background:#0f172a}.qr-help{margin-top:10px;padding:12px 14px;border-radius:14px;background:#f8fbff;border:1px solid var(--line);font-size:.9rem;color:var(--muted)}.history-list{display:grid;gap:10px}.history-item{padding:12px;border:1px solid var(--line);border-radius:14px;background:#fff}
 .hidden{display:none !important}
-@media print{
-body{background:#fff}body *{visibility:hidden}#preview,#preview *{visibility:visible}
-#preview{position:absolute;left:0;top:0;width:100%;display:block !important;background:#fff;padding:0;margin:0}
-#preview .modal-content{width:100% !important;max-height:none !important;overflow:visible !important;border-radius:0 !important;box-shadow:none !important;background:#fff !important}
-#preview .preview-shell{padding:0 !important;background:#fff !important;overflow:visible !important}
-#preview .preview-header,#preview .preview-actions{display:none !important}
-#preview .paper-wrap{padding:0;background:#fff;border-radius:0;overflow:visible !important}
-#preview .paper{box-shadow:none;width:auto;max-width:none;margin:0;padding:3.8mm 4.2mm 3.8mm 4.2mm;font-size:8.65px;line-height:1.08}
-#preview .paper h2{font-size:13.5px;margin-bottom:2px;letter-spacing:.35px}
-#preview .paper .subhead{font-size:7.9px;margin-bottom:3px;line-height:1.08}
-#preview .paper table{margin-bottom:2.6px}
-#preview .paper td,#preview .paper th{padding:1.8px 2.6px}
-#preview .paper .top-table td{padding:1.7px 2.5px}
-#preview .paper .section-block{margin-bottom:2.8px;page-break-inside:avoid;break-inside:avoid}
-#preview .paper .section-title{font-size:8.9px;margin:3.4px 0 1.8px;padding:1.8px 3.8px;page-break-after:avoid;break-after:avoid}
-#preview .paper table tr{page-break-inside:avoid;break-inside:avoid}
-#preview .paper .check-col{width:16%}.paper .desc-col{width:20%}
-#preview .paper .issue-label{font-size:6.8px;padding:1px 3px}
-#preview .paper .notes{min-height:15px}
-#preview .paper .footer-grid{gap:5px;margin-top:3px;page-break-inside:avoid;break-inside:avoid}
-#preview .paper .sign-box{min-height:34px;padding:5px}
-#preview .paper .photo-grid{gap:3px;margin:2.5px 0;grid-template-columns:repeat(6,1fr)}
-#preview .paper .photo-box{min-height:45px;font-size:6.4px;padding:1.8px}
-#preview .paper .photo-box img{height:34px;margin-bottom:1.6px}
-#preview .paper .issue-photo-grid{gap:4px;margin:3px 0;grid-template-columns:repeat(3,1fr)}
-#preview .paper .issue-photo-box{min-height:52px;font-size:6.4px;padding:2px}
-#preview .paper .issue-photo-box img{height:38px;margin-bottom:1.6px}
-#preview .paper .print-page-break{break-before:page;page-break-before:always;height:0;margin:0;padding:0}
-@page{size:A4 portrait;margin:5mm}
-html,body{width:auto;height:auto}
-*{-webkit-print-color-adjust:exact;print-color-adjust:exact}
-}
+@media print{body{background:#fff}body *{visibility:hidden}#preview,#preview *{visibility:visible}#preview{position:absolute;left:0;top:0;width:100%;display:block !important;background:#fff;padding:0;margin:0}#preview .modal-content{width:100% !important;max-height:none !important;overflow:visible !important;border-radius:0 !important;box-shadow:none !important;background:#fff !important}#preview .preview-shell{padding:0 !important;background:#fff !important;overflow:visible !important}#preview .preview-header,#preview .preview-actions{display:none !important}#preview .paper-wrap{padding:0;background:#fff;border-radius:0;overflow:visible !important}#preview .paper{box-shadow:none;width:auto;max-width:none;margin:0;padding:7mm 7mm 6mm 7mm}#preview .paper table tr{page-break-inside:avoid;break-inside:avoid}#preview .paper .section-title{page-break-after:avoid}#preview .paper .footer-grid{page-break-inside:avoid;break-inside:avoid}@page{size:A4 portrait;margin:6mm}}
 @media (max-width:920px){.dashboard{grid-template-columns:1fr}.meta-grid{grid-template-columns:1fr 1fr}}
 @media (max-width:640px){.container{padding:14px}.toolbar,.preview-header,.preview-actions{flex-direction:column;align-items:stretch}.meta-grid,.yesno,.summary-grid{grid-template-columns:1fr}.modal-content{width:100%;max-height:100vh;border-radius:18px}.search{min-width:0;width:100%}.toolbar-right{width:100%}.hero-actions{flex-direction:column}.hero-actions button{width:100%}}
 
@@ -117,404 +85,244 @@ body.dark .summary-card .summary-grid .stat.stat-total{background:var(--panel2)!
 body.dark .summary-card .summary-grid .stat.stat-issues{background:#dc2626!important;color:#fff!important;border-color:#b91c1c!important;}
 body.dark .summary-card .summary-grid .stat.stat-ok{background:#16a34a!important;color:#fff!important;border-color:#15803d!important;}
 
-/* v39 unified visual from clean base */
-@media (min-width: 921px){
-  body{background:#f6f8fb;}
-  .app-sidebar{position:fixed;left:0;top:0;bottom:0;width:190px;background:linear-gradient(180deg,#061426 0%,#0b1b2f 100%);color:#e5eefb;z-index:35;padding:18px 14px;display:flex;flex-direction:column;box-shadow:8px 0 24px rgba(15,23,42,.14)}
-  .side-brand{display:flex;align-items:center;gap:10px;margin-bottom:22px;font-size:.78rem;line-height:1.1;letter-spacing:.02em}
-  .side-brand span{display:block;color:#22c55e;font-weight:800;margin-top:2px}
-  .side-logo{width:42px;height:42px;border-radius:10px;object-fit:cover}
-  .side-nav{display:grid;gap:6px}
-  .side-nav a,.side-nav button{display:flex;align-items:center;gap:8px;width:100%;border:0;background:transparent;color:#dbeafe;text-align:left;text-decoration:none;padding:11px 12px;border-radius:10px;font-weight:700;font-size:.9rem}
-  .side-nav a.active,.side-nav a:hover,.side-nav button:hover{background:#132b4a;color:#fff}
-  .side-bottom{margin-top:auto;border-top:1px solid rgba(255,255,255,.12);padding-top:14px;color:#94a3b8;font-size:.78rem}
-  header{left:190px;width:calc(100% - 190px);background:#fff!important;color:#0f172a;box-shadow:0 1px 0 #e5eaf2;padding:14px 28px;min-height:64px;align-items:center}
-  header .header-title{font-size:1.32rem;color:#0f172a}
-  header .settings-btn{background:#fff;border:1px solid #dbe6f2;color:#0f172a}
-  .container{max-width:none;margin-left:190px;padding:26px 34px}
-}
-@media (max-width: 920px){
-  .app-sidebar{display:none}
-}
-
-.dashboard{display:grid;grid-template-columns:1fr;gap:14px;margin-bottom:18px}
-.dashboard-head{display:flex;justify-content:space-between;align-items:center;gap:14px;background:transparent;border:0;box-shadow:none;padding:0}
-.dash-title{font-size:1.35rem;font-weight:800}
-.dash-sub{font-size:.86rem;color:var(--muted);margin-top:4px}
-.new-top-btn{border-radius:10px;padding:10px 16px;background:#2563eb}
-.summary-card{padding:0;background:transparent!important;border:0!important;box-shadow:none!important}
-.summary-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:0}
-.summary-grid .stat{display:flex;align-items:center;gap:14px;min-height:92px;border-radius:14px;padding:18px;background:#fff;color:#0f172a;border:1px solid #e1e8f2;box-shadow:0 8px 20px rgba(15,23,42,.05)}
-.summary-grid .stat .stat-icon{width:46px;height:46px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:1.35rem;background:#eff6ff;color:#2563eb}
-.summary-grid .stat.stat-issues .stat-icon{background:#fff1f2;color:#dc2626}
-.summary-grid .stat.stat-ok .stat-icon{background:#ecfdf3;color:#15803d}
-.summary-grid .stat.stat-last .stat-icon{background:#f5f3ff;color:#7c3aed}
-.summary-grid .stat .stat-label{color:#475569;font-weight:800;font-size:.78rem;text-transform:uppercase;letter-spacing:.04em;margin-bottom:3px}
-.summary-grid .stat .stat-value{font-size:1.8rem;color:#0f172a;line-height:1}
-.summary-grid .stat .stat-note{font-size:.76rem;color:#64748b;margin-top:5px}
-.summary-card .summary-grid .stat.stat-issues,.summary-card .summary-grid .stat.stat-ok{background:#fff!important;color:#0f172a!important;border-color:#e1e8f2!important}
-.summary-card .summary-grid .stat.stat-issues .stat-value{color:#dc2626!important}
-.summary-card .summary-grid .stat.stat-ok .stat-value{color:#15803d!important}
-.summary-card .summary-grid .stat.stat-issues .stat-label,.summary-card .summary-grid .stat.stat-ok .stat-label{color:#475569!important}
-
-.toolbar{background:#fff;border:1px solid #e1e8f2;border-radius:14px;padding:14px;box-shadow:0 8px 20px rgba(15,23,42,.04)}
-.card{border-color:#e1e8f2;box-shadow:0 8px 20px rgba(15,23,42,.04)}
-.btn-print{background:#60a5fa!important;color:#fff}
-.btn-download{border-color:#86efac!important;color:#166534!important;background:#f0fdf4!important}
-
-@media (max-width: 640px){
-  header{background:#061426!important}
-  .dashboard-head{display:block}
-  .dash-sub{display:none}
-  .new-top-btn{width:100%;margin-top:10px}
-  .summary-grid{grid-template-columns:repeat(2,1fr)!important;gap:8px}
-  .summary-grid .stat{min-height:70px;padding:10px;gap:8px;border-radius:12px}
-  .summary-grid .stat-total,.summary-grid .stat-last{grid-column:1/-1}
-  .summary-grid .stat .stat-icon{width:34px;height:34px;font-size:1rem}
-  .summary-grid .stat .stat-value{font-size:1.38rem}
-  .summary-grid .stat .stat-label{font-size:.68rem}
-  .summary-grid .stat .stat-note{display:none}
-}
-
-/* Print/protocol visual */
-.paper{font-family:Inter,Arial,sans-serif;background:#fff;color:#111827;padding:0;width:210mm;max-width:100%;font-size:9.2px;line-height:1.18;border:1px solid #e5e7eb}
-.paper-page{padding:7mm 7mm 6mm 7mm;min-height:287mm}
-.paper-head{display:flex;justify-content:space-between;gap:12px;align-items:flex-start;border-bottom:2px solid #1e3a8a;padding-bottom:7px;margin-bottom:7px}
-.paper-head.compact{margin-bottom:6px}
-.paper-kicker{font-size:8px;font-weight:800;color:#1d4ed8;letter-spacing:.05em}
-.paper h2{margin:2px 0 2px;text-align:left;font-size:17px;letter-spacing:.2px}
-.paper .subhead{text-align:left;margin:0;color:#334155;font-size:8.6px}
-.paper-no{border:1px solid #cbd5e1;border-radius:6px;padding:6px 10px;min-width:35mm;text-align:center}
-.paper-no span{display:block;text-transform:uppercase;font-size:6.8px;color:#64748b;font-weight:800}
-.paper-no strong{display:block;font-size:11px;margin-top:2px}
-.paper table{border-collapse:collapse;width:100%;table-layout:auto;margin-bottom:5px}
-.paper td,.paper th{border:1px solid #cbd5e1;padding:3px 4px;vertical-align:middle}
-.paper th{background:#f8fafc;font-weight:800}
-.paper .top-table td{padding:3px 5px}
-.paper .section-title{margin:7px 0 0;background:#f8fafc;border:1px solid #cbd5e1;border-bottom:0;padding:4px 6px;font-size:10px;font-weight:900;color:#111827}
-.paper .section-block{margin-bottom:6px;page-break-inside:avoid;break-inside:avoid}
-.paper .check-col{text-align:center;width:13%;font-weight:900;white-space:nowrap;color:#166534}
-.paper th.check-col{color:#111827}
-.paper .desc-col{width:27%}
-.paper tr.status-bad td,.paper tr.status-bad th{background:#fff1f2!important;border-color:#dc2626!important}
-.paper .issue-label{display:inline-block;margin-right:4px;padding:1px 4px;border:1px solid #dc2626;color:#991b1b;font-weight:900;font-size:7px;background:#fff}
-.paper .notes{min-height:22px}
-.paper .footer-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:6px}
-.paper .sign-box{border:1px solid #cbd5e1;padding:8px;min-height:42px}
-.photo-grid{display:grid;grid-template-columns:repeat(6,1fr);gap:4px;margin:0}
-.photo-box{border:1px dashed #cbd5e1;min-height:55px;text-align:center;font-size:7px;padding:2px;background:#fff}
-.photo-box img{height:42px!important;width:100%;object-fit:cover;display:block;margin-bottom:2px}
-.issue-photo-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:4px}
-.issue-photo-box{border:1px dashed #cbd5e1;min-height:52px;font-size:7px;padding:2px}
-.issue-photo-box img{height:38px!important;width:100%;object-fit:cover;display:block;margin-bottom:2px}
+/* v48 protocol redesign */
+.summary-grid .stat{display:flex;align-items:center;gap:12px}
+.stat-ico{width:36px;height:36px;border-radius:12px;display:flex;align-items:center;justify-content:center;background:rgba(255,255,255,.78);font-size:1.05rem;flex:0 0 36px}
+.stat-total .stat-ico{background:#dbeafe}.stat-issues .stat-ico{background:rgba(255,255,255,.18)}.stat-ok .stat-ico{background:rgba(255,255,255,.18)}.stat-last .stat-ico{background:#e2e8f0}
+.actions .secondary,.preview-actions .secondary,.preview-actions .ghost{background:#e5e7eb;color:#111827;border:1px solid #cbd5e1}
+.actions .secondary:hover,.preview-actions .secondary:hover,.preview-actions .ghost:hover{background:#dbe1e8}
+#preview .modal-content{width:min(96vw,1380px);max-height:94vh}
+#preview .preview-shell{padding:16px;background:#edf1f5}
+#preview .paper-wrap{background:#edf1f5;padding:10px;border-radius:18px}
+.paper{width:100%!important;max-width:none!important;margin:0 auto;padding:0!important;border:none;box-shadow:none;background:transparent!important;color:#111}
+.paper-doc{display:grid;gap:14px}
+.paper-page{background:#fff;border:1px solid #d1d5db;border-radius:6px;box-shadow:0 2px 12px rgba(15,23,42,.06);width:100%;min-height:1120px;padding:18mm 14mm 14mm 14mm;display:flex;flex-direction:column;gap:10px}
+.paper-header{text-align:center;margin-bottom:4px}.paper-header h2{margin:0 0 4px!important;font-size:24px!important;letter-spacing:.2px}.paper-header .subhead{font-size:13px!important;margin:0!important;color:#333!important}
+.proto-meta{width:100%;border-collapse:collapse;font-size:12.5px}.proto-meta td,.proto-meta th,.proto-table td,.proto-table th{border:1px solid #707070;padding:6px 7px;vertical-align:top}
+.proto-meta td.label{width:16%;font-weight:700;background:#f2f2f2}.proto-meta td.value{width:34%}
+.paper-row-2{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.section-card{display:flex;flex-direction:column;gap:0}
+.section-head{border:1px solid #707070;background:#ededed;padding:6px 8px;font-weight:700;font-size:12.8px}
+.section-note{float:right;font-weight:600;font-size:11px;color:#333}
+.proto-table{width:100%;border-collapse:collapse;font-size:12px;table-layout:fixed}
+.proto-table th{background:#f3f4f6;font-weight:700}.proto-table .num-col{width:34px;text-align:center}.proto-table .item-col{width:auto}.proto-table .yn-col{width:48px;text-align:center}.proto-table .note-col{width:38%}
+.box{font-size:16px;line-height:1;display:inline-block}.muted-note{color:#555;font-size:11px}
+.findings-box{border:1px solid #707070;min-height:92px;padding:8px}.findings-lines{display:grid;gap:10px;margin-top:8px}.findings-lines div{border-bottom:1px solid #999;height:20px}
+.photo-section{border:1px solid #707070}.photo-section .section-head{border:0;border-bottom:1px solid #707070}.photo-strip{display:grid;grid-template-columns:repeat(6,1fr);gap:0}.photo-mini{border-right:1px solid #707070;padding:6px;font-size:9px;text-align:center;min-height:112px}.photo-mini:last-child{border-right:none}.photo-mini img{width:100%;height:70px;object-fit:cover;border:1px solid #bdbdbd;margin-bottom:5px}
+.issue-strip{display:grid;grid-template-columns:repeat(3,1fr);border-top:1px solid #707070}.issue-mini{padding:6px;border-right:1px solid #707070;min-height:84px;font-size:10px;text-align:center}.issue-mini:last-child{border-right:none}.issue-mini img{width:100%;height:56px;object-fit:cover;border:1px solid #bdbdbd;margin-bottom:4px}
+.conclusion-grid{display:grid;grid-template-columns:1.1fr 1fr;gap:10px}.signature-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:0}.signature-grid > div{border:1px solid #707070;border-top:none;padding:8px;min-height:74px}
+.page-number{text-align:right;font-size:11px;color:#333;margin-top:auto}
 @media print{
-  #preview .paper{font-size:8.2px;line-height:1.08;border:0;width:auto}
-  #preview .paper-page{padding:3.8mm 4.2mm;min-height:auto}
-  #preview .paper-head{padding-bottom:4px;margin-bottom:4px}
-  #preview .paper h2{font-size:12.5px}
-  #preview .paper .subhead{font-size:7.4px}
-  #preview .paper td,#preview .paper th{padding:1.6px 2.2px}
-  #preview .paper .section-title{font-size:8.4px;margin-top:3px;padding:1.7px 3px}
-  #preview .paper .paper-no{padding:2.5px 5px}
+  #preview .paper-wrap{padding:0!important;background:#fff!important}
+  .paper-doc{gap:0}
+  .paper-page{border:none;box-shadow:none;border-radius:0;min-height:auto;padding:10mm 8mm 8mm 8mm;page-break-after:always;break-after:page}
+  .paper-page:last-child{page-break-after:auto;break-after:auto}
+  .paper-header h2{font-size:21px!important}
+  .proto-meta{font-size:11.5px}.proto-table{font-size:10.9px}
+  .photo-mini{min-height:100px}.issue-mini{min-height:72px}
+  @page{size:A4 portrait;margin:0}
 }
+@media (max-width:900px){.paper-row-2,.conclusion-grid{grid-template-columns:1fr}.paper-page{padding:10mm 8mm}}
 
 
-
-/* v42 corrections: collapsible sidebar, clean mobile menu, compact two-page print */
-.sidebar-toggle{background:#fff;border:1px solid #dbe6f2;color:#0f172a;border-radius:10px;padding:8px 11px;font-size:1.05rem;line-height:1;min-width:42px}
-.sidebar-overlay{display:none;position:fixed;inset:0;background:rgba(15,23,42,.42);z-index:34}
-@media (min-width:921px){
-  .app-sidebar{transition:transform .22s ease;width:190px}
-  header,.container{transition:left .22s ease,width .22s ease,margin-left .22s ease}
-  body.sidebar-collapsed .app-sidebar{transform:translateX(-190px)}
-  body.sidebar-collapsed header{left:0;width:100%}
-  body.sidebar-collapsed .container{margin-left:0}
-  .side-bottom{line-height:1.45;color:#cbd5e1}
-}
-@media (max-width:920px){
-  .app-sidebar{display:flex!important;position:fixed;left:0;top:0;bottom:0;width:min(82vw,280px);background:#061426;color:#e5eefb;z-index:35;padding:14px 12px;flex-direction:column;box-shadow:8px 0 24px rgba(15,23,42,.25);transform:translateX(-105%);transition:transform .22s ease}
-  body.sidebar-open .app-sidebar{transform:translateX(0)}
-  body.sidebar-open .sidebar-overlay{display:block}
-  .side-brand{display:flex;align-items:center;gap:9px;margin-bottom:14px;font-size:.76rem;line-height:1.12;letter-spacing:.02em}
-  .side-brand span{display:block;color:#86efac;font-weight:800;margin-top:2px}
-  .side-logo{width:34px;height:34px;border-radius:8px;object-fit:cover}
-  .side-nav{display:grid;gap:4px}
-  .side-nav a,.side-nav button{display:flex;align-items:center;width:100%;border:0;background:transparent;color:#dbeafe;text-align:left;text-decoration:none;padding:9px 10px;border-radius:9px;font-weight:650;font-size:.88rem}
-  .side-nav a.active,.side-nav a:hover,.side-nav button:hover{background:#132b4a;color:#fff}
-  .side-bottom{margin-top:auto;border-top:1px solid rgba(255,255,255,.12);padding-top:12px;color:#cbd5e1;font-size:.76rem;line-height:1.4}
-  header{display:flex;align-items:center;justify-content:space-between;gap:10px}
-  .header-title{flex:1;font-size:1.05rem}
-}
-.paper .markbox{display:inline-flex;align-items:center;justify-content:center;width:14px;height:14px;border:1px solid #111;font-size:10px;line-height:1;font-weight:700;font-family:Arial,sans-serif;background:#fff;color:#111}
-.paper-two-col{display:grid;grid-template-columns:0.72fr 1.28fr;gap:5mm;align-items:start}
-.paper tr.status-bad td,.paper tr.status-bad th{background:#fff!important;border:1px solid #000!important}
-.paper .issue-label{border:1px solid #000;color:#000;background:#fff;font-size:7.2px;padding:1px 3px;margin-right:3px}
-.paper th{background:#fff!important}
+/* v49 hard print fix: A4 portrait, no half-page scaling */
 @media print{
-  body{background:#fff!important}
-  #preview .paper{width:100%!important;max-width:none!important;margin:0!important;padding:0!important;font-size:7.4px!important;line-height:1.04!important}
-  #preview .paper h2{font-size:11.2px!important;margin:0 0 1.5px!important;letter-spacing:.15px!important}
-  #preview .paper .subhead{font-size:6.8px!important;margin-bottom:2px!important;line-height:1.05!important}
-  #preview .paper .paper-head{margin-bottom:2px!important;padding-bottom:2px!important;border-bottom:1px solid #000!important}
-  #preview .paper .paper-kicker{font-size:6.6px!important;letter-spacing:.08em!important;color:#000!important}
-  #preview .paper .paper-no{font-size:6.8px!important;border:1px solid #000!important;padding:2px 3px!important;background:#fff!important;color:#000!important}
-  #preview .paper table{margin-bottom:1.6px!important;table-layout:fixed!important;width:100%!important}
-  #preview .paper td,#preview .paper th{padding:1.1px 1.8px!important;border:1px solid #000!important;vertical-align:top!important}
-  #preview .paper .top-table td{padding:1.1px 1.7px!important}
-  #preview .paper .section-block{margin-bottom:2px!important;break-inside:avoid;page-break-inside:avoid}
-  #preview .paper .section-title{font-size:7.5px!important;margin:2px 0 1px!important;padding:1px 2px!important;border:1px solid #000!important;background:#fff!important;color:#000!important;letter-spacing:0!important}
-  #preview .paper .check-col{width:8%!important;text-align:center!important;white-space:nowrap!important}
-  #preview .paper .desc-col{width:24%!important}
-  #preview .paper .markbox{width:10px!important;height:10px!important;font-size:7px!important;border:1px solid #000!important}
-  #preview .paper .issue-label{font-size:5.8px!important;padding:0 2px!important;border:1px solid #000!important;background:#fff!important;color:#000!important}
-  #preview .paper .notes{min-height:11px!important}
-  #preview .paper .paper-page{min-height:calc(297mm - 10mm)!important;display:block!important;overflow:hidden!important}
-  #preview .paper .photo-grid{grid-template-columns:repeat(6,1fr)!important;gap:2px!important;margin:1.5px 0!important}
-  #preview .paper .photo-box{min-height:30px!important;font-size:5.6px!important;padding:1px!important;border:1px solid #000!important}
-  #preview .paper .photo-box img{height:22px!important;margin-bottom:1px!important;object-fit:cover!important}
-  #preview .paper .issue-photo-grid{grid-template-columns:repeat(4,1fr)!important;gap:2px!important;margin:1.5px 0!important}
-  #preview .paper .issue-photo-box{min-height:33px!important;font-size:5.6px!important;padding:1px!important;border:1px solid #000!important}
-  #preview .paper .issue-photo-box img{height:24px!important;margin-bottom:1px!important;object-fit:cover!important}
-  #preview .paper .footer-grid{gap:3px!important;margin-top:2px!important}
-  #preview .paper .sign-box{min-height:24px!important;padding:3px!important;border:1px solid #000!important}
-  #preview .paper .print-page-break{break-before:page!important;page-break-before:always!important;height:0!important;margin:0!important;padding:0!important}
-  @page{size:A4 portrait;margin:5mm!important}
+  html, body{
+    width:210mm !important;
+    min-width:210mm !important;
+    margin:0 !important;
+    padding:0 !important;
+    background:#fff !important;
+    overflow:visible !important;
+  }
+
+  body *{
+    visibility:hidden !important;
+  }
+
+  #preview, #preview *,
+  #previewBody, #previewBody *{
+    visibility:visible !important;
+  }
+
+  #preview{
+    position:absolute !important;
+    inset:auto !important;
+    left:0 !important;
+    top:0 !important;
+    width:210mm !important;
+    min-width:210mm !important;
+    height:auto !important;
+    display:block !important;
+    background:#fff !important;
+    padding:0 !important;
+    margin:0 !important;
+    overflow:visible !important;
+  }
+
+  #preview .modal-content,
+  #preview .preview-shell,
+  #preview .paper-wrap,
+  #previewBody{
+    width:210mm !important;
+    min-width:210mm !important;
+    max-width:none !important;
+    height:auto !important;
+    max-height:none !important;
+    overflow:visible !important;
+    margin:0 !important;
+    padding:0 !important;
+    border:0 !important;
+    border-radius:0 !important;
+    box-shadow:none !important;
+    background:#fff !important;
+  }
+
+  #preview .preview-header,
+  #preview .preview-actions{
+    display:none !important;
+  }
+
+  #preview .paper{
+    width:210mm !important;
+    min-width:210mm !important;
+    max-width:210mm !important;
+    margin:0 !important;
+    padding:0 !important;
+    background:#fff !important;
+    box-shadow:none !important;
+    border:0 !important;
+    transform:none !important;
+  }
+
+  #preview .paper-doc{
+    display:block !important;
+    width:210mm !important;
+    min-width:210mm !important;
+    margin:0 !important;
+    padding:0 !important;
+    gap:0 !important;
+  }
+
+  #preview .paper-page{
+    width:210mm !important;
+    min-width:210mm !important;
+    max-width:210mm !important;
+    min-height:297mm !important;
+    height:297mm !important;
+    margin:0 !important;
+    padding:11mm 9mm 9mm 9mm !important;
+    box-sizing:border-box !important;
+    display:flex !important;
+    flex-direction:column !important;
+    page-break-after:always !important;
+    break-after:page !important;
+    border:0 !important;
+    border-radius:0 !important;
+    box-shadow:none !important;
+    background:#fff !important;
+    overflow:hidden !important;
+  }
+
+  #preview .paper-page:last-child{
+    page-break-after:auto !important;
+    break-after:auto !important;
+  }
+
+  #preview .paper-header h2{
+    font-size:20px !important;
+    line-height:1.15 !important;
+  }
+
+  #preview .paper-header .subhead{
+    font-size:10.5px !important;
+    line-height:1.25 !important;
+  }
+
+  #preview .proto-meta{
+    font-size:10.5px !important;
+  }
+
+  #preview .proto-table{
+    font-size:9.7px !important;
+    line-height:1.15 !important;
+  }
+
+  #preview .proto-meta td,
+  #preview .proto-meta th,
+  #preview .proto-table td,
+  #preview .proto-table th{
+    padding:3.5px 4.5px !important;
+  }
+
+  #preview .section-head{
+    font-size:10.8px !important;
+    padding:4.5px 6px !important;
+  }
+
+  #preview .photo-mini img{
+    height:54px !important;
+  }
+
+  #preview .photo-mini{
+    min-height:86px !important;
+    font-size:7.8px !important;
+    padding:4px !important;
+  }
+
+  #preview .issue-mini{
+    min-height:62px !important;
+    font-size:8px !important;
+    padding:4px !important;
+  }
+
+  #preview .issue-mini img{
+    height:44px !important;
+  }
+
+  #preview .findings-box{
+    min-height:58px !important;
+    padding:5px !important;
+  }
+
+  #preview .signature-grid > div{
+    min-height:54px !important;
+    padding:6px !important;
+  }
+
+  #preview .page-number{
+    margin-top:auto !important;
+    font-size:9px !important;
+  }
+
+  @page{
+    size:A4 portrait;
+    margin:0;
+  }
 }
-
-
-
-/* v44 corrections: reliable sidebar, compact mobile menu, formal two-page print */
-@media (min-width:921px){
-  .sidebar-toggle{display:inline-flex;align-items:center;justify-content:center;position:relative;z-index:60;background:#fff!important;border:1px solid #cbd5e1!important;color:#0f172a!important}
-  .app-sidebar{transform:translateX(0);transition:transform .22s ease!important}
-  body.sidebar-collapsed .app-sidebar{transform:translateX(-190px)!important}
-  body.sidebar-collapsed header{left:0!important;width:100%!important}
-  body.sidebar-collapsed .container{margin-left:0!important}
-  body.sidebar-collapsed .sidebar-toggle{position:fixed;left:12px;top:14px;z-index:80;box-shadow:0 6px 18px rgba(15,23,42,.16)}
-  body.sidebar-collapsed header .header-title{margin-left:46px}
-}
-@media (max-width:920px){
-  .app-sidebar{width:min(76vw,255px)!important;padding:12px 10px!important;background:#061426!important;color:#e5eefb!important}
-  .side-brand{font-size:.68rem!important;margin-bottom:12px!important;gap:8px!important;letter-spacing:.01em!important}
-  .side-logo{width:30px!important;height:30px!important;border-radius:7px!important}
-  .side-nav{gap:3px!important}
-  .side-nav a,.side-nav button{font-size:.82rem!important;font-weight:600!important;padding:8px 9px!important;border-radius:8px!important;color:#dbeafe!important;background:transparent!important}
-  .side-nav a.active,.side-nav a:hover,.side-nav button:hover{background:#132b4a!important;color:#fff!important}
-  .side-bottom{font-size:.72rem!important;color:#cbd5e1!important;padding-top:10px!important;line-height:1.35!important}
-}
-.paper .markbox{display:inline-block!important;width:auto!important;height:auto!important;border:0!important;background:transparent!important;font-family:Arial,sans-serif!important;font-size:9px!important;font-weight:700!important;line-height:1!important;color:#000!important}
-.paper .markbox::before{content:'□'}
-.paper .markbox:not(:empty)::before{content:'☒'}
-.paper .markbox{font-size:0!important}
-.paper .markbox:not(:empty){font-size:0!important}
-.paper th,.paper td{background:#fff!important}
-.paper .section-title{background:#fff!important;color:#000!important;border-color:#000!important}
-.paper tr.status-bad td,.paper tr.status-bad th{background:#fff!important;border-color:#000!important}
-.paper .issue-label{background:#fff!important;color:#000!important;border-color:#000!important}
-@media print{
-  @page{size:A4 landscape;margin:4mm!important}
-  html,body{width:auto!important;height:auto!important;background:#fff!important}
-  #preview .modal-content,#preview .preview-shell,#preview .paper-wrap{width:100%!important;max-width:none!important;padding:0!important;margin:0!important;overflow:visible!important;background:#fff!important;box-shadow:none!important;border:0!important;border-radius:0!important}
-  #preview .paper{width:100%!important;max-width:none!important;margin:0!important;padding:0!important;border:0!important;font-size:7.1px!important;line-height:1.02!important;color:#000!important;background:#fff!important}
-  #preview .paper-page{width:100%!important;min-height:calc(210mm - 8mm)!important;max-height:calc(210mm - 8mm)!important;padding:2.8mm 3.2mm!important;overflow:hidden!important;box-sizing:border-box!important;display:block!important}
-  #preview .paper h2{font-size:10.2px!important;margin:0 0 1px!important;letter-spacing:.05em!important}
-  #preview .paper .subhead{font-size:6.4px!important;line-height:1.02!important;margin:0!important;color:#000!important}
-  #preview .paper .paper-head{margin-bottom:2px!important;padding-bottom:2px!important;border-bottom:1px solid #000!important}
-  #preview .paper .paper-kicker{font-size:6px!important;color:#000!important;letter-spacing:.07em!important}
-  #preview .paper .paper-no{border:1px solid #000!important;border-radius:0!important;padding:1.5px 2.5px!important;min-width:24mm!important;background:#fff!important;color:#000!important}
-  #preview .paper .paper-no span{font-size:5.7px!important;color:#000!important}
-  #preview .paper .paper-no strong{font-size:7.2px!important;margin:0!important;color:#000!important}
-  #preview .paper table{table-layout:fixed!important;width:100%!important;margin-bottom:1.2px!important;border-collapse:collapse!important}
-  #preview .paper td,#preview .paper th{padding:.85px 1.25px!important;border:1px solid #000!important;vertical-align:top!important;background:#fff!important;color:#000!important}
-  #preview .paper th{font-weight:700!important}
-  #preview .paper .top-table td{padding:.85px 1.2px!important}
-  #preview .paper .section-block{margin-bottom:1.8px!important;break-inside:avoid!important;page-break-inside:avoid!important}
-  #preview .paper .section-title{font-size:7px!important;margin:1.6px 0 .8px!important;padding:.9px 1.6px!important;border:1px solid #000!important;background:#fff!important;color:#000!important}
-  #preview .paper .check-col{width:7.5%!important;text-align:center!important;white-space:nowrap!important;font-weight:700!important;color:#000!important}
-  #preview .paper .desc-col{width:25%!important}
-  #preview .paper .markbox{font-size:0!important;border:0!important;background:#fff!important;color:#000!important}
-  #preview .paper .markbox::before{font-size:7.2px!important;content:'□'!important}
-  #preview .paper .markbox:not(:empty)::before{content:'☒'!important}
-  #preview .paper .issue-label{font-size:5.2px!important;padding:0 1px!important;border:1px solid #000!important;background:#fff!important;color:#000!important}
-  #preview .paper .notes{min-height:8px!important}
-  #preview .paper .paper-two-col{display:grid!important;grid-template-columns:.76fr 1.24fr!important;gap:3mm!important}
-  #preview .paper .photo-grid{grid-template-columns:repeat(6,1fr)!important;gap:1.5px!important;margin:1px 0!important}
-  #preview .paper .photo-box{min-height:25px!important;font-size:5.1px!important;padding:.8px!important;border:1px solid #000!important}
-  #preview .paper .photo-box img{height:18px!important;margin-bottom:.7px!important;object-fit:cover!important}
-  #preview .paper .issue-photo-grid{grid-template-columns:repeat(4,1fr)!important;gap:1.5px!important;margin:1px 0!important}
-  #preview .paper .issue-photo-box{min-height:27px!important;font-size:5.1px!important;padding:.8px!important;border:1px solid #000!important}
-  #preview .paper .issue-photo-box img{height:19px!important;margin-bottom:.7px!important;object-fit:cover!important}
-  #preview .paper .footer-grid{gap:3px!important;margin-top:1.6px!important}
-  #preview .paper .sign-box{min-height:20px!important;padding:2px!important;border:1px solid #000!important}
-  #preview .paper .print-page-break{break-before:page!important;page-break-before:always!important;height:0!important;margin:0!important;padding:0!important}
-}
-
-
-
-/* v45 final: readable preview + readable 2-page portrait print, light gray section shading */
-#preview .modal-content{width:min(96vw,1120px)!important;max-height:94vh!important;}
-#preview .preview-shell{background:#f8fafc!important;}
-#preview .paper-wrap{background:#e5e7eb!important;padding:18px!important;border-radius:16px!important;overflow:auto!important;}
-.paper{width:210mm!important;max-width:none!important;margin:0 auto!important;background:#fff!important;color:#111827!important;border:1px solid #d1d5db!important;box-shadow:0 10px 28px rgba(15,23,42,.08)!important;font-size:9.6px!important;line-height:1.22!important;}
-.paper-page{width:210mm!important;min-height:297mm!important;padding:8mm 8mm 7mm 8mm!important;box-sizing:border-box!important;overflow:hidden!important;background:#fff!important;}
-.paper-head{border-bottom:1.5px solid #94a3b8!important;margin-bottom:6px!important;padding-bottom:5px!important;}
-.paper-kicker{color:#334155!important;font-size:7.6px!important;letter-spacing:.06em!important;}
-.paper h2{font-size:16px!important;line-height:1.15!important;margin:1px 0 2px!important;color:#111827!important;}
-.paper .subhead{font-size:8.4px!important;color:#334155!important;line-height:1.15!important;}
-.paper-no{border:1px solid #cbd5e1!important;border-radius:5px!important;background:#f8fafc!important;color:#111827!important;}
-.paper table{width:100%!important;border-collapse:collapse!important;table-layout:auto!important;margin-bottom:4px!important;}
-.paper td,.paper th{border:1px solid #cbd5e1!important;padding:2.6px 3.4px!important;vertical-align:top!important;background:#fff!important;color:#111827!important;}
-.paper th{background:#f3f4f6!important;font-weight:800!important;color:#111827!important;}
-.paper .top-table td{padding:2.8px 4px!important;}
-.paper .section-title{background:#f3f4f6!important;border:1px solid #cbd5e1!important;border-bottom:0!important;color:#111827!important;margin:5px 0 0!important;padding:3.2px 5px!important;font-size:9.3px!important;font-weight:850!important;letter-spacing:.01em!important;}
-.paper .section-block{margin-bottom:4px!important;break-inside:avoid!important;page-break-inside:avoid!important;}
-.paper .check-col{width:10%!important;text-align:center!important;white-space:nowrap!important;color:#111827!important;font-weight:700!important;}
-.paper .desc-col{width:26%!important;}
-.paper .notes{min-height:17px!important;}
-.paper .markbox{display:inline-block!important;border:0!important;background:transparent!important;color:#111827!important;font-family:Arial,sans-serif!important;font-size:9px!important;font-weight:700!important;line-height:1!important;width:auto!important;height:auto!important;}
-.paper .markbox::before{content:''!important;}
-.paper .markbox:not(:empty)::before{content:''!important;}
-.paper tr.status-bad td,.paper tr.status-bad th{background:#fff!important;border-color:#111827!important;}
-.paper .issue-label{background:#fff!important;color:#111827!important;border:1px solid #111827!important;font-size:6.8px!important;padding:0 3px!important;margin-right:3px!important;}
-.paper .photo-grid{grid-template-columns:repeat(6,1fr)!important;gap:3px!important;margin:2px 0!important;}
-.paper .photo-box{border:1px solid #cbd5e1!important;min-height:48px!important;font-size:6.4px!important;padding:1.8px!important;background:#fff!important;}
-.paper .photo-box img{height:35px!important;width:100%!important;object-fit:cover!important;margin-bottom:1px!important;}
-.paper .issue-photo-grid{grid-template-columns:repeat(4,1fr)!important;gap:3px!important;margin:2px 0!important;}
-.paper .issue-photo-box{border:1px solid #cbd5e1!important;min-height:44px!important;font-size:6.4px!important;padding:1.8px!important;background:#fff!important;}
-.paper .issue-photo-box img{height:31px!important;width:100%!important;object-fit:cover!important;margin-bottom:1px!important;}
-.paper .footer-grid{gap:7px!important;margin-top:5px!important;}
-.paper .sign-box{border:1px solid #cbd5e1!important;min-height:36px!important;padding:6px!important;background:#fff!important;}
-.paper-two-col{display:grid!important;grid-template-columns:.7fr 1.3fr!important;gap:5mm!important;align-items:start!important;}
-@media print{
-  @page{size:A4 portrait!important;margin:6mm!important;}
-  html,body{background:#fff!important;width:auto!important;height:auto!important;}
-  #preview .modal-content,#preview .preview-shell,#preview .paper-wrap{width:100%!important;max-width:none!important;max-height:none!important;margin:0!important;padding:0!important;background:#fff!important;border:0!important;border-radius:0!important;box-shadow:none!important;overflow:visible!important;}
-  #preview .paper{width:100%!important;max-width:none!important;margin:0!important;padding:0!important;border:0!important;box-shadow:none!important;font-size:8.45px!important;line-height:1.09!important;color:#111827!important;background:#fff!important;}
-  #preview .paper-page{width:100%!important;min-height:calc(297mm - 12mm)!important;max-height:calc(297mm - 12mm)!important;padding:3.6mm 4.2mm!important;box-sizing:border-box!important;overflow:hidden!important;background:#fff!important;}
-  #preview .paper-head{margin-bottom:3px!important;padding-bottom:3px!important;border-bottom:1px solid #9ca3af!important;}
-  #preview .paper h2{font-size:12.2px!important;line-height:1.1!important;margin:0 0 1px!important;}
-  #preview .paper .subhead{font-size:6.9px!important;line-height:1.08!important;margin:0!important;color:#374151!important;}
-  #preview .paper .paper-kicker{font-size:6.4px!important;color:#374151!important;letter-spacing:.06em!important;}
-  #preview .paper .paper-no{border:1px solid #9ca3af!important;border-radius:3px!important;padding:2px 4px!important;min-width:27mm!important;background:#f3f4f6!important;color:#111827!important;}
-  #preview .paper .paper-no span{font-size:5.8px!important;color:#374151!important;}
-  #preview .paper .paper-no strong{font-size:7.8px!important;margin:0!important;color:#111827!important;}
-  #preview .paper table{table-layout:auto!important;width:100%!important;margin-bottom:2px!important;border-collapse:collapse!important;}
-  #preview .paper td,#preview .paper th{padding:1.35px 2px!important;border:1px solid #9ca3af!important;vertical-align:top!important;color:#111827!important;}
-  #preview .paper th{background:#f3f4f6!important;font-weight:800!important;}
-  #preview .paper .top-table td{padding:1.35px 2px!important;}
-  #preview .paper .section-block{margin-bottom:2.5px!important;break-inside:avoid!important;page-break-inside:avoid!important;}
-  #preview .paper .section-title{font-size:7.8px!important;margin:2.5px 0 0!important;padding:1.5px 2.4px!important;border:1px solid #9ca3af!important;border-bottom:0!important;background:#f3f4f6!important;color:#111827!important;}
-  #preview .paper .check-col{width:9%!important;text-align:center!important;white-space:nowrap!important;color:#111827!important;font-weight:700!important;}
-  #preview .paper .desc-col{width:25%!important;}
-  #preview .paper .markbox{font-size:8.2px!important;border:0!important;background:transparent!important;color:#111827!important;width:auto!important;height:auto!important;}
-  #preview .paper .notes{min-height:12px!important;}
-  #preview .paper .issue-label{font-size:5.8px!important;padding:0 2px!important;border:1px solid #111827!important;background:#fff!important;color:#111827!important;}
-  #preview .paper .paper-two-col{display:grid!important;grid-template-columns:.72fr 1.28fr!important;gap:3.8mm!important;}
-  #preview .paper .photo-grid{grid-template-columns:repeat(6,1fr)!important;gap:2px!important;margin:1.5px 0!important;}
-  #preview .paper .photo-box{min-height:34px!important;font-size:5.5px!important;padding:1px!important;border:1px solid #9ca3af!important;}
-  #preview .paper .photo-box img{height:24px!important;margin-bottom:.8px!important;object-fit:cover!important;}
-  #preview .paper .issue-photo-grid{grid-template-columns:repeat(4,1fr)!important;gap:2px!important;margin:1.5px 0!important;}
-  #preview .paper .issue-photo-box{min-height:35px!important;font-size:5.5px!important;padding:1px!important;border:1px solid #9ca3af!important;}
-  #preview .paper .issue-photo-box img{height:25px!important;margin-bottom:.8px!important;object-fit:cover!important;}
-  #preview .paper .footer-grid{gap:4px!important;margin-top:2.2px!important;}
-  #preview .paper .sign-box{min-height:25px!important;padding:3px!important;border:1px solid #9ca3af!important;}
-  #preview .paper .print-page-break{break-before:page!important;page-break-before:always!important;height:0!important;margin:0!important;padding:0!important;}
-  *{-webkit-print-color-adjust:exact!important;print-color-adjust:exact!important;}
-}
-
-
-
-/* v47 modern print protocol - selected variant 10 */
-.paper-wrap{background:#f8fafc!important;padding:18px!important;border-radius:18px!important;overflow:auto!important}
-.paper{font-family:Inter,Arial,sans-serif!important;background:#fff!important;color:#111827!important;width:210mm!important;max-width:100%!important;margin:0 auto!important;border:1px solid #d7dee8!important;box-shadow:0 12px 32px rgba(15,23,42,.10)!important;font-size:8.6px!important;line-height:1.16!important;padding:0!important}
-.paper-page{width:210mm!important;min-height:297mm!important;padding:7.5mm 8mm 7mm 8mm!important;box-sizing:border-box!important;background:#fff!important;overflow:hidden!important;display:flex!important;flex-direction:column!important;gap:4px!important}
-.paper-head{display:grid!important;grid-template-columns:1fr 42mm!important;gap:8mm!important;align-items:start!important;border-bottom:2px solid #1d4ed8!important;padding-bottom:5px!important;margin-bottom:5px!important}
-.paper-kicker{font-size:7px!important;font-weight:900!important;color:#1d4ed8!important;text-transform:uppercase!important;letter-spacing:.08em!important;margin-bottom:1px!important}
-.paper h2{margin:0 0 2px!important;text-align:left!important;font-size:15.5px!important;line-height:1.05!important;letter-spacing:.08em!important;font-weight:900!important;color:#0f172a!important}
-.paper .subhead{margin:0!important;text-align:left!important;font-size:7.6px!important;line-height:1.18!important;color:#334155!important}
-.paper-no{border:1px solid #cbd5e1!important;border-radius:7px!important;padding:5px 7px!important;text-align:center!important;background:#fff!important;min-width:0!important}
-.paper-no span{display:block!important;font-size:6.4px!important;color:#64748b!important;font-weight:800!important;text-transform:uppercase!important;letter-spacing:.05em!important}
-.paper-no strong{display:block!important;font-size:9.2px!important;color:#0f172a!important;margin-top:2px!important}
-.paper .identity-grid{display:grid!important;grid-template-columns:1.15fr .85fr!important;gap:4mm!important;margin-bottom:4px!important;align-items:stretch!important}
-.paper .info-table,.paper .check-table,.paper .result-table{width:100%!important;border-collapse:collapse!important;table-layout:fixed!important;margin:0!important}
-.paper td,.paper th{border:1px solid #d1d5db!important;padding:2.2px 3px!important;vertical-align:middle!important;background:#fff!important;color:#111827!important}
-.paper th{font-weight:800!important;background:#f3f4f6!important;color:#111827!important;text-align:left!important}
-.paper .info-table th{width:27%!important;background:#fff!important;color:#475569!important;font-size:7.3px!important;text-transform:uppercase!important;letter-spacing:.03em!important}
-.paper .machine-panel{border:1px solid #d1d5db!important;border-radius:8px!important;padding:4px!important;display:grid!important;grid-template-columns:1fr 28mm!important;gap:4px!important;align-items:center!important;background:#fff!important;min-height:29mm!important}
-.paper .machine-title{font-weight:900!important;font-size:9px!important;margin-bottom:2px!important;color:#0f172a!important}
-.paper .machine-sub{font-size:7.3px!important;color:#475569!important;line-height:1.25!important}
-.paper .machine-img{border:1px solid #d1d5db!important;border-radius:6px!important;height:24mm!important;display:flex!important;align-items:center!important;justify-content:center!important;overflow:hidden!important;background:#f8fafc!important;color:#94a3b8!important;font-size:7px!important;text-align:center!important}
-.paper .machine-img img{width:100%!important;height:100%!important;object-fit:cover!important;display:block!important}
-.paper .section-block{margin:0 0 4px!important;break-inside:avoid!important;page-break-inside:avoid!important}
-.paper .section-title{margin:0!important;border:1px solid #d1d5db!important;border-bottom:0!important;background:#f3f4f6!important;color:#0f172a!important;font-size:8.6px!important;font-weight:900!important;letter-spacing:.02em!important;padding:3px 5px!important;text-transform:none!important}
-.paper .check-table th,.paper .check-table td{padding:1.75px 2.4px!important;font-size:7.75px!important;line-height:1.12!important}
-.paper .check-table th{font-size:7.1px!important;text-transform:uppercase!important;letter-spacing:.035em!important;background:#f3f4f6!important;color:#334155!important}
-.paper .check-col{width:13%!important;text-align:center!important;font-weight:800!important;white-space:nowrap!important;color:#111827!important}
-.paper .desc-col{width:30%!important;color:#334155!important}
-.paper .note-col{width:30%!important;color:#334155!important}
-.paper .markbox{display:inline-flex!important;align-items:center!important;justify-content:center!important;width:11px!important;height:11px!important;border:1px solid #9ca3af!important;border-radius:50%!important;background:#fff!important;color:#166534!important;font-size:0!important;font-weight:900!important;line-height:1!important;font-family:Arial,sans-serif!important}
-.paper .markbox:not(:empty){border-color:#166534!important}.paper .markbox:not(:empty)::before{content:'✓'!important;font-size:8px!important}
-.paper tr.status-bad td,.paper tr.status-bad th{background:#fff!important;border-color:#d1d5db!important;color:#111827!important}
-.paper tr.status-bad .markbox:not(:empty){border-color:#b91c1c!important;color:#b91c1c!important}
-.paper .issue-label{display:inline-block!important;margin-right:3px!important;padding:0 3px!important;border:1px solid #b91c1c!important;color:#b91c1c!important;font-weight:900!important;font-size:6.2px!important;background:#fff!important;border-radius:3px!important}
-.paper .paper-two-col{display:grid!important;grid-template-columns:0.72fr 1.28fr!important;gap:4mm!important;align-items:start!important;margin-bottom:4px!important}
-.paper .photo-grid{display:grid!important;grid-template-columns:repeat(6,1fr)!important;gap:3px!important;margin:0!important}
-.paper .photo-box{border:1px solid #d1d5db!important;border-radius:5px!important;min-height:27mm!important;text-align:center!important;font-size:6.5px!important;padding:2px!important;background:#fff!important;overflow:hidden!important}
-.paper .photo-box img{width:100%!important;height:21mm!important;object-fit:cover!important;display:block!important;margin-bottom:1px!important;border-radius:3px!important;cursor:zoom-in!important}
-.paper .photo-box .empty-photo{height:21mm!important;display:flex!important;align-items:center!important;justify-content:center!important;color:#9ca3af!important;background:#f9fafb!important;border-radius:3px!important;margin-bottom:1px!important}
-.paper .issue-photo-grid{display:grid!important;grid-template-columns:repeat(4,1fr)!important;gap:3px!important;margin:0!important}
-.paper .issue-photo-box{border:1px solid #d1d5db!important;border-radius:5px!important;min-height:25mm!important;text-align:center!important;font-size:6.3px!important;padding:2px!important;background:#fff!important;overflow:hidden!important}
-.paper .issue-photo-box img{width:100%!important;height:17mm!important;object-fit:cover!important;display:block!important;margin-bottom:1px!important;border-radius:3px!important;cursor:zoom-in!important}
-.paper .result-cards{display:grid!important;grid-template-columns:repeat(3,1fr)!important;gap:4px!important;margin:3px 0 4px!important}
-.paper .result-card{border:1px solid #d1d5db!important;border-radius:7px!important;padding:5px!important;min-height:22mm!important;background:#fff!important}
-.paper .result-card strong{display:block!important;font-size:8.2px!important;margin-bottom:3px!important}
-.paper .result-ok strong{color:#166534!important}.paper .result-repair strong{color:#b45309!important}.paper .result-bad strong{color:#b91c1c!important}
-.paper .notes{min-height:24px!important}.paper .footer-grid{display:grid!important;grid-template-columns:1fr 1fr!important;gap:5mm!important;margin-top:auto!important}
-.paper .sign-box{border:1px solid #d1d5db!important;border-radius:6px!important;padding:6px!important;min-height:24mm!important;background:#fff!important}
-.paper .evaluation-text{font-weight:800!important}.paper .print-page-break{break-before:page!important;page-break-before:always!important;height:0!important;margin:0!important;padding:0!important}
-.paper .mono{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace!important;letter-spacing:.01em!important}
-@media print{ @page{size:A4 portrait;margin:0!important} html,body{margin:0!important;padding:0!important;background:#fff!important;color:#000!important} body *{visibility:hidden!important} #preview,#preview *{visibility:visible!important} #preview{position:absolute!important;left:0!important;top:0!important;width:100%!important;display:block!important;background:#fff!important;padding:0!important;margin:0!important} #preview .modal-content,#preview .preview-shell,#preview .paper-wrap{width:100%!important;max-width:none!important;padding:0!important;margin:0!important;overflow:visible!important;background:#fff!important;box-shadow:none!important;border:0!important;border-radius:0!important} #preview .preview-header,#preview .preview-actions{display:none!important} #preview .paper{width:210mm!important;max-width:none!important;margin:0!important;border:0!important;box-shadow:none!important;font-size:8.15px!important;line-height:1.08!important} #preview .paper-page{width:210mm!important;min-height:297mm!important;max-height:297mm!important;padding:6.2mm 6.6mm 5.8mm!important;overflow:hidden!important} #preview .paper h2{font-size:14px!important} #preview .paper .subhead{font-size:7.2px!important} #preview .paper td,#preview .paper th{padding:1.75px 2.3px!important} #preview .paper .check-table th,#preview .paper .check-table td{font-size:7.25px!important;padding:1.35px 2px!important} #preview .paper .section-title{font-size:8px!important;padding:2.2px 4px!important} #preview .paper .photo-box{min-height:24mm!important} #preview .paper .photo-box img,#preview .paper .photo-box .empty-photo{height:18.5mm!important} #preview .paper .issue-photo-box{min-height:21mm!important} #preview .paper .issue-photo-box img{height:14.5mm!important} *{-webkit-print-color-adjust:exact!important;print-color-adjust:exact!important}}
 
 </style>
-<!-- v28_print_fix_order -->
-<!-- v45_preview_print_readable -->
 </head>
 <body>
-<aside class="app-sidebar" aria-label="Hlavní navigace">
-  <div class="side-brand">
-    <img src="icon-192.png" alt="" class="side-logo">
-    <div><strong>ČTVRTLETNÍ</strong><span>KONTROLY</span></div>
-  </div>
-  <nav class="side-nav">
-    <a class="active" href="#appRoot">Přehled</a>
-    <a href="#list">Protokoly</a>
-    <button type="button" onclick="window._openWizard()">Nový protokol</button>
-    <a href="#settings" onclick="document.getElementById('settingsBtn').click();return false;">Nastavení</a>
-  </nav>
-  <div class="side-bottom"><strong>Verze:</strong><br>TEST v47</div>
-</aside>
-<div id="sidebarOverlay" class="sidebar-overlay"></div>
 <header>
-  <button id="sidebarToggle" class="sidebar-toggle" type="button" aria-label="Menu">☰</button>
-  <div class="header-title">Čtvrtletní kontroly</div>
+  <div class="header-title">Čtvrtletní kontroly <span class="test-badge">TEST</span></div>
   <button id="settingsBtn" class="settings-btn" type="button" aria-label="Nastavení">⚙</button>
 </header>
 
 <div class="container" id="appRoot">
   <div class="dashboard">
-    <section class="dashboard-head">
-      <div>
-        <div class="dash-title">Přehled protokolů</div>
-        <div class="dash-sub">Běžné prohlídky pracovních plošin dle NV č. 193/2022 Sb.</div>
+    <section class="hero">
+      <div class="hero-actions">
+        <button class="primary" id="newProtocolBtn" type="button" onclick="window._openWizard()">Začít nový protokol</button>
       </div>
-      <button class="primary new-top-btn" id="newProtocolBtn" type="button" onclick="window._openWizard()">+ Nový protokol</button>
     </section>
     <aside class="summary-card">
+      <div class="card-title">Přehled</div>
       <div class="summary-grid">
-        <div class="stat stat-total"><div class="stat-icon">▣</div><div><div class="stat-label">Celkem protokolů</div><div class="stat-value" id="statTotal">0</div><div class="stat-note">Všechny záznamy</div></div></div>
-        <div class="stat stat-issues"><div class="stat-icon">△</div><div><div class="stat-label">Se závadou</div><div class="stat-value" id="statIssues">0</div><div class="stat-note">Vyžadují pozornost</div></div></div>
-        <div class="stat stat-ok"><div class="stat-icon">✓</div><div><div class="stat-label">Bez závad</div><div class="stat-value" id="statOk">0</div><div class="stat-note">Schopné provozu</div></div></div>
-        <div class="stat stat-last"><div class="stat-icon">📅</div><div><div class="stat-label">Poslední datum</div><div class="stat-value" id="statLast">—</div><div class="stat-note">Nejnovější kontrola</div></div></div>
+        <div class="stat stat-total"><div class="stat-ico">📄</div><div><div class="stat-label">Celkem protokolů</div><div class="stat-value" id="statTotal">0</div></div></div>
+        <div class="stat stat-issues"><div class="stat-ico">⚠️</div><div><div class="stat-label">Se závadou</div><div class="stat-value" id="statIssues">0</div></div></div>
+        <div class="stat stat-ok"><div class="stat-ico">✅</div><div><div class="stat-label">Bez závad</div><div class="stat-value" id="statOk">0</div></div></div>
+        <div class="stat stat-last"><div class="stat-ico">📅</div><div><div class="stat-label">Poslední datum</div><div class="stat-value" id="statLast">—</div></div></div>
       </div>
     </aside>
   </div>
@@ -578,9 +386,9 @@ body.dark .summary-card .summary-grid .stat.stat-ok{background:#16a34a!important
 </div></div></div>
 
 <div class="modal" id="preview"><div class="modal-content"><div class="preview-shell">
-  <div class="preview-header"><div><div class="preview-title">Náhled vyplněného formuláře</div><div class="card-sub">Náhled tiskového protokolu</div></div><div class="badges" id="previewBadges"></div></div>
+  <div class="preview-header"><div><div class="preview-title">Náhled vyplněného formuláře</div><div class="card-sub">Připravené pro tisk nebo uložení jako PDF</div></div><div class="badges" id="previewBadges"></div></div>
   <div class="paper-wrap print-root"><div id="previewBody"></div></div>
-  <div class="preview-actions"><div class="preview-actions-left"><button id="closePreviewBtn" class="secondary" type="button">Ukončit</button></div><div class="preview-actions-right"><button id="savePreviewBtn" class="ghost" type="button">Uložit protokol</button><button id="printPreviewBtn" class="primary btn-print" type="button">Tisk</button><button id="downloadPreviewBtn" class="ghost btn-download" type="button">Uložit PDF</button></div></div>
+  <div class="preview-actions"><div class="preview-actions-left"><button id="closePreviewBtn" class="secondary" type="button">Ukončit</button></div><div class="preview-actions-right"><button id="savePreviewBtn" class="secondary" type="button">Uložit PDF</button><button id="printPreviewBtn" class="secondary" type="button">Tisk</button></div></div>
 </div></div></div>
 
 <div class="lightbox" id="lightbox" onclick="closeLightbox()">
@@ -591,6 +399,7 @@ body.dark .summary-card .summary-grid .stat.stat-ok{background:#16a34a!important
 </div>
 
 <script src="https://unpkg.com/html5-qrcode"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
 <script src="https://www.gstatic.com/firebasejs/10.12.5/firebase-app-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/10.12.5/firebase-firestore-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/10.12.5/firebase-storage-compat.js"></script>
@@ -639,61 +448,16 @@ const COMMON_SECTIONS = {
 };
 const SECTION_VARIANTS = {
   scissor: {
-    C:makeCheckItems([
-      ['C1','Kontrola čistoty zařízení'],
-      ['C5','Kontrola stavu kol a pneumatik'],
-      ['C_chassis','Kontrola podvozku a základny'],
-      ['C10','Kontrola sestavy nůžek'],
-      ['C7','Kontrola ovládacího kabelu'],
-      ['C3','Kontrola schodů a přístupu do koše'],
-      ['C9','Kontrola akumulátorů'],
-      ['C8','Kontrola podlahy koše a protiskluzu'],
-      ['C4','Kontrola zábradlí'],
-      ['C_gate','Kontrola vstupu do koše'],
-      ['C_complete','Kontrola kompletnosti konstrukce'],
-      ['C11','Kontrola hydraulických válců'],
-      ['C12','Kontrola hydraulických hadic'],
-      ['C13','Kontrola těsnosti hydraulické soustavy']
-    ]),
-    E:[{k:'E16',l:'Kontrola funkce nabíječe',printLabel:'16. Funkce nabíječe',desc:true,chargerCheck:true},{k:'E_socket230',l:'Kontrola zásuvky 230 V v koši',printLabel:'17. Kontrola zásuvky v koši 230 V',desc:true,socketCheck:true},{k:'E19',l:'Kontrola funkce spodního ovládacího panelu',printLabel:'18. Funkce spodního ovládacího panelu',desc:true},{k:'E21',l:'Kontrola funkce horního ovládacího panelu',printLabel:'19. Funkce horního ovládacího panelu',desc:true},{k:'E_safety',l:'Kontrola funkce bezpečnostních prvků a blokací',printLabel:'20. Funkce bezpečnostních prvků a blokací',desc:true},{k:'E_tilt',l:'Kontrola funkce náklonového čidla',printLabel:'21. Funkce náklonového čidla',desc:true},{k:'E20',l:'Kontrola funkce nouzového spouštění',printLabel:'22. Funkce nouzového spouštění',desc:true}]
+    C:makeCheckItems([['C1','Celkové znečištění'],['C2','Poškození nátěru'],['C3','Poškození schodů'],['C4','Poškození zábradlí'],['C5','Poškození kol'],['C7','Poškození ovládacího kabelu'],['C8','Poškození podlahy'],['C9','Poškození akumulátorů'],['C10','Poškození sestavy nůžek'],['C11','Poškození hydr. válce'],['C12','Poškození hydr. hadic'],['C13','Netěsnost hydr. soustavy']]),
+    E:[{k:'E16',l:'Funkce nabíječe',printLabel:'16. Funkce nabíječe',desc:true,chargerCheck:true},{k:'E_socket230',l:'Kontrola zásuvky v koši 230 V',printLabel:'17. Kontrola zásuvky v koši 230 V',desc:true,socketCheck:true},{k:'E19',l:'Funkce spodního ovládacího panelu',printLabel:'18. Funkce spodního ovládacího panelu',desc:true},{k:'E20',l:'Funkce nouzového spouštění',printLabel:'19. Funkce nouzového spouštění',desc:true},{k:'E21',l:'Funkce horního ovládacího panelu',printLabel:'20. Funkce horního ovládacího panelu',desc:true}]
   },
   boom: {
-    C:makeCheckItems([
-      ['C1','Kontrola čistoty zařízení'],
-      ['C4','Kontrola stavu kol a pneumatik'],
-      ['C_chassis','Kontrola podvozku a základny'],
-      ['C9','Kontrola ramene'],
-      ['C10','Kontrola kloubu'],
-      ['C6','Kontrola ovládacího kabelu'],
-      ['C2','Kontrola schodů a přístupu do koše'],
-      ['C8','Kontrola akumulátorů'],
-      ['C7','Kontrola podlahy koše a protiskluzu'],
-      ['C3','Kontrola zábradlí'],
-      ['C_gate','Kontrola vstupu do koše'],
-      ['C_complete','Kontrola kompletnosti konstrukce'],
-      ['C11','Kontrola hydraulických válců'],
-      ['C12','Kontrola hydraulických hadic'],
-      ['C13','Kontrola těsnosti hydraulické soustavy']
-    ]),
-    E:[{k:'E16',l:'Kontrola funkce nouzového spouštění',printLabel:'16. Funkce nouzového spouštění',desc:true},{k:'E17',l:'Kontrola funkce omezení nosnosti koše',printLabel:'17. Funkce nosnosti koše',desc:true},{k:'E18',l:'Kontrola funkce nabíječe',printLabel:'18. Funkce nabíječe',desc:true,chargerCheck:true},{k:'E_socket230',l:'Kontrola zásuvky 230 V v koši',printLabel:'19. Kontrola zásuvky v koši 230 V',desc:true,socketCheck:true},{k:'E19',l:'Kontrola funkce spodního ovládacího panelu',printLabel:'20. Funkce spodního ovládacího panelu',desc:true},{k:'E20',l:'Kontrola funkce horního ovládacího panelu',printLabel:'21. Funkce horního ovládacího panelu',desc:true},{k:'E_safety',l:'Kontrola funkce bezpečnostních prvků a blokací',printLabel:'22. Funkce bezpečnostních prvků a blokací',desc:true},{k:'E_tilt',l:'Kontrola funkce náklonového čidla',printLabel:'23. Funkce náklonového čidla',desc:true}]
+    C:makeCheckItems([['C1','Celkové znečištění'],['C2','Poškození schodů'],['C3','Poškození zábradlí'],['C4','Poškození kol'],['C6','Poškození ovládacího kabelu'],['C7','Poškození podlahy'],['C8','Poškození akumulátorů'],['C9','Poškození ramene'],['C10','Poškození kloubu'],['C11','Poškození hydr. válců'],['C12','Poškození hydr. hadic'],['C13','Netěsnost hydr. soustavy']]),
+    E:[{k:'E16',l:'Funkce nouzového spouštění',printLabel:'16. Funkce nouzového spouštění',desc:true},{k:'E17',l:'Funkce nosnosti koše',printLabel:'17. Funkce nosnosti koše',desc:true},{k:'E18',l:'Funkce nabíječe',printLabel:'18. Funkce nabíječe',desc:true,chargerCheck:true},{k:'E_socket230',l:'Kontrola zásuvky v koši 230 V',printLabel:'19. Kontrola zásuvky v koši 230 V',desc:true,socketCheck:true},{k:'E19',l:'Funkce spodního ovládacího panelu',printLabel:'20. Funkce spodního ovládacího panelu',desc:true},{k:'E20',l:'Funkce horního ovládacího panelu',printLabel:'21. Funkce horního ovládacího panelu',desc:true}]
   },
   mast: {
-    C:makeCheckItems([
-      ['C1','Kontrola čistoty zařízení'],
-      ['C3','Kontrola stavu kol a pneumatik'],
-      ['C_chassis','Kontrola podvozku a základny'],
-      ['C8','Kontrola sloupu'],
-      ['C5','Kontrola ovládacího kabelu'],
-      ['C7','Kontrola akumulátorů'],
-      ['C6','Kontrola podlahy koše a protiskluzu'],
-      ['C2b','Kontrola zábradlí'],
-      ['C_gate','Kontrola vstupu do koše'],
-      ['C_complete','Kontrola kompletnosti konstrukce'],
-      ['C9','Kontrola hydraulických válců'],
-      ['C10','Kontrola hydraulických hadic'],
-      ['C11','Kontrola těsnosti hydraulické soustavy']
-    ]),
-    E:[{k:'E14',l:'Kontrola funkce nouzového spouštění',printLabel:'14. Funkce nouzového spouštění',desc:true},{k:'E15',l:'Kontrola funkce omezení nosnosti koše',printLabel:'15. Funkce nosnosti koše',desc:true},{k:'E16',l:'Kontrola funkce nabíječe',printLabel:'16. Funkce nabíječe',desc:true,chargerCheck:true},{k:'E_socket230',l:'Kontrola zásuvky 230 V v koši',printLabel:'17. Kontrola zásuvky v koši 230 V',desc:true,socketCheck:true},{k:'E17',l:'Kontrola funkce spodního ovládacího panelu',printLabel:'18. Funkce spodního ovládacího panelu',desc:true},{k:'E18',l:'Kontrola funkce horního ovládacího panelu',printLabel:'19. Funkce horního ovládacího panelu',desc:true},{k:'E_safety',l:'Kontrola funkce bezpečnostních prvků a blokací',printLabel:'20. Funkce bezpečnostních prvků a blokací',desc:true},{k:'E_tilt',l:'Kontrola funkce náklonového čidla',printLabel:'21. Funkce náklonového čidla',desc:true}]
+    C:makeCheckItems([['C1','Celkové znečištění'],['C2','Poškození zábradlí'],['C3','Poškození kol'],['C5','Poškození ovládacího kabelu'],['C6','Poškození podlahy'],['C7','Poškození akumulátorů'],['C8','Poškození ramene'],['C9','Poškození hydr. válců'],['C10','Poškození hydr. hadic'],['C11','Netěsnost hydr. soustavy']]),
+    E:[{k:'E14',l:'Funkce nouzového spouštění',printLabel:'14. Funkce nouzového spouštění',desc:true},{k:'E15',l:'Funkce nosnosti koše',printLabel:'15. Funkce nosnosti koše',desc:true},{k:'E16',l:'Funkce nabíječe',printLabel:'16. Funkce nabíječe',desc:true,chargerCheck:true},{k:'E_socket230',l:'Kontrola zásuvky v koši 230 V',printLabel:'17. Kontrola zásuvky v koši 230 V',desc:true,socketCheck:true},{k:'E17',l:'Funkce spodního ovládacího panelu',printLabel:'18. Funkce spodního ovládacího panelu',desc:true},{k:'E18',l:'Funkce horního ovládacího panelu',printLabel:'19. Funkce horního ovládacího panelu',desc:true}]
   }
 };
 const MODEL_PREFS_KEY = 'platform_protocol_model_prefs_v1';
@@ -758,23 +522,9 @@ function hasStabilizers(model){
 }
 function getBoomC(model){
   const base = [
-    ['C1','Kontrola čistoty zařízení'],
-    ['C4','Kontrola stavu kol a pneumatik'],
-    ['C_chassis','Kontrola podvozku a základny'],
-    ['C9','Kontrola ramene'],
-    ['C10','Kontrola kloubu'],
-    ['C6','Kontrola ovládacího kabelu'],
-    ['C2b','Kontrola schodů a přístupu do koše'],
-    ['C8','Kontrola akumulátorů'],
-    ['C7','Kontrola podlahy koše a protiskluzu'],
-    ['C3','Kontrola zábradlí'],
-    ['C_gate','Kontrola vstupu do koše'],
-    ['C_complete','Kontrola kompletnosti konstrukce'],
-    ['C11','Kontrola hydraulických válců'],
-    ['C12','Kontrola hydraulických hadic'],
-    ['C13','Kontrola těsnosti hydraulické soustavy']
+    ['C1','Celkové znečištění'],['C2','Poškození schodů'],['C3','Poškození zábradlí'],['C4','Poškození kol'],['C6','Poškození ovládacího kabelu'],['C7','Poškození podlahy'],['C8','Poškození akumulátorů'],['C9','Poškození ramene'],['C10','Poškození kloubu'],['C11','Poškození hydr. válců'],['C12','Poškození hydr. hadic'],['C13','Netěsnost hydr. soustavy']
   ];
-  if(hasStabilizers(model)) base.splice(3, 0, ['C_stabilizers','Kontrola stabilizátorů']);
+  if(hasStabilizers(model)) base.splice(10, 0, ['C_stabilizers','Poškození stabilizátorů']);
   return makeCheckItems(base);
 }
 function getSectionsForRecord(record){
@@ -1106,15 +856,15 @@ function isRevizeExpired(r){
   return revEnd < checkDate;
 }
 function syncRevizeIssue(r){ if(!isRevizeExpired(r)) return; r.B2 = 'NE'; r.zaverOprava = 'ANO'; r.zaverBezpecny = 'NE'; const msg = 'Prošlá platnost revize.'; const cur = String(r.B2_p||'').trim(); r.B2_p = !cur ? msg : (cur.toLowerCase().includes('prošlá platnost revize') ? cur : cur + ' ' + msg); }
-function isInvertedIssueKey(key){ return key === 'zaverServis' || key === 'zaverOprava'; }
+function isInvertedIssueKey(key){ return isGeneralCheckKey(key) || key === 'zaverServis' || key === 'zaverOprava'; }
 function isProblemAnswer(key, value){
   if(value !== 'ANO' && value !== 'NE') return false;
   return isInvertedIssueKey(key) ? value === 'ANO' : value === 'NE';
 }
 function countIssues(r){ return getStepsForRecord(r).filter(s => (s.type === 'yn' || s.type === 'yntext' || s.type === 'yntextphoto') && isProblemAnswer(s.k, r[s.k])).length + (isRevizeExpired(r) ? 1 : 0); }
 function hasIssue(r){ return countIssues(r) > 0 || r.zaverOprava === 'ANO' || r.zaverBezpecny === 'NE' || isRevizeExpired(r); }
-function yn(v){ if(v === 'ANO') return '☑ ANO   ☐ NE'; if(v === 'NE') return '☐ ANO   ☑ NE'; return '☐ ANO   ☐ NE'; }
-function isGeneralCheckKey(key){ return /^C[0-9]+$/.test(String(key||'')) || /^C_/.test(String(key||'')); }
+function yn(v){ return { ano: v==='ANO' ? '☒' : '☐', ne: v==='NE' ? '☒' : '☐' }; }
+function isGeneralCheckKey(key){ return /^C[0-9]+$/.test(String(key||'')); }
 function sectionLabel(key){ return ({A:'A. Průvodní dokumentace a vybavení',B:'B. Stav zařízení',C:'C. Všeobecná kontrola zařízení',D:'D. Kontrola provozních náplní',E:'E. Kontrola funkcí','Úvodní údaje':'Úvodní údaje','Fotky':'Fotodokumentace','Závěr':'Závěr'})[key] || key; }
 function findProtocolsByMachine(serial){ return data.filter(r => String(r.vc||'').trim().toLowerCase() === String(serial||'').trim().toLowerCase()).sort((a,b)=>String(b.datum||'').localeCompare(String(a.datum||''))); }
 function parseQrPayload(raw){ const text = String(raw||'').replace(/\s+/g,' ').trim(); const upper = text.toUpperCase(); let typ = ''; for(const model of MODELS){ if(upper.includes(model.toUpperCase())){ typ = model; break; } } const serial = (upper.match(/([A-Z]{2}\d{2}[A-Z]-\d{4,}|GS\d{2}[A-Z]-\d{4,})/) || [])[1] || ''; return { typ, vc: serial, raw: text }; }
@@ -1151,8 +901,8 @@ function render(){
       </div>
       <div class="actions">
         <button class="secondary mini" data-action="preview" data-id="${r.id}">Náhled</button>
-        <button class="ghost mini" data-action="edit" data-id="${r.id}">Upravit</button>
-        <button class="primary mini" data-action="pdf" data-id="${r.id}">Tisk</button>
+        <button class="secondary mini" data-action="edit" data-id="${r.id}">Upravit</button>
+        <button class="secondary mini" data-action="pdf" data-id="${r.id}">Tisk</button>
         <button class="danger mini" data-action="delete" data-id="${r.id}">Smazat</button>
       </div>
     </div>`).join('');
@@ -1227,7 +977,7 @@ function showStep(){
   } else if(s.type === 'yn'){
     html = `<div class="yesno"><button class="yn-btn ${yesClass}" data-answer="ANO">✔ ANO</button><button class="yn-btn ${noClass}" data-answer="NE">✖ NE</button></div>`;
   } else if(s.type === 'yntext' || s.type === 'yntextphoto'){
-    const needsNote = isProblemAnswer(s.k, rec[s.k]);
+    const needsNote = s.k === 'B1' ? rec[s.k]==='NE' : (isGeneralCheckKey(s.k) ? rec[s.k]==='ANO' : rec[s.k]==='NE');
     const label = s.k === 'B1' ? 'Závady' : 'Popis závady';
     const issuePhoto = (rec.issuePhotos || {})[s.k] || {};
     const issueSrc = getPhotoSrc(issuePhoto);
@@ -1371,7 +1121,7 @@ function showStep(){
   els.content.querySelectorAll('[data-answer]').forEach(btn => btn.addEventListener('click', () => { rec[s.k] = btn.dataset.answer; nextStep(); }));
   els.content.querySelectorAll('[data-answer-text]').forEach(btn => btn.addEventListener('click', () => {
     rec[s.k] = btn.dataset.answerText;
-    const needsNote = isProblemAnswer(s.k, btn.dataset.answerText);
+    const needsNote = s.k === 'B1' ? btn.dataset.answerText === 'NE' : (isGeneralCheckKey(s.k) ? btn.dataset.answerText === 'ANO' : btn.dataset.answerText === 'NE');
     if(!needsNote){
       rec[s.textKey] = '';
       nextStep();
@@ -1410,7 +1160,9 @@ function hideSuggestions(){ const host = document.getElementById('suggestHost');
 
 function shouldShowIssuePhoto(step, value){
   if(!step || step.type !== 'yntextphoto') return false;
-  return isProblemAnswer(step.k, value);
+  if(step.k === 'B1') return value === 'NE';
+  if(isGeneralCheckKey(step.k)) return value === 'ANO';
+  return value === 'NE';
 }
 function getPhotoSrc(photo){ return photo ? (photo.url || photo.dataUrl || '') : ''; }
 let lightboxImages = [];
@@ -1503,7 +1255,7 @@ async function nextStep(){
   const activeSteps = getStepsForRecord(rec);
   const s = activeSteps[stepIndex];
   if(s.type === 'yntext' || s.type === 'yntextphoto'){
-    const needsNote = isProblemAnswer(s.k, rec[s.k]);
+    const needsNote = s.k === 'B1' ? rec[s.k] === 'NE' : (isGeneralCheckKey(s.k) ? rec[s.k] === 'ANO' : rec[s.k] === 'NE');
     if(needsNote) rec[s.textKey] = document.getElementById('descInput')?.value || rec[s.textKey] || '';
   }
   if(['text','textarea','branchSelect','technikSelect','yearInput','date','modelSelect','number'].includes(s.type)) addSuggestion(s.k, rec[s.k]);
@@ -1553,24 +1305,23 @@ async function savePreviewRecord(){
   closePreview();
 }
 function printCurrent(){
+  console.log('TISK kliknuto');
   if(!currentPreview){
     alert('Není otevřený protokol.');
     return;
   }
-  const paperHtml = renderPaper(currentPreview);
-  els.previewBody.innerHTML = paperHtml;
+  els.previewBody.innerHTML = renderPaper(currentPreview);
   if(!els.preview.classList.contains('show')) openModal(els.preview);
-  const styles = Array.from(document.querySelectorAll('style')).map(s => s.textContent).join('\n');
-  const popup = window.open('', '_blank');
-  if(popup && popup.document){
-    popup.document.open();
-    popup.document.write(`<!DOCTYPE html><html lang="cs"><head><meta charset="UTF-8"><title>Tisk protokolu</title><style>${styles}
-@media screen{body{background:#eef2f7;padding:16px}.paper{margin:0 auto}}</style></head><body>${paperHtml}<script>window.onload=function(){setTimeout(function(){window.print();},250)}<\/script></body></html>`);
-    popup.document.close();
-  } else {
+  // vynutit překreslení a spustit tisk přímo z kliknutí uživatele
+  void els.previewBody.offsetHeight;
+  try {
     window.print();
+  } catch (e) {
+    console.error('Print error', e);
+    alert('Nepodařilo se otevřít tisk.');
   }
 }
+window._printNow = printCurrent;
 
 function downloadById(id){
   const record = data.find(r => r.id === id);
@@ -1710,133 +1461,144 @@ async function handleQrDecoded(decodedText){
   openWizard(null, prefill);
 }
 
-function cleanPrintLabel(label){
-  return String(label || '')
-    .replace(/^\s*\d+\.\s*/, '')
-    .replace(/\s*[–-]\s*stav vyhovuje/gi, '')
-    .replace(/\s*[–-]\s*vyhovuje/gi, '')
-    .trim();
-}
-function markCell(checked){ return '<span class="markbox">' + (checked ? '1' : '') + '</span>'; }
-function ynColumns(v){
-  return {ano: markCell(v === 'ANO'), ne: markCell(v === 'NE')};
-}
-function rowsHtml(items,r,sectionKey=''){
-  return items.map(it => {
-    const problem = isProblemAnswer(it.k, r[it.k]);
-    const cls = problem ? 'status-bad' : ((r[it.k] === 'ANO' || r[it.k] === 'NE') ? 'status-ok' : '');
+function rowsHtml(items,r, opts={}){
+  const numbered = !!opts.numbered;
+  return items.map((it, idx) => {
     const ch = getKnownChargerPresence(r);
-    if(it.chargerCheck && ch === 'BEZ'){
-      return `<tr class="crossed-out"><td>${escapeHtml(cleanPrintLabel(it.printLabel||it.l))}</td><td class="check-col">—</td><td class="check-col">—</td><td class="desc-col">Bez nabíječe – není závada</td></tr>`;
-    }
     const sock = getKnownSocket230Presence(r);
-    if(it.socketCheck && sock === 'BEZ'){
-      return `<tr class="crossed-out"><td>${escapeHtml(cleanPrintLabel(it.printLabel||it.l))}</td><td class="check-col">—</td><td class="check-col">—</td><td class="desc-col">Bez zásuvky v koši 230 V – není závada</td></tr>`;
-    }
     const note = r[it.k+'_p'] || '';
-    const label = problem ? '<span class="issue-label">ZÁVADA</span>' : '';
-    const cols = ynColumns(r[it.k]);
-    const title = sectionKey === 'C' ? cleanPrintLabel(it.printLabel||it.l) : (it.printLabel || it.l);
-    return `<tr class="${cls}"><td>${escapeHtml(title)}</td><td class="check-col">${cols.ano}</td><td class="check-col">${cols.ne}</td><td class="desc-col">${label}${escapeHtml(note)}</td></tr>`;
+    const val = r[it.k];
+    const marks = yn(val);
+    let noteText = note;
+    if(it.chargerCheck && ch === 'BEZ'){ noteText = 'Bez nabíječe – není závada'; }
+    if(it.socketCheck && sock === 'BEZ'){ noteText = 'Bez zásuvky v koši 230 V – není závada'; }
+    const cls = isProblemAnswer(it.k, val) ? 'status-bad' : '';
+    return `<tr class="${cls}">${numbered?`<td class="num-col">${idx+1}</td>`:''}<td class="item-col">${escapeHtml(it.printLabel||it.l)}</td><td class="yn-col"><span class="box">${marks.ano}</span></td><td class="yn-col"><span class="box">${marks.ne}</span></td><td class="note-col">${escapeHtml(noteText)}</td></tr>`;
   }).join('');
 }
 function renderConclusion(r){
-  const rows = [
-    ['Nutná běžná servisní kontrola','zaverServis'],
-    ['Nutná oprava','zaverOprava'],
-    ['Zařízení je schopné bezpečného provozu','zaverBezpecny']
-  ].map(([label,key]) => {
-    const cls = isProblemAnswer(key, r[key]) ? 'status-bad' : (r[key] ? 'status-ok' : '');
-    const cols = ynColumns(r[key]);
-    return `<tr class="${cls}"><th>${label}</th><td class="check-col">${cols.ano}</td><td class="check-col">${cols.ne}</td><td></td></tr>`;
-  }).join('');
-  return `<table><thead><tr><th>Kontrola</th><th>ANO</th><th>NE</th><th>Poznámky</th></tr></thead><tbody>${rows}</tbody></table>`;
+  const servis = yn(r.zaverServis); const oprava = yn(r.zaverOprava); const safe = yn(r.zaverBezpecny);
+  return `<table class="proto-table"><thead><tr><th class="item-col">Výsledek kontroly</th><th class="yn-col">ANO</th><th class="yn-col">NE</th><th class="note-col">Poznámka</th></tr></thead><tbody>
+  <tr><td>Nutná běžná servisní kontrola</td><td class="yn-col"><span class="box">${servis.ano}</span></td><td class="yn-col"><span class="box">${servis.ne}</span></td><td></td></tr>
+  <tr><td>Nutná oprava</td><td class="yn-col"><span class="box">${oprava.ano}</span></td><td class="yn-col"><span class="box">${oprava.ne}</span></td><td></td></tr>
+  <tr><td>Zařízení vyhovuje provozu</td><td class="yn-col"><span class="box">${safe.ano}</span></td><td class="yn-col"><span class="box">${safe.ne}</span></td><td>${r.zaverBezpecny==='NE'?'Zařízení není způsobilé k bezpečnému provozu.':''}</td></tr>
+  </tbody></table>`;
 }
 function renderPhotoSection(r){
   const photos = r.photos || {};
-  const cells = PHOTO_STEPS.map((s,idx) => {
+  const cells = PHOTO_STEPS.map((s, i) => {
     const p = photos[s.photoKey] || {};
     const src = p.url || p.dataUrl || '';
-    return `<div class="photo-box">${src ? `<img src="${escapeHtml(src)}" data-full-src="${escapeHtml(src)}" onclick="openLightbox(this.dataset.fullSrc)">` : '<div class="empty-photo">bez fotky</div>'}<strong>${idx+1}. ${escapeHtml(PHOTO_LABELS[s.photoKey])}</strong></div>`;
+    return `<div class="photo-mini">${src ? `<img src="${escapeHtml(src)}" data-full-src="${escapeHtml(src)}" onclick="openLightbox(this.dataset.fullSrc)">` : '<div style="height:70px;border:1px dashed #bdbdbd;margin-bottom:5px;background:#fafafa"></div>'}<div>${i+1}. ${escapeHtml(PHOTO_LABELS[s.photoKey])}</div></div>`;
   }).join('');
-  return `<div class="section-block"><div class="section-title">Fotodokumentace stroje (informační miniatury)</div><div class="photo-grid">${cells}</div></div>`;
+  return `<div class="photo-section"><div class="section-head">Fotodokumentace</div><div style="padding:6px 8px;font-size:11px;font-weight:600">Přehledové fotografie zařízení (6 ks)</div><div class="photo-strip">${cells}</div></div>`;
 }
 function renderIssuePhotosSection(r){
   const issuePhotos = r.issuePhotos || {};
-  const entries = Object.entries(issuePhotos).filter(([k,p]) => p && (p.url || p.dataUrl));
-  if(!entries.length) return '';
-  const cells = entries.map(([k,p]) => {
-    const src = p.url || p.dataUrl || '';
-    const q = p.question || k;
-    const note = r[k + '_p'] || '';
-    return `<div class="issue-photo-box"><img src="${escapeHtml(src)}" data-full-src="${escapeHtml(src)}" onclick="openLightbox(this.dataset.fullSrc)"><strong>${escapeHtml(q)}</strong>${note ? `<div>${escapeHtml(note)}</div>` : ''}</div>`;
+  const entries = Object.entries(issuePhotos).filter(([k,p]) => p && (p.url || p.dataUrl)).slice(0,3);
+  const boxes = [0,1,2].map(i => {
+    const entry = entries[i];
+    if(!entry) return `<div class="issue-mini"><div style="height:56px;border:1px dashed #bdbdbd;background:#fafafa;margin-bottom:4px"></div><div>vložit foto</div></div>`;
+    const [k,p] = entry; const src = p.url || p.dataUrl || ''; const q = p.question || k;
+    return `<div class="issue-mini"><img src="${escapeHtml(src)}" data-full-src="${escapeHtml(src)}" onclick="openLightbox(this.dataset.fullSrc)"><div>${escapeHtml(q)}</div></div>`;
   }).join('');
-  return `<div class="section-block"><div class="section-title">Fotky závad a poškození</div><div class="issue-photo-grid">${cells}</div></div>`;
+  return `<div class="photo-section" style="border-top:none"><div style="padding:6px 8px;font-size:11px;font-weight:600;border-top:1px solid #707070">Fotografie závad (dle potřeby)</div><div class="issue-strip">${boxes}</div></div>`;
 }
 function renderPaper(r){
   const sections = getSectionsForRecord(r);
-  const mainPhoto = (() => {
-    const p = (r.photos || {}).front || (r.photos || {}).right || (r.photos || {}).left || {};
-    return p.url || p.dataUrl || '';
-  })();
-  const safeResult = r.zaverBezpecny === 'NE' ? 'NEZPŮSOBILÁ K PROVOZU' : (hasIssue(r) ? 'PROVOZ S OPATŘENÍM' : 'BEZPEČNÝ PROVOZ');
+  const b1 = yn(r.B1);
   return `
   <div class="paper">
-    <div class="paper-page">
-      <div class="paper-head">
-        <div>
-          <div class="paper-kicker">ČTVRTLETNÍ KONTROLA</div>
-          <h2>Záznam o běžné prohlídce pracovní plošiny</h2>
-          <div class="subhead">Dle NV č. 193/2022 Sb., příloha č. 2, čl. 3.2. Interval běžné prohlídky nejpozději do 3 měsíců.</div>
+    <div class="paper-doc">
+      <section class="paper-page">
+        <div class="paper-header">
+          <h2>Čtvrtletní kontroly</h2>
+          <div class="subhead">Záznam o běžné prohlídce pracovní plošiny dle NV č. 193/2022 Sb., příloha č. 2, čl. 3.2</div>
         </div>
-        <div class="paper-no"><span>Číslo protokolu</span><strong>${escapeHtml(r.id ? String(r.id).slice(0,12) : '—')}</strong></div>
-      </div>
-
-      <div class="identity-grid">
-        <table class="info-table">
-          <tr><th>Typ zařízení</th><td class="mono">${escapeHtml(r.typ||'')}</td><th>Výrobní číslo</th><td class="mono">${escapeHtml(r.vc||'')}</td></tr>
-          <tr><th>Rok výroby</th><td>${escapeHtml(r.rok||'')}</td><th>Datum kontroly</th><td>${escapeHtml(formatDate(r.datum)||'')}</td></tr>
-          <tr><th>Platnost revize do</th><td class="${isRevizeExpired(r)?'expired':''}">${escapeHtml(formatMonthYear(r.revizeDo))}</td><th>Stav motohodin</th><td class="mono">${escapeHtml(r.mh||'')}</td></tr>
-          <tr><th>Následná kontrola do</th><td>${escapeHtml(formatDate(r.dalsiKontrola)||'')}</td><th>Kontrolu provedl</th><td>${escapeHtml(r.technik||'')}</td></tr>
-          <tr><th>Umístění</th><td>${r.umisteni ? 'půjčovna ' + escapeHtml(r.umisteni) : ''}</td><th>Podklad kontroly</th><td>průvodní dokumentace, návod, provozní deník</td></tr>
+        <table class="proto-meta">
+          <tr><td class="label">Typ zařízení:</td><td class="value">${escapeHtml(r.typ||'')}</td><td class="label">Kontrolu provedl:</td><td class="value">${escapeHtml(r.technik||'')}</td></tr>
+          <tr><td class="label">Výrobní číslo:</td><td class="value mono">${escapeHtml(r.vc||'')}</td><td class="label">Platnost revize do:</td><td class="value ${isRevizeExpired(r)?'status-bad':''}">${escapeHtml(formatMonthYear(r.revizeDo))}</td></tr>
+          <tr><td class="label">Datum kontroly:</td><td class="value">${escapeHtml(r.datum||'')}</td><td class="label">Následná kontrola do:</td><td class="value">${escapeHtml(r.dalsiKontrola||'')}</td></tr>
+          <tr><td class="label">Rok výroby:</td><td class="value">${escapeHtml(r.rok||'')}</td><td class="label">Druh kontroly:</td><td class="value">Běžná čtvrtletní</td></tr>
+          <tr><td class="label">Stav motohodin:</td><td class="value">${escapeHtml(r.mh||'')} h</td><td class="label">Interval:</td><td class="value">3 měsíce</td></tr>
+          <tr><td class="label">Umístění:</td><td class="value" colspan="3">${r.umisteni ? 'půjčovna ' + escapeHtml(r.umisteni) : ''}</td></tr>
         </table>
-        <div class="machine-panel"><div><div class="machine-title">Výsledek kontroly</div><div class="machine-sub"><strong>${escapeHtml(safeResult)}</strong><br>ANO znamená vyhovuje. NE znamená závada.</div></div><div class="machine-img">${mainPhoto ? `<img src="${escapeHtml(mainPhoto)}">` : 'foto stroje'}</div></div>
-      </div>
-
-      <div class="section-block"><div class="section-title">A. Průvodní dokumentace a vybavení</div><table class="check-table"><thead><tr><th>Kontrolní bod</th><th class="check-col">ANO</th><th class="check-col">NE</th><th class="note-col">Poznámka</th></tr></thead><tbody>${rowsHtml(sections.A,r,'A')}</tbody></table></div>
-      <div class="section-block"><div class="section-title">B. Stav zařízení</div><table class="check-table"><thead><tr><th>Kontrolní bod</th><th class="check-col">ANO</th><th class="check-col">NE</th><th class="note-col">Poznámka</th></tr></thead><tbody><tr class="${r.B1==='NE' ? 'status-bad' : (r.B1==='ANO' ? 'status-ok' : '')}"><td>Zařízení bez zjevných závad</td><td class="check-col">${ynColumns(r.B1).ano}</td><td class="check-col">${ynColumns(r.B1).ne}</td><td class="desc-col"></td></tr><tr class="${r.B1==='NE' ? 'status-bad' : ''}"><td>Zjištěné závady zařízení</td><td class="check-col">${markCell(r.B1==='NE')}</td><td class="check-col">${markCell(r.B1==='ANO')}</td><td class="desc-col">${r.B1==='NE' ? '<span class="issue-label">ZÁVADA</span>' : ''}${escapeHtml(r.B1_p||'')}</td></tr>${isRevizeExpired(r)?`<tr class="status-bad"><td>Platnost revize</td><td class="check-col">${markCell(false)}</td><td class="check-col">${markCell(true)}</td><td class="desc-col">Prošlá platnost revize.</td></tr>`:''}</tbody></table></div>
-      <div class="section-block"><div class="section-title">C. Všeobecná kontrola zařízení</div><table class="check-table"><thead><tr><th>Kontrolní bod</th><th class="check-col">ANO = vyhovuje</th><th class="check-col">NE = závada</th><th class="note-col">Poznámka</th></tr></thead><tbody>${rowsHtml(sections.C,r,'C')}</tbody></table></div>
-    </div>
-    <div class="print-page-break"></div>
-    <div class="paper-page">
-      <div class="paper-head compact"><div><div class="paper-kicker">ČTVRTLETNÍ KONTROLA</div><h2>Dokončení protokolu</h2><div class="subhead">Zařízení ${escapeHtml(r.typ||'')} · výrobní číslo ${escapeHtml(r.vc||'')}</div></div><div class="paper-no"><span>Datum kontroly</span><strong>${escapeHtml(formatDate(r.datum)||'')}</strong></div></div>
-      <div class="paper-two-col"><div class="section-block"><div class="section-title">D. Kontrola provozních náplní</div><table class="check-table"><thead><tr><th>Kontrolní bod</th><th class="check-col">ANO</th><th class="check-col">NE</th><th class="note-col">Poznámka</th></tr></thead><tbody>${rowsHtml(sections.D,r,'D')}</tbody></table></div><div class="section-block"><div class="section-title">E. Kontrola funkcí</div><table class="check-table"><thead><tr><th>Kontrolní bod</th><th class="check-col">ANO</th><th class="check-col">NE</th><th class="note-col">Poznámka</th></tr></thead><tbody>${rowsHtml(sections.E,r,'E')}</tbody></table></div></div>
-      ${renderPhotoSection(r)}${renderIssuePhotosSection(r)}
-      <div class="section-block"><div class="section-title">Závěr kontroly</div><div class="result-cards"><div class="result-card result-ok"><strong>BEZPEČNÝ PROVOZ</strong>Zařízení je způsobilé k bezpečnému provozu.</div><div class="result-card result-repair"><strong>NUTNÁ OPRAVA</strong>Zařízení lze používat pouze po odstranění závad.</div><div class="result-card result-bad"><strong>NEZPŮSOBILÝ PROVOZ</strong>Zařízení nelze používat do odstranění závad.</div></div>${renderConclusion(r)}<table class="result-table"><tr><td class="evaluation-text">Pojízdná zdvihací pracovní plošina ${escapeHtml(r.typ||'')} vč. ${escapeHtml(r.vc||'')} je z hlediska bezpečnosti ${r.zaverBezpecny==='NE'?'nezpůsobilá':'schopná'} provozu.</td></tr></table></div>
-      <div class="section-block"><div class="section-title">Poznámka technika</div><table class="result-table"><tr><td class="notes">${escapeHtml(r.poznamka||'')}</td></tr></table></div>
-      <div class="footer-grid"><div class="sign-box"><strong>Datum:</strong><br>${escapeHtml(formatDate(r.datum)||'')}<br><br><strong>Kontrolu provedl:</strong><br>${escapeHtml(r.technik||'')}</div><div class="sign-box"><strong>Podpis a razítko:</strong></div></div>
+        <div class="paper-row-2">
+          <div class="section-card">
+            <div class="section-head">A. Průvodní dokumentace a vybavení</div>
+            <table class="proto-table"><thead><tr><th class="item-col">Položka</th><th class="yn-col">ANO</th><th class="yn-col">NE</th><th class="note-col">Poznámka</th></tr></thead><tbody>${rowsHtml(sections.A,r)}</tbody></table>
+          </div>
+          <div class="section-card">
+            <div class="section-head">B. Stav zařízení</div>
+            <table class="proto-table"><thead><tr><th class="item-col">Položka</th><th class="yn-col">ANO</th><th class="yn-col">NE</th><th class="note-col">Poznámka</th></tr></thead><tbody>
+              <tr><td>Bez závad</td><td class="yn-col"><span class="box">${b1.ano}</span></td><td class="yn-col"><span class="box">${b1.ne}</span></td><td></td></tr>
+              <tr><td>Závady</td><td class="yn-col"><span class="box">${r.B1==='NE' ? '☒':'☐'}</span></td><td class="yn-col"><span class="box">${r.B1==='ANO' ? '☒':'☐'}</span></td><td>${escapeHtml(r.B1_p||'')}</td></tr>
+            </tbody></table>
+          </div>
+        </div>
+        <div class="section-card">
+          <div class="section-head">C. Všeobecná kontrola zařízení <span class="section-note">ANO = vyhovuje &nbsp;&nbsp; NE = závada</span></div>
+          <table class="proto-table"><thead><tr><th class="num-col">Č.</th><th class="item-col">Kontrolovaná položka</th><th class="yn-col">ANO</th><th class="yn-col">NE</th><th class="note-col">Poznámka</th></tr></thead><tbody>${rowsHtml(sections.C,r,{numbered:true})}</tbody></table>
+        </div>
+        <div class="page-number">Strana 1 z 2</div>
+      </section>
+      <section class="paper-page">
+        <div class="section-card">
+          <div class="section-head">D. Kontrola provozních náplní</div>
+          <table class="proto-table"><thead><tr><th class="item-col">Položka</th><th class="yn-col">ANO</th><th class="yn-col">NE</th><th class="note-col">Poznámka</th></tr></thead><tbody>${rowsHtml(sections.D,r)}</tbody></table>
+        </div>
+        <div class="section-card">
+          <div class="section-head">E. Kontrola funkcí</div>
+          <table class="proto-table"><thead><tr><th class="num-col">Č.</th><th class="item-col">Položka</th><th class="yn-col">ANO</th><th class="yn-col">NE</th><th class="note-col">Poznámka</th></tr></thead><tbody>${rowsHtml(sections.E,r,{numbered:true})}</tbody></table>
+        </div>
+        <div class="section-card">
+          <div class="section-head">Zjištěné závady / doporučení</div>
+          <div class="findings-box">${escapeHtml(r.poznamka||'')}<div class="findings-lines"><div></div><div></div><div></div></div></div>
+        </div>
+        ${renderPhotoSection(r)}
+        ${renderIssuePhotosSection(r)}
+        <div class="section-card">
+          <div class="section-head">Závěr kontroly</div>
+          <div class="conclusion-grid">
+            <div>${renderConclusion(r)}</div>
+            <div class="findings-box"><div style="font-weight:700;margin-bottom:6px">Poznámka / omezení provozu:</div>${escapeHtml(r.B1_p||'')}<div class="findings-lines"><div></div><div></div></div></div>
+          </div>
+          <div class="signature-grid">
+            <div><strong>Datum kontroly:</strong><br><br>${escapeHtml(r.datum||'')}</div>
+            <div><strong>Jméno kontrolního technika:</strong><br><br>${escapeHtml(r.technik||'')}</div>
+            <div><strong>Podpis:</strong><br><br></div>
+          </div>
+        </div>
+        <div class="page-number">Strana 2 z 2</div>
+      </section>
     </div>
   </div>`;
 }
 
-function closeSidebarMenu(){ document.body.classList.remove('sidebar-open'); }
-function toggleSidebarMenu(){
-  if(window.matchMedia('(max-width: 920px)').matches){
-    document.body.classList.toggle('sidebar-open');
+function waitForImages(container){
+  const imgs = Array.from(container.querySelectorAll('img'));
+  return Promise.all(imgs.map(img => img.complete ? Promise.resolve() : new Promise(res => { img.onload=res; img.onerror=res; })));
+}
+async function savePreviewRecord(){
+  if(!currentPreview){ alert('Není otevřený žádný protokol k uložení.'); return; }
+  els.previewBody.innerHTML = renderPaper(currentPreview);
+  const element = els.previewBody.querySelector('.paper');
+  if(!element){ alert('Nepodařilo se připravit PDF.'); return; }
+  await waitForImages(element);
+  const fileBase = (currentPreview.id || currentPreview.vc || 'protokol').replace(/[^a-z0-9_-]+/gi,'_');
+  if(window.html2pdf){
+    await window.html2pdf().set({ margin:[0,0,0,0], filename:`${fileBase}.pdf`, image:{type:'jpeg', quality:0.96}, html2canvas:{scale:2, useCORS:true, backgroundColor:'#ffffff'}, jsPDF:{unit:'mm', format:'a4', orientation:'portrait'}, pagebreak:{mode:['css','legacy']} }).from(element).save();
   } else {
-    document.body.classList.toggle('sidebar-collapsed');
-    localStorage.setItem('sidebarCollapsed', document.body.classList.contains('sidebar-collapsed') ? '1' : '0');
+    alert('PDF knihovna se nenačetla.');
   }
 }
-function initSidebarMenu(){
-  if(localStorage.getItem('sidebarCollapsed') === '1') document.body.classList.add('sidebar-collapsed');
-  document.getElementById('sidebarToggle')?.addEventListener('click', toggleSidebarMenu);
-  document.getElementById('sidebarOverlay')?.addEventListener('click', closeSidebarMenu);
-  document.querySelectorAll('.side-nav a,.side-nav button').forEach(el => el.addEventListener('click', () => {
-    if(window.matchMedia('(max-width: 920px)').matches) closeSidebarMenu();
-  }));
+function printCurrent(){
+  if(!currentPreview){ alert('Není otevřený protokol.'); return; }
+  els.previewBody.innerHTML = renderPaper(currentPreview);
+  if(!els.preview.classList.contains('show')) openModal(els.preview);
+  void els.previewBody.offsetHeight;
+  window.print();
 }
-initSidebarMenu();
 
 function applyTheme(mode){
   const dark = mode === 'dark';
@@ -1867,7 +1629,6 @@ document.getElementById('nextBtn').addEventListener('click', nextStep);
 document.getElementById('closePreviewBtn').addEventListener('click', closePreview);
 document.getElementById('savePreviewBtn').addEventListener('click', savePreviewRecord);
 document.getElementById('printPreviewBtn').addEventListener('click', printCurrent);
-if(document.getElementById('downloadPreviewBtn')) document.getElementById('downloadPreviewBtn').addEventListener('click', printCurrent);
 document.addEventListener('keydown', (e) => { if(e.key === 'Escape') closeLightbox(); });
 document.getElementById('closeQrBtn').addEventListener('click', () => closeQrModal());
 document.getElementById('clearQrBtn').addEventListener('click', () => {

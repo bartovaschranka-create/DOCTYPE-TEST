@@ -449,6 +449,23 @@ header{
   }
 }
 
+
+/* v56 upcoming controls */
+.upcoming-list{display:grid;gap:10px}
+.upcoming-item{border:1px solid var(--line);border-radius:16px;background:#fff;padding:13px 14px;display:grid;grid-template-columns:1fr auto;gap:10px;align-items:center}
+body.dark .upcoming-item{background:var(--panel2);border-color:var(--line)}
+.upcoming-main{min-width:0}
+.upcoming-title{font-weight:750;font-size:.98rem}
+.upcoming-sub{font-size:.84rem;color:var(--muted);margin-top:3px}
+.upcoming-date{text-align:right;font-weight:750;white-space:nowrap}
+.upcoming-badge{display:inline-flex;margin-top:6px;padding:4px 8px;border-radius:999px;font-size:.74rem;font-weight:700;border:1px solid transparent}
+.upcoming-overdue{background:#fee2e2;color:#991b1b;border-color:#fecaca}
+.upcoming-soon{background:#fff7ed;color:#9a3412;border-color:#fed7aa}
+.upcoming-ok{background:#ecfdf5;color:#166534;border-color:#bbf7d0}
+.upcoming-empty{padding:22px;border:1px dashed var(--line);border-radius:16px;color:var(--muted);background:#fbfdff;text-align:center}
+body.dark .upcoming-empty{background:var(--panel2)}
+@media(max-width:640px){.upcoming-item{grid-template-columns:1fr}.upcoming-date{text-align:left}}
+
 </style>
 </head>
 <body>
@@ -462,20 +479,21 @@ header{
     <div class="side-logo">✓</div>
     <div>
       <div class="side-title">Čtvrtletní kontroly</div>
-      <div class="side-sub">TEST v55</div>
+      <div class="side-sub">TEST v56</div>
     </div>
   </div>
   <nav class="side-nav">
     <button type="button" class="side-link active" data-side-action="overview">Přehled</button>
     <button type="button" class="side-link" onclick="window._openWizard()">Nový protokol</button>
     <button type="button" class="side-link" data-side-action="protocols">Protokoly</button>
+    <button type="button" class="side-link" id="upcomingBtn">Blížící se kontroly</button>
     <button type="button" class="side-link" id="sideSettingsBtn">Nastavení</button>
   </nav>
   <div class="side-bottom">
     <button type="button" class="side-small" id="sideThemeBtn">Tmavý / světlý režim</button>
     <button type="button" class="side-small" onclick="exportBackup()">Export zálohy</button>
     <button type="button" class="side-small" id="sideImportBtn">Import zálohy</button>
-    <div class="side-version">Verze: TEST v55</div>
+    <div class="side-version">Verze: TEST v56</div>
   </div>
 </aside>
 
@@ -529,6 +547,19 @@ header{
     <div class="settings-note">Mazání je chráněné heslem. Před většími úpravami vždy nejdřív proveď export zálohy. Import starší zálohy automaticky převede logiku sekce C na aktuální verzi.</div>
   </div>
   <div class="wizard-actions"><button id="closeSettingsBtn" class="secondary" type="button">Zavřít</button></div>
+</div></div></div>
+
+<div class="modal" id="upcomingModal"><div class="modal-content"><div class="preview-shell">
+  <div class="preview-header">
+    <div>
+      <div class="preview-title">Blížící se kontroly</div>
+      <div class="card-sub">Načteno z uložených protokolů podle pole „Následná kontrola do“.</div>
+    </div>
+  </div>
+  <div id="upcomingBody" class="list"></div>
+  <div class="preview-actions">
+    <div class="preview-actions-left"><button id="closeUpcomingBtn" class="secondary" type="button">Zavřít</button></div>
+  </div>
 </div></div></div>
 
 <div class="modal" id="wizard"><div class="modal-content"><div class="wizard-shell">
@@ -1986,6 +2017,75 @@ function toggleTheme(){
 }
 applyTheme(localStorage.getItem('doctypeTheme') || 'light');
 
+
+function parseLocalDate(value){
+  if(!value) return null;
+  const s = String(value).slice(0,10);
+  const d = new Date(s + 'T00:00:00');
+  return isNaN(d) ? null : d;
+}
+function daysUntilDate(value){
+  const d = parseLocalDate(value);
+  if(!d) return null;
+  const now = new Date();
+  const today = new Date(now.getFullYear(), now.getMonth(), now.getDate());
+  return Math.round((d - today) / 86400000);
+}
+function upcomingStatus(days){
+  if(days === null) return {text:'Bez data', cls:'upcoming-ok'};
+  if(days < 0) return {text:`Po termínu ${Math.abs(days)} dnů`, cls:'upcoming-overdue'};
+  if(days === 0) return {text:'Dnes', cls:'upcoming-soon'};
+  if(days <= 14) return {text:`Do ${days} dnů`, cls:'upcoming-soon'};
+  if(days <= 30) return {text:`Do ${days} dnů`, cls:'upcoming-ok'};
+  return {text:`Za ${days} dnů`, cls:'upcoming-ok'};
+}
+function getUpcomingRows(){
+  return (data || [])
+    .map(r => {
+      const due = r.dalsiKontrola || '';
+      const days = daysUntilDate(due);
+      return {record:r, due, days};
+    })
+    .filter(x => x.due && x.days !== null && x.days <= 30)
+    .sort((a,b) => a.days - b.days);
+}
+function openUpcomingModal(){
+  const modal = document.getElementById('upcomingModal');
+  const body = document.getElementById('upcomingBody');
+  const rows = getUpcomingRows();
+
+  if(!rows.length){
+    body.innerHTML = '<div class="upcoming-empty">Žádná uložená kontrola nemá termín do 30 dnů.</div>';
+  } else {
+    body.innerHTML = `<div class="upcoming-list">${rows.map(x => {
+      const r = x.record;
+      const st = upcomingStatus(x.days);
+      return `<div class="upcoming-item">
+        <div class="upcoming-main">
+          <div class="upcoming-title">${escapeHtml(r.typ || 'Bez typu')} · ${escapeHtml(r.vc || 'Bez výrobního čísla')}</div>
+          <div class="upcoming-sub">${escapeHtml(r.umisteni || 'Bez umístění')} · poslední kontrola ${escapeHtml(formatDate(r.datum))} · technik ${escapeHtml(r.technik || '—')}</div>
+          <span class="upcoming-badge ${st.cls}">${escapeHtml(st.text)}</span>
+        </div>
+        <div class="upcoming-date">
+          <div>${escapeHtml(formatDate(x.due))}</div>
+          <button class="secondary mini" type="button" data-upcoming-preview="${r.id}" style="margin-top:8px">Náhled</button>
+        </div>
+      </div>`;
+    }).join('')}</div>`;
+    body.querySelectorAll('[data-upcoming-preview]').forEach(btn => {
+      btn.addEventListener('click', () => {
+        closeModal(modal);
+        openPreviewById(btn.dataset.upcomingPreview);
+      });
+    });
+  }
+
+  openModal(modal);
+}
+function closeUpcomingModal(){
+  closeModal(document.getElementById('upcomingModal'));
+}
+
 // events
 document.getElementById('themeToggle')?.addEventListener('click', toggleTheme);
 els.searchInput.addEventListener('input', render);
@@ -2010,6 +2110,8 @@ document.getElementById('sideThemeBtn')?.addEventListener('click', toggleTheme);
 document.querySelector('[data-side-action="protocols"]')?.addEventListener('click', () => { closeSidePanel(); document.querySelector('.toolbar')?.scrollIntoView({behavior:'smooth'}); });
 document.querySelector('[data-side-action="overview"]')?.addEventListener('click', () => { closeSidePanel(); window.scrollTo({top:0,behavior:'smooth'}); });
 document.getElementById('closeSettingsBtn')?.addEventListener('click', () => closeModal(document.getElementById('settingsModal')));
+document.getElementById('upcomingBtn')?.addEventListener('click', () => { closeSidePanel?.(); openUpcomingModal(); });
+document.getElementById('closeUpcomingBtn')?.addEventListener('click', closeUpcomingModal);
 document.getElementById('newProtocolBtn').addEventListener('click', () => openWizard());
 document.getElementById('clearAllBtn').addEventListener('click', clearAllData);
 document.getElementById('importBackupBtn')?.addEventListener('click', () => document.getElementById('importBackupInput')?.click());
@@ -2058,6 +2160,12 @@ document.addEventListener('keydown', (e) => {
 
   if(els.historyModal && els.historyModal.classList.contains('show')){
     closeHistoryModal();
+    return;
+  }
+
+  const upcomingModal = document.getElementById('upcomingModal');
+  if(upcomingModal && upcomingModal.classList.contains('show')){
+    closeUpcomingModal();
     return;
   }
 

@@ -462,7 +462,7 @@ header{
     <div class="side-logo">✓</div>
     <div>
       <div class="side-title">Čtvrtletní kontroly</div>
-      <div class="side-sub">TEST v54</div>
+      <div class="side-sub">TEST v55</div>
     </div>
   </div>
   <nav class="side-nav">
@@ -475,7 +475,7 @@ header{
     <button type="button" class="side-small" id="sideThemeBtn">Tmavý / světlý režim</button>
     <button type="button" class="side-small" onclick="exportBackup()">Export zálohy</button>
     <button type="button" class="side-small" id="sideImportBtn">Import zálohy</button>
-    <div class="side-version">Verze: TEST v54</div>
+    <div class="side-version">Verze: TEST v55</div>
   </div>
 </aside>
 
@@ -2026,7 +2026,43 @@ document.getElementById('nextBtn').addEventListener('click', nextStep);
 document.getElementById('closePreviewBtn').addEventListener('click', closePreview);
 document.getElementById('savePreviewBtn').addEventListener('click', savePreviewRecord);
 document.getElementById('printPreviewBtn').addEventListener('click', printCurrent);
-document.addEventListener('keydown', (e) => { if(e.key === 'Escape') closeLightbox(); });
+document.addEventListener('keydown', (e) => {
+  if(e.key !== 'Escape') return;
+
+  const lb = document.getElementById('lightbox');
+  if(lb && lb.classList.contains('show')){
+    closeLightbox();
+    return;
+  }
+
+  if(els.preview && els.preview.classList.contains('show')){
+    closePreview();
+    return;
+  }
+
+  if(els.wizard && els.wizard.classList.contains('show')){
+    closeWizard();
+    return;
+  }
+
+  const settingsModal = document.getElementById('settingsModal');
+  if(settingsModal && settingsModal.classList.contains('show')){
+    closeModal(settingsModal);
+    return;
+  }
+
+  if(els.qrModal && els.qrModal.classList.contains('show')){
+    closeQrModal();
+    return;
+  }
+
+  if(els.historyModal && els.historyModal.classList.contains('show')){
+    closeHistoryModal();
+    return;
+  }
+
+  document.body.classList.remove('side-open');
+});
 document.getElementById('closeQrBtn').addEventListener('click', () => closeQrModal());
 document.getElementById('clearQrBtn').addEventListener('click', () => {
   resetQr();

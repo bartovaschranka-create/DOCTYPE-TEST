@@ -7,8 +7,8 @@
 <meta name="mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-<meta name="apple-mobile-web-app-title" content="Čtvrtletní kontroly">
-<title>Čtvrtletní kontroly TEST</title>
+<meta name="apple-mobile-web-app-title" content="LiftCheck CZ">
+<title>LiftCheck CZ</title>
 <link rel="manifest" href="manifest.json">
 <link rel="apple-touch-icon" href="icon-192.png">
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -471,15 +471,15 @@ body.dark .upcoming-empty{background:var(--panel2)}
 <body>
 <header>
   <button id="sideToggleBtn" class="settings-btn menu-toggle" type="button" aria-label="Menu">☰</button>
-  <div class="header-title">Čtvrtletní kontroly <span class="test-badge">TEST</span></div>
+  <div class="header-title">LiftCheck CZ <span class="test-badge">1.0 / 5.26</span></div>
 </header>
 <div id="sideOverlay" class="side-overlay"></div>
 <aside id="sidePanel" class="side-panel">
   <div class="side-brand">
     <div class="side-logo">✓</div>
     <div>
-      <div class="side-title">Čtvrtletní kontroly</div>
-      <div class="side-sub">TEST v56</div>
+      <div class="side-title">LiftCheck CZ</div>
+      <div class="side-sub">verze 1.0 / 5.26</div>
     </div>
   </div>
   <nav class="side-nav">
@@ -493,7 +493,7 @@ body.dark .upcoming-empty{background:var(--panel2)}
     <button type="button" class="side-small" id="sideThemeBtn">Tmavý / světlý režim</button>
     <button type="button" class="side-small" onclick="exportBackup()">Export zálohy</button>
     <button type="button" class="side-small" id="sideImportBtn">Import zálohy</button>
-    <div class="side-version">Verze: TEST v56</div>
+    <div class="side-version">Verze: 1.0 / 5.26</div>
   </div>
 </aside>
 
@@ -1008,7 +1008,7 @@ async function exportBackup(){
       rows = loadLocalData();
     }
     const payload = {
-      app: 'Kontrolní protokoly TEST',
+      app: 'LiftCheck CZ',
       collection: COLLECTION_NAME,
       exportedAt: new Date().toISOString(),
       count: rows.length,
@@ -1057,7 +1057,7 @@ function migrateImportedRecord(record){
   if(!r.id) r.id = uid();
 
   // Starší zálohy měly u sekce C opačnou logiku:
-  // ANO = poškození/závada, NE = bez závady.
+  // ANO = bez závad/závada, NE = závaday.
   // Aktuální verze používá ANO = bez závad, NE = závada.
   const map = oldCMapForRecord(r);
   const migratedC = {};
@@ -1344,7 +1344,9 @@ function showStep(){
   els.progressLabel.textContent = `Krok ${stepIndex+1} z ${activeSteps.length}`;
   els.stepChip.textContent = sectionLabel(s.section||'Úvodní údaje');
   els.title.textContent = s.t;
-  els.stepDesc.textContent = '';
+  els.stepDesc.textContent = isGeneralCheckKey(s.k)
+    ? 'Logika sekce C: ANO = bez závad, NE = závada.'
+    : '';
   els.nextBtn.textContent = stepIndex === activeSteps.length-1 ? 'Uložit protokol' : 'Další';
 
   const invertedVisual = isInvertedIssueKey(s.k);
@@ -1914,7 +1916,7 @@ function renderPaper(r){
     <div class="paper-doc">
       <section class="paper-page">
         <div class="paper-header">
-          <h2>Čtvrtletní kontroly</h2>
+          <h2>LiftCheck CZ</h2>
           <div class="subhead">Záznam o běžné prohlídce pracovní plošiny dle NV č. 193/2022 Sb., příloha č. 2, čl. 3.2</div>
         </div>
         <table class="proto-meta">

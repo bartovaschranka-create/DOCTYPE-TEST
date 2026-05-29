@@ -462,7 +462,7 @@ header{
     <div class="side-logo">✓</div>
     <div>
       <div class="side-title">Čtvrtletní kontroly</div>
-      <div class="side-sub">TEST v53</div>
+      <div class="side-sub">TEST v54</div>
     </div>
   </div>
   <nav class="side-nav">
@@ -475,7 +475,7 @@ header{
     <button type="button" class="side-small" id="sideThemeBtn">Tmavý / světlý režim</button>
     <button type="button" class="side-small" onclick="exportBackup()">Export zálohy</button>
     <button type="button" class="side-small" id="sideImportBtn">Import zálohy</button>
-    <div class="side-version">Verze: TEST v53</div>
+    <div class="side-version">Verze: TEST v54</div>
   </div>
 </aside>
 
@@ -620,16 +620,75 @@ const COMMON_SECTIONS = {
 };
 const SECTION_VARIANTS = {
   scissor: {
-    C:makeCheckItems([['C1','Celkové znečištění'],['C2','Poškození kol'],['C3','Poškození základny/podvozku'],['C4','Poškození akumulátorů'],['C5','Poškození sestavy nůžek'],['C6','Poškození hydraulických válců'],['C7','Poškození hydraulických hadic'],['C8','Netěsnost hydraulické soustavy'],['C9','Poškození ovládacího kabelu'],['C10','Poškození podlahy koše'],['C11','Poškození zábradlí']]),
-    E:[{k:'E16',l:'Funkce nabíječe',printLabel:'16. Funkce nabíječe',desc:true,chargerCheck:true},{k:'E_socket230',l:'Kontrola zásuvky v koši 230 V',printLabel:'17. Kontrola zásuvky v koši 230 V',desc:true,socketCheck:true},{k:'E19',l:'Funkce spodního ovládacího panelu',printLabel:'18. Funkce spodního ovládacího panelu',desc:true},{k:'E20',l:'Funkce nouzového spouštění',printLabel:'19. Funkce nouzového spouštění',desc:true},{k:'E21',l:'Funkce horního ovládacího panelu',printLabel:'20. Funkce horního ovládacího panelu',desc:trueboom: {
-    C:makeCheckItems([['C1','Celkové znečištění'],['C2','Poškození kol'],['C3','Poškození základny/podvozku'],['C4','Poškození akumulátorů'],['C5','Poškození ramene'],['C6','Poškození hydraulických válců'],['C7','Poškození hydraulických hadic'],['C8','Netěsnost hydraulické soustavy'],['C9','Poškození ovládacího kabelu'],['C10','Poškození podlahy koše'],['C11','Poškození zábradlí']]),
-    E:]),
-    E:[{k:'E16',l:'Funkce nouzového spouštění',printLabel:'16. Funkce nouzového spouštění',desc:true},{k:'E17',l:'Funkce nosnosti koše',printLabel:'17. Funkce nosnosti koše',desc:true},{k:'E18',l:'Funkce nabíječe',printLabel:'18. Funkce nabíječe',desc:true,chargerCheck:true},{k:'E_socket230',l:'Kontrola zásuvky v koši 230 V',printLabel:'19. Kontrola zásuvky v koši 230 V',desc:true,socketCheck:true},{k:'E19',l:'Funkce spodního ovládacího panelu',printLabel:'20. Funkce spodního ovládacího panelu',desc:true},{k:'E20',l:'Funkce horního ovládacího panelu',printLabel:'21. Funkce horního ovládacího panelu'mast: {
-    C:makeCheckItems([['C1','Celkové znečištění'],['C2','Poškození kol'],['C3','Poškození základny/podvozku'],['C4','Poškození akumulátorů'],['C5','Poškození sloupu/ramene'],['C6','Poškození hydraulických válců'],['C7','Poškození hydraulických hadic'],['C8','Netěsnost hydraulické soustavy'],['C9','Poškození ovládacího kabelu'],['C10','Poškození podlahy koše'],['C11','Poškození zábradlí']]),
-    E:soustavy']]),
-    E:[{k:'E14',l:'Funkce nouzového spouštění',printLabel:'14. Funkce nouzového spouštění',desc:true},{k:'E15',l:'Funkce nosnosti koše',printLabel:'15. Funkce nosnosti koše',desc:true},{k:'E16',l:'Funkce nabíječe',printLabel:'16. Funkce nabíječe',desc:true,chargerCheck:true},{k:'E_socket230',l:'Kontrola zásuvky v koši 230 V',printLabel:'17. Kontrola zásuvky v koši 230 V',desc:true,socketCheck:true},{k:'E17',l:'Funkce spodního ovládacího panelu',printLabel:'18. Funkce spodního ovládacího panelu',desc:true},{k:'E18',l:'Funkce horního ovládacího panelu',printLabel:'19. Funkce horního ovládacího panelu',desc:true}]
+    C:makeCheckItems([
+      ['C1','Celkové znečištění'],
+      ['C2','Poškození kol'],
+      ['C3','Poškození základny/podvozku'],
+      ['C4','Poškození akumulátorů'],
+      ['C5','Poškození sestavy nůžek'],
+      ['C6','Poškození hydraulických válců'],
+      ['C7','Poškození hydraulických hadic'],
+      ['C8','Netěsnost hydraulické soustavy'],
+      ['C9','Poškození ovládacího kabelu'],
+      ['C10','Poškození podlahy koše'],
+      ['C11','Poškození zábradlí']
+    ]),
+    E:[
+      {k:'E16',l:'Funkce nabíječe',printLabel:'16. Funkce nabíječe',desc:true,chargerCheck:true},
+      {k:'E_socket230',l:'Kontrola zásuvky v koši 230 V',printLabel:'17. Kontrola zásuvky v koši 230 V',desc:true,socketCheck:true},
+      {k:'E19',l:'Funkce spodního ovládacího panelu',printLabel:'18. Funkce spodního ovládacího panelu',desc:true},
+      {k:'E20',l:'Funkce nouzového spouštění',printLabel:'19. Funkce nouzového spouštění',desc:true},
+      {k:'E21',l:'Funkce horního ovládacího panelu',printLabel:'20. Funkce horního ovládacího panelu',desc:true}
+    ]
+  },
+  boom: {
+    C:makeCheckItems([
+      ['C1','Celkové znečištění'],
+      ['C2','Poškození kol'],
+      ['C3','Poškození základny/podvozku'],
+      ['C4','Poškození akumulátorů'],
+      ['C5','Poškození ramene'],
+      ['C6','Poškození hydraulických válců'],
+      ['C7','Poškození hydraulických hadic'],
+      ['C8','Netěsnost hydraulické soustavy'],
+      ['C9','Poškození ovládacího kabelu'],
+      ['C10','Poškození podlahy koše'],
+      ['C11','Poškození zábradlí']
+    ]),
+    E:[
+      {k:'E16',l:'Funkce nouzového spouštění',printLabel:'16. Funkce nouzového spouštění',desc:true},
+      {k:'E17',l:'Funkce nosnosti koše',printLabel:'17. Funkce nosnosti koše',desc:true},
+      {k:'E18',l:'Funkce nabíječe',printLabel:'18. Funkce nabíječe',desc:true,chargerCheck:true},
+      {k:'E_socket230',l:'Kontrola zásuvky v koši 230 V',printLabel:'19. Kontrola zásuvky v koši 230 V',desc:true,socketCheck:true},
+      {k:'E19',l:'Funkce spodního ovládacího panelu',printLabel:'20. Funkce spodního ovládacího panelu',desc:true},
+      {k:'E20',l:'Funkce horního ovládacího panelu',printLabel:'21. Funkce horního ovládacího panelu',desc:true}
+    ]
+  },
+  mast: {
+    C:makeCheckItems([
+      ['C1','Celkové znečištění'],
+      ['C2','Poškození kol'],
+      ['C3','Poškození základny/podvozku'],
+      ['C4','Poškození akumulátorů'],
+      ['C5','Poškození sloupu/ramene'],
+      ['C6','Poškození hydraulických válců'],
+      ['C7','Poškození hydraulických hadic'],
+      ['C8','Netěsnost hydraulické soustavy'],
+      ['C9','Poškození ovládacího kabelu'],
+      ['C10','Poškození podlahy koše'],
+      ['C11','Poškození zábradlí']
+    ]),
+    E:[
+      {k:'E14',l:'Funkce nouzového spouštění',printLabel:'14. Funkce nouzového spouštění',desc:true},
+      {k:'E15',l:'Funkce nosnosti koše',printLabel:'15. Funkce nosnosti koše',desc:true},
+      {k:'E16',l:'Funkce nabíječe',printLabel:'16. Funkce nabíječe',desc:true,chargerCheck:true},
+      {k:'E_socket230',l:'Kontrola zásuvky v koši 230 V',printLabel:'17. Kontrola zásuvky v koši 230 V',desc:true,socketCheck:true},
+      {k:'E17',l:'Funkce spodního ovládacího panelu',printLabel:'18. Funkce spodního ovládacího panelu',desc:true},
+      {k:'E18',l:'Funkce horního ovládacího panelu',printLabel:'19. Funkce horního ovládacího panelu',desc:true}
+    ]
   }
 };
+
 const MODEL_PREFS_KEY = 'platform_protocol_model_prefs_v1';
 function normalizeModelKey(model){ return String(model||'').trim().toUpperCase(); }
 function getModelPrefs(){ try{ return JSON.parse(localStorage.getItem(MODEL_PREFS_KEY) || '{}'); }catch(e){ return {}; } }

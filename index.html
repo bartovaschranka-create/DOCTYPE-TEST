@@ -462,7 +462,7 @@ header{
     <div class="side-logo">✓</div>
     <div>
       <div class="side-title">Čtvrtletní kontroly</div>
-      <div class="side-sub">TEST v50</div>
+      <div class="side-sub">TEST v52</div>
     </div>
   </div>
   <nav class="side-nav">
@@ -474,7 +474,7 @@ header{
   <div class="side-bottom">
     <button type="button" class="side-small" id="sideThemeBtn">Tmavý / světlý režim</button>
     <button type="button" class="side-small" onclick="exportBackup()">Export zálohy</button>
-    <div class="side-version">Verze: TEST v50</div>
+    <div class="side-version">Verze: TEST v52</div>
   </div>
 </aside>
 
@@ -617,15 +617,13 @@ const COMMON_SECTIONS = {
 };
 const SECTION_VARIANTS = {
   scissor: {
-    C:makeCheckItems([['C1','Celkové znečištění'],['C2','Poškození nátěru'],['C3','Poškození schodů'],['C4','Poškození zábradlí'],['C5','Poškození kol'],['C7','Poškození ovládacího kabelu'],['C8','Poškození podlahy'],['C9','Poškození akumulátorů'],['C10','Poškození sestavy nůžek'],['C11','Poškození hydr. válce'],['C12','Poškození hydr. hadic'],['C13','Netěsnost hydr. soustavy']]),
-    E:[{k:'E16',l:'Funkce nabíječe',printLabel:'16. Funkce nabíječe',desc:true,chargerCheck:true},{k:'E_socket230',l:'Kontrola zásuvky v koši 230 V',printLabel:'17. Kontrola zásuvky v koši 230 V',desc:true,socketCheck:true},{k:'E19',l:'Funkce spodního ovládacího panelu',printLabel:'18. Funkce spodního ovládacího panelu',desc:true},{k:'E20',l:'Funkce nouzového spouštění',printLabel:'19. Funkce nouzového spouštění',desc:true},{k:'E21',l:'Funkce horního ovládacího panelu',printLabel:'20. Funkce horního ovládacího panelu',desc:true}]
-  },
-  boom: {
-    C:makeCheckItems([['C1','Celkové znečištění'],['C2','Poškození schodů'],['C3','Poškození zábradlí'],['C4','Poškození kol'],['C6','Poškození ovládacího kabelu'],['C7','Poškození podlahy'],['C8','Poškození akumulátorů'],['C9','Poškození ramene'],['C10','Poškození kloubu'],['C11','Poškození hydr. válců'],['C12','Poškození hydr. hadic'],['C13','Netěsnost hydr. soustavy']]),
-    E:[{k:'E16',l:'Funkce nouzového spouštění',printLabel:'16. Funkce nouzového spouštění',desc:true},{k:'E17',l:'Funkce nosnosti koše',printLabel:'17. Funkce nosnosti koše',desc:true},{k:'E18',l:'Funkce nabíječe',printLabel:'18. Funkce nabíječe',desc:true,chargerCheck:true},{k:'E_socket230',l:'Kontrola zásuvky v koši 230 V',printLabel:'19. Kontrola zásuvky v koši 230 V',desc:true,socketCheck:true},{k:'E19',l:'Funkce spodního ovládacího panelu',printLabel:'20. Funkce spodního ovládacího panelu',desc:true},{k:'E20',l:'Funkce horního ovládacího panelu',printLabel:'21. Funkce horního ovládacího panelu',desc:true}]
-  },
-  mast: {
-    C:makeCheckItems([['C1','Celkové znečištění'],['C2','Poškození zábradlí'],['C3','Poškození kol'],['C5','Poškození ovládacího kabelu'],['C6','Poškození podlahy'],['C7','Poškození akumulátorů'],['C8','Poškození ramene'],['C9','Poškození hydr. válců'],['C10','Poškození hydr. hadic'],['C11','Netěsnost hydr. soustavy']]),
+    C:makeCheckItems([['C1','Celkové znečištění'],['C2','Poškození kol'],['C3','Poškození základny/podvozku'],['C4','Poškození akumulátorů'],['C5','Poškození sestavy nůžek'],['C6','Poškození hydraulických válců'],['C7','Poškození hydraulických hadic'],['C8','Netěsnost hydraulické soustavy'],['C9','Poškození ovládacího kabelu'],['C10','Poškození podlahy koše'],['C11','Poškození zábradlí']]),
+    E:[{k:'E16',l:'Funkce nabíječe',printLabel:'16. Funkce nabíječe',desc:true,chargerCheck:true},{k:'E_socket230',l:'Kontrola zásuvky v koši 230 V',printLabel:'17. Kontrola zásuvky v koši 230 V',desc:true,socketCheck:true},{k:'E19',l:'Funkce spodního ovládacího panelu',printLabel:'18. Funkce spodního ovládacího panelu',desc:true},{k:'E20',l:'Funkce nouzového spouštění',printLabel:'19. Funkce nouzového spouštění',desc:true},{k:'E21',l:'Funkce horního ovládacího panelu',printLabel:'20. Funkce horního ovládacího panelu',desc:trueboom: {
+    C:makeCheckItems([['C1','Celkové znečištění'],['C2','Poškození kol'],['C3','Poškození základny/podvozku'],['C4','Poškození akumulátorů'],['C5','Poškození ramene'],['C6','Poškození hydraulických válců'],['C7','Poškození hydraulických hadic'],['C8','Netěsnost hydraulické soustavy'],['C9','Poškození ovládacího kabelu'],['C10','Poškození podlahy koše'],['C11','Poškození zábradlí']]),
+    E:]),
+    E:[{k:'E16',l:'Funkce nouzového spouštění',printLabel:'16. Funkce nouzového spouštění',desc:true},{k:'E17',l:'Funkce nosnosti koše',printLabel:'17. Funkce nosnosti koše',desc:true},{k:'E18',l:'Funkce nabíječe',printLabel:'18. Funkce nabíječe',desc:true,chargerCheck:true},{k:'E_socket230',l:'Kontrola zásuvky v koši 230 V',printLabel:'19. Kontrola zásuvky v koši 230 V',desc:true,socketCheck:true},{k:'E19',l:'Funkce spodního ovládacího panelu',printLabel:'20. Funkce spodního ovládacího panelu',desc:true},{k:'E20',l:'Funkce horního ovládacího panelu',printLabel:'21. Funkce horního ovládacího panelu'mast: {
+    C:makeCheckItems([['C1','Celkové znečištění'],['C2','Poškození kol'],['C3','Poškození základny/podvozku'],['C4','Poškození akumulátorů'],['C5','Poškození sloupu/ramene'],['C6','Poškození hydraulických válců'],['C7','Poškození hydraulických hadic'],['C8','Netěsnost hydraulické soustavy'],['C9','Poškození ovládacího kabelu'],['C10','Poškození podlahy koše'],['C11','Poškození zábradlí']]),
+    E:soustavy']]),
     E:[{k:'E14',l:'Funkce nouzového spouštění',printLabel:'14. Funkce nouzového spouštění',desc:true},{k:'E15',l:'Funkce nosnosti koše',printLabel:'15. Funkce nosnosti koše',desc:true},{k:'E16',l:'Funkce nabíječe',printLabel:'16. Funkce nabíječe',desc:true,chargerCheck:true},{k:'E_socket230',l:'Kontrola zásuvky v koši 230 V',printLabel:'17. Kontrola zásuvky v koši 230 V',desc:true,socketCheck:true},{k:'E17',l:'Funkce spodního ovládacího panelu',printLabel:'18. Funkce spodního ovládacího panelu',desc:true},{k:'E18',l:'Funkce horního ovládacího panelu',printLabel:'19. Funkce horního ovládacího panelu',desc:true}]
   }
 };
@@ -690,21 +688,47 @@ function hasStabilizers(model){
   return m.includes('OMMELIFT') || m.includes('NIFTYLIFT') || m.includes('120T');
 }
 function getBoomC(model){
-  const base = [
-    ['C1','Celkové znečištění'],['C2','Poškození schodů'],['C3','Poškození zábradlí'],['C4','Poškození kol'],['C6','Poškození ovládacího kabelu'],['C7','Poškození podlahy'],['C8','Poškození akumulátorů'],['C9','Poškození ramene'],['C10','Poškození kloubu'],['C11','Poškození hydr. válců'],['C12','Poškození hydr. hadic'],['C13','Netěsnost hydr. soustavy']
-  ];
-  if(hasStabilizers(model)) base.splice(10, 0, ['C_stabilizers','Poškození stabilizátorů']);
-  return makeCheckItems(base);
+  return makeCheckItems([
+    ['C1','Celkové znečištění'],
+    ['C2','Poškození kol'],
+    ['C3','Poškození základny/podvozku'],
+    ['C4','Poškození akumulátorů'],
+    ['C5','Poškození ramene'],
+    ['C6','Poškození hydraulických válců'],
+    ['C7','Poškození hydraulických hadic'],
+    ['C8','Netěsnost hydraulické soustavy'],
+    ['C9','Poškození ovládacího kabelu'],
+    ['C10','Poškození podlahy koše'],
+    ['C11','Poškození zábradlí']
+  ]);
 }
+
+function isOmmePlatform(model){
+  const m = String(model||'').toUpperCase();
+  return m.includes('OMMELIFT') || m.includes('OMME');
+}
+function addTiltOrLevelCheck(sections, record){
+  sections.E = cloneSectionItems(sections.E || []);
+  const exists = sections.E.some(it => it.k === 'E_tilt_sensor' || it.k === 'E_level_ok');
+  if(!exists){
+    const item = isOmmePlatform(record && record.typ)
+      ? {k:'E_level_ok', l:'Libela bez poškození', desc:true}
+      : {k:'E_tilt_sensor', l:'Funkce náklonového čidla', desc:true};
+    sections.E.splice(Math.min(2, sections.E.length), 0, item);
+  }
+  return sections;
+}
+
 function getSectionsForRecord(record){
   const type = detectProtocolType(record && record.typ);
-  return renumberControlSections({
+  const sections = {
     A: cloneSectionItems(COMMON_SECTIONS.A),
     B: cloneSectionItems(COMMON_SECTIONS.B),
     C: type === 'boom' ? getBoomC(record && record.typ) : cloneSectionItems(SECTION_VARIANTS[type].C),
     D: cloneSectionItems(COMMON_SECTIONS.D),
     E: cloneSectionItems(SECTION_VARIANTS[type].E)
-  });
+  };
+  return renumberControlSections(addTiltOrLevelCheck(sections, record));
 }
 
 const introSteps = [
@@ -831,12 +855,20 @@ async function prepareRecordForSave(record){
     }
   }
   for(const [key,p] of Object.entries(record.issuePhotos || {})){
-    if(p && p.dataUrl){
-      const safeKey = String(key).replace(/[^a-zA-Z0-9_-]/g,'_');
-      const path = `${STORAGE_PREFIX}/${record.id}/issue_${safeKey}.jpg`;
-      const url = await uploadDataUrl(path, p.dataUrl);
-      record.issuePhotos[key] = {url, path, label:p.label || key, question:p.question || '', bytes:p.bytes||0, updatedAt:new Date().toISOString()};
+    const safeKey = String(key).replace(/[^a-zA-Z0-9_-]/g,'_');
+    const list = Array.isArray(p) ? p : (p ? [p] : []);
+    const out = [];
+    for(let i=0;i<list.length;i++){
+      const item = list[i];
+      if(item && item.dataUrl){
+        const path = `${STORAGE_PREFIX}/${record.id}/issue_${safeKey}_${i+1}.jpg`;
+        const url = await uploadDataUrl(path, item.dataUrl);
+        out.push({url, path, label:item.label || key, question:item.question || '', bytes:item.bytes||0, updatedAt:new Date().toISOString()});
+      } else if(item) {
+        out.push(item);
+      }
     }
+    record.issuePhotos[key] = out;
   }
   return record;
 }
@@ -1025,7 +1057,7 @@ function isRevizeExpired(r){
   return revEnd < checkDate;
 }
 function syncRevizeIssue(r){ if(!isRevizeExpired(r)) return; r.B2 = 'NE'; r.zaverOprava = 'ANO'; r.zaverBezpecny = 'NE'; const msg = 'Prošlá platnost revize.'; const cur = String(r.B2_p||'').trim(); r.B2_p = !cur ? msg : (cur.toLowerCase().includes('prošlá platnost revize') ? cur : cur + ' ' + msg); }
-function isInvertedIssueKey(key){ return isGeneralCheckKey(key) || key === 'zaverServis' || key === 'zaverOprava'; }
+function isInvertedIssueKey(key){ return key === 'zaverServis' || key === 'zaverOprava'; }
 function isProblemAnswer(key, value){
   if(value !== 'ANO' && value !== 'NE') return false;
   return isInvertedIssueKey(key) ? value === 'ANO' : value === 'NE';
@@ -1033,7 +1065,7 @@ function isProblemAnswer(key, value){
 function countIssues(r){ return getStepsForRecord(r).filter(s => (s.type === 'yn' || s.type === 'yntext' || s.type === 'yntextphoto') && isProblemAnswer(s.k, r[s.k])).length + (isRevizeExpired(r) ? 1 : 0); }
 function hasIssue(r){ return countIssues(r) > 0 || r.zaverOprava === 'ANO' || r.zaverBezpecny === 'NE' || isRevizeExpired(r); }
 function yn(v){ return { ano: v==='ANO' ? '☒' : '☐', ne: v==='NE' ? '☒' : '☐' }; }
-function isGeneralCheckKey(key){ return /^C[0-9]+$/.test(String(key||'')); }
+function isGeneralCheckKey(key){ return /^C[0-9]+$/.test(String(key||'')) || /^C_/.test(String(key||'')); }
 function sectionLabel(key){ return ({A:'A. Průvodní dokumentace a vybavení',B:'B. Stav zařízení',C:'C. Všeobecná kontrola zařízení',D:'D. Kontrola provozních náplní',E:'E. Kontrola funkcí','Úvodní údaje':'Úvodní údaje','Fotky':'Fotodokumentace','Závěr':'Závěr'})[key] || key; }
 function findProtocolsByMachine(serial){ return data.filter(r => String(r.vc||'').trim().toLowerCase() === String(serial||'').trim().toLowerCase()).sort((a,b)=>String(b.datum||'').localeCompare(String(a.datum||''))); }
 function parseQrPayload(raw){ const text = String(raw||'').replace(/\s+/g,' ').trim(); const upper = text.toUpperCase(); let typ = ''; for(const model of MODELS){ if(upper.includes(model.toUpperCase())){ typ = model; break; } } const serial = (upper.match(/([A-Z]{2}\d{2}[A-Z]-\d{4,}|GS\d{2}[A-Z]-\d{4,})/) || [])[1] || ''; return { typ, vc: serial, raw: text }; }
@@ -1229,11 +1261,18 @@ function showStep(){
     issuePhotoInput.addEventListener('change', async (e) => {
       const file = e.target.files && e.target.files[0];
       if(!file) return;
+      const currentList = getIssuePhotoList(rec.issuePhotos, s.k);
+      if(currentList.length >= 4){
+        alert('U této závady můžeš uložit maximálně 4 fotky.');
+        e.target.value = '';
+        return;
+      }
       els.stepDesc.textContent = 'Zpracovávám fotku závady...';
       try{
         const out = await compressPhoto(file, MAX_PHOTO_BYTES);
         rec.issuePhotos = rec.issuePhotos || {};
-        rec.issuePhotos[s.k] = {dataUrl:out.dataUrl, bytes:out.bytes, label:s.k, question:s.t, width:out.width, height:out.height};
+        currentList.push({dataUrl:out.dataUrl, bytes:out.bytes, label:s.k, question:s.t, width:out.width, height:out.height});
+        setIssuePhotoList(rec.issuePhotos, s.k, currentList);
         showStep();
       }catch(err){
         console.error(err);
@@ -1241,16 +1280,18 @@ function showStep(){
       }
     });
   }
-  const deleteIssuePhotoBtn = document.getElementById('deleteIssuePhotoBtn');
-  if(deleteIssuePhotoBtn){
-    deleteIssuePhotoBtn.addEventListener('click', () => {
-      if(confirm('Smazat fotku závady z rozpracovaného protokolu?')){
+  els.content.querySelectorAll('.delete-issue-photo-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const idx = Number(btn.dataset.issueIndex);
+      if(confirm('Smazat tuto fotku závady z rozpracovaného protokolu?')){
         rec.issuePhotos = rec.issuePhotos || {};
-        delete rec.issuePhotos[s.k];
+        const currentList = getIssuePhotoList(rec.issuePhotos, s.k);
+        currentList.splice(idx,1);
+        setIssuePhotoList(rec.issuePhotos, s.k, currentList);
         showStep();
       }
     });
-  }
+  });
   els.content.querySelectorAll('[data-charger-answer]').forEach(btn => btn.addEventListener('click', () => {
     const ans = btn.dataset.chargerAnswer;
     if(ans === 'ANO'){
@@ -1330,7 +1371,7 @@ function hideSuggestions(){ const host = document.getElementById('suggestHost');
 function shouldShowIssuePhoto(step, value){
   if(!step || step.type !== 'yntextphoto') return false;
   if(step.k === 'B1') return value === 'NE';
-  if(isGeneralCheckKey(step.k)) return value === 'ANO';
+  if(isGeneralCheckKey(step.k)) return value === 'NE';
   return value === 'NE';
 }
 function getPhotoSrc(photo){ return photo ? (photo.url || photo.dataUrl || '') : ''; }
@@ -1424,7 +1465,7 @@ async function nextStep(){
   const activeSteps = getStepsForRecord(rec);
   const s = activeSteps[stepIndex];
   if(s.type === 'yntext' || s.type === 'yntextphoto'){
-    const needsNote = s.k === 'B1' ? rec[s.k] === 'NE' : (isGeneralCheckKey(s.k) ? rec[s.k] === 'ANO' : rec[s.k] === 'NE');
+    const needsNote = s.k === 'B1' ? rec[s.k] === 'NE' : (isGeneralCheckKey(s.k) ? rec[s.k] === 'NE' : rec[s.k] === 'NE');
     if(needsNote) rec[s.textKey] = document.getElementById('descInput')?.value || rec[s.textKey] || '';
   }
   if(['text','textarea','branchSelect','technikSelect','yearInput','date','modelSelect','number'].includes(s.type)) addSuggestion(s.k, rec[s.k]);
@@ -1664,14 +1705,21 @@ function renderPhotoSection(r){
 }
 function renderIssuePhotosSection(r){
   const issuePhotos = r.issuePhotos || {};
-  const entries = Object.entries(issuePhotos).filter(([k,p]) => p && (p.url || p.dataUrl)).slice(0,3);
-  const boxes = [0,1,2].map(i => {
+  const flat = [];
+  Object.entries(issuePhotos).forEach(([k,p]) => {
+    const list = Array.isArray(p) ? p : (p ? [p] : []);
+    list.forEach(item => {
+      const src = item ? (item.url || item.dataUrl || '') : '';
+      if(src) flat.push({src, q:item.question || k});
+    });
+  });
+  const entries = flat.slice(0,4);
+  const boxes = [0,1,2,3].map(i => {
     const entry = entries[i];
     if(!entry) return `<div class="issue-mini"><div style="height:56px;border:1px dashed #bdbdbd;background:#fafafa;margin-bottom:4px"></div><div>vložit foto</div></div>`;
-    const [k,p] = entry; const src = p.url || p.dataUrl || ''; const q = p.question || k;
-    return `<div class="issue-mini"><img src="${escapeHtml(src)}" data-full-src="${escapeHtml(src)}" onclick="openLightbox(this.dataset.fullSrc)"><div>${escapeHtml(q)}</div></div>`;
+    return `<div class="issue-mini"><img src="${escapeHtml(entry.src)}" data-full-src="${escapeHtml(entry.src)}" onclick="openLightbox(this.dataset.fullSrc)"><div>${escapeHtml(entry.q)}</div></div>`;
   }).join('');
-  return `<div class="photo-section" style="border-top:none"><div style="padding:6px 8px;font-size:11px;font-weight:600;border-top:1px solid #707070">Fotografie závad (dle potřeby)</div><div class="issue-strip">${boxes}</div></div>`;
+  return `<div class="photo-section" style="border-top:none"><div style="padding:6px 8px;font-size:11px;font-weight:600;border-top:1px solid #707070">Fotografie závad (dle potřeby)</div><div class="issue-strip" style="grid-template-columns:repeat(4,1fr)">${boxes}</div></div>`;
 }
 function renderPaper(r){
   const sections = getSectionsForRecord(r);
@@ -1706,7 +1754,7 @@ function renderPaper(r){
           </div>
         </div>
         <div class="section-card">
-          <div class="section-head">C. Všeobecná kontrola zařízení <span class="section-note">ANO = vyhovuje &nbsp;&nbsp; NE = závada</span></div>
+          <div class="section-head">C. Všeobecná kontrola zařízení <span class="section-note">ANO = bez závad &nbsp;&nbsp; NE = závada</span></div>
           <table class="proto-table"><thead><tr><th class="num-col">Č.</th><th class="item-col">Kontrolovaná položka</th><th class="yn-col">ANO</th><th class="yn-col">NE</th><th class="note-col">Poznámka</th></tr></thead><tbody>${rowsHtml(sections.C,r,{numbered:true})}</tbody></table>
         </div>
         <div class="page-number">Strana 1 z 2</div>

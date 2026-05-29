@@ -462,7 +462,7 @@ header{
     <div class="side-logo">✓</div>
     <div>
       <div class="side-title">Čtvrtletní kontroly</div>
-      <div class="side-sub">TEST v52</div>
+      <div class="side-sub">TEST v53</div>
     </div>
   </div>
   <nav class="side-nav">
@@ -474,7 +474,8 @@ header{
   <div class="side-bottom">
     <button type="button" class="side-small" id="sideThemeBtn">Tmavý / světlý režim</button>
     <button type="button" class="side-small" onclick="exportBackup()">Export zálohy</button>
-    <div class="side-version">Verze: TEST v52</div>
+    <button type="button" class="side-small" id="sideImportBtn">Import zálohy</button>
+    <div class="side-version">Verze: TEST v53</div>
   </div>
 </aside>
 
@@ -519,11 +520,13 @@ header{
     <div class="settings-row">
       <button id="themeToggle" class="secondary" type="button">Tmavý režim</button>
       <button class="ghost" type="button" onclick="exportBackup()">Export zálohy</button>
+      <button class="ghost" id="importBackupBtn" type="button">Import zálohy</button>
+      <input id="importBackupInput" type="file" accept="application/json,.json" class="hidden">
     </div>
     <div class="settings-row">
       <button class="danger" id="clearAllBtn" type="button">Vymazat všechny uložené protokoly</button>
     </div>
-    <div class="settings-note">Mazání je chráněné heslem. Před většími úpravami vždy nejdřív proveď export zálohy.</div>
+    <div class="settings-note">Mazání je chráněné heslem. Před většími úpravami vždy nejdřív proveď export zálohy. Import starší zálohy automaticky převede logiku sekce C na aktuální verzi.</div>
   </div>
   <div class="wizard-actions"><button id="closeSettingsBtn" class="secondary" type="button">Zavřít</button></div>
 </div></div></div>
@@ -935,6 +938,98 @@ async function exportBackup(){
     alert('Export zálohy selhal. Zkontroluj konzoli / Firebase oprávnění.');
   }
 }
+
+function readFileAsText(file){
+  return new Promise((resolve,reject)=>{
+    const reader = new FileReader();
+    reader.onload = () => resolve(String(reader.result || ''));
+    reader.onerror = reject;
+    reader.readAsText(file);
+  });
+}
+function invertOldCAnswer(v){
+  if(v === 'ANO') return 'NE';
+  if(v === 'NE') return 'ANO';
+  return v || '';
+}
+function oldCMapForRecord(record){
+  const type = detectProtocolType(record && record.typ);
+  if(type === 'scissor'){
+    return {C1:'C1', C2:'C5', C3:null, C4:'C9', C5:'C10', C6:'C11', C7:'C12', C8:'C13', C9:'C7', C10:'C8', C11:'C4'};
+  }
+  if(type === 'mast'){
+    return {C1:'C1', C2:'C3', C3:null, C4:'C7', C5:'C8', C6:'C9', C7:'C10', C8:'C11', C9:'C5', C10:'C6', C11:'C2'};
+  }
+  return {C1:'C1', C2:'C4', C3:null, C4:'C8', C5:'C9', C6:'C11', C7:'C12', C8:'C13', C9:'C6', C10:'C7', C11:'C3'};
+}
+function migrateImportedRecord(record){
+  const r = Object.assign({}, record || {});
+  if(!r.id) r.id = uid();
+
+  // Starší zálohy měly u sekce C opačnou logiku:
+  // ANO = poškození/závada, NE = bez závady.
+  // Aktuální verze používá ANO = bez závad, NE = závada.
+  const map = oldCMapForRecord(r);
+  const migratedC = {};
+  Object.entries(map).forEach(([newKey, oldKey]) => {
+    if(oldKey && Object.prototype.hasOwnProperty.call(record, oldKey)){
+      migratedC[newKey] = invertOldCAnswer(record[oldKey]);
+      migratedC[newKey + '_p'] = record[oldKey + '_p'] || '';
+    } else {
+      migratedC[newKey] = 'ANO';
+      migratedC[newKey + '_p'] = '';
+    }
+  });
+
+  // Smaž původní C pole, aby se nepletla nová struktura.
+  Object.keys(r).forEach(k => {
+    if(/^C[0-9]+(_p)?$/.test(k) || /^C_/.test(k)) delete r[k];
+  });
+  Object.assign(r, migratedC);
+
+  // Starší protokoly neobsahují nové kontroly funkcí. Necháváme je prázdné,
+  // aby protokol netvrdil kontrolu, která se v původní verzi nevyplnila.
+  if(!r.savedAt) r.savedAt = new Date().toISOString();
+  return r;
+}
+async function importBackupFile(file){
+  if(!file) return;
+  let parsed;
+  try{
+    const text = await readFileAsText(file);
+    parsed = JSON.parse(text);
+  }catch(e){
+    console.error(e);
+    alert('Soubor se nepodařilo načíst jako JSON zálohu.');
+    return;
+  }
+  const rows = Array.isArray(parsed) ? parsed : (Array.isArray(parsed.data) ? parsed.data : []);
+  if(!rows.length){
+    alert('V souboru nejsou nalezené žádné protokoly.');
+    return;
+  }
+
+  const ok = confirm(`Načíst ${rows.length} protokolů ze zálohy?\n\nImport pouze doplní chybějící protokoly. Existující stejné ID se přeskočí.`);
+  if(!ok) return;
+
+  const existing = new Set((data || []).map(r => r.id));
+  let imported = 0;
+  let skipped = 0;
+  for(const row of rows){
+    if(row && row.id && existing.has(row.id)){
+      skipped++;
+      continue;
+    }
+    const migrated = migrateImportedRecord(row);
+    await saveProtocol(migrated);
+    existing.add(migrated.id);
+    imported++;
+  }
+  render();
+  alert(`Import hotový.\nNačteno: ${imported}\nPřeskočeno duplicit: ${skipped}`);
+}
+window.importBackupFile = importBackupFile;
+
 window.exportBackup = exportBackup;
 function startLocalMode(){
   data = loadLocalData();
@@ -1858,6 +1953,14 @@ document.querySelector('[data-side-action="overview"]')?.addEventListener('click
 document.getElementById('closeSettingsBtn')?.addEventListener('click', () => closeModal(document.getElementById('settingsModal')));
 document.getElementById('newProtocolBtn').addEventListener('click', () => openWizard());
 document.getElementById('clearAllBtn').addEventListener('click', clearAllData);
+document.getElementById('importBackupBtn')?.addEventListener('click', () => document.getElementById('importBackupInput')?.click());
+document.getElementById('sideImportBtn')?.addEventListener('click', () => { closeSidePanel?.(); document.getElementById('importBackupInput')?.click(); });
+document.getElementById('importBackupInput')?.addEventListener('change', (e) => {
+  const file = e.target.files && e.target.files[0];
+  importBackupFile(file);
+  e.target.value = '';
+});
+
 document.getElementById('closeWizardBtn').addEventListener('click', closeWizard);
 document.getElementById('prevStepBtn').addEventListener('click', prevStep);
 document.getElementById('nextBtn').addEventListener('click', nextStep);

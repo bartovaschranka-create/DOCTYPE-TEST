@@ -636,7 +636,7 @@ header .header-sub{
 }
 
 
-/* v1.3 / 5.36 plan práce */
+/* v1.3 / 5.38 plan práce */
 .work-plan-modal{width:min(96vw,1180px)!important}
 .work-plan-toolbar{display:flex;gap:8px;flex-wrap:wrap;margin:8px 0 12px}
 .work-plan-title{font-weight:800;margin:8px 0 12px;color:var(--text)}
@@ -662,7 +662,7 @@ body.dark .work-plan-form{background:var(--panel2)}
 @media print{#workPlanModal{display:none!important}}
 
 
-/* v1.3 / 5.36 main dashboard + náhradní díly */
+/* v1.3 / 5.38 main dashboard + náhradní díly */
 .main-overview{margin-bottom:18px}
 .overview-head{background:var(--panel);border:1px solid rgba(219,230,242,.8);border-radius:var(--radius);box-shadow:var(--shadow);padding:18px;margin-bottom:14px}
 .overview-head h1{margin:0 0 5px;font-size:1.35rem}
@@ -702,7 +702,7 @@ body.dark .part-card{background:var(--panel2)}
 @media print{#partsModal{display:none!important}.main-overview{display:none!important}}
 
 
-/* v1.3 / 5.36 koncept 5 */
+/* v1.3 / 5.38 koncept 5 */
 .page-section{display:none}
 .page-section.active{display:block}
 .page-title-row{display:flex;justify-content:space-between;align-items:flex-start;gap:14px;margin:6px 0 16px}
@@ -754,6 +754,64 @@ body .main-overview,body .dashboard{display:none!important}
 }
 @media print{.page-section{display:block!important}.home-page,.plan-page,.parts-page{display:none!important}}
 
+
+/* v1.3 / 5.38 sjednocení písma ve všech formulářích */
+input,
+select,
+textarea,
+button,
+option,
+optgroup,
+datalist {
+  font-family: inherit !important;
+}
+
+.field input,
+.field select,
+.field textarea,
+.search,
+.filter,
+.work-plan-form input,
+.work-plan-form select,
+.work-plan-form textarea,
+.parts-form input,
+.parts-form select,
+.parts-form textarea {
+  font-family: inherit !important;
+  letter-spacing: normal !important;
+}
+
+.work-plan-form *,
+.parts-form *,
+.wizard-shell * {
+  font-family: inherit;
+}
+
+
+/* v1.3 / 5.38 – sjednocení písma u datumových polí */
+input[type="date"],
+input[type="datetime-local"],
+input[type="time"]{
+  font-family: inherit !important;
+  font-size: 1rem !important;
+  letter-spacing: normal !important;
+}
+input[type="date"]::-webkit-datetime-edit,
+input[type="date"]::-webkit-date-and-time-value,
+input[type="datetime-local"]::-webkit-datetime-edit,
+input[type="datetime-local"]::-webkit-date-and-time-value,
+input[type="time"]::-webkit-datetime-edit,
+input[type="time"]::-webkit-date-and-time-value{
+  font-family: inherit !important;
+  font-size: 1rem !important;
+  letter-spacing: normal !important;
+  color: inherit !important;
+}
+input[type="date"]::-webkit-calendar-picker-indicator,
+input[type="datetime-local"]::-webkit-calendar-picker-indicator{
+  opacity: .85;
+}
+
 </style>
 </head>
 <body>
@@ -784,7 +842,7 @@ body .main-overview,body .dashboard{display:none!important}
     <button type="button" class="side-small" id="sideThemeBtn">Tmavý / světlý režim</button>
     <button type="button" class="side-small" onclick="exportBackup()">Export zálohy</button>
     <button type="button" class="side-small" id="sideImportBtn">Import zálohy</button>
-    <div class="side-version">Verze: 1.3 / 5.36</div>
+    <div class="side-version">Verze: 1.3 / 5.38</div>
   </div>
 </aside>
 
@@ -1770,10 +1828,10 @@ function openModal(el){ el.classList.add('show'); }
 function closeModal(el){ el.classList.remove('show'); }
 
 function openWizard(editId=null, prefill={}){
-  rec = editId ? JSON.parse(JSON.stringify(data.find(r=>r.id===editId) || {id:uid()})) : {id:uid(), cLogic:'legacy', appVersion:'1.3 / 5.36'};
+  rec = editId ? JSON.parse(JSON.stringify(data.find(r=>r.id===editId) || {id:uid()})) : {id:uid(), cLogic:'legacy', appVersion:'1.3 / 5.38'};
   rec = Object.assign({}, rec, prefill || {});
   if(!editId && !rec.cLogic) rec.cLogic = 'legacy';
-  if(!editId && !rec.appVersion) rec.appVersion = '1.3 / 5.36';
+  if(!editId && !rec.appVersion) rec.appVersion = '1.3 / 5.38';
 
   // 🔥 AUTO DOPLNĚNÍ Z HISTORIE PODLE VÝROBNÍHO ČÍSLA
   if(rec.vc){
@@ -2145,7 +2203,7 @@ async function nextStep(){
   const okSave = confirm('Chceš protokol uložit?');
   if(!okSave) return;
   if(!rec.cLogic) rec.cLogic = 'legacy';
-  if(!rec.appVersion) rec.appVersion = '1.3 / 5.36';
+  if(!rec.appVersion) rec.appVersion = '1.3 / 5.38';
   rec.savedAt = new Date().toISOString();
   await saveProtocol(rec);
   closeWizard();
@@ -2201,18 +2259,24 @@ function downloadById(id){
   openModal(els.preview);
 }
 
+function requireDeletePassword(message){
+  const pass = prompt(message || 'Pro smazání zadej heslo:');
+  if(pass !== '1985'){
+    alert('Špatné heslo. Mazání nebylo provedeno.');
+    return false;
+  }
+  return true;
+}
+
 async function delById(id){
   if(!confirm('Opravdu smazat uložený protokol?')) return;
+  if(!requireDeletePassword('Pro smazání uloženého protokolu zadej heslo:')) return;
   await deleteProtocol(id);
 }
 async function clearAllData(){
   if(!data.length) return;
   if(!confirm('Opravdu smazat všechny uložené protokoly?')) return;
-  const pass = prompt('Pro smazání všech protokolů zadej heslo:');
-  if(pass !== '1985'){
-    alert('Špatné heslo. Protokoly nebyly smazány.');
-    return;
-  }
+  if(!requireDeletePassword('Pro smazání všech protokolů zadej heslo:')) return;
   await deleteAllProtocols();
   alert('Všechny protokoly byly smazány.');
 }
@@ -2588,6 +2652,7 @@ async function saveWorkPlan(record){
 }
 async function deleteWorkPlan(id){
   if(!confirm('Smazat tento záznam plánu práce?')) return;
+  if(!requireDeletePassword('Pro smazání záznamu z kalendáře zadej heslo:')) return;
   if(firebaseAvailable && db){
     await db.collection(SCHEDULE_COLLECTION_NAME).doc(id).delete();
   } else {
@@ -2596,6 +2661,37 @@ async function deleteWorkPlan(id){
     renderWorkPlan();
   }
 }
+
+async function deleteAllWorkPlans(){
+  if(!confirm('Opravdu smazat celý kalendář plánu práce?')) return;
+  if(!requireDeletePassword('Pro smazání celého kalendáře zadej heslo:')) return;
+  if(firebaseAvailable && db){
+    const snap = await db.collection(SCHEDULE_COLLECTION_NAME).get();
+    await Promise.all(snap.docs.map(d => d.ref.delete()));
+  } else {
+    localStorage.removeItem('liftcheck_plan_prace_local');
+    scheduleData = [];
+    renderWorkPlan();
+    updateMainOverview();
+  }
+  alert('Kalendář plánu práce byl smazán.');
+}
+
+async function deleteAllPartRecords(){
+  if(!confirm('Opravdu smazat celou historii požadavků na náhradní díly?')) return;
+  if(!requireDeletePassword('Pro smazání historie náhradních dílů zadej heslo:')) return;
+  if(firebaseAvailable && db){
+    const snap = await db.collection(PARTS_COLLECTION_NAME).get();
+    await Promise.all(snap.docs.map(d => d.ref.delete()));
+  } else {
+    localStorage.removeItem('liftcheck_parts_local');
+    partsData = [];
+    renderParts();
+    updateMainOverview();
+  }
+  alert('Historie náhradních dílů byla smazána.');
+}
+
 const TECH_COLORS = {
   'Jan Bartoš':'#2563eb',
   'Petr Čáp':'#16a34a',
@@ -2738,7 +2834,7 @@ async function saveWorkPlanFromForm(){
     technician,
     place,
     note,
-    appVersion:'1.3 / 5.36'
+    appVersion:'1.3 / 5.38'
   });
   if(!record.createdAt) record.createdAt = new Date().toISOString();
   await saveWorkPlan(record);
@@ -2854,6 +2950,7 @@ async function savePartRecord(record){
 }
 async function deletePartRecord(id){
   if(!confirm('Smazat tento požadavek na náhradní díl?')) return;
+  if(!requireDeletePassword('Pro smazání požadavku na náhradní díl zadej heslo:')) return;
   if(firebaseAvailable && db){
     await db.collection(PARTS_COLLECTION_NAME).doc(id).delete();
   } else {
@@ -2975,7 +3072,7 @@ async function savePartFromForm(){
     partNumber,
     partName: document.getElementById('partName').value.trim(),
     note: document.getElementById('partNote').value.trim(),
-    appVersion:'1.3 / 5.36'
+    appVersion:'1.3 / 5.38'
   });
   if(currentPartPhoto) record.photo = currentPartPhoto;
   if(!record.createdAt) record.createdAt = new Date().toISOString();

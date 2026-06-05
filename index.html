@@ -466,21 +466,180 @@ body.dark .upcoming-item{background:var(--panel2);border-color:var(--line)}
 body.dark .upcoming-empty{background:var(--panel2)}
 @media(max-width:640px){.upcoming-item{grid-template-columns:1fr}.upcoming-date{text-align:left}}
 
+
+/* hotfix: visible sidebar collapse controls */
+header{
+  z-index:70!important;
+}
+.menu-toggle{
+  position:relative;
+  z-index:80!important;
+}
+.side-brand{
+  position:relative;
+  padding-right:40px!important;
+}
+.side-brand-text{
+  min-width:0;
+}
+.side-close{
+  position:absolute;
+  right:2px;
+  top:4px;
+  width:32px;
+  height:32px;
+  border-radius:10px;
+  padding:0;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  background:rgba(255,255,255,.08);
+  color:#e5e7eb;
+  border:1px solid rgba(255,255,255,.14);
+  font-size:22px;
+  line-height:1;
+  font-weight:700;
+}
+.side-close:hover{
+  background:rgba(255,255,255,.14);
+}
+@media (min-width:921px){
+  body.side-collapsed .side-panel{
+    transform:translateX(-245px)!important;
+  }
+}
+
+
+/* hotfix: single version label + clear app purpose */
+header .header-sub{
+  font-size:.78rem;
+  color:#cbd5e1;
+  margin-top:2px;
+  font-weight:500;
+}
+
+
+/* print hotfix: remove blank pages after the 2 protocol pages */
+@media print{
+  @page{
+    size:A4 portrait;
+    margin:0;
+  }
+
+  html, body{
+    width:210mm!important;
+    height:auto!important;
+    min-height:0!important;
+    margin:0!important;
+    padding:0!important;
+    overflow:visible!important;
+    background:#fff!important;
+  }
+
+  body > *:not(#preview){
+    display:none!important;
+  }
+
+  #preview{
+    display:block!important;
+    position:static!important;
+    width:210mm!important;
+    height:auto!important;
+    min-height:0!important;
+    margin:0!important;
+    padding:0!important;
+    overflow:visible!important;
+    background:#fff!important;
+  }
+
+  #preview .modal-content,
+  #preview .preview-shell,
+  #preview .paper-wrap,
+  #previewBody,
+  #preview .paper,
+  #preview .paper-doc{
+    display:block!important;
+    position:static!important;
+    width:210mm!important;
+    min-width:0!important;
+    max-width:210mm!important;
+    height:auto!important;
+    min-height:0!important;
+    max-height:none!important;
+    margin:0!important;
+    padding:0!important;
+    border:0!important;
+    border-radius:0!important;
+    box-shadow:none!important;
+    overflow:visible!important;
+    background:#fff!important;
+  }
+
+  #preview .preview-header,
+  #preview .preview-actions{
+    display:none!important;
+  }
+
+  #preview .paper-page{
+    display:flex!important;
+    flex-direction:column!important;
+    width:210mm!important;
+    max-width:210mm!important;
+    height:296.5mm!important;
+    min-height:0!important;
+    max-height:296.5mm!important;
+    margin:0!important;
+    padding:10mm 8mm 8mm 8mm!important;
+    box-sizing:border-box!important;
+    overflow:hidden!important;
+    background:#fff!important;
+    border:0!important;
+    border-radius:0!important;
+    box-shadow:none!important;
+  }
+
+  #preview .paper-page:first-child{
+    page-break-after:always!important;
+    break-after:page!important;
+  }
+
+  #preview .paper-page:last-child{
+    page-break-after:auto!important;
+    break-after:auto!important;
+  }
+
+  #preview .paper-page + .paper-page{
+    page-break-before:auto!important;
+    break-before:auto!important;
+  }
+
+  #preview .paper-doc::before,
+  #preview .paper-doc::after,
+  #previewBody::before,
+  #previewBody::after,
+  #preview .paper::before,
+  #preview .paper::after{
+    content:none!important;
+    display:none!important;
+  }
+}
+
 </style>
 </head>
 <body>
 <header>
   <button id="sideToggleBtn" class="settings-btn menu-toggle" type="button" aria-label="Menu">☰</button>
-  <div class="header-title">LiftCheck CZ <span class="test-badge">1.0 / 5.26</span></div>
+  <div><div class="header-title">LiftCheck CZ</div><div class="header-sub">Čtvrtletní kontroly pracovních plošin</div></div>
 </header>
 <div id="sideOverlay" class="side-overlay"></div>
 <aside id="sidePanel" class="side-panel">
   <div class="side-brand">
     <div class="side-logo">✓</div>
-    <div>
+    <div class="side-brand-text">
       <div class="side-title">LiftCheck CZ</div>
-      <div class="side-sub">verze 1.0 / 5.26</div>
+      <div class="side-sub">Čtvrtletní kontroly</div>
     </div>
+    <button id="sideCloseBtn" class="side-close" type="button" aria-label="Zasunout panel">×</button>
   </div>
   <nav class="side-nav">
     <button type="button" class="side-link active" data-side-action="overview">Přehled</button>
@@ -493,7 +652,7 @@ body.dark .upcoming-empty{background:var(--panel2)}
     <button type="button" class="side-small" id="sideThemeBtn">Tmavý / světlý režim</button>
     <button type="button" class="side-small" onclick="exportBackup()">Export zálohy</button>
     <button type="button" class="side-small" id="sideImportBtn">Import zálohy</button>
-    <div class="side-version">Verze: 1.0 / 5.26</div>
+    <div class="side-version">Verze: 1.0 / 5.27</div>
   </div>
 </aside>
 
@@ -1056,29 +1215,10 @@ function migrateImportedRecord(record){
   const r = Object.assign({}, record || {});
   if(!r.id) r.id = uid();
 
-  // Starší zálohy měly u sekce C opačnou logiku:
-  // ANO = bez závad/závada, NE = závaday.
-  // Aktuální verze používá ANO = bez závad, NE = závada.
-  const map = oldCMapForRecord(r);
-  const migratedC = {};
-  Object.entries(map).forEach(([newKey, oldKey]) => {
-    if(oldKey && Object.prototype.hasOwnProperty.call(record, oldKey)){
-      migratedC[newKey] = invertOldCAnswer(record[oldKey]);
-      migratedC[newKey + '_p'] = record[oldKey + '_p'] || '';
-    } else {
-      migratedC[newKey] = 'ANO';
-      migratedC[newKey + '_p'] = '';
-    }
-  });
-
-  // Smaž původní C pole, aby se nepletla nová struktura.
-  Object.keys(r).forEach(k => {
-    if(/^C[0-9]+(_p)?$/.test(k) || /^C_/.test(k)) delete r[k];
-  });
-  Object.assign(r, migratedC);
-
-  // Starší protokoly neobsahují nové kontroly funkcí. Necháváme je prázdné,
-  // aby protokol netvrdil kontrolu, která se v původní verzi nevyplnila.
+  // Starší zálohy zůstávají v původní logice sekce C:
+  // ANO = závada/poškození, NE = bez závad.
+  r.cLogic = 'legacy';
+  r.importedFrom = r.importedFrom || '5.2';
   if(!r.savedAt) r.savedAt = new Date().toISOString();
   return r;
 }
@@ -1243,11 +1383,21 @@ function isRevizeExpired(r){
 }
 function syncRevizeIssue(r){ if(!isRevizeExpired(r)) return; r.B2 = 'NE'; r.zaverOprava = 'ANO'; r.zaverBezpecny = 'NE'; const msg = 'Prošlá platnost revize.'; const cur = String(r.B2_p||'').trim(); r.B2_p = !cur ? msg : (cur.toLowerCase().includes('prošlá platnost revize') ? cur : cur + ' ' + msg); }
 function isInvertedIssueKey(key){ return key === 'zaverServis' || key === 'zaverOprava'; }
-function isProblemAnswer(key, value){
+function getCLogic(record){
+  // Sekce C používá původní logiku:
+  // ANO = závada/poškození, NE = bez závad.
+  return 'legacy';
+}
+function isCProblemAnswer(record, value){
   if(value !== 'ANO' && value !== 'NE') return false;
+  return value === 'ANO';
+}
+function isProblemAnswer(key, value, record){
+  if(value !== 'ANO' && value !== 'NE') return false;
+  if(isGeneralCheckKey(key)) return isCProblemAnswer(record, value);
   return isInvertedIssueKey(key) ? value === 'ANO' : value === 'NE';
 }
-function countIssues(r){ return getStepsForRecord(r).filter(s => (s.type === 'yn' || s.type === 'yntext' || s.type === 'yntextphoto') && isProblemAnswer(s.k, r[s.k])).length + (isRevizeExpired(r) ? 1 : 0); }
+function countIssues(r){ return getStepsForRecord(r).filter(s => (s.type === 'yn' || s.type === 'yntext' || s.type === 'yntextphoto') && isProblemAnswer(s.k, r[s.k], r)).length + (isRevizeExpired(r) ? 1 : 0); }
 function hasIssue(r){ return countIssues(r) > 0 || r.zaverOprava === 'ANO' || r.zaverBezpecny === 'NE' || isRevizeExpired(r); }
 function yn(v){ return { ano: v==='ANO' ? '☒' : '☐', ne: v==='NE' ? '☒' : '☐' }; }
 function isGeneralCheckKey(key){ return /^C[0-9]+$/.test(String(key||'')) || /^C_/.test(String(key||'')); }
@@ -1299,8 +1449,10 @@ function openModal(el){ el.classList.add('show'); }
 function closeModal(el){ el.classList.remove('show'); }
 
 function openWizard(editId=null, prefill={}){
-  rec = editId ? JSON.parse(JSON.stringify(data.find(r=>r.id===editId) || {id:uid()})) : {id:uid()};
+  rec = editId ? JSON.parse(JSON.stringify(data.find(r=>r.id===editId) || {id:uid()})) : {id:uid(), cLogic:'legacy', appVersion:'1.0 / 5.27'};
   rec = Object.assign({}, rec, prefill || {});
+  if(!editId && !rec.cLogic) rec.cLogic = 'legacy';
+  if(!editId && !rec.appVersion) rec.appVersion = '1.0 / 5.27';
 
   // 🔥 AUTO DOPLNĚNÍ Z HISTORIE PODLE VÝROBNÍHO ČÍSLA
   if(rec.vc){
@@ -1345,11 +1497,11 @@ function showStep(){
   els.stepChip.textContent = sectionLabel(s.section||'Úvodní údaje');
   els.title.textContent = s.t;
   els.stepDesc.textContent = isGeneralCheckKey(s.k)
-    ? 'Logika sekce C: ANO = bez závad, NE = závada.'
+    ? 'Logika sekce C: ANO = závada/poškození, NE = bez závad.'
     : '';
   els.nextBtn.textContent = stepIndex === activeSteps.length-1 ? 'Uložit protokol' : 'Další';
 
-  const invertedVisual = isInvertedIssueKey(s.k);
+  const invertedVisual = isInvertedIssueKey(s.k) || isGeneralCheckKey(s.k);
   const yesClass = invertedVisual ? 'no' : 'yes';
   const noClass = invertedVisual ? 'yes' : 'no';
 
@@ -1673,6 +1825,8 @@ async function nextStep(){
   syncModelPreferences(rec);
   const okSave = confirm('Chceš protokol uložit?');
   if(!okSave) return;
+  if(!rec.cLogic) rec.cLogic = 'legacy';
+  if(!rec.appVersion) rec.appVersion = '1.0 / 5.27';
   rec.savedAt = new Date().toISOString();
   await saveProtocol(rec);
   closeWizard();
@@ -1869,7 +2023,7 @@ function rowsHtml(items,r, opts={}){
     let noteText = note;
     if(it.chargerCheck && ch === 'BEZ'){ noteText = 'Bez nabíječe – není závada'; }
     if(it.socketCheck && sock === 'BEZ'){ noteText = 'Bez zásuvky v koši 230 V – není závada'; }
-    const cls = isProblemAnswer(it.k, val) ? 'status-bad' : '';
+    const cls = isProblemAnswer(it.k, val, r) ? 'status-bad' : '';
     return `<tr class="${cls}">${numbered?`<td class="num-col">${idx+1}</td>`:''}<td class="item-col">${escapeHtml(it.printLabel||it.l)}</td><td class="yn-col"><span class="box">${marks.ano}</span></td><td class="yn-col"><span class="box">${marks.ne}</span></td><td class="note-col">${escapeHtml(noteText)}</td></tr>`;
   }).join('');
 }
@@ -1941,7 +2095,7 @@ function renderPaper(r){
           </div>
         </div>
         <div class="section-card">
-          <div class="section-head">C. Všeobecná kontrola zařízení <span class="section-note">ANO = bez závad &nbsp;&nbsp; NE = závada</span></div>
+          <div class="section-head">C. Všeobecná kontrola zařízení <span class="section-note">ANO = závada/poškození &nbsp;&nbsp; NE = bez závad</span></div>
           <table class="proto-table"><thead><tr><th class="num-col">Č.</th><th class="item-col">Kontrolovaná položka</th><th class="yn-col">ANO</th><th class="yn-col">NE</th><th class="note-col">Poznámka</th></tr></thead><tbody>${rowsHtml(sections.C,r,{numbered:true})}</tbody></table>
         </div>
         <div class="page-number">Strana 1 z 2</div>
@@ -2107,6 +2261,13 @@ function closeSidePanel(){
 }
 sideToggleBtn?.addEventListener('click', toggleSidePanel);
 sideOverlay?.addEventListener('click', closeSidePanel);
+document.getElementById('sideCloseBtn')?.addEventListener('click', () => {
+  if(window.matchMedia('(max-width:920px)').matches){
+    document.body.classList.remove('side-open');
+  } else {
+    document.body.classList.add('side-collapsed');
+  }
+});
 document.getElementById('sideSettingsBtn')?.addEventListener('click', () => { closeSidePanel(); openModal(document.getElementById('settingsModal')); });
 document.getElementById('sideThemeBtn')?.addEventListener('click', toggleTheme);
 document.querySelector('[data-side-action="protocols"]')?.addEventListener('click', () => { closeSidePanel(); document.querySelector('.toolbar')?.scrollIntoView({behavior:'smooth'}); });

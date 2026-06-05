@@ -636,7 +636,7 @@ header .header-sub{
 }
 
 
-/* v1.2 / 5.30 plan práce */
+/* v1.3 / 5.31 plan práce */
 .work-plan-modal{width:min(96vw,1180px)!important}
 .work-plan-toolbar{display:flex;gap:8px;flex-wrap:wrap;margin:8px 0 12px}
 .work-plan-title{font-weight:800;margin:8px 0 12px;color:var(--text)}
@@ -662,7 +662,7 @@ body.dark .work-plan-form{background:var(--panel2)}
 @media print{#workPlanModal{display:none!important}}
 
 
-/* v1.2 / 5.30 main dashboard + náhradní díly */
+/* v1.3 / 5.31 main dashboard + náhradní díly */
 .main-overview{margin-bottom:18px}
 .overview-head{background:var(--panel);border:1px solid rgba(219,230,242,.8);border-radius:var(--radius);box-shadow:var(--shadow);padding:18px;margin-bottom:14px}
 .overview-head h1{margin:0 0 5px;font-size:1.35rem}
@@ -701,6 +701,59 @@ body.dark .part-card{background:var(--panel2)}
 @media(max-width:980px){.module-grid{grid-template-columns:1fr}.parts-form-grid,.part-grid{grid-template-columns:1fr}.part-head{flex-direction:column}.parts-toolbar .search{width:100%}}
 @media print{#partsModal{display:none!important}.main-overview{display:none!important}}
 
+
+/* v1.3 / 5.31 koncept 5 */
+.page-section{display:none}
+.page-section.active{display:block}
+.page-title-row{display:flex;justify-content:space-between;align-items:flex-start;gap:14px;margin:6px 0 16px}
+.page-title-main{margin:0;font-size:1.55rem;font-weight:850}
+.page-sub-main{margin-top:4px;color:var(--muted);font-size:.95rem}
+.top-date-box{padding:10px 14px;border:1px solid var(--line);border-radius:14px;background:var(--panel);font-weight:700;box-shadow:var(--shadow)}
+.home-top-grid{display:grid;grid-template-columns:minmax(260px,320px) 1fr;gap:16px;margin-bottom:16px}
+.quick-protocol-card,.day-calendar-card,.archive-shell,.inline-page-shell{background:var(--panel);border:1px solid rgba(219,230,242,.85);border-radius:22px;box-shadow:var(--shadow);padding:18px}
+.quick-protocol-card p.muted{margin:2px 0 14px;color:var(--muted)}
+.quick-links{display:grid;gap:8px;margin-top:14px}
+.quick-links .ghost.small{justify-content:flex-start;text-align:left}
+.day-calendar-card{display:grid;gap:14px}
+.calendar-head{display:flex;justify-content:space-between;align-items:center;gap:12px}
+.calendar-head-title{font-size:1.08rem;font-weight:800}
+.calendar-week-strip{display:grid;grid-template-columns:repeat(7,1fr);gap:8px}
+.week-pill{border:1px solid var(--line);background:var(--panel2);border-radius:12px;padding:8px;text-align:center;font-size:.78rem}
+.week-pill.active{border-color:#3b82f6;background:#eff6ff;color:#1d4ed8}
+body.dark .week-pill.active{background:rgba(37,99,235,.18);color:#bfdbfe}
+.calendar-mini-list{display:grid;gap:9px}
+.day-row{display:grid;grid-template-columns:210px 1fr;gap:10px;align-items:center;padding:10px 12px;border:1px solid var(--line);border-radius:14px;background:var(--panel2)}
+.day-tech{display:flex;align-items:center;gap:10px;font-weight:700}
+.tech-dot{width:10px;height:10px;border-radius:999px;flex:0 0 10px}
+.day-place{display:flex;flex-wrap:wrap;gap:8px}
+.place-pill{display:inline-flex;align-items:center;padding:6px 10px;border-radius:999px;background:#f8fafc;border:1px solid var(--line);font-size:.83rem}
+body.dark .place-pill{background:rgba(255,255,255,.04)}
+.day-empty{padding:16px;border:1px dashed var(--line);border-radius:14px;color:var(--muted);text-align:center}
+.home-summary-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.summary-box{background:var(--panel);border:1px solid rgba(219,230,242,.85);border-radius:20px;box-shadow:var(--shadow);padding:16px;display:grid;gap:8px;cursor:pointer}
+.summary-box-head{display:flex;justify-content:space-between;align-items:center;font-weight:800}
+.summary-box-head strong{font-size:1.7rem;line-height:1}
+.summary-box-lines{display:grid;gap:4px;color:var(--muted);font-size:.88rem}
+.summary-box.summary-controls{border-top:4px solid #2563eb}
+.summary-box.summary-plan{border-top:4px solid #16a34a}
+.summary-box.summary-parts{border-top:4px solid #f59e0b}
+.archive-page .toolbar{margin-top:0}
+.plan-page .inline-page-shell,.parts-page .inline-page-shell{padding:18px}
+.plan-page .preview-header,.parts-page .preview-header{margin-bottom:10px}
+.plan-page .preview-shell,.parts-page .preview-shell{padding:0;border:none;background:transparent;box-shadow:none}
+.parts-page .parts-modal,.plan-page .work-plan-modal{width:auto!important}
+body .main-overview,body .dashboard{display:none!important}
+@media (max-width:1100px){
+  .home-top-grid{grid-template-columns:1fr}
+  .home-summary-grid{grid-template-columns:1fr}
+  .day-row{grid-template-columns:1fr}
+}
+@media (max-width:920px){
+  .page-title-main{font-size:1.3rem}
+  .calendar-week-strip{grid-template-columns:repeat(4,1fr)}
+}
+@media print{.page-section{display:block!important}.home-page,.plan-page,.parts-page{display:none!important}}
+
 </style>
 </head>
 <body>
@@ -719,94 +772,94 @@ body.dark .part-card{background:var(--panel2)}
     <button id="sideCloseBtn" class="side-close" type="button" aria-label="Zasunout panel">×</button>
   </div>
   <nav class="side-nav">
-    <button type="button" class="side-link active" data-side-action="overview">Přehled</button>
-    <button type="button" class="side-link" onclick="window._openWizard()">Nový protokol</button>
-    <button type="button" class="side-link" data-side-action="protocols">Protokoly</button>
+    <button type="button" class="side-link active" data-view="home">Přehled dne</button>
+    <button type="button" class="side-link" data-view="plan">Plán práce</button>
+    <button type="button" class="side-link" onclick="window._openWizard()">Kontroly</button>
+    <button type="button" class="side-link" data-view="parts">Náhradní díly</button>
+    <button type="button" class="side-link" data-view="archive">Archiv protokolů</button>
     <button type="button" class="side-link" id="upcomingBtn">Blížící se kontroly</button>
-    <button type="button" class="side-link" id="workPlanBtn">Plán práce</button>
-    <button type="button" class="side-link" id="partsBtn">Náhradní díly</button>
     <button type="button" class="side-link" id="sideSettingsBtn">Nastavení</button>
   </nav>
   <div class="side-bottom">
     <button type="button" class="side-small" id="sideThemeBtn">Tmavý / světlý režim</button>
     <button type="button" class="side-small" onclick="exportBackup()">Export zálohy</button>
     <button type="button" class="side-small" id="sideImportBtn">Import zálohy</button>
-    <div class="side-version">Verze: 1.2 / 5.30</div>
+    <div class="side-version">Verze: 1.3 / 5.31</div>
   </div>
 </aside>
 
 <div class="container" id="appRoot">
-
-  <section class="main-overview" id="mainOverview">
-    <div class="overview-head">
+  <section id="section-home" class="page-section active home-page">
+    <div class="page-title-row">
       <div>
-        <h1>Aktuální přehled</h1>
-        <p>Souhrn kontrol, plánu práce a náhradních dílů.</p>
+        <h1 class="page-title-main">Přehled dne</h1>
+        <div class="page-sub-main">Rychlý vstup a plán techniků na dnešek.</div>
+      </div>
+      <div class="top-date-box"><span id="homeTopDateLabel">—</span></div>
+    </div>
+
+    <div class="home-top-grid">
+      <div class="quick-protocol-card">
+        <div class="card-title">Nový protokol</div>
+        <p class="muted">Zahájení nové kontroly během pár vteřin.</p>
+        <button class="primary" id="newProtocolHomeBtn" type="button">+ Nový protokol</button>
+        <div class="quick-links">
+          <button type="button" class="ghost small" id="homeArchiveBtn">Archiv protokolů</button>
+          <button type="button" class="ghost small" id="homePlanBtn">Plán práce</button>
+          <button type="button" class="ghost small" id="homePartsBtn">Náhradní díly</button>
+        </div>
+      </div>
+      <div class="day-calendar-card">
+        <div class="calendar-head">
+          <button class="secondary mini" type="button" id="homePrevDayBtn">‹</button>
+          <div class="calendar-head-title" id="homeDayTitle">—</div>
+          <button class="secondary mini" type="button" id="homeNextDayBtn">›</button>
+        </div>
+        <div class="calendar-mini-wrap">
+          <div class="calendar-week-strip" id="homeWeekStrip"></div>
+          <div class="calendar-mini-list" id="homeDayList"></div>
+        </div>
       </div>
     </div>
-    <div class="module-grid">
-      <div class="module-card">
-        <div class="module-title">Kontroly plošin</div>
-        <div class="module-stats">
-          <div><span id="dashControlsTotal">0</span><small>protokolů</small></div>
-          <div><span id="dashControlsIssues">0</span><small>se závadou</small></div>
-          <div><span id="dashControlsDue">0</span><small>do 30 dnů / po termínu</small></div>
-        </div>
-        <button class="secondary mini" type="button" data-open-section="protocols">Otevřít kontroly</button>
+
+    <div class="home-summary-grid">
+      <div class="summary-box summary-controls" data-open-section="archive">
+        <div class="summary-box-head"><span>Kontroly</span><strong id="dashControlsTotal">0</strong></div>
+        <div class="summary-box-lines"><div><b id="dashControlsIssues">0</b> se závadou</div><div><b id="dashControlsDue">0</b> do 30 dnů / po termínu</div></div>
       </div>
-      <div class="module-card">
-        <div class="module-title">Plán práce</div>
-        <div class="module-stats">
-          <div><span id="dashWorkToday">0</span><small>dnes</small></div>
-          <div><span id="dashWorkTomorrow">0</span><small>zítra</small></div>
-          <div><span id="dashWorkWeek">0</span><small>tento týden</small></div>
-        </div>
-        <button class="secondary mini" type="button" id="dashOpenWorkPlan">Otevřít plán práce</button>
+      <div class="summary-box summary-plan" id="homeOpenPlanCard">
+        <div class="summary-box-head"><span>Plán práce</span><strong id="dashWorkToday">0</strong></div>
+        <div class="summary-box-lines"><div><b id="dashWorkTomorrow">0</b> zítra</div><div><b id="dashWorkWeek">0</b> tento týden</div></div>
       </div>
-      <div class="module-card">
-        <div class="module-title">Náhradní díly</div>
-        <div class="module-stats">
-          <div><span id="dashPartsOpen">0</span><small>požadavků</small></div>
-          <div><span id="dashPartsOrdered">0</span><small>objednáno</small></div>
-          <div><span id="dashPartsSent">0</span><small>odesláno</small></div>
-        </div>
-        <button class="secondary mini" type="button" id="dashOpenParts">Otevřít náhradní díly</button>
+      <div class="summary-box summary-parts" id="homeOpenPartsCard">
+        <div class="summary-box-head"><span>Náhradní díly</span><strong id="dashPartsOpen">0</strong></div>
+        <div class="summary-box-lines"><div><b id="dashPartsOrdered">0</b> objednáno</div><div><b id="dashPartsSent">0</b> odesláno</div></div>
       </div>
     </div>
   </section>
-  <div class="dashboard">
-    <section class="hero">
-      <div class="hero-actions">
-        <button class="primary" id="newProtocolBtn" type="button" onclick="window._openWizard()">Začít nový protokol</button>
-      </div>
-    </section>
-    <aside class="summary-card">
-      <div class="card-title">Přehled</div>
-      <div class="summary-grid">
-        <div class="stat stat-total"><div class="stat-ico">📄</div><div><div class="stat-label">Celkem protokolů</div><div class="stat-value" id="statTotal">0</div></div></div>
-        <div class="stat stat-issues"><div class="stat-ico">⚠️</div><div><div class="stat-label">Se závadou</div><div class="stat-value" id="statIssues">0</div></div></div>
-        <div class="stat stat-ok"><div class="stat-ico">✅</div><div><div class="stat-label">Bez závad</div><div class="stat-value" id="statOk">0</div></div></div>
-        <div class="stat stat-last"><div class="stat-ico">📅</div><div><div class="stat-label">Poslední datum</div><div class="stat-value" id="statLast">—</div></div></div>
-      </div>
-    </aside>
-  </div>
 
-  <div class="toolbar">
-    <div class="card-title">Uložené protokoly</div>
-    <div class="toolbar-right">
-      <input id="searchInput" class="search" placeholder="Hledat podle výrobního čísla, typu nebo místa">
-      <select id="statusFilter" class="filter">
-        <option value="all">Vše</option>
-        <option value="issues">Jen se závadou</option>
-        <option value="ok">Jen bez závad</option>
-      </select>
+  <section id="section-archive" class="page-section archive-page">
+    <div class="page-title-row">
+      <div>
+        <h1 class="page-title-main">Archiv protokolů</h1>
+        <div class="page-sub-main">Přehled hotových protokolů a rychlé filtrování.</div>
+      </div>
     </div>
-  </div>
-
-  <div id="list" class="list"></div>
-</div>
-
-
+    <div class="archive-shell">
+      <div class="toolbar">
+        <div class="card-title">Hotové protokoly</div>
+        <div class="toolbar-right">
+          <input id="searchInput" class="search" placeholder="Hledat podle výrobního čísla, typu nebo místa">
+          <select id="statusFilter" class="filter">
+            <option value="all">Vše</option>
+            <option value="issues">Jen se závadou</option>
+            <option value="ok">Jen bez závad</option>
+          </select>
+        </div>
+      </div>
+      <div id="list" class="list"></div>
+    </div>
+  </section>
 <div class="modal" id="settingsModal"><div class="modal-content"><div class="wizard-shell">
   <h3 class="step-title">Nastavení</h3>
   <p class="step-desc">Správa aplikace a provozních dat.</p>
@@ -838,7 +891,7 @@ body.dark .part-card{background:var(--panel2)}
   </div>
 </div></div></div>
 
-<div class="modal" id="workPlanModal"><div class="modal-content work-plan-modal"><div class="preview-shell">
+<section id="section-plan" class="page-section plan-page"><div class="inline-page-shell">
   <div class="preview-header">
     <div>
       <div class="preview-title">Plán práce</div>
@@ -891,12 +944,12 @@ body.dark .part-card{background:var(--panel2)}
   </div>
 
   <div class="preview-actions">
-    <div class="preview-actions-left"><button id="closeWorkPlanBtn" class="secondary" type="button">Zavřít</button></div>
+    <div class="preview-actions-left"><button id="closeWorkPlanBtn" class="secondary" type="button">Zpět na přehled</button></div>
   </div>
-</div></div></div>
+</div></section>
 
 
-<div class="modal" id="partsModal"><div class="modal-content parts-modal"><div class="preview-shell">
+<section id="section-parts" class="page-section parts-page"><div class="inline-page-shell">
   <div class="preview-header">
     <div>
       <div class="preview-title">Náhradní díly</div>
@@ -968,9 +1021,9 @@ body.dark .part-card{background:var(--panel2)}
   <div id="partsList" class="parts-list"></div>
 
   <div class="preview-actions">
-    <div class="preview-actions-left"><button id="closePartsBtn" class="secondary" type="button">Zavřít</button></div>
+    <div class="preview-actions-left"><button id="closePartsBtn" class="secondary" type="button">Zpět na přehled</button></div>
   </div>
-</div></div></div>
+</div></section>
 
 <div class="modal" id="wizard"><div class="modal-content"><div class="wizard-shell">
   <div class="progress-wrap"><div class="progress-label" id="progressLabel">Krok 1</div><div class="progress-label" id="progressPercent">0 %</div></div>
@@ -1529,6 +1582,7 @@ let partsData = [];
 let currentPartPhoto = null;
 let editingPartId = null;
 let currentWorkWeekStart = null;
+let currentHomeDate = new Date();
 let editingWorkPlanId = null;
 let qrEnabled = false;
 let qrPickerActive = false;
@@ -1727,10 +1781,10 @@ function openModal(el){ el.classList.add('show'); }
 function closeModal(el){ el.classList.remove('show'); }
 
 function openWizard(editId=null, prefill={}){
-  rec = editId ? JSON.parse(JSON.stringify(data.find(r=>r.id===editId) || {id:uid()})) : {id:uid(), cLogic:'legacy', appVersion:'1.2 / 5.30'};
+  rec = editId ? JSON.parse(JSON.stringify(data.find(r=>r.id===editId) || {id:uid()})) : {id:uid(), cLogic:'legacy', appVersion:'1.3 / 5.31'};
   rec = Object.assign({}, rec, prefill || {});
   if(!editId && !rec.cLogic) rec.cLogic = 'legacy';
-  if(!editId && !rec.appVersion) rec.appVersion = '1.2 / 5.30';
+  if(!editId && !rec.appVersion) rec.appVersion = '1.3 / 5.31';
 
   // 🔥 AUTO DOPLNĚNÍ Z HISTORIE PODLE VÝROBNÍHO ČÍSLA
   if(rec.vc){
@@ -2102,7 +2156,7 @@ async function nextStep(){
   const okSave = confirm('Chceš protokol uložit?');
   if(!okSave) return;
   if(!rec.cLogic) rec.cLogic = 'legacy';
-  if(!rec.appVersion) rec.appVersion = '1.2 / 5.30';
+  if(!rec.appVersion) rec.appVersion = '1.3 / 5.31';
   rec.savedAt = new Date().toISOString();
   await saveProtocol(rec);
   closeWizard();
@@ -2603,11 +2657,11 @@ function openWorkPlanModal(){
   currentWorkWeekStart = currentWorkWeekStart || startOfWeek(new Date());
   fillWorkPlanSelects();
   renderWorkPlan();
-  openModal(document.getElementById('workPlanModal'));
+  showSection('plan');
 }
 function closeWorkPlanModal(){
   closeWorkPlanForm();
-  closeModal(document.getElementById('workPlanModal'));
+  showSection('home');
 }
 function renderWorkPlan(){
   updateMainOverview();
@@ -2695,7 +2749,7 @@ async function saveWorkPlanFromForm(){
     technician,
     place,
     note,
-    appVersion:'1.2 / 5.30'
+    appVersion:'1.3 / 5.31'
   });
   if(!record.createdAt) record.createdAt = new Date().toISOString();
   await saveWorkPlan(record);
@@ -2705,7 +2759,61 @@ async function saveWorkPlanFromForm(){
 }
 
 
+
+function setActiveSideNav(view){
+  document.querySelectorAll('.side-link[data-view]').forEach(btn => btn.classList.toggle('active', btn.dataset.view === view));
+}
+function showSection(view){
+  const map = {home:'section-home', archive:'section-archive', plan:'section-plan', parts:'section-parts'};
+  Object.values(map).forEach(id => document.getElementById(id)?.classList.remove('active'));
+  const target = document.getElementById(map[view] || map.home);
+  if(target) target.classList.add('active');
+  setActiveSideNav(view);
+  const titles = {home:'Přehled dne', archive:'Archiv protokolů', plan:'Plán práce', parts:'Náhradní díly'};
+  document.querySelector('header .header-title') && (document.querySelector('header .header-title').textContent = 'LiftCheck CZ');
+  document.querySelector('header .header-sub') && (document.querySelector('header .header-sub').textContent = titles[view] || 'Čtvrtletní kontroly');
+  closeSidePanel();
+  window.scrollTo({top:0, behavior:'smooth'});
+}
+function formatHumanDate(d){
+  const dt = new Date(d);
+  return dt.toLocaleDateString('cs-CZ',{day:'numeric', month:'long', year:'numeric', weekday:'long'});
+}
+function colorForTechnician(name){
+  const colors = ['#2563eb','#16a34a','#7c3aed','#f59e0b','#06b6d4','#ef4444','#84cc16','#ec4899'];
+  const idx = Math.abs(String(name||'').split('').reduce((a,c)=>a+c.charCodeAt(0),0)) % colors.length;
+  return colors[idx];
+}
+function renderHomeOverview(){
+  const title = document.getElementById('homeDayTitle');
+  const topLabel = document.getElementById('homeTopDateLabel');
+  const list = document.getElementById('homeDayList');
+  const strip = document.getElementById('homeWeekStrip');
+  if(!title || !list || !strip) return;
+  title.textContent = formatHumanDate(currentHomeDate);
+  topLabel.textContent = formatHumanDate(currentHomeDate);
+  const start = startOfWeek(currentHomeDate);
+  const currentYmd = ymd(currentHomeDate);
+  strip.innerHTML = Array.from({length:7}).map((_,i)=>{
+    const d = addDays(start,i);
+    const isActive = ymd(d) === currentYmd;
+    return `<button type="button" class="week-pill ${isActive?'active':''}" data-day="${ymd(d)}"><div>${d.toLocaleDateString('cs-CZ',{weekday:'short'})}</div><strong>${d.getDate()}.</strong></button>`;
+  }).join('');
+  strip.querySelectorAll('[data-day]').forEach(btn => btn.addEventListener('click', ()=>{ currentHomeDate = new Date(btn.dataset.day + 'T12:00:00'); renderHomeOverview(); }));
+  const rows = TECHNICI.map(name => ({name, items:(scheduleData||[]).filter(r => r.date === currentYmd && r.tech === name)})).filter(r => r.items.length || true);
+  const activeRows = rows.filter(r => r.items.length);
+  if(!activeRows.length){
+    list.innerHTML = '<div class="day-empty">Na tento den zatím není zadaný žádný plán práce.</div>';
+  } else {
+    list.innerHTML = activeRows.map(row => {
+      const color = colorForTechnician(row.name);
+      const places = row.items.map(it => it.place === '__custom__' ? (it.customPlace || 'Jiné místo') : it.place).filter(Boolean);
+      return `<div class="day-row"><div class="day-tech"><span class="tech-dot" style="background:${color}"></span>${escapeHtml(row.name)}</div><div class="day-place">${places.map(p => `<span class="place-pill">${escapeHtml(p)}</span>`).join('')}</div></div>`;
+    }).join('');
+  }
+}
 function updateMainOverview(){
+  renderHomeOverview();
   const set = (id,val) => { const el = document.getElementById(id); if(el) el.textContent = val; };
   const today = ymd(new Date());
   const tomorrow = ymd(addDays(new Date(),1));
@@ -2726,7 +2834,7 @@ function updateMainOverview(){
   set('dashPartsSent', (partsData || []).filter(p => p.sent).length);
 }
 function showProtocolsSection(){
-  document.querySelector('.toolbar')?.scrollIntoView({behavior:'smooth'});
+  showSection('archive');
 }
 function partUid(){ return 'nd_' + Date.now() + '_' + Math.random().toString(36).slice(2,8); }
 function loadLocalParts(){ try { return JSON.parse(localStorage.getItem('liftcheck_parts_local') || '[]'); } catch(e) { return []; } }
@@ -2784,11 +2892,11 @@ function getPartStatus(p){
 function openPartsModal(){
   fillPartSelects();
   renderParts();
-  openModal(document.getElementById('partsModal'));
+  showSection('parts');
 }
 function closePartsModal(){
   closePartForm();
-  closeModal(document.getElementById('partsModal'));
+  showSection('home');
 }
 function renderParts(){
   updateMainOverview();
@@ -2893,7 +3001,7 @@ async function savePartFromForm(){
     partName: document.getElementById('partName').value.trim(),
     requestedBy: document.getElementById('partRequestedBy').value,
     note: document.getElementById('partNote').value.trim(),
-    appVersion:'1.2 / 5.30'
+    appVersion:'1.3 / 5.31'
   });
   if(currentPartPhoto) record.photo = currentPartPhoto;
   if(!record.createdAt) record.createdAt = new Date().toISOString();
@@ -2950,14 +3058,23 @@ document.getElementById('sideCloseBtn')?.addEventListener('click', () => {
 });
 document.getElementById('sideSettingsBtn')?.addEventListener('click', () => { closeSidePanel(); openModal(document.getElementById('settingsModal')); });
 document.getElementById('sideThemeBtn')?.addEventListener('click', toggleTheme);
-document.querySelector('[data-side-action="protocols"]')?.addEventListener('click', () => { closeSidePanel(); document.querySelector('.toolbar')?.scrollIntoView({behavior:'smooth'}); });
-document.querySelector('[data-side-action="overview"]')?.addEventListener('click', () => { closeSidePanel(); window.scrollTo({top:0,behavior:'smooth'}); });
+document.querySelectorAll('.side-link[data-view]').forEach(btn => btn.addEventListener('click', () => { if(btn.dataset.view === 'home') showSection('home'); if(btn.dataset.view === 'archive') showSection('archive'); if(btn.dataset.view === 'plan') openWorkPlanModal(); if(btn.dataset.view === 'parts') openPartsModal(); }));
 document.getElementById('closeSettingsBtn')?.addEventListener('click', () => closeModal(document.getElementById('settingsModal')));
+
+document.getElementById('newProtocolHomeBtn')?.addEventListener('click', () => window._openWizard());
+document.getElementById('homeArchiveBtn')?.addEventListener('click', () => showSection('archive'));
+document.getElementById('homePlanBtn')?.addEventListener('click', openWorkPlanModal);
+document.getElementById('homePartsBtn')?.addEventListener('click', openPartsModal);
+document.getElementById('homeOpenPlanCard')?.addEventListener('click', openWorkPlanModal);
+document.getElementById('homeOpenPartsCard')?.addEventListener('click', openPartsModal);
+document.getElementById('homePrevDayBtn')?.addEventListener('click', () => { currentHomeDate = addDays(currentHomeDate,-1); renderHomeOverview(); });
+document.getElementById('homeNextDayBtn')?.addEventListener('click', () => { currentHomeDate = addDays(currentHomeDate,1); renderHomeOverview(); });
+
 
 document.querySelectorAll('[data-open-section="protocols"]').forEach(btn => btn.addEventListener('click', showProtocolsSection));
 document.getElementById('dashOpenWorkPlan')?.addEventListener('click', openWorkPlanModal);
 document.getElementById('dashOpenParts')?.addEventListener('click', openPartsModal);
-document.getElementById('partsBtn')?.addEventListener('click', () => { closeSidePanel?.(); openPartsModal(); });
+
 document.getElementById('closePartsBtn')?.addEventListener('click', closePartsModal);
 document.getElementById('addPartBtn')?.addEventListener('click', () => openPartForm());
 document.getElementById('cancelPartBtn')?.addEventListener('click', closePartForm);
@@ -2967,6 +3084,8 @@ document.getElementById('partsSearch')?.addEventListener('input', renderParts);
 document.getElementById('partPlace')?.addEventListener('change', (e) => {
   document.getElementById('partCustomPlaceWrap')?.classList.toggle('hidden', e.target.value !== '__custom__');
 });
+showSection('home');
+
 document.getElementById('partPhotoInput')?.addEventListener('change', async (e) => {
   const file = e.target.files && e.target.files[0];
   if(!file) return;
@@ -3052,17 +3171,7 @@ document.addEventListener('keydown', (e) => {
     return;
   }
 
-  const workPlanModal = document.getElementById('workPlanModal');
-  if(workPlanModal && workPlanModal.classList.contains('show')){
-    closeWorkPlanModal();
-    return;
-  }
 
-  const partsModal = document.getElementById('partsModal');
-  if(partsModal && partsModal.classList.contains('show')){
-    closePartsModal();
-    return;
-  }
 
   document.body.classList.remove('side-open');
 });

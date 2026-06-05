@@ -636,7 +636,7 @@ header .header-sub{
 }
 
 
-/* v1.3 / 5.33 plan práce */
+/* v1.3 / 5.34 plan práce */
 .work-plan-modal{width:min(96vw,1180px)!important}
 .work-plan-toolbar{display:flex;gap:8px;flex-wrap:wrap;margin:8px 0 12px}
 .work-plan-title{font-weight:800;margin:8px 0 12px;color:var(--text)}
@@ -662,7 +662,7 @@ body.dark .work-plan-form{background:var(--panel2)}
 @media print{#workPlanModal{display:none!important}}
 
 
-/* v1.3 / 5.33 main dashboard + náhradní díly */
+/* v1.3 / 5.34 main dashboard + náhradní díly */
 .main-overview{margin-bottom:18px}
 .overview-head{background:var(--panel);border:1px solid rgba(219,230,242,.8);border-radius:var(--radius);box-shadow:var(--shadow);padding:18px;margin-bottom:14px}
 .overview-head h1{margin:0 0 5px;font-size:1.35rem}
@@ -702,7 +702,7 @@ body.dark .part-card{background:var(--panel2)}
 @media print{#partsModal{display:none!important}.main-overview{display:none!important}}
 
 
-/* v1.3 / 5.33 koncept 5 */
+/* v1.3 / 5.34 koncept 5 */
 .page-section{display:none}
 .page-section.active{display:block}
 .page-title-row{display:flex;justify-content:space-between;align-items:flex-start;gap:14px;margin:6px 0 16px}
@@ -784,7 +784,7 @@ body .main-overview,body .dashboard{display:none!important}
     <button type="button" class="side-small" id="sideThemeBtn">Tmavý / světlý režim</button>
     <button type="button" class="side-small" onclick="exportBackup()">Export zálohy</button>
     <button type="button" class="side-small" id="sideImportBtn">Import zálohy</button>
-    <div class="side-version">Verze: 1.3 / 5.33</div>
+    <div class="side-version">Verze: 1.3 / 5.34</div>
   </div>
 </aside>
 
@@ -1777,10 +1777,10 @@ function openModal(el){ el.classList.add('show'); }
 function closeModal(el){ el.classList.remove('show'); }
 
 function openWizard(editId=null, prefill={}){
-  rec = editId ? JSON.parse(JSON.stringify(data.find(r=>r.id===editId) || {id:uid()})) : {id:uid(), cLogic:'legacy', appVersion:'1.3 / 5.33'};
+  rec = editId ? JSON.parse(JSON.stringify(data.find(r=>r.id===editId) || {id:uid()})) : {id:uid(), cLogic:'legacy', appVersion:'1.3 / 5.34'};
   rec = Object.assign({}, rec, prefill || {});
   if(!editId && !rec.cLogic) rec.cLogic = 'legacy';
-  if(!editId && !rec.appVersion) rec.appVersion = '1.3 / 5.33';
+  if(!editId && !rec.appVersion) rec.appVersion = '1.3 / 5.34';
 
   // 🔥 AUTO DOPLNĚNÍ Z HISTORIE PODLE VÝROBNÍHO ČÍSLA
   if(rec.vc){
@@ -2036,7 +2036,7 @@ function hideSuggestions(){ const host = document.getElementById('suggestHost');
 function shouldShowIssuePhoto(step, value){
   if(!step || step.type !== 'yntextphoto') return false;
   if(step.k === 'B1') return value === 'NE';
-  if(isGeneralCheckKey(step.k)) return value === 'NE';
+  if(isGeneralCheckKey(step.k)) return isProblemAnswer(step.k, value, rec);
   return value === 'NE';
 }
 function getPhotoSrc(photo){ return photo ? (photo.url || photo.dataUrl || '') : ''; }
@@ -2152,7 +2152,7 @@ async function nextStep(){
   const okSave = confirm('Chceš protokol uložit?');
   if(!okSave) return;
   if(!rec.cLogic) rec.cLogic = 'legacy';
-  if(!rec.appVersion) rec.appVersion = '1.3 / 5.33';
+  if(!rec.appVersion) rec.appVersion = '1.3 / 5.34';
   rec.savedAt = new Date().toISOString();
   await saveProtocol(rec);
   closeWizard();
@@ -2745,7 +2745,7 @@ async function saveWorkPlanFromForm(){
     technician,
     place,
     note,
-    appVersion:'1.3 / 5.33'
+    appVersion:'1.3 / 5.34'
   });
   if(!record.createdAt) record.createdAt = new Date().toISOString();
   await saveWorkPlan(record);
@@ -2796,7 +2796,7 @@ function renderHomeOverview(){
     return `<button type="button" class="week-pill ${isActive?'active':''}" data-day="${ymd(d)}"><div>${d.toLocaleDateString('cs-CZ',{weekday:'short'})}</div><strong>${d.getDate()}.</strong></button>`;
   }).join('');
   strip.querySelectorAll('[data-day]').forEach(btn => btn.addEventListener('click', ()=>{ currentHomeDate = new Date(btn.dataset.day + 'T12:00:00'); renderHomeOverview(); }));
-  const rows = TECHNICI.map(name => ({name, items:(scheduleData||[]).filter(r => r.date === currentYmd && r.tech === name)})).filter(r => r.items.length || true);
+  const rows = TECHNICI.map(name => ({name, items:(scheduleData||[]).filter(r => r.date === currentYmd && r.technician === name)})).filter(r => r.items.length || true);
   const activeRows = rows.filter(r => r.items.length);
   if(!activeRows.length){
     list.innerHTML = '<div class="day-empty">Na tento den zatím není zadaný žádný plán práce.</div>';
@@ -2989,7 +2989,7 @@ async function savePartFromForm(){
     partNumber,
     partName: document.getElementById('partName').value.trim(),
     note: document.getElementById('partNote').value.trim(),
-    appVersion:'1.3 / 5.33'
+    appVersion:'1.3 / 5.34'
   });
   if(currentPartPhoto) record.photo = currentPartPhoto;
   if(!record.createdAt) record.createdAt = new Date().toISOString();
@@ -3054,7 +3054,6 @@ document.getElementById('homeNextDayBtn')?.addEventListener('click', () => { cur
 
 
 document.querySelectorAll('[data-open-section="protocols"], [data-open-section="archive"]').forEach(btn => btn.addEventListener('click', showProtocolsSection));
-document.querySelectorAll('[data-open-section="archive"]').forEach(btn => btn.addEventListener('click', showProtocolsSection));
 document.getElementById('dashOpenWorkPlan')?.addEventListener('click', openWorkPlanModal);
 document.getElementById('dashOpenParts')?.addEventListener('click', openPartsModal);
 
@@ -3097,8 +3096,8 @@ document.getElementById('workPlanPlace')?.addEventListener('change', (e) => {
 
 document.getElementById('upcomingBtn')?.addEventListener('click', () => { closeSidePanel?.(); openUpcomingModal(); });
 document.getElementById('closeUpcomingBtn')?.addEventListener('click', closeUpcomingModal);
-document.getElementById('newProtocolBtn').addEventListener('click', () => openWizard());
-document.getElementById('clearAllBtn').addEventListener('click', clearAllData);
+document.getElementById('newProtocolBtn')?.addEventListener('click', () => openWizard());
+document.getElementById('clearAllBtn')?.addEventListener('click', clearAllData);
 document.getElementById('importBackupBtn')?.addEventListener('click', () => document.getElementById('importBackupInput')?.click());
 document.getElementById('sideImportBtn')?.addEventListener('click', () => { closeSidePanel?.(); document.getElementById('importBackupInput')?.click(); });
 document.getElementById('importBackupInput')?.addEventListener('change', (e) => {
@@ -3107,12 +3106,12 @@ document.getElementById('importBackupInput')?.addEventListener('change', (e) => 
   e.target.value = '';
 });
 
-document.getElementById('closeWizardBtn').addEventListener('click', closeWizard);
-document.getElementById('prevStepBtn').addEventListener('click', prevStep);
-document.getElementById('nextBtn').addEventListener('click', nextStep);
-document.getElementById('closePreviewBtn').addEventListener('click', closePreview);
-document.getElementById('savePreviewBtn').addEventListener('click', savePreviewRecord);
-document.getElementById('printPreviewBtn').addEventListener('click', printCurrent);
+document.getElementById('closeWizardBtn')?.addEventListener('click', closeWizard);
+document.getElementById('prevStepBtn')?.addEventListener('click', prevStep);
+document.getElementById('nextBtn')?.addEventListener('click', nextStep);
+document.getElementById('closePreviewBtn')?.addEventListener('click', closePreview);
+document.getElementById('savePreviewBtn')?.addEventListener('click', savePreviewRecord);
+document.getElementById('printPreviewBtn')?.addEventListener('click', printCurrent);
 document.addEventListener('keydown', (e) => {
   if(e.key !== 'Escape') return;
 
@@ -3158,13 +3157,13 @@ document.addEventListener('keydown', (e) => {
 
   document.body.classList.remove('side-open');
 });
-document.getElementById('closeQrBtn').addEventListener('click', () => closeQrModal());
-document.getElementById('clearQrBtn').addEventListener('click', () => {
+document.getElementById('closeQrBtn')?.addEventListener('click', () => closeQrModal());
+document.getElementById('clearQrBtn')?.addEventListener('click', () => {
   resetQr();
   triggerQrPicker();
 });
 if(document.getElementById('qrBtn')) document.getElementById('qrBtn').addEventListener('click', openQrModal);
-document.getElementById('qrFileInput').addEventListener('change', (e)=>{
+document.getElementById('qrFileInput')?.addEventListener('change', (e)=>{
   const file = e.target.files[0];
   processQrFile(file);
 });
@@ -3185,7 +3184,7 @@ window.addEventListener('focus', () => {
     }
   }, 250);
 });
-document.getElementById('closeHistoryBtn').addEventListener('click', closeHistoryModal);
+document.getElementById('closeHistoryBtn')?.addEventListener('click', closeHistoryModal);
 els.list.addEventListener('click', (e) => {
   const btn = e.target.closest('button[data-action]');
   if(!btn) return;

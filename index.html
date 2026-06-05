@@ -636,7 +636,7 @@ header .header-sub{
 }
 
 
-/* v1.3 / 5.31 plan práce */
+/* v1.3 / 5.33 plan práce */
 .work-plan-modal{width:min(96vw,1180px)!important}
 .work-plan-toolbar{display:flex;gap:8px;flex-wrap:wrap;margin:8px 0 12px}
 .work-plan-title{font-weight:800;margin:8px 0 12px;color:var(--text)}
@@ -662,7 +662,7 @@ body.dark .work-plan-form{background:var(--panel2)}
 @media print{#workPlanModal{display:none!important}}
 
 
-/* v1.3 / 5.31 main dashboard + náhradní díly */
+/* v1.3 / 5.33 main dashboard + náhradní díly */
 .main-overview{margin-bottom:18px}
 .overview-head{background:var(--panel);border:1px solid rgba(219,230,242,.8);border-radius:var(--radius);box-shadow:var(--shadow);padding:18px;margin-bottom:14px}
 .overview-head h1{margin:0 0 5px;font-size:1.35rem}
@@ -687,7 +687,7 @@ body.dark .part-card{background:var(--panel2)}
 .part-head{display:flex;justify-content:space-between;gap:12px;align-items:flex-start}
 .part-title{font-weight:850;font-size:1rem}
 .part-sub{font-size:.86rem;color:var(--muted);margin-top:3px}
-.part-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:8px}
+.part-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
 .part-meta{background:var(--panel2);border:1px solid var(--line);border-radius:14px;padding:9px}
 .part-meta-label{font-size:.72rem;color:var(--muted);margin-bottom:3px}
 .part-meta-value{font-weight:700;font-size:.86rem}
@@ -702,7 +702,7 @@ body.dark .part-card{background:var(--panel2)}
 @media print{#partsModal{display:none!important}.main-overview{display:none!important}}
 
 
-/* v1.3 / 5.31 koncept 5 */
+/* v1.3 / 5.33 koncept 5 */
 .page-section{display:none}
 .page-section.active{display:block}
 .page-title-row{display:flex;justify-content:space-between;align-items:flex-start;gap:14px;margin:6px 0 16px}
@@ -776,7 +776,7 @@ body .main-overview,body .dashboard{display:none!important}
     <button type="button" class="side-link" data-view="plan">Plán práce</button>
     <button type="button" class="side-link" onclick="window._openWizard()">Kontroly</button>
     <button type="button" class="side-link" data-view="parts">Náhradní díly</button>
-    <button type="button" class="side-link" data-view="archive">Archiv protokolů</button>
+    <button type="button" class="side-link" data-view="archive">Hotové protokoly</button>
     <button type="button" class="side-link" id="upcomingBtn">Blížící se kontroly</button>
     <button type="button" class="side-link" id="sideSettingsBtn">Nastavení</button>
   </nav>
@@ -784,7 +784,7 @@ body .main-overview,body .dashboard{display:none!important}
     <button type="button" class="side-small" id="sideThemeBtn">Tmavý / světlý režim</button>
     <button type="button" class="side-small" onclick="exportBackup()">Export zálohy</button>
     <button type="button" class="side-small" id="sideImportBtn">Import zálohy</button>
-    <div class="side-version">Verze: 1.3 / 5.31</div>
+    <div class="side-version">Verze: 1.3 / 5.33</div>
   </div>
 </aside>
 
@@ -804,7 +804,7 @@ body .main-overview,body .dashboard{display:none!important}
         <p class="muted">Zahájení nové kontroly během pár vteřin.</p>
         <button class="primary" id="newProtocolHomeBtn" type="button">+ Nový protokol</button>
         <div class="quick-links">
-          <button type="button" class="ghost small" id="homeArchiveBtn">Archiv protokolů</button>
+          <button type="button" class="ghost small" id="homeArchiveBtn">Hotové protokoly</button>
           <button type="button" class="ghost small" id="homePlanBtn">Plán práce</button>
           <button type="button" class="ghost small" id="homePartsBtn">Náhradní díly</button>
         </div>
@@ -824,7 +824,7 @@ body .main-overview,body .dashboard{display:none!important}
 
     <div class="home-summary-grid">
       <div class="summary-box summary-controls" data-open-section="archive">
-        <div class="summary-box-head"><span>Kontroly</span><strong id="dashControlsTotal">0</strong></div>
+        <div class="summary-box-head"><span>Kontroly / hotové protokoly</span><strong id="dashControlsTotal">0</strong></div>
         <div class="summary-box-lines"><div><b id="dashControlsIssues">0</b> se závadou</div><div><b id="dashControlsDue">0</b> do 30 dnů / po termínu</div></div>
       </div>
       <div class="summary-box summary-plan" id="homeOpenPlanCard">
@@ -841,7 +841,7 @@ body .main-overview,body .dashboard{display:none!important}
   <section id="section-archive" class="page-section archive-page">
     <div class="page-title-row">
       <div>
-        <h1 class="page-title-main">Archiv protokolů</h1>
+        <h1 class="page-title-main">Hotové protokoly</h1>
         <div class="page-sub-main">Přehled hotových protokolů a rychlé filtrování.</div>
       </div>
     </div>
@@ -997,10 +997,6 @@ body .main-overview,body .dashboard{display:none!important}
       <div class="field">
         <label>Název / popis dílu</label>
         <input id="partName" type="text">
-      </div>
-      <div class="field">
-        <label>Zadal</label>
-        <select id="partRequestedBy"></select>
       </div>
       <div class="field">
         <label>Fotka dílu / štítku</label>
@@ -1781,10 +1777,10 @@ function openModal(el){ el.classList.add('show'); }
 function closeModal(el){ el.classList.remove('show'); }
 
 function openWizard(editId=null, prefill={}){
-  rec = editId ? JSON.parse(JSON.stringify(data.find(r=>r.id===editId) || {id:uid()})) : {id:uid(), cLogic:'legacy', appVersion:'1.3 / 5.31'};
+  rec = editId ? JSON.parse(JSON.stringify(data.find(r=>r.id===editId) || {id:uid()})) : {id:uid(), cLogic:'legacy', appVersion:'1.3 / 5.33'};
   rec = Object.assign({}, rec, prefill || {});
   if(!editId && !rec.cLogic) rec.cLogic = 'legacy';
-  if(!editId && !rec.appVersion) rec.appVersion = '1.3 / 5.31';
+  if(!editId && !rec.appVersion) rec.appVersion = '1.3 / 5.33';
 
   // 🔥 AUTO DOPLNĚNÍ Z HISTORIE PODLE VÝROBNÍHO ČÍSLA
   if(rec.vc){
@@ -2156,7 +2152,7 @@ async function nextStep(){
   const okSave = confirm('Chceš protokol uložit?');
   if(!okSave) return;
   if(!rec.cLogic) rec.cLogic = 'legacy';
-  if(!rec.appVersion) rec.appVersion = '1.3 / 5.31';
+  if(!rec.appVersion) rec.appVersion = '1.3 / 5.33';
   rec.savedAt = new Date().toISOString();
   await saveProtocol(rec);
   closeWizard();
@@ -2749,7 +2745,7 @@ async function saveWorkPlanFromForm(){
     technician,
     place,
     note,
-    appVersion:'1.3 / 5.31'
+    appVersion:'1.3 / 5.33'
   });
   if(!record.createdAt) record.createdAt = new Date().toISOString();
   await saveWorkPlan(record);
@@ -2769,7 +2765,7 @@ function showSection(view){
   const target = document.getElementById(map[view] || map.home);
   if(target) target.classList.add('active');
   setActiveSideNav(view);
-  const titles = {home:'Přehled dne', archive:'Archiv protokolů', plan:'Plán práce', parts:'Náhradní díly'};
+  const titles = {home:'Přehled dne', archive:'Hotové protokoly', plan:'Plán práce', parts:'Náhradní díly'};
   document.querySelector('header .header-title') && (document.querySelector('header .header-title').textContent = 'LiftCheck CZ');
   document.querySelector('header .header-sub') && (document.querySelector('header .header-sub').textContent = titles[view] || 'Čtvrtletní kontroly');
   closeSidePanel();
@@ -2875,11 +2871,9 @@ async function deletePartRecord(id){
   }
 }
 function fillPartSelects(){
-  const req = document.getElementById('partRequestedBy');
   const place = document.getElementById('partPlace');
   const typeList = document.getElementById('partTypeList');
   const serialList = document.getElementById('partSerialList');
-  if(req) req.innerHTML = TECHNICI.map(t => `<option value="${escapeHtml(t)}">${escapeHtml(t)}</option>`).join('');
   if(place) place.innerHTML = BRANCHES.map(b => `<option value="${escapeHtml(b)}">${escapeHtml(b)}</option>`).join('') + '<option value="__custom__">Jiné místo</option>';
   if(typeList) typeList.innerHTML = [...new Set([...(MODELS || []), ...(data || []).map(r => r.typ).filter(Boolean)])].map(v => `<option value="${escapeHtml(v)}"></option>`).join('');
   if(serialList) serialList.innerHTML = [...new Set((data || []).map(r => r.vc).filter(Boolean))].map(v => `<option value="${escapeHtml(v)}"></option>`).join('');
@@ -2909,7 +2903,7 @@ function renderParts(){
   if(filter === 'ordered') rows = rows.filter(p => p.ordered && !p.sent);
   if(filter === 'sent') rows = rows.filter(p => p.sent);
   if(filter === 'unfinished') rows = rows.filter(p => !p.sent);
-  if(query) rows = rows.filter(p => [p.type,p.serial,p.place,p.partNumber,p.partName,p.requestedBy,p.note].some(v => String(v||'').toLowerCase().includes(query)));
+  if(query) rows = rows.filter(p => [p.type,p.serial,p.place,p.partNumber,p.partName,p.note].some(v => String(v||'').toLowerCase().includes(query)));
   rows.sort((a,b) => String(b.createdAt||'').localeCompare(String(a.createdAt||'')));
   if(!rows.length){ list.innerHTML = '<div class="empty">Žádné záznamy náhradních dílů.</div>'; return; }
   list.innerHTML = rows.map(p => {
@@ -2924,10 +2918,9 @@ function renderParts(){
         <span class="status-pill ${st.cls}">${st.txt}</span>
       </div>
       <div class="part-grid">
-        <div class="part-meta"><div class="part-meta-label">Zadal</div><div class="part-meta-value">${escapeHtml(p.requestedBy || '—')}</div></div>
         <div class="part-meta"><div class="part-meta-label">Vytvořeno</div><div class="part-meta-value">${escapeHtml(formatDateTime(p.createdAt))}</div></div>
-        <div class="part-meta"><div class="part-meta-label">Objednáno</div><div class="part-meta-value">${p.ordered ? escapeHtml((p.orderedBy||'') + ' · ' + formatDateTime(p.orderedAt)) : 'Ne'}</div></div>
-        <div class="part-meta"><div class="part-meta-label">Odesláno</div><div class="part-meta-value">${p.sent ? escapeHtml((p.sentBy||'') + ' · ' + formatDateTime(p.sentAt)) : 'Ne'}</div></div>
+        <div class="part-meta"><div class="part-meta-label">Objednáno</div><div class="part-meta-value">${p.ordered ? escapeHtml(formatDateTime(p.orderedAt)) : 'Ne'}</div></div>
+        <div class="part-meta"><div class="part-meta-label">Odesláno</div><div class="part-meta-value">${p.sent ? escapeHtml(formatDateTime(p.sentAt)) : 'Ne'}</div></div>
       </div>
       ${src || p.note ? `<div class="part-photo">${src ? `<img src="${escapeHtml(src)}" data-full-src="${escapeHtml(src)}" onclick="openLightbox(this.dataset.fullSrc)">` : ''}${p.note ? `<div class="part-sub">${escapeHtml(p.note)}</div>` : ''}</div>` : ''}
       <div class="part-actions">
@@ -2965,7 +2958,6 @@ function openPartForm(id=null){
   }
   document.getElementById('partNumber').value = (p && p.partNumber) || '';
   document.getElementById('partName').value = (p && p.partName) || '';
-  document.getElementById('partRequestedBy').value = (p && p.requestedBy) || TECHNICI[0] || '';
   document.getElementById('partNote').value = (p && p.note) || '';
   const src = p && p.photo ? (p.photo.url || p.photo.dataUrl || '') : '';
   document.getElementById('partPhotoPreview').innerHTML = src ? `<img src="${escapeHtml(src)}" data-full-src="${escapeHtml(src)}" onclick="openLightbox(this.dataset.fullSrc)" style="width:90px;height:70px;object-fit:cover;border-radius:12px;border:1px solid var(--line);margin-top:6px">` : '';
@@ -2977,10 +2969,7 @@ function closePartForm(){
   currentPartPhoto = null;
   document.getElementById('partsFormWrap')?.classList.add('hidden');
 }
-function currentTechnicianPrompt(label, fallback=''){
-  const name = prompt(label, fallback || TECHNICI[0] || '');
-  return name ? name.trim() : '';
-}
+
 async function savePartFromForm(){
   const placeSel = document.getElementById('partPlace').value;
   const place = placeSel === '__custom__' ? document.getElementById('partCustomPlace').value.trim() : placeSel;
@@ -2999,9 +2988,8 @@ async function savePartFromForm(){
     place,
     partNumber,
     partName: document.getElementById('partName').value.trim(),
-    requestedBy: document.getElementById('partRequestedBy').value,
     note: document.getElementById('partNote').value.trim(),
-    appVersion:'1.3 / 5.31'
+    appVersion:'1.3 / 5.33'
   });
   if(currentPartPhoto) record.photo = currentPartPhoto;
   if(!record.createdAt) record.createdAt = new Date().toISOString();
@@ -3012,20 +3000,14 @@ async function savePartFromForm(){
 async function markPartOrdered(id){
   const p = (partsData || []).find(x => x.id === id);
   if(!p) return;
-  const by = currentTechnicianPrompt('Kdo objednal díl?', p.requestedBy || '');
-  if(!by) return;
   p.ordered = true;
-  p.orderedBy = by;
   p.orderedAt = new Date().toISOString();
   await savePartRecord(p);
 }
 async function markPartSent(id){
   const p = (partsData || []).find(x => x.id === id);
   if(!p) return;
-  const by = currentTechnicianPrompt('Kdo odeslal díl?', p.orderedBy || p.requestedBy || '');
-  if(!by) return;
   p.sent = true;
-  p.sentBy = by;
   p.sentAt = new Date().toISOString();
   await savePartRecord(p);
 }
@@ -3071,7 +3053,8 @@ document.getElementById('homePrevDayBtn')?.addEventListener('click', () => { cur
 document.getElementById('homeNextDayBtn')?.addEventListener('click', () => { currentHomeDate = addDays(currentHomeDate,1); renderHomeOverview(); });
 
 
-document.querySelectorAll('[data-open-section="protocols"]').forEach(btn => btn.addEventListener('click', showProtocolsSection));
+document.querySelectorAll('[data-open-section="protocols"], [data-open-section="archive"]').forEach(btn => btn.addEventListener('click', showProtocolsSection));
+document.querySelectorAll('[data-open-section="archive"]').forEach(btn => btn.addEventListener('click', showProtocolsSection));
 document.getElementById('dashOpenWorkPlan')?.addEventListener('click', openWorkPlanModal);
 document.getElementById('dashOpenParts')?.addEventListener('click', openPartsModal);
 

@@ -636,7 +636,7 @@ header .header-sub{
 }
 
 
-/* v1.3 / 5.34 plan práce */
+/* v1.3 / 5.36 plan práce */
 .work-plan-modal{width:min(96vw,1180px)!important}
 .work-plan-toolbar{display:flex;gap:8px;flex-wrap:wrap;margin:8px 0 12px}
 .work-plan-title{font-weight:800;margin:8px 0 12px;color:var(--text)}
@@ -662,7 +662,7 @@ body.dark .work-plan-form{background:var(--panel2)}
 @media print{#workPlanModal{display:none!important}}
 
 
-/* v1.3 / 5.34 main dashboard + náhradní díly */
+/* v1.3 / 5.36 main dashboard + náhradní díly */
 .main-overview{margin-bottom:18px}
 .overview-head{background:var(--panel);border:1px solid rgba(219,230,242,.8);border-radius:var(--radius);box-shadow:var(--shadow);padding:18px;margin-bottom:14px}
 .overview-head h1{margin:0 0 5px;font-size:1.35rem}
@@ -675,7 +675,7 @@ body.dark .work-plan-form{background:var(--panel2)}
 .module-stats span{display:block;font-size:1.25rem;font-weight:850}
 .module-stats small{display:block;color:var(--muted);font-size:.72rem;margin-top:2px}
 .parts-modal{width:min(96vw,1180px)!important}
-.parts-toolbar{display:flex;gap:8px;flex-wrap:wrap;margin:8px 0 12px}
+.parts-toolbar{display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin:8px 0 12px}
 .parts-form{margin:12px 0 14px;padding:14px;border:1px solid var(--line);border-radius:18px;background:#fff}
 body.dark .parts-form{background:var(--panel2)}
 .parts-form-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}
@@ -702,7 +702,7 @@ body.dark .part-card{background:var(--panel2)}
 @media print{#partsModal{display:none!important}.main-overview{display:none!important}}
 
 
-/* v1.3 / 5.34 koncept 5 */
+/* v1.3 / 5.36 koncept 5 */
 .page-section{display:none}
 .page-section.active{display:block}
 .page-title-row{display:flex;justify-content:space-between;align-items:flex-start;gap:14px;margin:6px 0 16px}
@@ -784,7 +784,7 @@ body .main-overview,body .dashboard{display:none!important}
     <button type="button" class="side-small" id="sideThemeBtn">Tmavý / světlý režim</button>
     <button type="button" class="side-small" onclick="exportBackup()">Export zálohy</button>
     <button type="button" class="side-small" id="sideImportBtn">Import zálohy</button>
-    <div class="side-version">Verze: 1.3 / 5.34</div>
+    <div class="side-version">Verze: 1.3 / 5.36</div>
   </div>
 </aside>
 
@@ -959,26 +959,19 @@ body .main-overview,body .dashboard{display:none!important}
 
   <div class="parts-toolbar">
     <button id="addPartBtn" class="primary mini" type="button">Přidat požadavek</button>
-    <select id="partsFilter" class="filter">
-      <option value="all">Vše</option>
-      <option value="open">Nové požadavky</option>
-      <option value="ordered">Objednáno</option>
-      <option value="sent">Odesláno</option>
-      <option value="unfinished">Nevyřízené</option>
-    </select>
-    <input id="partsSearch" class="search" placeholder="Hledat PN, výrobní číslo, typ nebo místo">
+<input id="partsSearch" class="search" placeholder="Hledat PN, výrobní číslo, typ nebo místo">
   </div>
 
   <div id="partsFormWrap" class="parts-form hidden">
-    <h3 class="step-title" style="font-size:1.05rem;margin-bottom:10px">Záznam náhradního dílu</h3>
+    <h3 class="step-title" style="font-size:1.05rem;margin-bottom:6px">Záznam náhradního dílu</h3><div class="helper" style="margin-bottom:10px">Povinné je pouze typ zařízení a výrobní číslo. Ostatní údaje lze doplnit později.</div>
     <div class="parts-form-grid">
       <div class="field">
-        <label>Typ zařízení</label>
+        <label>Typ zařízení *</label>
         <input id="partType" list="partTypeList" type="text" autocomplete="off">
         <datalist id="partTypeList"></datalist>
       </div>
       <div class="field">
-        <label>Výrobní číslo</label>
+        <label>Výrobní číslo *</label>
         <input id="partSerial" list="partSerialList" type="text" autocomplete="off">
         <datalist id="partSerialList"></datalist>
       </div>
@@ -1777,10 +1770,10 @@ function openModal(el){ el.classList.add('show'); }
 function closeModal(el){ el.classList.remove('show'); }
 
 function openWizard(editId=null, prefill={}){
-  rec = editId ? JSON.parse(JSON.stringify(data.find(r=>r.id===editId) || {id:uid()})) : {id:uid(), cLogic:'legacy', appVersion:'1.3 / 5.34'};
+  rec = editId ? JSON.parse(JSON.stringify(data.find(r=>r.id===editId) || {id:uid()})) : {id:uid(), cLogic:'legacy', appVersion:'1.3 / 5.36'};
   rec = Object.assign({}, rec, prefill || {});
   if(!editId && !rec.cLogic) rec.cLogic = 'legacy';
-  if(!editId && !rec.appVersion) rec.appVersion = '1.3 / 5.34';
+  if(!editId && !rec.appVersion) rec.appVersion = '1.3 / 5.36';
 
   // 🔥 AUTO DOPLNĚNÍ Z HISTORIE PODLE VÝROBNÍHO ČÍSLA
   if(rec.vc){
@@ -2152,7 +2145,7 @@ async function nextStep(){
   const okSave = confirm('Chceš protokol uložit?');
   if(!okSave) return;
   if(!rec.cLogic) rec.cLogic = 'legacy';
-  if(!rec.appVersion) rec.appVersion = '1.3 / 5.34';
+  if(!rec.appVersion) rec.appVersion = '1.3 / 5.36';
   rec.savedAt = new Date().toISOString();
   await saveProtocol(rec);
   closeWizard();
@@ -2647,7 +2640,7 @@ function fillWorkPlanSelects(){
   const tech = document.getElementById('workPlanTech');
   const place = document.getElementById('workPlanPlace');
   if(tech) tech.innerHTML = TECHNICI.map(t => `<option value="${escapeHtml(t)}">${escapeHtml(t)}</option>`).join('');
-  if(place) place.innerHTML = BRANCHES.map(b => `<option value="${escapeHtml(b)}">${escapeHtml(b)}</option>`).join('') + '<option value="__custom__">Jiné místo</option>';
+  if(place) place.innerHTML = '<option value="">Nevyplněno</option>' + BRANCHES.map(b => `<option value="${escapeHtml(b)}">${escapeHtml(b)}</option>`).join('') + '<option value="__custom__">Jiné místo</option>';
 }
 function openWorkPlanModal(){
   currentWorkWeekStart = currentWorkWeekStart || startOfWeek(new Date());
@@ -2745,7 +2738,7 @@ async function saveWorkPlanFromForm(){
     technician,
     place,
     note,
-    appVersion:'1.3 / 5.34'
+    appVersion:'1.3 / 5.36'
   });
   if(!record.createdAt) record.createdAt = new Date().toISOString();
   await saveWorkPlan(record);
@@ -2874,7 +2867,7 @@ function fillPartSelects(){
   const place = document.getElementById('partPlace');
   const typeList = document.getElementById('partTypeList');
   const serialList = document.getElementById('partSerialList');
-  if(place) place.innerHTML = BRANCHES.map(b => `<option value="${escapeHtml(b)}">${escapeHtml(b)}</option>`).join('') + '<option value="__custom__">Jiné místo</option>';
+  if(place) place.innerHTML = '<option value="">Nevyplněno</option>' + BRANCHES.map(b => `<option value="${escapeHtml(b)}">${escapeHtml(b)}</option>`).join('') + '<option value="__custom__">Jiné místo</option>';
   if(typeList) typeList.innerHTML = [...new Set([...(MODELS || []), ...(data || []).map(r => r.typ).filter(Boolean)])].map(v => `<option value="${escapeHtml(v)}"></option>`).join('');
   if(serialList) serialList.innerHTML = [...new Set((data || []).map(r => r.vc).filter(Boolean))].map(v => `<option value="${escapeHtml(v)}"></option>`).join('');
 }
@@ -2896,13 +2889,8 @@ function renderParts(){
   updateMainOverview();
   const list = document.getElementById('partsList');
   if(!list) return;
-  const filter = document.getElementById('partsFilter')?.value || 'all';
   const query = (document.getElementById('partsSearch')?.value || '').toLowerCase().trim();
   let rows = [...(partsData || [])];
-  if(filter === 'open') rows = rows.filter(p => !p.ordered && !p.sent);
-  if(filter === 'ordered') rows = rows.filter(p => p.ordered && !p.sent);
-  if(filter === 'sent') rows = rows.filter(p => p.sent);
-  if(filter === 'unfinished') rows = rows.filter(p => !p.sent);
   if(query) rows = rows.filter(p => [p.type,p.serial,p.place,p.partNumber,p.partName,p.note].some(v => String(v||'').toLowerCase().includes(query)));
   rows.sort((a,b) => String(b.createdAt||'').localeCompare(String(a.createdAt||'')));
   if(!rows.length){ list.innerHTML = '<div class="empty">Žádné záznamy náhradních dílů.</div>'; return; }
@@ -2946,7 +2934,7 @@ function openPartForm(id=null){
   const placeSelect = document.getElementById('partPlace');
   const customWrap = document.getElementById('partCustomPlaceWrap');
   const customInput = document.getElementById('partCustomPlace');
-  const placeVal = (p && p.place) || BRANCHES[0] || '';
+  const placeVal = (p && p.place) || '';
   if(BRANCHES.includes(placeVal)){
     placeSelect.value = placeVal;
     customWrap.classList.add('hidden');
@@ -2978,8 +2966,6 @@ async function savePartFromForm(){
   const serial = document.getElementById('partSerial').value.trim();
   if(!type){ alert('Vyplň typ zařízení.'); return; }
   if(!serial){ alert('Vyplň výrobní číslo.'); return; }
-  if(!partNumber){ alert('Vyplň PN dílu.'); return; }
-  if(!place){ alert('Vyplň místo.'); return; }
   const existing = editingPartId ? (partsData || []).find(x => x.id === editingPartId) : null;
   const record = Object.assign({}, existing || {}, {
     id: editingPartId || partUid(),
@@ -2989,7 +2975,7 @@ async function savePartFromForm(){
     partNumber,
     partName: document.getElementById('partName').value.trim(),
     note: document.getElementById('partNote').value.trim(),
-    appVersion:'1.3 / 5.34'
+    appVersion:'1.3 / 5.36'
   });
   if(currentPartPhoto) record.photo = currentPartPhoto;
   if(!record.createdAt) record.createdAt = new Date().toISOString();
@@ -3061,7 +3047,6 @@ document.getElementById('closePartsBtn')?.addEventListener('click', closePartsMo
 document.getElementById('addPartBtn')?.addEventListener('click', () => openPartForm());
 document.getElementById('cancelPartBtn')?.addEventListener('click', closePartForm);
 document.getElementById('savePartBtn')?.addEventListener('click', savePartFromForm);
-document.getElementById('partsFilter')?.addEventListener('change', renderParts);
 document.getElementById('partsSearch')?.addEventListener('input', renderParts);
 document.getElementById('partPlace')?.addEventListener('change', (e) => {
   document.getElementById('partCustomPlaceWrap')?.classList.toggle('hidden', e.target.value !== '__custom__');

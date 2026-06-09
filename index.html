@@ -68,6 +68,9 @@ input::placeholder, textarea::placeholder{color:#334155;font-weight:600;font-siz
 .paper table thead,.paper table tbody{page-break-inside:avoid;break-inside:avoid}.paper td,.paper th{border:1px solid #000;padding:5px 6px;vertical-align:top}.paper th{font-weight:700;text-align:left;background:#fff}.paper .top-table td{padding:4px 5px}.paper .section-block{margin-bottom:7px}
 .paper .section-block{page-break-before:auto}.paper .section-title{font-weight:700;margin:9px 0 4px;font-size:11.1px;background:#fff;color:#000;border-top:2px solid #000;border-bottom:2px solid #000;border-left:1px solid #000;border-right:1px solid #000;padding:4px 7px;letter-spacing:.1px}.paper .check-col{width:18%;font-weight:600;white-space:nowrap}.paper .desc-col{width:22%}.paper .status-ok{background:#fff}.paper tr.status-bad td,.paper tr.status-bad th{background:#fee2e2!important;border:2px solid #dc2626!important}.issue-label{display:inline-block;margin-right:4px;padding:2px 5px;border:1px solid #dc2626;color:#991b1b;font-weight:700;font-size:8px;background:#fff1f2}.paper .crossed-out td{color:#666;text-decoration:line-through}.paper .expired{background:#fff;color:#000;font-weight:700}.paper .notes{min-height:34px}.paper .footer-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:8px;page-break-inside:avoid;break-inside:avoid}.paper .sign-box{border:1px solid #000;padding:12px;min-height:80px}.paper .mono{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-weight:400;letter-spacing:.2px}.paper .evaluation-text{font-weight:700}
 .qr-reader{width:100%;min-height:280px;border:1px dashed var(--line);border-radius:18px;overflow:hidden;background:#0f172a}.qr-help{margin-top:10px;padding:12px 14px;border-radius:14px;background:#f8fbff;border:1px solid var(--line);font-size:.9rem;color:var(--muted)}.history-list{display:grid;gap:10px}.history-item{padding:12px;border:1px solid var(--line);border-radius:14px;background:#fff}
+.history-modal-content{max-height:92dvh;overflow-y:auto;-webkit-overflow-scrolling:touch;overscroll-behavior:contain}
+.history-top-close{margin-left:auto}
+@media(max-width:640px){.history-modal-content{width:100%!important;max-height:100dvh;border-radius:18px}.history-modal-content .preview-shell{padding:14px}.history-modal-content .preview-header{position:sticky;top:0;z-index:2;background:var(--panel);padding:0 0 10px;margin-bottom:10px}.history-top-close{display:inline-flex}}
 .hidden{display:none !important}
 @media print{body{background:#fff}body *{visibility:hidden}#preview,#preview *{visibility:visible}#preview{position:absolute;left:0;top:0;width:100%;display:block !important;background:#fff;padding:0;margin:0}#preview .modal-content{width:100% !important;max-height:none !important;overflow:visible !important;border-radius:0 !important;box-shadow:none !important;background:#fff !important}#preview .preview-shell{padding:0 !important;background:#fff !important;overflow:visible !important}#preview .preview-header,#preview .preview-actions{display:none !important}#preview .paper-wrap{padding:0;background:#fff;border-radius:0;overflow:visible !important}#preview .paper{box-shadow:none;width:auto;max-width:none;margin:0;padding:7mm 7mm 6mm 7mm}#preview .paper table tr{page-break-inside:avoid;break-inside:avoid}#preview .paper .section-title{page-break-after:avoid}#preview .paper .footer-grid{page-break-inside:avoid;break-inside:avoid}@page{size:A4 portrait;margin:6mm}}
 @media (max-width:920px){.dashboard{grid-template-columns:1fr}.meta-grid{grid-template-columns:1fr 1fr}}
@@ -636,7 +639,7 @@ header .header-sub{
 }
 
 
-/* v1.6 / 5.62 plan práce */
+/* v1.6 / 5.63 plan práce */
 .work-plan-modal{width:min(96vw,1180px)!important}
 .work-plan-toolbar{display:flex;gap:8px;flex-wrap:wrap;margin:8px 0 12px}
 .work-plan-title{font-weight:800;margin:8px 0 12px;color:var(--text)}
@@ -662,7 +665,7 @@ body.dark .work-plan-form{background:var(--panel2)}
 @media print{#workPlanModal{display:none!important}}
 
 
-/* v1.6 / 5.62 main dashboard + náhradní díly */
+/* v1.6 / 5.63 main dashboard + náhradní díly */
 .main-overview{margin-bottom:18px}
 .overview-head{background:var(--panel);border:1px solid rgba(219,230,242,.8);border-radius:var(--radius);box-shadow:var(--shadow);padding:18px;margin-bottom:14px}
 .overview-head h1{margin:0 0 5px;font-size:1.35rem}
@@ -702,7 +705,7 @@ body.dark .part-card{background:var(--panel2)}
 @media print{#partsModal{display:none!important}.main-overview{display:none!important}}
 
 
-/* v1.6 / 5.62 koncept 5 */
+/* v1.6 / 5.63 koncept 5 */
 .page-section{display:none}
 .page-section.active{display:block}
 .page-title-row{display:flex;justify-content:space-between;align-items:flex-start;gap:14px;margin:6px 0 16px}
@@ -765,7 +768,7 @@ body .main-overview,body .dashboard{display:none!important}
 @media print{.page-section{display:block!important}.home-page,.plan-page,.parts-page{display:none!important}}
 
 
-/* v1.6 / 5.62 sjednocení písma ve všech formulářích */
+/* v1.6 / 5.63 sjednocení písma ve všech formulářích */
 input,
 select,
 textarea,
@@ -798,7 +801,7 @@ datalist {
 }
 
 
-/* v1.6 / 5.62 – sjednocení písma u datumových polí */
+/* v1.6 / 5.63 – sjednocení písma u datumových polí */
 input[type="date"],
 input[type="datetime-local"],
 input[type="time"]{
@@ -823,7 +826,7 @@ input[type="datetime-local"]::-webkit-calendar-picker-indicator{
 }
 
 
-/* v1.6 / 5.62 – hlášení poruch */
+/* v1.6 / 5.63 – hlášení poruch */
 .home-summary-grid{grid-template-columns:repeat(4,1fr)}
 .summary-box.summary-faults{border-top:4px solid #dc2626}
 .faults-page .inline-page-shell{padding:18px}
@@ -852,7 +855,7 @@ body.dark .fault-card{background:var(--panel2)}
 @media print{#section-faults{display:none!important}}
 
 
-/* v1.6 / 5.62 – stav stroje, karta stroje, pozornost */
+/* v1.6 / 5.63 – stav stroje, karta stroje, pozornost */
 .attention-panel{margin-top:16px;background:var(--panel);border:1px solid rgba(219,230,242,.85);border-radius:22px;box-shadow:var(--shadow);padding:18px}
 .attention-head{display:flex;justify-content:space-between;align-items:flex-start;gap:12px;margin-bottom:10px}
 .attention-list{display:grid;gap:8px}
@@ -870,7 +873,7 @@ body.dark .fault-card{background:var(--panel2)}
 .machine-card-row:first-child{border-top:none;padding-top:0}
 
 
-/* v1.6 / 5.62 – svátky a jmeniny na hlavní stránce */
+/* v1.6 / 5.63 – svátky a jmeniny na hlavní stránce */
 .top-date-stack{
   display:grid;
   gap:8px;
@@ -897,7 +900,7 @@ body.dark .fault-card{background:var(--panel2)}
 }
 
 
-/* v1.6 / 5.62 – více stavů poruchy a protokol po opravě */
+/* v1.6 / 5.63 – více stavů poruchy a protokol po opravě */
 .fault-status-row{
   display:flex;
   gap:6px;
@@ -955,7 +958,7 @@ body.dark .fault-card{background:var(--panel2)}
 }
 
 
-/* v1.6 / 5.62 – protokol po opravě bez automatického tisku */
+/* v1.6 / 5.63 – protokol po opravě bez automatického tisku */
 .repair-protocol-toolbar{
   position:sticky;
   top:0;
@@ -977,7 +980,7 @@ body.dark .fault-card{background:var(--panel2)}
 }
 
 
-/* v1.6 / 5.62 – fonty, plán práce více míst, menu */
+/* v1.6 / 5.63 – fonty, plán práce více míst, menu */
 html, body, input, select, textarea, button, option {
   font-family: Inter, "Segoe UI", Arial, sans-serif !important;
 }
@@ -1016,7 +1019,7 @@ body.dark .work-extra-add{background:#0f172a;color:var(--text);border-color:var(
 }
 
 
-/* v1.6 / 5.62 – Vyžaduje pozornost / 48 hodin bez víkendu */
+/* v1.6 / 5.63 – Vyžaduje pozornost / 48 hodin bez víkendu */
 .attention-board{
   margin-top:18px;
   background:linear-gradient(180deg,#ffffff 0%,#f8fafc 100%);
@@ -1175,7 +1178,7 @@ html[data-theme="dark"] .attention-rich-sub, body.dark .attention-rich-sub{
 }
 
 
-/* v1.6 / 5.62 – provozní doladění */
+/* v1.6 / 5.63 – provozní doladění */
 .backup-row{
   padding:12px;
   border:1px solid #bfdbfe;
@@ -1225,7 +1228,7 @@ body.dark .mobile-tech-panel{
 }
 
 
-/* v1.6 / 5.62 – jasné označení čtvrtletních kontrol */
+/* v1.6 / 5.63 – jasné označení čtvrtletních kontrol */
 .module-kicker{
   display:inline-flex;
   width:max-content;
@@ -1280,7 +1283,7 @@ body.dark .module-kicker{
     <button type="button" class="side-small" id="sideThemeBtn">Tmavý / světlý režim</button>
     <button type="button" class="side-small" onclick="exportBackup()">Export zálohy</button>
     <button type="button" class="side-small" id="sideImportBtn">Import zálohy</button>
-    <div class="side-version">Vlastník/Admin: Jan Bartoš<br>Verze: 1.6 / 5.62</div>
+    <div class="side-version">Vlastník/Admin: Jan Bartoš<br>Verze: 1.6 / 5.63</div>
   </div>
 </aside>
 
@@ -1661,8 +1664,8 @@ body.dark .module-kicker{
   <div class="wizard-actions"><button id="closeQrBtn" class="ghost" type="button">Zavřít</button><div style="display:flex;gap:10px;flex-wrap:wrap"><button id="clearQrBtn" class="secondary" type="button">Vyfotit / vybrat QR</button></div></div>
 </div></div></div>
 
-<div class="modal" id="historyModal"><div class="modal-content"><div class="preview-shell">
-  <div class="preview-header"><div><div class="preview-title">Historie této plošiny</div><div class="card-sub" id="historySubtitle"></div></div></div>
+<div class="modal" id="historyModal"><div class="modal-content history-modal-content"><div class="preview-shell">
+  <div class="preview-header"><div><div class="preview-title">Historie této plošiny</div><div class="card-sub" id="historySubtitle"></div></div><button id="closeHistoryTopBtn" class="secondary mini history-top-close" type="button">Zavřít</button></div>
   <div id="historyBody" class="history-list"></div>
   <div class="preview-actions"><div class="preview-actions-left"><button id="closeHistoryBtn" class="secondary" type="button">Zavřít</button></div></div>
 </div></div></div>
@@ -2442,10 +2445,10 @@ function openModal(el){ el.classList.add('show'); }
 function closeModal(el){ el.classList.remove('show'); }
 
 function openWizard(editId=null, prefill={}){
-  rec = editId ? JSON.parse(JSON.stringify(data.find(r=>r.id===editId) || {id:uid()})) : {id:uid(), cLogic:'legacy', appVersion:'1.6 / 5.62'};
+  rec = editId ? JSON.parse(JSON.stringify(data.find(r=>r.id===editId) || {id:uid()})) : {id:uid(), cLogic:'legacy', appVersion:'1.6 / 5.63'};
   rec = Object.assign({}, rec, prefill || {});
   if(!editId && !rec.cLogic) rec.cLogic = 'legacy';
-  if(!editId && !rec.appVersion) rec.appVersion = '1.6 / 5.62';
+  if(!editId && !rec.appVersion) rec.appVersion = '1.6 / 5.63';
 
   // 🔥 AUTO DOPLNĚNÍ Z HISTORIE PODLE VÝROBNÍHO ČÍSLA
   if(rec.vc){
@@ -2817,7 +2820,7 @@ async function nextStep(){
   const okSave = confirm('Chceš protokol uložit?');
   if(!okSave) return;
   if(!rec.cLogic) rec.cLogic = 'legacy';
-  if(!rec.appVersion) rec.appVersion = '1.6 / 5.62';
+  if(!rec.appVersion) rec.appVersion = '1.6 / 5.63';
   rec.savedAt = new Date().toISOString();
   await saveProtocol(rec);
   closeWizard();
@@ -2999,7 +3002,8 @@ function renderAttentionList(){
       when:stamp,
       whenText:`Před ${attentionAgeLabel(stamp)}`,
       extra: formatDate(r.datum || stamp),
-      action:'machine'
+      action:'machine',
+      id:r.id || ''
     });
   });
 
@@ -3018,7 +3022,8 @@ function renderAttentionList(){
       when:stamp,
       whenText:`Před ${attentionAgeLabel(stamp)}`,
       extra:(f.description || '').trim() || 'Bez popisu závady',
-      action:'machine'
+      action:'machine',
+      id:f.id || ''
     });
   });
 
@@ -3037,7 +3042,8 @@ function renderAttentionList(){
       when:stamp,
       whenText:`Před ${attentionAgeLabel(stamp)}`,
       extra:(p.place || p.location || 'Bez místa') + ((p.description || p.note) ? ` · ${(p.description || p.note)}` : ''),
-      action:'machine'
+      action:'machine',
+      id:p.id || ''
     });
   });
 
@@ -3063,8 +3069,10 @@ function renderAttentionList(){
   const iconMap = {protocol:'✓', fault:'!', 'fault-repaired':'✓', part:'ND'};
   const kickerMap = {protocol:'Kontrola', fault:'Porucha', 'fault-repaired':'Porucha opraveno', part:'Náhradní díly'};
 
-  box.innerHTML = items.map((x, i) => `
-    <div class="attention-rich-item ${x.type}">
+  box.innerHTML = items.map((x, i) => {
+    const openAttr = x.type === 'part' ? `data-attention-part-open="${escapeHtml(x.id || '')}"` : ((x.type === 'fault' || x.type === 'fault-repaired') ? `data-attention-fault-open="${escapeHtml(x.id || '')}"` : '');
+    return `
+    <div class="attention-rich-item ${x.type}" ${openAttr} role="button" tabindex="0">
       <div class="attention-top">
         <div class="attention-icon">${iconMap[x.type] || '!'}</div>
         <div class="attention-meta">
@@ -3080,17 +3088,28 @@ function renderAttentionList(){
       </div>
       <div class="attention-rich-actions">
         ${x.serial ? `<button class="secondary mini" type="button" data-machine-card="${escapeHtml(x.serial)}">Karta stroje</button>` : ''}
-        ${(x.type === 'fault' || x.type === 'fault-repaired') ? `<button class="secondary mini" type="button" data-jump-faults="1">Otevřít poruchy</button>` : ''}
-        ${x.type === 'part' ? `<button class="secondary mini" type="button" data-jump-parts="1">Otevřít ND</button>` : ''}
+        ${(x.type === 'fault' || x.type === 'fault-repaired') ? `<button class="secondary mini" type="button" data-open-fault-id="${escapeHtml(x.id || '')}">Otevřít poruchu</button>` : ''}
+        ${x.type === 'part' ? `<button class="secondary mini" type="button" data-open-part-id="${escapeHtml(x.id || '')}">Otevřít ND</button>` : ''}
         ${x.type === 'protocol' ? `<button class="secondary mini" type="button" data-jump-archive="1">Otevřít protokoly</button>` : ''}
       </div>
     </div>
-  `).join('');
+  `;
+  }).join('');
 
-  box.querySelectorAll('[data-machine-card]').forEach(btn => btn.addEventListener('click', () => openMachineCard(btn.dataset.machineCard)));
-  box.querySelectorAll('[data-jump-faults]').forEach(btn => btn.addEventListener('click', () => showSection('faults')));
-  box.querySelectorAll('[data-jump-parts]').forEach(btn => btn.addEventListener('click', () => showSection('parts')));
-  box.querySelectorAll('[data-jump-archive]').forEach(btn => btn.addEventListener('click', () => showSection('archive')));
+  box.querySelectorAll('[data-machine-card]').forEach(btn => btn.addEventListener('click', (ev) => { ev.stopPropagation(); openMachineCard(btn.dataset.machineCard); }));
+  box.querySelectorAll('[data-open-fault-id]').forEach(btn => btn.addEventListener('click', (ev) => { ev.stopPropagation(); openFaultsModal(); openFaultForm(btn.dataset.openFaultId); }));
+  box.querySelectorAll('[data-open-part-id]').forEach(btn => btn.addEventListener('click', (ev) => { ev.stopPropagation(); openPartsModal(); openPartForm(btn.dataset.openPartId); }));
+  box.querySelectorAll('[data-attention-fault-open]').forEach(card => {
+    const open = () => { const id = card.dataset.attentionFaultOpen; if(id){ openFaultsModal(); openFaultForm(id); } };
+    card.addEventListener('click', (ev) => { if(ev.target.closest('button')) return; open(); });
+    card.addEventListener('keydown', (ev) => { if(ev.key === 'Enter' || ev.key === ' '){ ev.preventDefault(); open(); } });
+  });
+  box.querySelectorAll('[data-attention-part-open]').forEach(card => {
+    const open = () => { const id = card.dataset.attentionPartOpen; if(id){ openPartsModal(); openPartForm(id); } };
+    card.addEventListener('click', (ev) => { if(ev.target.closest('button')) return; open(); });
+    card.addEventListener('keydown', (ev) => { if(ev.key === 'Enter' || ev.key === ' '){ ev.preventDefault(); open(); } });
+  });
+  box.querySelectorAll('[data-jump-archive]').forEach(btn => btn.addEventListener('click', (ev) => { ev.stopPropagation(); showSection('archive'); }));
 }
 
 function openMachineCard(serial){
@@ -3145,6 +3164,10 @@ function openHistoryModal(serial){
   els.historyBody.querySelectorAll('[data-fault-create-protocol]').forEach(btn => btn.addEventListener('click', () => { closeHistoryModal(); createProtocolFromFault(btn.dataset.faultCreateProtocol); }));
   els.historyBody.querySelectorAll('[data-part-open]').forEach(btn => btn.addEventListener('click', () => { closeHistoryModal(); openPartsModal(); openPartForm(btn.dataset.partOpen); }));
   openModal(els.historyModal);
+  requestAnimationFrame(() => {
+    const scroller = els.historyModal?.querySelector('.history-modal-content');
+    if(scroller) scroller.scrollTop = 0;
+  });
 }
 function closeHistoryModal(){ closeModal(els.historyModal); }
 
@@ -3773,7 +3796,7 @@ async function saveWorkPlanFromForm(){
     place,
     extraPlaces,
     note,
-    appVersion:'1.6 / 5.62'
+    appVersion:'1.6 / 5.63'
   });
   if(!record.createdAt) record.createdAt = new Date().toISOString();
   await saveWorkPlan(record);
@@ -4139,7 +4162,7 @@ async function saveFaultFromForm(){
     inService: status === 'service' ? true : (existing ? !!existing.inService : false),
     waitingParts: status === 'waiting_parts' ? true : (existing ? !!existing.waitingParts : false),
     photos: currentFaultPhotos,
-    appVersion:'1.6 / 5.62'
+    appVersion:'1.6 / 5.63'
   });
   if(!record.createdAt) record.createdAt = new Date().toISOString();
   if(status === 'repaired'){
@@ -4252,7 +4275,7 @@ function printRepairProtocol(id){
   const style = Array.from(document.querySelectorAll('style')).map(s => s.innerHTML).join('\n');
   w.document.open();
   w.document.write(html.replace('</head>', `<style>${style}
-/* v1.6 / 5.62 – fonty, plán práce více míst, menu */
+/* v1.6 / 5.63 – fonty, plán práce více míst, menu */
 html, body, input, select, textarea, button, option {
   font-family: Inter, "Segoe UI", Arial, sans-serif !important;
 }
@@ -4279,7 +4302,7 @@ input, select, textarea, button,
 }
 
 
-/* v1.6 / 5.62 – provozní doladění */
+/* v1.6 / 5.63 – provozní doladění */
 .backup-row{
   padding:12px;
   border:1px solid #bfdbfe;
@@ -4329,7 +4352,7 @@ body.dark .mobile-tech-panel{
 }
 
 
-/* v1.6 / 5.62 – jasné označení čtvrtletních kontrol */
+/* v1.6 / 5.63 – jasné označení čtvrtletních kontrol */
 .module-kicker{
   display:inline-flex;
   width:max-content;
@@ -4609,7 +4632,7 @@ async function savePartFromForm(){
     partNumber,
     partName: document.getElementById('partName').value.trim(),
     note: document.getElementById('partNote').value.trim(),
-    appVersion:'1.6 / 5.62'
+    appVersion:'1.6 / 5.63'
   });
   if(currentPartPhoto) record.photo = currentPartPhoto;
   if(!record.createdAt) record.createdAt = new Date().toISOString();
@@ -4879,6 +4902,7 @@ window.addEventListener('focus', () => {
   }, 250);
 });
 document.getElementById('closeHistoryBtn')?.addEventListener('click', closeHistoryModal);
+document.getElementById('closeHistoryTopBtn')?.addEventListener('click', closeHistoryModal);
 els.list.addEventListener('click', (e) => {
   const btn = e.target.closest('button[data-action]');
   if(!btn) return;

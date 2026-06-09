@@ -636,7 +636,7 @@ header .header-sub{
 }
 
 
-/* v1.4 / 5.39 plan práce */
+/* v1.5 / 5.42 plan práce */
 .work-plan-modal{width:min(96vw,1180px)!important}
 .work-plan-toolbar{display:flex;gap:8px;flex-wrap:wrap;margin:8px 0 12px}
 .work-plan-title{font-weight:800;margin:8px 0 12px;color:var(--text)}
@@ -662,7 +662,7 @@ body.dark .work-plan-form{background:var(--panel2)}
 @media print{#workPlanModal{display:none!important}}
 
 
-/* v1.4 / 5.39 main dashboard + náhradní díly */
+/* v1.5 / 5.42 main dashboard + náhradní díly */
 .main-overview{margin-bottom:18px}
 .overview-head{background:var(--panel);border:1px solid rgba(219,230,242,.8);border-radius:var(--radius);box-shadow:var(--shadow);padding:18px;margin-bottom:14px}
 .overview-head h1{margin:0 0 5px;font-size:1.35rem}
@@ -702,7 +702,7 @@ body.dark .part-card{background:var(--panel2)}
 @media print{#partsModal{display:none!important}.main-overview{display:none!important}}
 
 
-/* v1.4 / 5.39 koncept 5 */
+/* v1.5 / 5.42 koncept 5 */
 .page-section{display:none}
 .page-section.active{display:block}
 .page-title-row{display:flex;justify-content:space-between;align-items:flex-start;gap:14px;margin:6px 0 16px}
@@ -755,7 +755,7 @@ body .main-overview,body .dashboard{display:none!important}
 @media print{.page-section{display:block!important}.home-page,.plan-page,.parts-page{display:none!important}}
 
 
-/* v1.4 / 5.39 sjednocení písma ve všech formulářích */
+/* v1.5 / 5.42 sjednocení písma ve všech formulářích */
 input,
 select,
 textarea,
@@ -788,7 +788,7 @@ datalist {
 }
 
 
-/* v1.4 / 5.39 – sjednocení písma u datumových polí */
+/* v1.5 / 5.42 – sjednocení písma u datumových polí */
 input[type="date"],
 input[type="datetime-local"],
 input[type="time"]{
@@ -813,7 +813,7 @@ input[type="datetime-local"]::-webkit-calendar-picker-indicator{
 }
 
 
-/* v1.4 / 5.39 – hlášení poruch */
+/* v1.5 / 5.42 – hlášení poruch */
 .home-summary-grid{grid-template-columns:repeat(4,1fr)}
 .summary-box.summary-faults{border-top:4px solid #dc2626}
 .faults-page .inline-page-shell{padding:18px}
@@ -840,6 +840,51 @@ body.dark .fault-card{background:var(--panel2)}
 .status-repaired{background:#ecfdf5;color:#166534;border-color:#bbf7d0}
 @media(max-width:1100px){.home-summary-grid{grid-template-columns:1fr}.fault-form-grid,.fault-grid{grid-template-columns:1fr}.fault-head{flex-direction:column}.faults-toolbar .search{width:100%}}
 @media print{#section-faults{display:none!important}}
+
+
+/* v1.5 / 5.42 – stav stroje, karta stroje, pozornost */
+.attention-panel{margin-top:16px;background:var(--panel);border:1px solid rgba(219,230,242,.85);border-radius:22px;box-shadow:var(--shadow);padding:18px}
+.attention-head{display:flex;justify-content:space-between;align-items:flex-start;gap:12px;margin-bottom:10px}
+.attention-list{display:grid;gap:8px}
+.attention-item{display:flex;align-items:center;justify-content:space-between;gap:10px;border:1px solid var(--line);background:var(--panel2);border-radius:14px;padding:10px 12px}
+.attention-title{font-weight:800}
+.attention-sub{font-size:.82rem;color:var(--muted);margin-top:2px}
+.status-waiting{background:#fef3c7;color:#92400e;border-color:#fde68a}
+.status-machine-ok{background:#ecfdf5;color:#166534;border-color:#bbf7d0}
+.status-machine-bad{background:#fef2f2;color:#991b1b;border-color:#fecaca}
+.status-machine-warn{background:#fff7ed;color:#9a3412;border-color:#fed7aa}
+.machine-card-block{border:1px solid var(--line);border-radius:16px;background:var(--panel2);padding:12px;margin-bottom:10px}
+.machine-card-block h4{margin:0 0 8px;font-size:.95rem}
+.machine-card-list{display:grid;gap:8px}
+.machine-card-row{display:flex;justify-content:space-between;gap:10px;align-items:center;border-top:1px solid var(--line);padding-top:8px}
+.machine-card-row:first-child{border-top:none;padding-top:0}
+
+
+/* v1.5 / 5.42 – svátky a jmeniny na hlavní stránce */
+.top-date-stack{
+  display:grid;
+  gap:8px;
+  justify-items:end;
+}
+.name-day-box{
+  max-width:320px;
+  padding:10px 14px;
+  border:1px solid var(--line);
+  border-radius:14px;
+  background:var(--panel2);
+  color:var(--muted);
+  font-size:.86rem;
+  line-height:1.25;
+  box-shadow:var(--shadow);
+}
+.name-day-box strong{
+  color:var(--text);
+}
+@media(max-width:760px){
+  .page-title-row{flex-direction:column}
+  .top-date-stack{justify-items:stretch;width:100%}
+  .name-day-box{max-width:none}
+}
 
 </style>
 </head>
@@ -872,7 +917,7 @@ body.dark .fault-card{background:var(--panel2)}
     <button type="button" class="side-small" id="sideThemeBtn">Tmavý / světlý režim</button>
     <button type="button" class="side-small" onclick="exportBackup()">Export zálohy</button>
     <button type="button" class="side-small" id="sideImportBtn">Import zálohy</button>
-    <div class="side-version">Verze: 1.4 / 5.39</div>
+    <div class="side-version">Vlastník/Admin: Jan Bartoš<br>Verze: 1.5 / 5.42</div>
   </div>
 </aside>
 
@@ -883,7 +928,7 @@ body.dark .fault-card{background:var(--panel2)}
         <h1 class="page-title-main">Přehled dne</h1>
         <div class="page-sub-main">Rychlý vstup a plán techniků na dnešek.</div>
       </div>
-      <div class="top-date-box"><span id="homeTopDateLabel">—</span></div>
+      <div class="top-date-stack"><div class="top-date-box"><span id="homeTopDateLabel">—</span></div><div class="name-day-box" id="homeNameDayBox">—</div></div>
     </div>
 
     <div class="home-top-grid">
@@ -928,6 +973,16 @@ body.dark .fault-card{background:var(--panel2)}
         <div class="summary-box-head"><span>Hlášení poruch</span><strong id="dashFaultsOpen">0</strong></div>
         <div class="summary-box-lines"><div><b id="dashFaultsService">0</b> do servisu</div><div><b id="dashFaultsRepaired">0</b> opraveno</div></div>
       </div>
+    </div>
+
+    <div class="attention-panel">
+      <div class="attention-head">
+        <div>
+          <div class="card-title">Vyžaduje pozornost</div>
+          <div class="card-sub">Automaticky z kontrol, poruch a náhradních dílů.</div>
+        </div>
+      </div>
+      <div id="attentionList" class="attention-list"></div>
     </div>
   </section>
 
@@ -1149,11 +1204,11 @@ body.dark .fault-card{background:var(--panel2)}
       </div>
       <div class="field hidden" id="faultCustomPlaceWrap">
         <label>Jiné místo</label>
-        <input id="faultCustomPlace" type="text">
+        <input id="faultCustomPlace" type="text" list="faultPlaceList"><datalist id="faultPlaceList"></datalist>
       </div>
       <div class="field fault-note">
         <label>Popis závady *</label>
-        <textarea id="faultDesc" placeholder="Co je na stroji za problém"></textarea>
+        <textarea id="faultDesc" placeholder="Co je na stroji za problém" list="faultDescList"></textarea><datalist id="faultDescList"></datalist>
       </div>
       <div class="field">
         <label>Fotky závady</label>
@@ -1166,6 +1221,7 @@ body.dark .fault-card{background:var(--panel2)}
         <select id="faultInitialStatus">
           <option value="open">Nahlášeno</option>
           <option value="service">Stroj do servisu</option>
+          <option value="waiting_parts">Čeká na ND</option>
           <option value="repaired">Opraveno / schopné provozu</option>
         </select>
       </div>
@@ -1943,10 +1999,10 @@ function openModal(el){ el.classList.add('show'); }
 function closeModal(el){ el.classList.remove('show'); }
 
 function openWizard(editId=null, prefill={}){
-  rec = editId ? JSON.parse(JSON.stringify(data.find(r=>r.id===editId) || {id:uid()})) : {id:uid(), cLogic:'legacy', appVersion:'1.4 / 5.39'};
+  rec = editId ? JSON.parse(JSON.stringify(data.find(r=>r.id===editId) || {id:uid()})) : {id:uid(), cLogic:'legacy', appVersion:'1.5 / 5.42'};
   rec = Object.assign({}, rec, prefill || {});
   if(!editId && !rec.cLogic) rec.cLogic = 'legacy';
-  if(!editId && !rec.appVersion) rec.appVersion = '1.4 / 5.39';
+  if(!editId && !rec.appVersion) rec.appVersion = '1.5 / 5.42';
 
   // 🔥 AUTO DOPLNĚNÍ Z HISTORIE PODLE VÝROBNÍHO ČÍSLA
   if(rec.vc){
@@ -2318,7 +2374,7 @@ async function nextStep(){
   const okSave = confirm('Chceš protokol uložit?');
   if(!okSave) return;
   if(!rec.cLogic) rec.cLogic = 'legacy';
-  if(!rec.appVersion) rec.appVersion = '1.4 / 5.39';
+  if(!rec.appVersion) rec.appVersion = '1.5 / 5.42';
   rec.savedAt = new Date().toISOString();
   await saveProtocol(rec);
   closeWizard();
@@ -2396,13 +2452,120 @@ async function clearAllData(){
   alert('Všechny protokoly byly smazány.');
 }
 
+
+function getMachineRows(serial){
+  const s = String(serial || '').trim();
+  return {
+    protocols: (data || []).filter(r => String(r.vc || '').trim() === s).sort((a,b)=>String(b.datum||'').localeCompare(String(a.datum||''))),
+    faults: (faultsData || []).filter(r => String(r.serial || '').trim() === s).sort((a,b)=>String(b.createdAt||b.date||'').localeCompare(String(a.createdAt||a.date||''))),
+    parts: (partsData || []).filter(r => String(r.serial || '').trim() === s).sort((a,b)=>String(b.createdAt||'').localeCompare(String(a.createdAt||'')))
+  };
+}
+function getMachineState(serial){
+  const rows = getMachineRows(serial);
+  const openFault = rows.faults.find(f => f.status !== 'repaired');
+  if(openFault){
+    if(openFault.status === 'waiting_parts') return {txt:'Čeká na ND', cls:'status-machine-warn'};
+    if(openFault.status === 'service') return {txt:'Stroj do servisu', cls:'status-machine-bad'};
+    return {txt:'Hlášená porucha', cls:'status-machine-bad'};
+  }
+  const openPart = rows.parts.find(p => !p.sent);
+  if(openPart) return {txt:'Čeká na ND', cls:'status-machine-warn'};
+  const issueProtocol = rows.protocols.find(r => hasIssue(r));
+  if(issueProtocol) return {txt:'Závada v protokolu', cls:'status-machine-warn'};
+  return {txt:'OK / schopné provozu', cls:'status-machine-ok'};
+}
+function allKnownMachines(){
+  const serials = [
+    ...(data || []).map(r => r.vc),
+    ...(faultsData || []).map(r => r.serial),
+    ...(partsData || []).map(r => r.serial)
+  ].map(v => String(v || '').trim()).filter(Boolean);
+  return [...new Set(serials)];
+}
+function renderAttentionList(){
+  const box = document.getElementById('attentionList');
+  if(!box) return;
+  const items = [];
+  (data || []).forEach(r => {
+    const days = daysUntilDate(r.dalsiKontrola || '');
+    if(days !== null && days <= 30){
+      items.push({serial:r.vc, title:'Kontrola se blíží / po termínu', sub:`${r.typ || ''} · ${r.dalsiKontrola || ''}`});
+    }
+    if(hasIssue(r)){
+      items.push({serial:r.vc, title:'Závada v protokolu', sub:`${r.typ || ''} · ${r.datum || ''}`});
+    }
+  });
+  (faultsData || []).filter(f => f.status !== 'repaired').forEach(f => {
+    const st = getFaultStatus(f).txt;
+    items.push({serial:f.serial, title:st, sub:`${f.type || ''} · ${f.place || 'bez místa'} · ${f.date || ''}`});
+  });
+  (partsData || []).filter(p => !p.sent).forEach(p => {
+    items.push({serial:p.serial, title:p.ordered ? 'ND objednáno – čeká na odeslání' : 'Požadavek na ND', sub:`${p.type || ''} · ${p.partNumber || 'bez PN'}`});
+  });
+  const limited = items.filter(x => x.serial).slice(0, 10);
+  if(!limited.length){
+    box.innerHTML = '<div class="day-empty">Aktuálně nic nevyžaduje pozornost.</div>';
+    return;
+  }
+  box.innerHTML = limited.map(x => {
+    const state = getMachineState(x.serial);
+    return `<div class="attention-item">
+      <div><div class="attention-title">${escapeHtml(x.title)}</div><div class="attention-sub">v.č. ${escapeHtml(x.serial)} · ${escapeHtml(x.sub || '')}</div></div>
+      <button class="secondary mini" type="button" data-machine-card="${escapeHtml(x.serial)}">Karta stroje</button>
+    </div>`;
+  }).join('');
+  box.querySelectorAll('[data-machine-card]').forEach(btn => btn.addEventListener('click', () => openMachineCard(btn.dataset.machineCard)));
+}
+function openMachineCard(serial){
+  openHistoryModal(serial);
+}
 function openHistoryModal(serial){
-  const rows = findProtocolsByMachine(serial);
+  const rows = getMachineRows(serial);
+  const state = getMachineState(serial);
+  const latestProtocol = rows.protocols[0] || {};
+  const latestFault = rows.faults[0] || {};
+  const latestPart = rows.parts[0] || {};
   els.historySubtitle.textContent = serial ? 'Výrobní číslo: ' + serial : '';
-  els.historyBody.innerHTML = !rows.length
-    ? '<div class="empty">Pro tuto plošinu zatím není uložený žádný protokol.</div>'
-    : rows.map(r => `<div class="history-item"><strong>${escapeHtml(r.datum||'Bez data')} · ${escapeHtml(r.typ||'')}</strong><div>${escapeHtml(r.umisteni||'Bez umístění')}</div><div>${hasIssue(r)?'Se závadou':'Bez závad'}</div><div style="margin-top:8px;display:flex;gap:8px;flex-wrap:wrap"><button class="secondary mini" data-open-id="${r.id}">Otevřít protokol</button></div></div>`).join('');
+  els.historyBody.innerHTML = `
+    <div class="machine-card-block">
+      <h4>Aktuální stav stroje</h4>
+      <div style="display:flex;gap:8px;flex-wrap:wrap;align-items:center">
+        <span class="status-pill ${state.cls}">${state.txt}</span>
+        <span class="part-sub">${escapeHtml(latestProtocol.typ || latestFault.type || latestPart.type || 'Bez typu')}</span>
+      </div>
+      <div class="machine-card-list" style="margin-top:10px">
+        <div class="machine-card-row"><span>Poslední kontrola</span><strong>${escapeHtml(latestProtocol.datum || '—')}</strong></div>
+        <div class="machine-card-row"><span>Kontrola do</span><strong>${escapeHtml(latestProtocol.dalsiKontrola || '—')}</strong></div>
+        <div class="machine-card-row"><span>Poslední místo</span><strong>${escapeHtml(latestProtocol.umisteni || latestFault.place || latestPart.place || '—')}</strong></div>
+        <div class="machine-card-row"><span>Motohodiny</span><strong>${escapeHtml(latestProtocol.mh || latestFault.mh || '—')}</strong></div>
+      </div>
+    </div>
+
+    <div class="machine-card-block">
+      <h4>Protokoly</h4>
+      <div class="machine-card-list">
+        ${rows.protocols.length ? rows.protocols.slice(0,8).map(r => `<div class="machine-card-row"><span>${escapeHtml(r.datum||'Bez data')} · ${escapeHtml(r.umisteni||'Bez místa')} · ${hasIssue(r)?'se závadou':'bez závad'}</span><button class="secondary mini" data-open-id="${r.id}">Otevřít</button></div>`).join('') : '<div class="part-sub">Bez uložených protokolů.</div>'}
+      </div>
+    </div>
+
+    <div class="machine-card-block">
+      <h4>Poruchy</h4>
+      <div class="machine-card-list">
+        ${rows.faults.length ? rows.faults.slice(0,8).map(f => `<div class="machine-card-row"><span>${escapeHtml(f.date||'Bez data')} · ${escapeHtml(getFaultStatus(f).txt)} · ${escapeHtml(f.description||'')}</span><button class="secondary mini" data-fault-open="${f.id}">Upravit</button></div>`).join('') : '<div class="part-sub">Bez hlášených poruch.</div>'}
+      </div>
+    </div>
+
+    <div class="machine-card-block">
+      <h4>Náhradní díly</h4>
+      <div class="machine-card-list">
+        ${rows.parts.length ? rows.parts.slice(0,8).map(p => `<div class="machine-card-row"><span>${escapeHtml(p.partNumber||'Bez PN')} · ${escapeHtml(getPartStatus(p).txt)} · ${escapeHtml(p.partName||'')}</span><button class="secondary mini" data-part-open="${p.id}">Upravit</button></div>`).join('') : '<div class="part-sub">Bez požadavků na ND.</div>'}
+      </div>
+    </div>
+  `;
   els.historyBody.querySelectorAll('[data-open-id]').forEach(btn => btn.addEventListener('click', () => openPreviewById(btn.dataset.openId)));
+  els.historyBody.querySelectorAll('[data-fault-open]').forEach(btn => btn.addEventListener('click', () => { closeHistoryModal(); openFaultsModal(); openFaultForm(btn.dataset.faultOpen); }));
+  els.historyBody.querySelectorAll('[data-part-open]').forEach(btn => btn.addEventListener('click', () => { closeHistoryModal(); openPartsModal(); openPartForm(btn.dataset.partOpen); }));
   openModal(els.historyModal);
 }
 function closeHistoryModal(){ closeModal(els.historyModal); }
@@ -2949,7 +3112,7 @@ async function saveWorkPlanFromForm(){
     technician,
     place,
     note,
-    appVersion:'1.4 / 5.39'
+    appVersion:'1.5 / 5.42'
   });
   if(!record.createdAt) record.createdAt = new Date().toISOString();
   await saveWorkPlan(record);
@@ -2984,14 +3147,73 @@ function colorForTechnician(name){
   const idx = Math.abs(String(name||'').split('').reduce((a,c)=>a+c.charCodeAt(0),0)) % colors.length;
   return colors[idx];
 }
+
+const CZECH_NAMEDAYS = {
+  '01-01':'Nový rok / Den obnovy samostatného českého státu',
+  '01-02':'Karina','01-03':'Radmila','01-04':'Diana','01-05':'Dalimil','01-06':'Tři králové','01-07':'Vilma','01-08':'Čestmír','01-09':'Vladan','01-10':'Břetislav','01-11':'Bohdana','01-12':'Pravoslav','01-13':'Edita','01-14':'Radovan','01-15':'Alice','01-16':'Ctirad','01-17':'Drahoslav','01-18':'Vladislav','01-19':'Doubravka','01-20':'Ilona','01-21':'Běla','01-22':'Slavomír','01-23':'Zdeněk','01-24':'Milena','01-25':'Miloš','01-26':'Zora','01-27':'Ingrid','01-28':'Otýlie','01-29':'Zdislava','01-30':'Robin','01-31':'Marika',
+  '02-01':'Hynek','02-02':'Nela','02-03':'Blažej','02-04':'Jarmila','02-05':'Dobromila','02-06':'Vanda','02-07':'Veronika','02-08':'Milada','02-09':'Apolena','02-10':'Mojmír','02-11':'Božena','02-12':'Slavěna','02-13':'Věnceslav','02-14':'Valentýn','02-15':'Jiřina','02-16':'Ljuba','02-17':'Miloslava','02-18':'Gizela','02-19':'Patrik','02-20':'Oldřich','02-21':'Lenka','02-22':'Petr','02-23':'Svatopluk','02-24':'Matěj','02-25':'Liliana','02-26':'Dorota','02-27':'Alexandr','02-28':'Lumír','02-29':'Horymír',
+  '03-01':'Bedřich','03-02':'Anežka','03-03':'Kamil','03-04':'Stela','03-05':'Kazimír','03-06':'Miroslav','03-07':'Tomáš','03-08':'Gabriela / Mezinárodní den žen','03-09':'Františka','03-10':'Viktorie','03-11':'Anděla','03-12':'Řehoř','03-13':'Růžena','03-14':'Rút / Matylda','03-15':'Ida','03-16':'Elena / Herbert','03-17':'Vlastimil','03-18':'Eduard','03-19':'Josef','03-20':'Světlana','03-21':'Radek','03-22':'Leona','03-23':'Ivona','03-24':'Gabriel','03-25':'Marián','03-26':'Emanuel','03-27':'Dita','03-28':'Soňa','03-29':'Taťána','03-30':'Arnošt','03-31':'Kvido',
+  '04-01':'Hugo','04-02':'Erika','04-03':'Richard','04-04':'Ivana','04-05':'Miroslava','04-06':'Vendula','04-07':'Heřman / Hermína','04-08':'Ema','04-09':'Dušan','04-10':'Darja','04-11':'Izabela','04-12':'Julius','04-13':'Aleš','04-14':'Vincenc','04-15':'Anastázie','04-16':'Irena','04-17':'Rudolf','04-18':'Valérie','04-19':'Rostislav','04-20':'Marcela','04-21':'Alexandra','04-22':'Evženie','04-23':'Vojtěch','04-24':'Jiří','04-25':'Marek','04-26':'Oto','04-27':'Jaroslav','04-28':'Vlastislav','04-29':'Robert','04-30':'Blahoslav / Čarodějnice',
+  '05-01':'Svátek práce','05-02':'Zikmund','05-03':'Alexej','05-04':'Květoslav','05-05':'Klaudie','05-06':'Radoslav','05-07':'Stanislav','05-08':'Den vítězství','05-09':'Ctibor','05-10':'Blažena','05-11':'Svatava','05-12':'Pankrác','05-13':'Servác','05-14':'Bonifác','05-15':'Žofie','05-16':'Přemysl','05-17':'Aneta','05-18':'Nataša','05-19':'Ivo','05-20':'Zbyšek','05-21':'Monika','05-22':'Emil','05-23':'Vladimír','05-24':'Jana','05-25':'Viola','05-26':'Filip','05-27':'Valdemar','05-28':'Vilém','05-29':'Maxmilián','05-30':'Ferdinand','05-31':'Kamila',
+  '06-01':'Laura / Den dětí','06-02':'Jarmil','06-03':'Tamara','06-04':'Dalibor','06-05':'Dobroslav','06-06':'Norbert','06-07':'Iveta / Slavoj','06-08':'Medard','06-09':'Stanislava','06-10':'Gita','06-11':'Bruno','06-12':'Antonie','06-13':'Antonín','06-14':'Roland','06-15':'Vít','06-16':'Zbyněk','06-17':'Adolf','06-18':'Milan','06-19':'Leoš','06-20':'Květa','06-21':'Alois','06-22':'Pavla','06-23':'Zdeňka','06-24':'Jan','06-25':'Ivan','06-26':'Adriana','06-27':'Ladislav','06-28':'Lubomír','06-29':'Petr a Pavel','06-30':'Šárka',
+  '07-01':'Jaroslava','07-02':'Patricie','07-03':'Radomír','07-04':'Prokop','07-05':'Cyril a Metoděj','07-06':'Den upálení mistra Jana Husa','07-07':'Bohuslava','07-08':'Nora','07-09':'Drahoslava','07-10':'Libuše / Amálie','07-11':'Olga','07-12':'Bořek','07-13':'Markéta','07-14':'Karolína','07-15':'Jindřich','07-16':'Luboš','07-17':'Martina','07-18':'Drahomíra','07-19':'Čeněk','07-20':'Ilja','07-21':'Vítězslav','07-22':'Magdaléna','07-23':'Libor','07-24':'Kristýna','07-25':'Jakub','07-26':'Anna','07-27':'Věroslav','07-28':'Viktor','07-29':'Marta','07-30':'Bořivoj','07-31':'Ignác',
+  '08-01':'Oskar','08-02':'Gustav','08-03':'Miluše','08-04':'Dominik','08-05':'Kristián','08-06':'Oldřiška','08-07':'Lada','08-08':'Soběslav','08-09':'Roman','08-10':'Vavřinec','08-11':'Zuzana','08-12':'Klára','08-13':'Alena','08-14':'Alan','08-15':'Hana','08-16':'Jáchym','08-17':'Petra','08-18':'Helena','08-19':'Ludvík','08-20':'Bernard','08-21':'Johana','08-22':'Bohuslav','08-23':'Sandra','08-24':'Bartoloměj','08-25':'Radim','08-26':'Luděk','08-27':'Otakar','08-28':'Augustýn','08-29':'Evelína','08-30':'Vladěna','08-31':'Pavlína',
+  '09-01':'Linda / Samuel','09-02':'Adéla','09-03':'Bronislav','09-04':'Jindřiška','09-05':'Boris','09-06':'Boleslav','09-07':'Regína','09-08':'Mariana','09-09':'Daniela','09-10':'Irma','09-11':'Denisa','09-12':'Marie','09-13':'Lubor','09-14':'Radka','09-15':'Jolana','09-16':'Ludmila','09-17':'Naděžda','09-18':'Kryštof','09-19':'Zita','09-20':'Oleg','09-21':'Matouš','09-22':'Darina','09-23':'Berta','09-24':'Jaromír','09-25':'Zlata','09-26':'Andrea','09-27':'Jonáš','09-28':'Den české státnosti','09-29':'Michal','09-30':'Jeroným',
+  '10-01':'Igor','10-02':'Olívie / Oliver','10-03':'Bohumil','10-04':'František','10-05':'Eliška','10-06':'Hanuš','10-07':'Justýna','10-08':'Věra','10-09':'Štefan / Sára','10-10':'Marina','10-11':'Andrej','10-12':'Marcel','10-13':'Renáta','10-14':'Agáta','10-15':'Tereza','10-16':'Havel','10-17':'Hedvika','10-18':'Lukáš','10-19':'Michaela','10-20':'Vendelín','10-21':'Brigita','10-22':'Sabina','10-23':'Teodor','10-24':'Nina','10-25':'Beáta','10-26':'Erik','10-27':'Šarlota / Zoe','10-28':'Den vzniku samostatného československého státu','10-29':'Silvie','10-30':'Tadeáš','10-31':'Štěpánka / Halloween',
+  '11-01':'Felix','11-02':'Památka zesnulých','11-03':'Hubert','11-04':'Karel','11-05':'Miriam','11-06':'Liběna','11-07':'Saskie','11-08':'Bohumír','11-09':'Bohdan','11-10':'Evžen','11-11':'Martin','11-12':'Benedikt','11-13':'Tibor','11-14':'Sáva','11-15':'Leopold','11-16':'Otmar','11-17':'Den boje za svobodu a demokracii','11-18':'Romana','11-19':'Alžběta','11-20':'Nikola','11-21':'Albert','11-22':'Cecílie','11-23':'Klement','11-24':'Emílie','11-25':'Kateřina','11-26':'Artur','11-27':'Xenie','11-28':'René','11-29':'Zina','11-30':'Ondřej',
+  '12-01':'Iva','12-02':'Blanka','12-03':'Svatoslav','12-04':'Barbora','12-05':'Jitka / Mikulášská nadílka','12-06':'Mikuláš','12-07':'Ambrož / Benjamín','12-08':'Květoslava','12-09':'Vratislav','12-10':'Julie','12-11':'Dana','12-12':'Simona','12-13':'Lucie','12-14':'Lýdie','12-15':'Radana','12-16':'Albína','12-17':'Daniel','12-18':'Miloslav','12-19':'Ester','12-20':'Dagmar','12-21':'Natálie','12-22':'Šimon','12-23':'Vlasta','12-24':'Štědrý den / Adam a Eva','12-25':'1. svátek vánoční','12-26':'2. svátek vánoční / Štěpán','12-27':'Žaneta','12-28':'Bohumila','12-29':'Judita','12-30':'David','12-31':'Silvestr'
+};
+
+function getEasterSunday(year){
+  const a = year % 19;
+  const b = Math.floor(year / 100);
+  const c = year % 100;
+  const d = Math.floor(b / 4);
+  const e = b % 4;
+  const f = Math.floor((b + 8) / 25);
+  const g = Math.floor((b - f + 1) / 3);
+  const h = (19 * a + b - d - g + 15) % 30;
+  const i = Math.floor(c / 4);
+  const k = c % 4;
+  const l = (32 + 2 * e + 2 * i - h - k) % 7;
+  const m = Math.floor((a + 11 * h + 22 * l) / 451);
+  const month = Math.floor((h + l - 7 * m + 114) / 31);
+  const day = ((h + l - 7 * m + 114) % 31) + 1;
+  return new Date(year, month - 1, day);
+}
+function holidayKey(d){
+  return `${String(d.getMonth()+1).padStart(2,'0')}-${String(d.getDate()).padStart(2,'0')}`;
+}
+function addDaysNative(d, days){
+  const out = new Date(d);
+  out.setDate(out.getDate() + days);
+  return out;
+}
+function getLightHolidayText(date){
+  const d = new Date(date);
+  const key = holidayKey(d);
+  const list = [];
+  const name = CZECH_NAMEDAYS[key];
+  if(name) list.push(name);
+  const easter = getEasterSunday(d.getFullYear());
+  if(holidayKey(addDaysNative(easter, -2)) === key) list.push('Velký pátek');
+  if(holidayKey(addDaysNative(easter, 1)) === key) list.push('Velikonoční pondělí');
+  // Den matek: druhá květnová neděle
+  if(d.getMonth() === 4 && d.getDay() === 0 && d.getDate() >= 8 && d.getDate() <= 14) list.push('Den matek');
+  // Den otců: třetí červnová neděle
+  if(d.getMonth() === 5 && d.getDay() === 0 && d.getDate() >= 15 && d.getDate() <= 21) list.push('Den otců');
+  return list.length ? list.join(' · ') : 'Bez svátku v kalendáři';
+}
 function renderHomeOverview(){
   const title = document.getElementById('homeDayTitle');
   const topLabel = document.getElementById('homeTopDateLabel');
   const list = document.getElementById('homeDayList');
   const strip = document.getElementById('homeWeekStrip');
+  const nameBox = document.getElementById('homeNameDayBox');
   if(!title || !list || !strip) return;
   title.textContent = formatHumanDate(currentHomeDate);
   topLabel.textContent = formatHumanDate(currentHomeDate);
+  if(nameBox) nameBox.innerHTML = '<strong>Dnes:</strong> ' + escapeHtml(getLightHolidayText(currentHomeDate));
   const start = startOfWeek(currentHomeDate);
   const currentYmd = ymd(currentHomeDate);
   strip.innerHTML = Array.from({length:7}).map((_,i)=>{
@@ -3019,6 +3241,7 @@ function saveLocalFaults(rows){ try { localStorage.setItem('liftcheck_faults_loc
 function startLocalFaultsMode(){ faultsData = loadLocalFaults(); renderFaults(); updateMainOverview(); }
 function getFaultStatus(f){
   if(f.status === 'repaired') return {txt:'Opraveno / schopné provozu', cls:'status-repaired'};
+  if(f.status === 'waiting_parts') return {txt:'Čeká na ND', cls:'status-waiting'};
   if(f.status === 'service') return {txt:'Stroj do servisu', cls:'status-service'};
   return {txt:'Nahlášeno', cls:'status-open'};
 }
@@ -3079,13 +3302,62 @@ async function deleteAllFaultRecords(){
   }
   alert('Historie hlášení poruch byla smazána.');
 }
+
+function uniqueNonEmpty(values){
+  return [...new Set((values || []).map(v => String(v || '').trim()).filter(Boolean))];
+}
+function historyValuesForFaults(key){
+  const fromProtocols = (data || []).map(r => r[key]).filter(Boolean);
+  const fromFaults = (faultsData || []).map(r => r[key]).filter(Boolean);
+  const fromParts = (partsData || []).map(r => r[key]).filter(Boolean);
+  return uniqueNonEmpty([...fromProtocols, ...fromFaults, ...fromParts]);
+}
+function fillDatalist(id, values){
+  const el = document.getElementById(id);
+  if(!el) return;
+  el.innerHTML = uniqueNonEmpty(values).map(v => `<option value="${escapeHtml(v)}"></option>`).join('');
+}
+function lastMachineInfo(serial){
+  const s = String(serial || '').trim();
+  if(!s) return null;
+  const rows = [
+    ...(data || []).map(r => ({source:'protocol', created:r.savedAt || r.datum || '', type:r.typ, serial:r.vc, place:r.umisteni, mh:r.mh})),
+    ...(faultsData || []).map(r => ({source:'fault', created:r.updatedAt || r.createdAt || r.date || '', type:r.type, serial:r.serial, place:r.place, mh:r.mh})),
+    ...(partsData || []).map(r => ({source:'part', created:r.updatedAt || r.createdAt || '', type:r.type, serial:r.serial, place:r.place, mh:''}))
+  ].filter(r => String(r.serial || '').trim() === s);
+  rows.sort((a,b) => String(b.created || '').localeCompare(String(a.created || '')));
+  return rows[0] || null;
+}
 function fillFaultSelects(){
   const place = document.getElementById('faultPlace');
-  const typeList = document.getElementById('faultTypeList');
-  const serialList = document.getElementById('faultSerialList');
   if(place) place.innerHTML = '<option value="">Nevyplněno</option>' + BRANCHES.map(b => `<option value="${escapeHtml(b)}">${escapeHtml(b)}</option>`).join('') + '<option value="__custom__">Jiné místo</option>';
-  if(typeList) typeList.innerHTML = [...new Set([...(MODELS || []), ...(data || []).map(r => r.typ).filter(Boolean)])].map(v => `<option value="${escapeHtml(v)}"></option>`).join('');
-  if(serialList) serialList.innerHTML = [...new Set((data || []).map(r => r.vc).filter(Boolean))].map(v => `<option value="${escapeHtml(v)}"></option>`).join('');
+
+  const modelValues = uniqueNonEmpty([
+    ...(MODELS || []),
+    ...(data || []).map(r => r.typ),
+    ...(faultsData || []).map(r => r.type),
+    ...(partsData || []).map(r => r.type)
+  ]);
+  const serialValues = uniqueNonEmpty([
+    ...(data || []).map(r => r.vc),
+    ...(faultsData || []).map(r => r.serial),
+    ...(partsData || []).map(r => r.serial)
+  ]);
+  const placeValues = uniqueNonEmpty([
+    ...(BRANCHES || []),
+    ...(data || []).map(r => r.umisteni),
+    ...(faultsData || []).map(r => r.place),
+    ...(partsData || []).map(r => r.place)
+  ]);
+  const descValues = uniqueNonEmpty([
+    ...(faultsData || []).map(r => r.description),
+    ...(data || []).flatMap(r => Object.keys(r || {}).filter(k => k.endsWith('_p')).map(k => r[k]))
+  ]);
+
+  fillDatalist('faultTypeList', modelValues);
+  fillDatalist('faultSerialList', serialValues);
+  fillDatalist('faultPlaceList', placeValues);
+  fillDatalist('faultDescList', descValues);
 }
 function openFaultsModal(){
   fillFaultSelects();
@@ -3168,7 +3440,7 @@ async function saveFaultFromForm(){
     description,
     status,
     photos: currentFaultPhotos,
-    appVersion:'1.4 / 5.39'
+    appVersion:'1.5 / 5.42'
   });
   if(!record.createdAt) record.createdAt = new Date().toISOString();
   if(status === 'repaired' && !record.repairedAt) record.repairedAt = new Date().toISOString();
@@ -3209,8 +3481,11 @@ function renderFaults(){
       <div class="part-sub">${escapeHtml(f.description || '')}</div>
       ${photoHtml}
       <div class="fault-actions">
+        <button class="secondary mini" type="button" data-fault-machine="${escapeHtml(f.serial || '')}">Karta stroje</button>
         <button class="secondary mini" type="button" data-fault-edit="${f.id}">Upravit</button>
+        <button class="secondary mini" type="button" data-fault-create-part="${f.id}">Vytvořit ND</button>
         ${f.status !== 'service' ? `<button class="primary mini" type="button" data-fault-service="${f.id}">Stroj do servisu</button>` : ''}
+        ${f.status !== 'waiting_parts' ? `<button class="primary mini" type="button" data-fault-waiting="${f.id}">Čeká na ND</button>` : ''}
         ${f.status !== 'repaired' ? `<button class="primary mini" type="button" data-fault-repaired="${f.id}">Opraveno / schopné provozu</button>` : ''}
         <button class="danger mini" type="button" data-fault-delete="${f.id}">Smazat</button>
       </div>
@@ -3218,8 +3493,45 @@ function renderFaults(){
   }).join('');
   list.querySelectorAll('[data-fault-edit]').forEach(btn => btn.addEventListener('click', () => openFaultForm(btn.dataset.faultEdit)));
   list.querySelectorAll('[data-fault-delete]').forEach(btn => btn.addEventListener('click', () => deleteFaultRecord(btn.dataset.faultDelete)));
+  list.querySelectorAll('[data-fault-machine]').forEach(btn => btn.addEventListener('click', () => openMachineCard(btn.dataset.faultMachine)));
+  list.querySelectorAll('[data-fault-create-part]').forEach(btn => btn.addEventListener('click', () => createPartFromFault(btn.dataset.faultCreatePart)));
   list.querySelectorAll('[data-fault-service]').forEach(btn => btn.addEventListener('click', () => markFaultService(btn.dataset.faultService)));
+  list.querySelectorAll('[data-fault-waiting]').forEach(btn => btn.addEventListener('click', () => markFaultWaitingParts(btn.dataset.faultWaiting)));
   list.querySelectorAll('[data-fault-repaired]').forEach(btn => btn.addEventListener('click', () => markFaultRepaired(btn.dataset.faultRepaired)));
+}
+async function markFaultWaitingParts(id){
+  const f = (faultsData || []).find(x => x.id === id);
+  if(!f) return;
+  f.status = 'waiting_parts';
+  f.waitingPartsAt = new Date().toISOString();
+  await saveFaultRecord(f);
+}
+function createPartFromFault(id){
+  const f = (faultsData || []).find(x => x.id === id);
+  if(!f) return;
+  openPartsModal();
+  setTimeout(() => {
+    openPartForm();
+    document.getElementById('partType').value = f.type || '';
+    document.getElementById('partSerial').value = f.serial || '';
+    document.getElementById('partNote').value = f.description ? ('Z poruchy: ' + f.description) : '';
+    if(f.place){
+      const place = document.getElementById('partPlace');
+      const customWrap = document.getElementById('partCustomPlaceWrap');
+      const custom = document.getElementById('partCustomPlace');
+      if(BRANCHES.includes(f.place)){
+        place.value = f.place;
+        customWrap?.classList.add('hidden');
+      } else {
+        place.value = '__custom__';
+        customWrap?.classList.remove('hidden');
+        custom.value = f.place;
+      }
+    }
+  }, 50);
+  f.status = 'waiting_parts';
+  f.waitingPartsAt = new Date().toISOString();
+  saveFaultRecord(f);
 }
 async function markFaultService(id){
   const f = (faultsData || []).find(x => x.id === id);
@@ -3256,8 +3568,9 @@ function updateMainOverview(){
   set('dashPartsOrdered', (partsData || []).filter(p => p.ordered && !p.sent).length);
   set('dashPartsSent', (partsData || []).filter(p => p.sent).length);
   set('dashFaultsOpen', (faultsData || []).filter(f => !f.status || f.status === 'open').length);
-  set('dashFaultsService', (faultsData || []).filter(f => f.status === 'service').length);
+  set('dashFaultsService', (faultsData || []).filter(f => f.status === 'service' || f.status === 'waiting_parts').length);
   set('dashFaultsRepaired', (faultsData || []).filter(f => f.status === 'repaired').length);
+  renderAttentionList();
 }
 function showProtocolsSection(){
   showSection('archive');
@@ -3350,6 +3663,7 @@ function renderParts(){
       </div>
       ${src || p.note ? `<div class="part-photo">${src ? `<img src="${escapeHtml(src)}" data-full-src="${escapeHtml(src)}" onclick="openLightbox(this.dataset.fullSrc)">` : ''}${p.note ? `<div class="part-sub">${escapeHtml(p.note)}</div>` : ''}</div>` : ''}
       <div class="part-actions">
+        <button class="secondary mini" type="button" data-part-machine="${escapeHtml(p.serial || '')}">Karta stroje</button>
         <button class="secondary mini" type="button" data-part-edit="${p.id}">Upravit</button>
         ${!p.ordered ? `<button class="primary mini" type="button" data-part-ordered="${p.id}">Objednáno</button>` : ''}
         ${!p.sent ? `<button class="primary mini" type="button" data-part-sent="${p.id}">Odesláno</button>` : ''}
@@ -3357,6 +3671,7 @@ function renderParts(){
       </div>
     </div>`;
   }).join('');
+  list.querySelectorAll('[data-part-machine]').forEach(btn => btn.addEventListener('click', () => openMachineCard(btn.dataset.partMachine)));
   list.querySelectorAll('[data-part-edit]').forEach(btn => btn.addEventListener('click', () => openPartForm(btn.dataset.partEdit)));
   list.querySelectorAll('[data-part-delete]').forEach(btn => btn.addEventListener('click', () => deletePartRecord(btn.dataset.partDelete)));
   list.querySelectorAll('[data-part-ordered]').forEach(btn => btn.addEventListener('click', () => markPartOrdered(btn.dataset.partOrdered)));
@@ -3413,7 +3728,7 @@ async function savePartFromForm(){
     partNumber,
     partName: document.getElementById('partName').value.trim(),
     note: document.getElementById('partNote').value.trim(),
-    appVersion:'1.4 / 5.39'
+    appVersion:'1.5 / 5.42'
   });
   if(currentPartPhoto) record.photo = currentPartPhoto;
   if(!record.createdAt) record.createdAt = new Date().toISOString();
@@ -3494,6 +3809,36 @@ document.getElementById('addFaultBtn')?.addEventListener('click', () => openFaul
 document.getElementById('cancelFaultBtn')?.addEventListener('click', closeFaultForm);
 document.getElementById('saveFaultBtn')?.addEventListener('click', saveFaultFromForm);
 document.getElementById('faultsSearch')?.addEventListener('input', renderFaults);
+
+document.getElementById('faultSerial')?.addEventListener('change', () => {
+  const info = lastMachineInfo(document.getElementById('faultSerial')?.value);
+  if(!info) return;
+  const typeEl = document.getElementById('faultType');
+  const mhEl = document.getElementById('faultMh');
+  const placeEl = document.getElementById('faultPlace');
+  const customWrap = document.getElementById('faultCustomPlaceWrap');
+  const customEl = document.getElementById('faultCustomPlace');
+
+  if(typeEl && !typeEl.value && info.type) typeEl.value = info.type;
+  if(mhEl && !mhEl.value && info.mh) mhEl.value = info.mh;
+
+  if(placeEl && info.place && !placeEl.value){
+    if(BRANCHES.includes(info.place)){
+      placeEl.value = info.place;
+      customWrap?.classList.add('hidden');
+      if(customEl) customEl.value = '';
+    } else {
+      placeEl.value = '__custom__';
+      customWrap?.classList.remove('hidden');
+      if(customEl) customEl.value = info.place;
+    }
+  }
+});
+document.getElementById('faultType')?.addEventListener('focus', fillFaultSelects);
+document.getElementById('faultSerial')?.addEventListener('focus', fillFaultSelects);
+document.getElementById('faultCustomPlace')?.addEventListener('focus', fillFaultSelects);
+document.getElementById('faultDesc')?.addEventListener('focus', fillFaultSelects);
+
 document.getElementById('faultPlace')?.addEventListener('change', (e) => {
   document.getElementById('faultCustomPlaceWrap')?.classList.toggle('hidden', e.target.value !== '__custom__');
 });

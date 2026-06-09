@@ -636,7 +636,7 @@ header .header-sub{
 }
 
 
-/* v1.5 / 5.47 plan práce */
+/* v1.5 / 5.48 plan práce */
 .work-plan-modal{width:min(96vw,1180px)!important}
 .work-plan-toolbar{display:flex;gap:8px;flex-wrap:wrap;margin:8px 0 12px}
 .work-plan-title{font-weight:800;margin:8px 0 12px;color:var(--text)}
@@ -662,7 +662,7 @@ body.dark .work-plan-form{background:var(--panel2)}
 @media print{#workPlanModal{display:none!important}}
 
 
-/* v1.5 / 5.47 main dashboard + náhradní díly */
+/* v1.5 / 5.48 main dashboard + náhradní díly */
 .main-overview{margin-bottom:18px}
 .overview-head{background:var(--panel);border:1px solid rgba(219,230,242,.8);border-radius:var(--radius);box-shadow:var(--shadow);padding:18px;margin-bottom:14px}
 .overview-head h1{margin:0 0 5px;font-size:1.35rem}
@@ -702,7 +702,7 @@ body.dark .part-card{background:var(--panel2)}
 @media print{#partsModal{display:none!important}.main-overview{display:none!important}}
 
 
-/* v1.5 / 5.47 koncept 5 */
+/* v1.5 / 5.48 koncept 5 */
 .page-section{display:none}
 .page-section.active{display:block}
 .page-title-row{display:flex;justify-content:space-between;align-items:flex-start;gap:14px;margin:6px 0 16px}
@@ -755,7 +755,7 @@ body .main-overview,body .dashboard{display:none!important}
 @media print{.page-section{display:block!important}.home-page,.plan-page,.parts-page{display:none!important}}
 
 
-/* v1.5 / 5.47 sjednocení písma ve všech formulářích */
+/* v1.5 / 5.48 sjednocení písma ve všech formulářích */
 input,
 select,
 textarea,
@@ -788,7 +788,7 @@ datalist {
 }
 
 
-/* v1.5 / 5.47 – sjednocení písma u datumových polí */
+/* v1.5 / 5.48 – sjednocení písma u datumových polí */
 input[type="date"],
 input[type="datetime-local"],
 input[type="time"]{
@@ -813,7 +813,7 @@ input[type="datetime-local"]::-webkit-calendar-picker-indicator{
 }
 
 
-/* v1.5 / 5.47 – hlášení poruch */
+/* v1.5 / 5.48 – hlášení poruch */
 .home-summary-grid{grid-template-columns:repeat(4,1fr)}
 .summary-box.summary-faults{border-top:4px solid #dc2626}
 .faults-page .inline-page-shell{padding:18px}
@@ -842,7 +842,7 @@ body.dark .fault-card{background:var(--panel2)}
 @media print{#section-faults{display:none!important}}
 
 
-/* v1.5 / 5.47 – stav stroje, karta stroje, pozornost */
+/* v1.5 / 5.48 – stav stroje, karta stroje, pozornost */
 .attention-panel{margin-top:16px;background:var(--panel);border:1px solid rgba(219,230,242,.85);border-radius:22px;box-shadow:var(--shadow);padding:18px}
 .attention-head{display:flex;justify-content:space-between;align-items:flex-start;gap:12px;margin-bottom:10px}
 .attention-list{display:grid;gap:8px}
@@ -860,7 +860,7 @@ body.dark .fault-card{background:var(--panel2)}
 .machine-card-row:first-child{border-top:none;padding-top:0}
 
 
-/* v1.5 / 5.47 – svátky a jmeniny na hlavní stránce */
+/* v1.5 / 5.48 – svátky a jmeniny na hlavní stránce */
 .top-date-stack{
   display:grid;
   gap:8px;
@@ -887,7 +887,7 @@ body.dark .fault-card{background:var(--panel2)}
 }
 
 
-/* v1.5 / 5.47 – více stavů poruchy a protokol po opravě */
+/* v1.5 / 5.48 – více stavů poruchy a protokol po opravě */
 .fault-status-row{
   display:flex;
   gap:6px;
@@ -945,7 +945,7 @@ body.dark .fault-card{background:var(--panel2)}
 }
 
 
-/* v1.5 / 5.47 – protokol po opravě bez automatického tisku */
+/* v1.5 / 5.48 – protokol po opravě bez automatického tisku */
 .repair-protocol-toolbar{
   position:sticky;
   top:0;
@@ -967,7 +967,7 @@ body.dark .fault-card{background:var(--panel2)}
 }
 
 
-/* v1.5 / 5.47 – fonty, plán práce více míst, menu */
+/* v1.5 / 5.48 – fonty, plán práce více míst, menu */
 html, body, input, select, textarea, button, option {
   font-family: Inter, "Segoe UI", Arial, sans-serif !important;
 }
@@ -991,6 +991,158 @@ input, select, textarea, button,
 }
 .side-nav{
   padding-bottom:8px;
+}
+
+
+/* v1.5 / 5.48 – Vyžaduje pozornost / 48 hodin bez víkendu */
+.attention-board{
+  margin-top:18px;
+  background:linear-gradient(180deg,#ffffff 0%,#f8fafc 100%);
+  border:1px solid var(--line);
+  border-radius:24px;
+  padding:18px;
+  box-shadow:0 12px 32px rgba(15,23,42,.06);
+}
+.attention-board-head{
+  display:flex;
+  justify-content:space-between;
+  gap:16px;
+  align-items:flex-start;
+  margin-bottom:14px;
+  flex-wrap:wrap;
+}
+.attention-board-title{
+  font-size:1.15rem;
+  font-weight:900;
+  color:#111827;
+}
+.attention-board-sub{
+  margin-top:4px;
+  color:var(--muted);
+  max-width:880px;
+  line-height:1.45;
+}
+.attention-board-badges{
+  display:flex;
+  gap:10px;
+  flex-wrap:wrap;
+}
+.attention-count{
+  min-width:110px;
+  border-radius:18px;
+  padding:10px 14px;
+  border:1px solid var(--line);
+  background:#fff;
+  box-shadow:0 4px 14px rgba(15,23,42,.04);
+}
+.attention-count span{
+  display:block;
+  font-size:.76rem;
+  font-weight:700;
+  color:var(--muted);
+  margin-bottom:2px;
+}
+.attention-count strong{
+  display:block;
+  font-size:1.25rem;
+  font-weight:900;
+  color:#111827;
+}
+.attention-count-protocols{border-color:#fecaca;background:#fff7f7}
+.attention-count-faults{border-color:#fed7aa;background:#fffaf5}
+.attention-count-parts{border-color:#bfdbfe;background:#f8fbff}
+.attention-rich-list{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(290px,1fr));
+  gap:12px;
+}
+.attention-rich-item{
+  border:1px solid var(--line);
+  border-radius:20px;
+  padding:14px;
+  background:#fff;
+  display:flex;
+  flex-direction:column;
+  gap:12px;
+  box-shadow:0 6px 18px rgba(15,23,42,.04);
+}
+.attention-rich-item.protocol{border-left:5px solid #dc2626}
+.attention-rich-item.fault{border-left:5px solid #f59e0b}
+.attention-rich-item.part{border-left:5px solid #2563eb}
+.attention-top{
+  display:flex;
+  gap:12px;
+  align-items:flex-start;
+}
+.attention-icon{
+  width:42px;height:42px;border-radius:14px;
+  display:flex;align-items:center;justify-content:center;
+  font-size:20px;font-weight:900;flex:0 0 42px;
+}
+.attention-rich-item.protocol .attention-icon{background:#fef2f2;color:#b91c1c}
+.attention-rich-item.fault .attention-icon{background:#fff7ed;color:#b45309}
+.attention-rich-item.part .attention-icon{background:#eff6ff;color:#1d4ed8}
+.attention-meta{min-width:0}
+.attention-kicker{
+  font-size:.72rem;
+  text-transform:uppercase;
+  letter-spacing:.04em;
+  color:var(--muted);
+  font-weight:800;
+}
+.attention-rich-title{
+  font-weight:900;
+  color:#111827;
+  margin-top:2px;
+  line-height:1.25;
+}
+.attention-rich-sub{
+  color:#374151;
+  margin-top:3px;
+}
+.attention-chips{
+  display:flex;flex-wrap:wrap;gap:8px;
+}
+.attention-chip{
+  border-radius:999px;
+  padding:6px 10px;
+  font-size:.78rem;
+  font-weight:800;
+  border:1px solid var(--line);
+  background:#f8fafc;
+  color:#334155;
+}
+.attention-chip.time{background:#f3f4f6}
+.attention-chip.status{background:#fff}
+.attention-rich-actions{
+  display:flex; gap:8px; flex-wrap:wrap; margin-top:auto;
+}
+.attention-empty-card{
+  border:1px dashed var(--line);
+  border-radius:18px;
+  padding:18px;
+  text-align:center;
+  color:var(--muted);
+  background:linear-gradient(180deg,#fff,#fafafa);
+}
+html[data-theme="dark"] .attention-board{
+  background:linear-gradient(180deg,#0f172a 0%,#111827 100%);
+}
+html[data-theme="dark"] .attention-rich-item,
+html[data-theme="dark"] .attention-count{
+  background:#0b1220;
+}
+html[data-theme="dark"] .attention-rich-title,
+html[data-theme="dark"] .attention-count strong{
+  color:#f8fafc;
+}
+html[data-theme="dark"] .attention-rich-sub{
+  color:#cbd5e1;
+}
+@media (max-width:860px){
+  .attention-board{padding:14px}
+  .attention-board-head{flex-direction:column}
+  .attention-rich-list{grid-template-columns:1fr}
 }
 
 </style>
@@ -1024,7 +1176,7 @@ input, select, textarea, button,
     <button type="button" class="side-small" id="sideThemeBtn">Tmavý / světlý režim</button>
     <button type="button" class="side-small" onclick="exportBackup()">Export zálohy</button>
     <button type="button" class="side-small" id="sideImportBtn">Import zálohy</button>
-    <div class="side-version">Vlastník/Admin: Jan Bartoš<br>Verze: 1.5 / 5.47</div>
+    <div class="side-version">Vlastník/Admin: Jan Bartoš<br>Verze: 1.5 / 5.48</div>
   </div>
 </aside>
 
@@ -1081,6 +1233,22 @@ input, select, textarea, button,
         <div class="summary-box-lines"><div><b id="dashFaultsService">0</b> do servisu</div><div><b id="dashFaultsRepaired">0</b> opraveno</div></div>
       </div>
     </div>
+
+    <div class="attention-board">
+      <div class="attention-board-head">
+        <div>
+          <div class="attention-board-title">Vyžaduje pozornost</div>
+          <div class="attention-board-sub">Posledních 48 hodin bez započítání víkendu. Přehled závad z kontrol, hlášení poruch a požadavků na náhradní díly.</div>
+        </div>
+        <div class="attention-board-badges">
+          <div class="attention-count attention-count-protocols"><span>Kontroly</span><strong id="attentionCountProtocols">0</strong></div>
+          <div class="attention-count attention-count-faults"><span>Poruchy</span><strong id="attentionCountFaults">0</strong></div>
+          <div class="attention-count attention-count-parts"><span>ND</span><strong id="attentionCountParts">0</strong></div>
+        </div>
+      </div>
+      <div id="attentionList" class="attention-rich-list"></div>
+    </div>
+
 </section>
 
   <section id="section-archive" class="page-section archive-page">
@@ -2100,10 +2268,10 @@ function openModal(el){ el.classList.add('show'); }
 function closeModal(el){ el.classList.remove('show'); }
 
 function openWizard(editId=null, prefill={}){
-  rec = editId ? JSON.parse(JSON.stringify(data.find(r=>r.id===editId) || {id:uid()})) : {id:uid(), cLogic:'legacy', appVersion:'1.5 / 5.47'};
+  rec = editId ? JSON.parse(JSON.stringify(data.find(r=>r.id===editId) || {id:uid()})) : {id:uid(), cLogic:'legacy', appVersion:'1.5 / 5.48'};
   rec = Object.assign({}, rec, prefill || {});
   if(!editId && !rec.cLogic) rec.cLogic = 'legacy';
-  if(!editId && !rec.appVersion) rec.appVersion = '1.5 / 5.47';
+  if(!editId && !rec.appVersion) rec.appVersion = '1.5 / 5.48';
 
   // 🔥 AUTO DOPLNĚNÍ Z HISTORIE PODLE VÝROBNÍHO ČÍSLA
   if(rec.vc){
@@ -2475,7 +2643,7 @@ async function nextStep(){
   const okSave = confirm('Chceš protokol uložit?');
   if(!okSave) return;
   if(!rec.cLogic) rec.cLogic = 'legacy';
-  if(!rec.appVersion) rec.appVersion = '1.5 / 5.47';
+  if(!rec.appVersion) rec.appVersion = '1.5 / 5.48';
   rec.savedAt = new Date().toISOString();
   await saveProtocol(rec);
   closeWizard();
@@ -2585,40 +2753,170 @@ function allKnownMachines(){
   ].map(v => String(v || '').trim()).filter(Boolean);
   return [...new Set(serials)];
 }
+
+function parseAttentionDate(val){
+  if(!val) return null;
+  if(val instanceof Date) return isNaN(val) ? null : val;
+  const s = String(val).trim();
+  if(!s) return null;
+  if(/^\d{4}-\d{2}-\d{2}T/.test(s) || /^\d{4}-\d{2}-\d{2}$/.test(s)){
+    const d = new Date(s.length === 10 ? s + 'T12:00:00' : s);
+    return isNaN(d) ? null : d;
+  }
+  const cz = s.match(/^(\d{1,2})\.(\d{1,2})\.(\d{4})(?:\s+(\d{1,2}):(\d{2}))?$/);
+  if(cz){
+    const hh = cz[4] ? Number(cz[4]) : 12;
+    const mm = cz[5] ? Number(cz[5]) : 0;
+    const d = new Date(Number(cz[3]), Number(cz[2])-1, Number(cz[1]), hh, mm, 0, 0);
+    return isNaN(d) ? null : d;
+  }
+  const d = new Date(s);
+  return isNaN(d) ? null : d;
+}
+function businessHoursDiff(fromDate, toDate = new Date()){
+  const from = parseAttentionDate(fromDate);
+  const to = parseAttentionDate(toDate);
+  if(!from || !to) return Infinity;
+  if(from > to) return 0;
+  let cursor = new Date(from);
+  let hours = 0;
+  while(cursor < to){
+    const next = new Date(cursor.getTime() + 60*60*1000);
+    const day = cursor.getDay(); // 0 Sun, 6 Sat
+    if(day !== 0 && day !== 6){
+      const segmentEnd = next < to ? next : to;
+      hours += (segmentEnd - cursor) / 36e5;
+    }
+    cursor = next;
+    if(hours > 48.0001) break;
+  }
+  return hours;
+}
+function withinLast48BusinessHours(val){
+  return businessHoursDiff(val, new Date()) <= 48;
+}
+function attentionAgeLabel(val){
+  const h = businessHoursDiff(val, new Date());
+  if(!isFinite(h)) return 'bez času';
+  if(h < 1) return 'méně než 1 h';
+  if(h < 24) return `${Math.round(h)} h`;
+  const d = Math.floor(h / 24);
+  const rem = Math.round(h % 24);
+  return rem ? `${d} d ${rem} h` : `${d} d`;
+}
+
 function renderAttentionList(){
   const box = document.getElementById('attentionList');
   if(!box) return;
+  const counters = {protocols:0, faults:0, parts:0};
   const items = [];
+
   (data || []).forEach(r => {
-    const days = daysUntilDate(r.dalsiKontrola || '');
-    if(days !== null && days <= 30){
-      items.push({serial:r.vc, title:'Kontrola se blíží / po termínu', sub:`${r.typ || ''} · ${r.dalsiKontrola || ''}`});
-    }
-    if(hasIssue(r)){
-      items.push({serial:r.vc, title:'Závada v protokolu', sub:`${r.typ || ''} · ${r.datum || ''}`});
-    }
+    const stamp = r.createdAt || r.updatedAt || r.datum;
+    if(!withinLast48BusinessHours(stamp)) return;
+    if(!hasIssue(r)) return;
+    counters.protocols++;
+    items.push({
+      type:'protocol',
+      serial:r.vc || '',
+      title:'Kontrolní protokol se závadou',
+      subtitle:`${r.typ || 'Zařízení bez typu'} · ${r.umisteni || r.misto || 'Bez místa'}`,
+      status:'Vyžaduje řešení',
+      when:stamp,
+      whenText:`Před ${attentionAgeLabel(stamp)}`,
+      extra: formatDate(r.datum || stamp),
+      action:'machine'
+    });
   });
-  (faultsData || []).filter(f => !faultIsRepaired(f)).forEach(f => {
-    const st = getFaultStatus(f).txt;
-    items.push({serial:f.serial, title:st, sub:`${f.type || ''} · ${f.place || 'bez místa'} · ${f.date || ''}`});
+
+  (faultsData || []).forEach(f => {
+    const stamp = f.createdAt || f.updatedAt || f.date;
+    if(!withinLast48BusinessHours(stamp)) return;
+    if(faultIsRepaired(f)) return;
+    counters.faults++;
+    items.push({
+      type:'fault',
+      serial:f.serial || '',
+      title:'Nahlášená porucha',
+      subtitle:`${f.type || 'Zařízení bez typu'} · ${f.place || 'Bez místa'}`,
+      status:getFaultStatus(f).txt || 'Otevřená porucha',
+      when:stamp,
+      whenText:`Před ${attentionAgeLabel(stamp)}`,
+      extra:(f.description || '').trim() || 'Bez popisu závady',
+      action:'machine'
+    });
   });
-  (partsData || []).filter(p => !p.sent).forEach(p => {
-    items.push({serial:p.serial, title:p.ordered ? 'ND objednáno – čeká na odeslání' : 'Požadavek na ND', sub:`${p.type || ''} · ${p.partNumber || 'bez PN'}`});
+
+  (partsData || []).forEach(p => {
+    const stamp = p.createdAt || p.updatedAt || p.date;
+    if(!withinLast48BusinessHours(stamp)) return;
+    if(p.sent || p.odeslano) return;
+    counters.parts++;
+    const status = (p.ordered || p.objednano) ? 'Objednáno' : 'Nový požadavek';
+    items.push({
+      type:'part',
+      serial:p.serial || '',
+      title:'Požadavek na náhradní díl',
+      subtitle:`${p.type || 'Zařízení bez typu'} · ${p.pn || p.partNumber || 'PN neuvedeno'}`,
+      status,
+      when:stamp,
+      whenText:`Před ${attentionAgeLabel(stamp)}`,
+      extra:(p.place || p.location || 'Bez místa') + ((p.description || p.note) ? ` · ${(p.description || p.note)}` : ''),
+      action:'machine'
+    });
   });
-  const limited = items.filter(x => x.serial).slice(0, 10);
-  if(!limited.length){
-    box.innerHTML = '<div class="day-empty">Aktuálně nic nevyžaduje pozornost.</div>';
+
+  const set = (id,val) => { const el = document.getElementById(id); if(el) el.textContent = String(val); };
+  set('attentionCountProtocols', counters.protocols);
+  set('attentionCountFaults', counters.faults);
+  set('attentionCountParts', counters.parts);
+
+  items.sort((a,b) => {
+    const ad = parseAttentionDate(a.when); const bd = parseAttentionDate(b.when);
+    return (bd ? bd.getTime() : 0) - (ad ? ad.getTime() : 0);
+  });
+
+  if(!items.length){
+    box.innerHTML = `<div class="attention-empty-card">
+      <div style="font-size:1.05rem;font-weight:900;margin-bottom:6px">Aktuálně nic nevyžaduje pozornost</div>
+      <div>Za posledních 48 hodin bez započítání víkendu nebyla zjištěna žádná závada, otevřená porucha ani nový požadavek na náhradní díly.</div>
+    </div>`;
     return;
   }
-  box.innerHTML = limited.map(x => {
-    const state = getMachineState(x.serial);
-    return `<div class="attention-item">
-      <div><div class="attention-title">${escapeHtml(x.title)}</div><div class="attention-sub">v.č. ${escapeHtml(x.serial)} · ${escapeHtml(x.sub || '')}</div></div>
-      <button class="secondary mini" type="button" data-machine-card="${escapeHtml(x.serial)}">Karta stroje</button>
-    </div>`;
-  }).join('');
+
+  const iconMap = {protocol:'✓', fault:'!', part:'ND'};
+  const kickerMap = {protocol:'Kontrola', fault:'Porucha', part:'Náhradní díly'};
+
+  box.innerHTML = items.map((x, i) => `
+    <div class="attention-rich-item ${x.type}">
+      <div class="attention-top">
+        <div class="attention-icon">${iconMap[x.type] || '!'}</div>
+        <div class="attention-meta">
+          <div class="attention-kicker">${kickerMap[x.type] || 'Pozornost'}</div>
+          <div class="attention-rich-title">${escapeHtml(x.title)}</div>
+          <div class="attention-rich-sub">${escapeHtml(x.serial || 'Bez výrobního čísla')} · ${escapeHtml(x.subtitle || '')}</div>
+        </div>
+      </div>
+      <div class="attention-chips">
+        <span class="attention-chip status">${escapeHtml(x.status || '')}</span>
+        <span class="attention-chip time">${escapeHtml(x.whenText || '')}</span>
+        ${x.extra ? `<span class="attention-chip">${escapeHtml(x.extra)}</span>` : ''}
+      </div>
+      <div class="attention-rich-actions">
+        ${x.serial ? `<button class="secondary mini" type="button" data-machine-card="${escapeHtml(x.serial)}">Karta stroje</button>` : ''}
+        ${x.type === 'fault' ? `<button class="secondary mini" type="button" data-jump-faults="1">Otevřít poruchy</button>` : ''}
+        ${x.type === 'part' ? `<button class="secondary mini" type="button" data-jump-parts="1">Otevřít ND</button>` : ''}
+        ${x.type === 'protocol' ? `<button class="secondary mini" type="button" data-jump-archive="1">Otevřít protokoly</button>` : ''}
+      </div>
+    </div>
+  `).join('');
+
   box.querySelectorAll('[data-machine-card]').forEach(btn => btn.addEventListener('click', () => openMachineCard(btn.dataset.machineCard)));
+  box.querySelectorAll('[data-jump-faults]').forEach(btn => btn.addEventListener('click', () => showSection('faults')));
+  box.querySelectorAll('[data-jump-parts]').forEach(btn => btn.addEventListener('click', () => showSection('parts')));
+  box.querySelectorAll('[data-jump-archive]').forEach(btn => btn.addEventListener('click', () => showSection('archive')));
 }
+
 function openMachineCard(serial){
   openHistoryModal(serial);
 }
@@ -3250,7 +3548,7 @@ async function saveWorkPlanFromForm(){
     place,
     extraPlaces,
     note,
-    appVersion:'1.5 / 5.47'
+    appVersion:'1.5 / 5.48'
   });
   if(!record.createdAt) record.createdAt = new Date().toISOString();
   await saveWorkPlan(record);
@@ -3593,7 +3891,7 @@ async function saveFaultFromForm(){
     description,
     status,
     photos: currentFaultPhotos,
-    appVersion:'1.5 / 5.47'
+    appVersion:'1.5 / 5.48'
   });
   if(!record.createdAt) record.createdAt = new Date().toISOString();
   if(status === 'repaired' && !record.repairedAt) record.repairedAt = new Date().toISOString();
@@ -3696,7 +3994,7 @@ function printRepairProtocol(id){
   const style = Array.from(document.querySelectorAll('style')).map(s => s.innerHTML).join('\n');
   w.document.open();
   w.document.write(html.replace('</head>', `<style>${style}
-/* v1.5 / 5.47 – fonty, plán práce více míst, menu */
+/* v1.5 / 5.48 – fonty, plán práce více míst, menu */
 html, body, input, select, textarea, button, option {
   font-family: Inter, "Segoe UI", Arial, sans-serif !important;
 }
@@ -3965,7 +4263,7 @@ async function savePartFromForm(){
     partNumber,
     partName: document.getElementById('partName').value.trim(),
     note: document.getElementById('partNote').value.trim(),
-    appVersion:'1.5 / 5.47'
+    appVersion:'1.5 / 5.48'
   });
   if(currentPartPhoto) record.photo = currentPartPhoto;
   if(!record.createdAt) record.createdAt = new Date().toISOString();

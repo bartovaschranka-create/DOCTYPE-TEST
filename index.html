@@ -636,7 +636,7 @@ header .header-sub{
 }
 
 
-/* v1.5 / 5.42 plan práce */
+/* v1.5 / 5.43 plan práce */
 .work-plan-modal{width:min(96vw,1180px)!important}
 .work-plan-toolbar{display:flex;gap:8px;flex-wrap:wrap;margin:8px 0 12px}
 .work-plan-title{font-weight:800;margin:8px 0 12px;color:var(--text)}
@@ -662,7 +662,7 @@ body.dark .work-plan-form{background:var(--panel2)}
 @media print{#workPlanModal{display:none!important}}
 
 
-/* v1.5 / 5.42 main dashboard + náhradní díly */
+/* v1.5 / 5.43 main dashboard + náhradní díly */
 .main-overview{margin-bottom:18px}
 .overview-head{background:var(--panel);border:1px solid rgba(219,230,242,.8);border-radius:var(--radius);box-shadow:var(--shadow);padding:18px;margin-bottom:14px}
 .overview-head h1{margin:0 0 5px;font-size:1.35rem}
@@ -702,7 +702,7 @@ body.dark .part-card{background:var(--panel2)}
 @media print{#partsModal{display:none!important}.main-overview{display:none!important}}
 
 
-/* v1.5 / 5.42 koncept 5 */
+/* v1.5 / 5.43 koncept 5 */
 .page-section{display:none}
 .page-section.active{display:block}
 .page-title-row{display:flex;justify-content:space-between;align-items:flex-start;gap:14px;margin:6px 0 16px}
@@ -755,7 +755,7 @@ body .main-overview,body .dashboard{display:none!important}
 @media print{.page-section{display:block!important}.home-page,.plan-page,.parts-page{display:none!important}}
 
 
-/* v1.5 / 5.42 sjednocení písma ve všech formulářích */
+/* v1.5 / 5.43 sjednocení písma ve všech formulářích */
 input,
 select,
 textarea,
@@ -788,7 +788,7 @@ datalist {
 }
 
 
-/* v1.5 / 5.42 – sjednocení písma u datumových polí */
+/* v1.5 / 5.43 – sjednocení písma u datumových polí */
 input[type="date"],
 input[type="datetime-local"],
 input[type="time"]{
@@ -813,7 +813,7 @@ input[type="datetime-local"]::-webkit-calendar-picker-indicator{
 }
 
 
-/* v1.5 / 5.42 – hlášení poruch */
+/* v1.5 / 5.43 – hlášení poruch */
 .home-summary-grid{grid-template-columns:repeat(4,1fr)}
 .summary-box.summary-faults{border-top:4px solid #dc2626}
 .faults-page .inline-page-shell{padding:18px}
@@ -842,7 +842,7 @@ body.dark .fault-card{background:var(--panel2)}
 @media print{#section-faults{display:none!important}}
 
 
-/* v1.5 / 5.42 – stav stroje, karta stroje, pozornost */
+/* v1.5 / 5.43 – stav stroje, karta stroje, pozornost */
 .attention-panel{margin-top:16px;background:var(--panel);border:1px solid rgba(219,230,242,.85);border-radius:22px;box-shadow:var(--shadow);padding:18px}
 .attention-head{display:flex;justify-content:space-between;align-items:flex-start;gap:12px;margin-bottom:10px}
 .attention-list{display:grid;gap:8px}
@@ -860,7 +860,7 @@ body.dark .fault-card{background:var(--panel2)}
 .machine-card-row:first-child{border-top:none;padding-top:0}
 
 
-/* v1.5 / 5.42 – svátky a jmeniny na hlavní stránce */
+/* v1.5 / 5.43 – svátky a jmeniny na hlavní stránce */
 .top-date-stack{
   display:grid;
   gap:8px;
@@ -884,6 +884,64 @@ body.dark .fault-card{background:var(--panel2)}
   .page-title-row{flex-direction:column}
   .top-date-stack{justify-items:stretch;width:100%}
   .name-day-box{max-width:none}
+}
+
+
+/* v1.5 / 5.43 – více stavů poruchy a protokol po opravě */
+.fault-status-row{
+  display:flex;
+  gap:6px;
+  flex-wrap:wrap;
+  justify-content:flex-end;
+}
+.repair-protocol-paper{
+  font-family: Arial, sans-serif;
+  color:#111827;
+  padding:22px;
+}
+.repair-protocol-paper h1{
+  font-size:22px;
+  margin:0 0 14px;
+}
+.repair-protocol-paper .rp-grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:8px;
+  margin:12px 0;
+}
+.repair-protocol-paper .rp-cell{
+  border:1px solid #d1d5db;
+  border-radius:8px;
+  padding:8px;
+}
+.repair-protocol-paper .rp-label{
+  color:#6b7280;
+  font-size:12px;
+  margin-bottom:3px;
+}
+.repair-protocol-paper .rp-value{
+  font-weight:700;
+}
+.repair-protocol-paper .rp-box{
+  border:1px solid #d1d5db;
+  border-radius:8px;
+  padding:10px;
+  min-height:70px;
+  white-space:pre-wrap;
+}
+.repair-protocol-paper .rp-sign{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:18px;
+  margin-top:36px;
+}
+.repair-protocol-paper .rp-sign div{
+  border-top:1px solid #111827;
+  padding-top:6px;
+  font-size:13px;
+}
+@media print{
+  .repair-protocol-paper{padding:0}
 }
 
 </style>
@@ -917,7 +975,7 @@ body.dark .fault-card{background:var(--panel2)}
     <button type="button" class="side-small" id="sideThemeBtn">Tmavý / světlý režim</button>
     <button type="button" class="side-small" onclick="exportBackup()">Export zálohy</button>
     <button type="button" class="side-small" id="sideImportBtn">Import zálohy</button>
-    <div class="side-version">Vlastník/Admin: Jan Bartoš<br>Verze: 1.5 / 5.42</div>
+    <div class="side-version">Vlastník/Admin: Jan Bartoš<br>Verze: 1.5 / 5.43</div>
   </div>
 </aside>
 
@@ -1999,10 +2057,10 @@ function openModal(el){ el.classList.add('show'); }
 function closeModal(el){ el.classList.remove('show'); }
 
 function openWizard(editId=null, prefill={}){
-  rec = editId ? JSON.parse(JSON.stringify(data.find(r=>r.id===editId) || {id:uid()})) : {id:uid(), cLogic:'legacy', appVersion:'1.5 / 5.42'};
+  rec = editId ? JSON.parse(JSON.stringify(data.find(r=>r.id===editId) || {id:uid()})) : {id:uid(), cLogic:'legacy', appVersion:'1.5 / 5.43'};
   rec = Object.assign({}, rec, prefill || {});
   if(!editId && !rec.cLogic) rec.cLogic = 'legacy';
-  if(!editId && !rec.appVersion) rec.appVersion = '1.5 / 5.42';
+  if(!editId && !rec.appVersion) rec.appVersion = '1.5 / 5.43';
 
   // 🔥 AUTO DOPLNĚNÍ Z HISTORIE PODLE VÝROBNÍHO ČÍSLA
   if(rec.vc){
@@ -2374,7 +2432,7 @@ async function nextStep(){
   const okSave = confirm('Chceš protokol uložit?');
   if(!okSave) return;
   if(!rec.cLogic) rec.cLogic = 'legacy';
-  if(!rec.appVersion) rec.appVersion = '1.5 / 5.42';
+  if(!rec.appVersion) rec.appVersion = '1.5 / 5.43';
   rec.savedAt = new Date().toISOString();
   await saveProtocol(rec);
   closeWizard();
@@ -2463,10 +2521,11 @@ function getMachineRows(serial){
 }
 function getMachineState(serial){
   const rows = getMachineRows(serial);
-  const openFault = rows.faults.find(f => f.status !== 'repaired');
+  const openFault = rows.faults.find(f => !faultIsRepaired(f));
   if(openFault){
-    if(openFault.status === 'waiting_parts') return {txt:'Čeká na ND', cls:'status-machine-warn'};
-    if(openFault.status === 'service') return {txt:'Stroj do servisu', cls:'status-machine-bad'};
+    if(faultInService(openFault) && faultWaitingParts(openFault)) return {txt:'Stroj do servisu + čeká na ND', cls:'status-machine-bad'};
+    if(faultWaitingParts(openFault)) return {txt:'Čeká na ND', cls:'status-machine-warn'};
+    if(faultInService(openFault)) return {txt:'Stroj do servisu', cls:'status-machine-bad'};
     return {txt:'Hlášená porucha', cls:'status-machine-bad'};
   }
   const openPart = rows.parts.find(p => !p.sent);
@@ -2496,7 +2555,7 @@ function renderAttentionList(){
       items.push({serial:r.vc, title:'Závada v protokolu', sub:`${r.typ || ''} · ${r.datum || ''}`});
     }
   });
-  (faultsData || []).filter(f => f.status !== 'repaired').forEach(f => {
+  (faultsData || []).filter(f => !faultIsRepaired(f)).forEach(f => {
     const st = getFaultStatus(f).txt;
     items.push({serial:f.serial, title:st, sub:`${f.type || ''} · ${f.place || 'bez místa'} · ${f.date || ''}`});
   });
@@ -2552,7 +2611,7 @@ function openHistoryModal(serial){
     <div class="machine-card-block">
       <h4>Poruchy</h4>
       <div class="machine-card-list">
-        ${rows.faults.length ? rows.faults.slice(0,8).map(f => `<div class="machine-card-row"><span>${escapeHtml(f.date||'Bez data')} · ${escapeHtml(getFaultStatus(f).txt)} · ${escapeHtml(f.description||'')}</span><button class="secondary mini" data-fault-open="${f.id}">Upravit</button></div>`).join('') : '<div class="part-sub">Bez hlášených poruch.</div>'}
+        ${rows.faults.length ? rows.faults.slice(0,8).map(f => `<div class="machine-card-row"><span>${escapeHtml(f.date||'Bez data')} · ${escapeHtml(getFaultStatus(f).txt)} · ${escapeHtml(f.description||'')}</span><span style="display:flex;gap:6px;flex-wrap:wrap"><button class="secondary mini" data-fault-open="${f.id}">Upravit</button>${faultIsRepaired(f) ? `<button class="primary mini" data-fault-protocol="${f.id}">Protokol</button>` : ''}</span></div>`).join('') : '<div class="part-sub">Bez hlášených poruch.</div>'}
       </div>
     </div>
 
@@ -2565,6 +2624,7 @@ function openHistoryModal(serial){
   `;
   els.historyBody.querySelectorAll('[data-open-id]').forEach(btn => btn.addEventListener('click', () => openPreviewById(btn.dataset.openId)));
   els.historyBody.querySelectorAll('[data-fault-open]').forEach(btn => btn.addEventListener('click', () => { closeHistoryModal(); openFaultsModal(); openFaultForm(btn.dataset.faultOpen); }));
+  els.historyBody.querySelectorAll('[data-fault-protocol]').forEach(btn => btn.addEventListener('click', () => printRepairProtocol(btn.dataset.faultProtocol)));
   els.historyBody.querySelectorAll('[data-part-open]').forEach(btn => btn.addEventListener('click', () => { closeHistoryModal(); openPartsModal(); openPartForm(btn.dataset.partOpen); }));
   openModal(els.historyModal);
 }
@@ -3112,7 +3172,7 @@ async function saveWorkPlanFromForm(){
     technician,
     place,
     note,
-    appVersion:'1.5 / 5.42'
+    appVersion:'1.5 / 5.43'
   });
   if(!record.createdAt) record.createdAt = new Date().toISOString();
   await saveWorkPlan(record);
@@ -3213,7 +3273,7 @@ function renderHomeOverview(){
   if(!title || !list || !strip) return;
   title.textContent = formatHumanDate(currentHomeDate);
   topLabel.textContent = formatHumanDate(currentHomeDate);
-  if(nameBox) nameBox.innerHTML = '<strong>Dnes:</strong> ' + escapeHtml(getLightHolidayText(currentHomeDate));
+  if(nameBox) nameBox.innerHTML = '<strong>Dnes má svátek:</strong> ' + escapeHtml(getLightHolidayText(currentHomeDate));
   const start = startOfWeek(currentHomeDate);
   const currentYmd = ymd(currentHomeDate);
   strip.innerHTML = Array.from({length:7}).map((_,i)=>{
@@ -3239,11 +3299,26 @@ function faultUid(){ return 'porucha_' + Date.now() + '_' + Math.random().toStri
 function loadLocalFaults(){ try { return JSON.parse(localStorage.getItem('liftcheck_faults_local') || '[]'); } catch(e) { return []; } }
 function saveLocalFaults(rows){ try { localStorage.setItem('liftcheck_faults_local', JSON.stringify(rows)); } catch(e) {} }
 function startLocalFaultsMode(){ faultsData = loadLocalFaults(); renderFaults(); updateMainOverview(); }
+function faultIsRepaired(f){
+  return f && (f.status === 'repaired' || f.repaired === true);
+}
+function faultInService(f){
+  return f && (f.inService === true || f.status === 'service');
+}
+function faultWaitingParts(f){
+  return f && (f.waitingParts === true || f.status === 'waiting_parts');
+}
+function getFaultStatusList(f){
+  if(faultIsRepaired(f)) return [{txt:'Opraveno / schopné provozu', cls:'status-repaired'}];
+  const list = [];
+  if(faultInService(f)) list.push({txt:'Stroj do servisu', cls:'status-service'});
+  if(faultWaitingParts(f)) list.push({txt:'Čeká na ND', cls:'status-waiting'});
+  if(!list.length) list.push({txt:'Nahlášeno', cls:'status-open'});
+  return list;
+}
 function getFaultStatus(f){
-  if(f.status === 'repaired') return {txt:'Opraveno / schopné provozu', cls:'status-repaired'};
-  if(f.status === 'waiting_parts') return {txt:'Čeká na ND', cls:'status-waiting'};
-  if(f.status === 'service') return {txt:'Stroj do servisu', cls:'status-service'};
-  return {txt:'Nahlášeno', cls:'status-open'};
+  const list = getFaultStatusList(f);
+  return {txt:list.map(x => x.txt).join(' + '), cls:list[0]?.cls || 'status-open', list};
 }
 async function prepareFaultForSave(record){
   record.photos = record.photos || [];
@@ -3407,7 +3482,7 @@ function openFaultForm(id=null){
     customInput.value = '';
   }
   document.getElementById('faultDesc').value = (f && f.description) || '';
-  document.getElementById('faultInitialStatus').value = (f && f.status) || 'open';
+  document.getElementById('faultInitialStatus').value = f ? (faultIsRepaired(f) ? 'repaired' : (faultInService(f) ? 'service' : (faultWaitingParts(f) ? 'waiting_parts' : 'open'))) : 'open';
   renderFaultPhotoPreview();
   document.getElementById('faultFormWrap').classList.remove('hidden');
   document.getElementById('faultFormWrap').scrollIntoView({behavior:'smooth', block:'nearest'});
@@ -3440,7 +3515,7 @@ async function saveFaultFromForm(){
     description,
     status,
     photos: currentFaultPhotos,
-    appVersion:'1.5 / 5.42'
+    appVersion:'1.5 / 5.43'
   });
   if(!record.createdAt) record.createdAt = new Date().toISOString();
   if(status === 'repaired' && !record.repairedAt) record.repairedAt = new Date().toISOString();
@@ -3470,13 +3545,13 @@ function renderFaults(){
           <div class="fault-title">${escapeHtml(f.type || 'Bez typu')} · v.č. ${escapeHtml(f.serial || '—')}</div>
           <div class="fault-sub">${escapeHtml(f.place || 'Bez místa')} · ${escapeHtml(formatDate(f.date))}</div>
         </div>
-        <span class="status-pill ${st.cls}">${st.txt}</span>
+        <div class="fault-status-row">${getFaultStatusList(f).map(s => `<span class="status-pill ${s.cls}">${s.txt}</span>`).join('')}</div>
       </div>
       <div class="fault-grid">
         <div class="fault-meta"><div class="fault-meta-label">Motohodiny</div><div class="fault-meta-value">${escapeHtml(f.mh || '—')}</div></div>
         <div class="fault-meta"><div class="fault-meta-label">Zadáno</div><div class="fault-meta-value">${escapeHtml(formatDateTime(f.createdAt))}</div></div>
-        <div class="fault-meta"><div class="fault-meta-label">Opraveno</div><div class="fault-meta-value">${f.status === 'repaired' ? escapeHtml(formatDateTime(f.repairedAt || f.updatedAt)) : 'Ne'}</div></div>
-        <div class="fault-meta"><div class="fault-meta-label">Schopné provozu</div><div class="fault-meta-value">${f.status === 'repaired' ? 'Ano' : 'Ne'}</div></div>
+        <div class="fault-meta"><div class="fault-meta-label">Opraveno</div><div class="fault-meta-value">${faultIsRepaired(f) ? escapeHtml(formatDateTime(f.repairedAt || f.updatedAt)) : 'Ne'}</div></div>
+        <div class="fault-meta"><div class="fault-meta-label">Schopné provozu</div><div class="fault-meta-value">${faultIsRepaired(f) ? 'Ano' : 'Ne'}</div></div>
       </div>
       <div class="part-sub">${escapeHtml(f.description || '')}</div>
       ${photoHtml}
@@ -3484,9 +3559,10 @@ function renderFaults(){
         <button class="secondary mini" type="button" data-fault-machine="${escapeHtml(f.serial || '')}">Karta stroje</button>
         <button class="secondary mini" type="button" data-fault-edit="${f.id}">Upravit</button>
         <button class="secondary mini" type="button" data-fault-create-part="${f.id}">Vytvořit ND</button>
-        ${f.status !== 'service' ? `<button class="primary mini" type="button" data-fault-service="${f.id}">Stroj do servisu</button>` : ''}
-        ${f.status !== 'waiting_parts' ? `<button class="primary mini" type="button" data-fault-waiting="${f.id}">Čeká na ND</button>` : ''}
-        ${f.status !== 'repaired' ? `<button class="primary mini" type="button" data-fault-repaired="${f.id}">Opraveno / schopné provozu</button>` : ''}
+        ${!faultInService(f) && !faultIsRepaired(f) ? `<button class="primary mini" type="button" data-fault-service="${f.id}">Stroj do servisu</button>` : ''}
+        ${!faultWaitingParts(f) && !faultIsRepaired(f) ? `<button class="primary mini" type="button" data-fault-waiting="${f.id}">Čeká na ND</button>` : ''}
+        ${!faultIsRepaired(f) ? `<button class="primary mini" type="button" data-fault-repaired="${f.id}">Opraveno / schopné provozu</button>` : ''}
+        ${faultIsRepaired(f) ? `<button class="primary mini" type="button" data-fault-repair-protocol="${f.id}">Protokol po opravě</button>` : ''}
         <button class="danger mini" type="button" data-fault-delete="${f.id}">Smazat</button>
       </div>
     </div>`;
@@ -3498,11 +3574,55 @@ function renderFaults(){
   list.querySelectorAll('[data-fault-service]').forEach(btn => btn.addEventListener('click', () => markFaultService(btn.dataset.faultService)));
   list.querySelectorAll('[data-fault-waiting]').forEach(btn => btn.addEventListener('click', () => markFaultWaitingParts(btn.dataset.faultWaiting)));
   list.querySelectorAll('[data-fault-repaired]').forEach(btn => btn.addEventListener('click', () => markFaultRepaired(btn.dataset.faultRepaired)));
+  list.querySelectorAll('[data-fault-repair-protocol]').forEach(btn => btn.addEventListener('click', () => printRepairProtocol(btn.dataset.faultRepairProtocol)));
+}
+
+function printRepairProtocol(id){
+  const f = (faultsData || []).find(x => x.id === id);
+  if(!f){ alert('Záznam poruchy nebyl nalezen.'); return; }
+  const state = getFaultStatus(f).txt;
+  const photos = Array.isArray(f.photos) ? f.photos : [];
+  const photoHtml = photos.length ? `<div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:10px">${photos.map(p => {
+    const src = p.url || p.dataUrl || '';
+    return src ? `<img src="${escapeHtml(src)}" style="width:130px;height:95px;object-fit:cover;border:1px solid #d1d5db;border-radius:8px">` : '';
+  }).join('')}</div>` : '';
+  const html = `<!doctype html><html><head><meta charset="utf-8"><title>Protokol po opravě</title></head><body>
+  <div class="repair-protocol-paper">
+    <h1>Protokol po opravě závady</h1>
+    <div style="color:#6b7280;margin-bottom:10px">LiftCheck CZ · vlastník/admin: Jan Bartoš</div>
+    <div class="rp-grid">
+      <div class="rp-cell"><div class="rp-label">Typ zařízení</div><div class="rp-value">${escapeHtml(f.type || '—')}</div></div>
+      <div class="rp-cell"><div class="rp-label">Výrobní číslo</div><div class="rp-value">${escapeHtml(f.serial || '—')}</div></div>
+      <div class="rp-cell"><div class="rp-label">Místo</div><div class="rp-value">${escapeHtml(f.place || '—')}</div></div>
+      <div class="rp-cell"><div class="rp-label">Datum hlášení</div><div class="rp-value">${escapeHtml(formatDate(f.date) || '—')}</div></div>
+      <div class="rp-cell"><div class="rp-label">Motohodiny</div><div class="rp-value">${escapeHtml(f.mh || '—')}</div></div>
+      <div class="rp-cell"><div class="rp-label">Datum opravy</div><div class="rp-value">${escapeHtml(formatDateTime(f.repairedAt || f.updatedAt) || '—')}</div></div>
+      <div class="rp-cell"><div class="rp-label">Stav</div><div class="rp-value">${escapeHtml(state)}</div></div>
+      <div class="rp-cell"><div class="rp-label">Schopné provozu</div><div class="rp-value">${faultIsRepaired(f) ? 'ANO' : 'NE'}</div></div>
+    </div>
+    <div class="rp-label">Popis původní závady</div>
+    <div class="rp-box">${escapeHtml(f.description || '—')}</div>
+    ${photoHtml ? `<div class="rp-label" style="margin-top:12px">Fotodokumentace</div>${photoHtml}` : ''}
+    <div class="rp-sign">
+      <div>Opravu / stav ověřil</div>
+      <div>Převzal</div>
+    </div>
+  </div>
+  </body></html>`;
+  const w = window.open('', '_blank');
+  if(!w){ alert('Prohlížeč zablokoval otevření protokolu.'); return; }
+  const style = Array.from(document.querySelectorAll('style')).map(s => s.innerHTML).join('\n');
+  w.document.open();
+  w.document.write(html.replace('</head>', `<style>${style}</style></head>`));
+  w.document.close();
+  setTimeout(() => { try { w.focus(); w.print(); } catch(e){} }, 400);
 }
 async function markFaultWaitingParts(id){
   const f = (faultsData || []).find(x => x.id === id);
   if(!f) return;
-  f.status = 'waiting_parts';
+  if(faultIsRepaired(f)) return;
+  f.waitingParts = true;
+  f.status = 'open';
   f.waitingPartsAt = new Date().toISOString();
   await saveFaultRecord(f);
 }
@@ -3529,14 +3649,19 @@ function createPartFromFault(id){
       }
     }
   }, 50);
-  f.status = 'waiting_parts';
-  f.waitingPartsAt = new Date().toISOString();
-  saveFaultRecord(f);
+  if(!faultIsRepaired(f)){
+    f.waitingParts = true;
+    f.status = 'open';
+    f.waitingPartsAt = new Date().toISOString();
+    saveFaultRecord(f);
+  }
 }
 async function markFaultService(id){
   const f = (faultsData || []).find(x => x.id === id);
   if(!f) return;
-  f.status = 'service';
+  if(faultIsRepaired(f)) return;
+  f.inService = true;
+  f.status = 'open';
   f.serviceAt = new Date().toISOString();
   await saveFaultRecord(f);
 }
@@ -3544,8 +3669,12 @@ async function markFaultRepaired(id){
   const f = (faultsData || []).find(x => x.id === id);
   if(!f) return;
   f.status = 'repaired';
+  f.repaired = true;
+  f.inService = false;
+  f.waitingParts = false;
   f.repairedAt = new Date().toISOString();
   await saveFaultRecord(f);
+  setTimeout(() => printRepairProtocol(id), 150);
 }
 function updateMainOverview(){
   renderHomeOverview();
@@ -3567,9 +3696,9 @@ function updateMainOverview(){
   set('dashPartsOpen', (partsData || []).filter(p => !p.ordered && !p.sent).length);
   set('dashPartsOrdered', (partsData || []).filter(p => p.ordered && !p.sent).length);
   set('dashPartsSent', (partsData || []).filter(p => p.sent).length);
-  set('dashFaultsOpen', (faultsData || []).filter(f => !f.status || f.status === 'open').length);
-  set('dashFaultsService', (faultsData || []).filter(f => f.status === 'service' || f.status === 'waiting_parts').length);
-  set('dashFaultsRepaired', (faultsData || []).filter(f => f.status === 'repaired').length);
+  set('dashFaultsOpen', (faultsData || []).filter(f => !faultIsRepaired(f) && !faultInService(f) && !faultWaitingParts(f)).length);
+  set('dashFaultsService', (faultsData || []).filter(f => faultInService(f) || faultWaitingParts(f)).length);
+  set('dashFaultsRepaired', (faultsData || []).filter(f => faultIsRepaired(f)).length);
   renderAttentionList();
 }
 function showProtocolsSection(){
@@ -3728,7 +3857,7 @@ async function savePartFromForm(){
     partNumber,
     partName: document.getElementById('partName').value.trim(),
     note: document.getElementById('partNote').value.trim(),
-    appVersion:'1.5 / 5.42'
+    appVersion:'1.5 / 5.43'
   });
   if(currentPartPhoto) record.photo = currentPartPhoto;
   if(!record.createdAt) record.createdAt = new Date().toISOString();

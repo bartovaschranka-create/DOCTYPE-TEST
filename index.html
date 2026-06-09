@@ -636,7 +636,7 @@ header .header-sub{
 }
 
 
-/* v1.6 / 5.55 plan práce */
+/* v1.6 / 5.56 plan práce */
 .work-plan-modal{width:min(96vw,1180px)!important}
 .work-plan-toolbar{display:flex;gap:8px;flex-wrap:wrap;margin:8px 0 12px}
 .work-plan-title{font-weight:800;margin:8px 0 12px;color:var(--text)}
@@ -662,7 +662,7 @@ body.dark .work-plan-form{background:var(--panel2)}
 @media print{#workPlanModal{display:none!important}}
 
 
-/* v1.6 / 5.55 main dashboard + náhradní díly */
+/* v1.6 / 5.56 main dashboard + náhradní díly */
 .main-overview{margin-bottom:18px}
 .overview-head{background:var(--panel);border:1px solid rgba(219,230,242,.8);border-radius:var(--radius);box-shadow:var(--shadow);padding:18px;margin-bottom:14px}
 .overview-head h1{margin:0 0 5px;font-size:1.35rem}
@@ -702,7 +702,7 @@ body.dark .part-card{background:var(--panel2)}
 @media print{#partsModal{display:none!important}.main-overview{display:none!important}}
 
 
-/* v1.6 / 5.55 koncept 5 */
+/* v1.6 / 5.56 koncept 5 */
 .page-section{display:none}
 .page-section.active{display:block}
 .page-title-row{display:flex;justify-content:space-between;align-items:flex-start;gap:14px;margin:6px 0 16px}
@@ -722,6 +722,10 @@ body.dark .part-card{background:var(--panel2)}
 .week-pill.active{border-color:#3b82f6;background:#eff6ff;color:#1d4ed8}
 body.dark .week-pill.active{background:rgba(37,99,235,.18);color:#bfdbfe}
 .calendar-mini-list{display:grid;gap:9px}
+.today-only-wrap{display:grid;gap:12px}
+.today-plan-note{padding:10px 12px;border-radius:14px;background:var(--panel2);border:1px solid var(--line);font-size:.86rem;color:var(--muted)}
+.today-tech-list{display:grid;gap:10px}
+.day-row{border-left-width:7px!important}
 .day-row{display:grid;grid-template-columns:210px 1fr;gap:10px;align-items:center;padding:10px 12px;border:1px solid var(--line);border-radius:14px;background:var(--panel2)}
 .day-tech{display:flex;align-items:center;gap:10px;font-weight:700}
 .tech-dot{width:10px;height:10px;border-radius:999px;flex:0 0 10px}
@@ -761,7 +765,7 @@ body .main-overview,body .dashboard{display:none!important}
 @media print{.page-section{display:block!important}.home-page,.plan-page,.parts-page{display:none!important}}
 
 
-/* v1.6 / 5.55 sjednocení písma ve všech formulářích */
+/* v1.6 / 5.56 sjednocení písma ve všech formulářích */
 input,
 select,
 textarea,
@@ -794,7 +798,7 @@ datalist {
 }
 
 
-/* v1.6 / 5.55 – sjednocení písma u datumových polí */
+/* v1.6 / 5.56 – sjednocení písma u datumových polí */
 input[type="date"],
 input[type="datetime-local"],
 input[type="time"]{
@@ -819,7 +823,7 @@ input[type="datetime-local"]::-webkit-calendar-picker-indicator{
 }
 
 
-/* v1.6 / 5.55 – hlášení poruch */
+/* v1.6 / 5.56 – hlášení poruch */
 .home-summary-grid{grid-template-columns:repeat(4,1fr)}
 .summary-box.summary-faults{border-top:4px solid #dc2626}
 .faults-page .inline-page-shell{padding:18px}
@@ -848,7 +852,7 @@ body.dark .fault-card{background:var(--panel2)}
 @media print{#section-faults{display:none!important}}
 
 
-/* v1.6 / 5.55 – stav stroje, karta stroje, pozornost */
+/* v1.6 / 5.56 – stav stroje, karta stroje, pozornost */
 .attention-panel{margin-top:16px;background:var(--panel);border:1px solid rgba(219,230,242,.85);border-radius:22px;box-shadow:var(--shadow);padding:18px}
 .attention-head{display:flex;justify-content:space-between;align-items:flex-start;gap:12px;margin-bottom:10px}
 .attention-list{display:grid;gap:8px}
@@ -866,7 +870,7 @@ body.dark .fault-card{background:var(--panel2)}
 .machine-card-row:first-child{border-top:none;padding-top:0}
 
 
-/* v1.6 / 5.55 – svátky a jmeniny na hlavní stránce */
+/* v1.6 / 5.56 – svátky a jmeniny na hlavní stránce */
 .top-date-stack{
   display:grid;
   gap:8px;
@@ -893,7 +897,7 @@ body.dark .fault-card{background:var(--panel2)}
 }
 
 
-/* v1.6 / 5.55 – více stavů poruchy a protokol po opravě */
+/* v1.6 / 5.56 – více stavů poruchy a protokol po opravě */
 .fault-status-row{
   display:flex;
   gap:6px;
@@ -951,7 +955,7 @@ body.dark .fault-card{background:var(--panel2)}
 }
 
 
-/* v1.6 / 5.55 – protokol po opravě bez automatického tisku */
+/* v1.6 / 5.56 – protokol po opravě bez automatického tisku */
 .repair-protocol-toolbar{
   position:sticky;
   top:0;
@@ -973,7 +977,7 @@ body.dark .fault-card{background:var(--panel2)}
 }
 
 
-/* v1.6 / 5.55 – fonty, plán práce více míst, menu */
+/* v1.6 / 5.56 – fonty, plán práce více míst, menu */
 html, body, input, select, textarea, button, option {
   font-family: Inter, "Segoe UI", Arial, sans-serif !important;
 }
@@ -1012,7 +1016,7 @@ body.dark .work-extra-add{background:#0f172a;color:var(--text);border-color:var(
 }
 
 
-/* v1.6 / 5.55 – Vyžaduje pozornost / 48 hodin bez víkendu */
+/* v1.6 / 5.56 – Vyžaduje pozornost / 48 hodin bez víkendu */
 .attention-board{
   margin-top:18px;
   background:linear-gradient(180deg,#ffffff 0%,#f8fafc 100%);
@@ -1168,7 +1172,7 @@ html[data-theme="dark"] .attention-rich-sub, body.dark .attention-rich-sub{
 }
 
 
-/* v1.6 / 5.55 – provozní doladění */
+/* v1.6 / 5.56 – provozní doladění */
 .backup-row{
   padding:12px;
   border:1px solid #bfdbfe;
@@ -1218,7 +1222,7 @@ body.dark .mobile-tech-panel{
 }
 
 
-/* v1.6 / 5.55 – jasné označení čtvrtletních kontrol */
+/* v1.6 / 5.56 – jasné označení čtvrtletních kontrol */
 .module-kicker{
   display:inline-flex;
   width:max-content;
@@ -1273,7 +1277,7 @@ body.dark .module-kicker{
     <button type="button" class="side-small" id="sideThemeBtn">Tmavý / světlý režim</button>
     <button type="button" class="side-small" onclick="exportBackup()">Export zálohy</button>
     <button type="button" class="side-small" id="sideImportBtn">Import zálohy</button>
-    <div class="side-version">Vlastník/Admin: Jan Bartoš<br>Verze: 1.6 / 5.55</div>
+    <div class="side-version">Vlastník/Admin: Jan Bartoš<br>Verze: 1.6 / 5.56</div>
   </div>
 </aside>
 
@@ -1307,9 +1311,9 @@ body.dark .module-kicker{
           </div>
           <button class="secondary mini" type="button" id="homeOpenWeekPlanBtn">Celý týden</button>
         </div>
-        <div class="calendar-mini-wrap">
-          <div class="calendar-week-strip" id="homeWeekStrip"></div>
-          <div class="calendar-mini-list" id="homeDayList"></div>
+        <div class="calendar-mini-wrap today-only-wrap">
+          <div class="today-plan-note" id="homeTodayPlanNote">Denní pohled – podrobný týden je v Plánu práce.</div>
+          <div class="calendar-mini-list today-tech-list" id="homeDayList"></div>
         </div>
       </div>
     </div>
@@ -2432,10 +2436,10 @@ function openModal(el){ el.classList.add('show'); }
 function closeModal(el){ el.classList.remove('show'); }
 
 function openWizard(editId=null, prefill={}){
-  rec = editId ? JSON.parse(JSON.stringify(data.find(r=>r.id===editId) || {id:uid()})) : {id:uid(), cLogic:'legacy', appVersion:'1.6 / 5.55'};
+  rec = editId ? JSON.parse(JSON.stringify(data.find(r=>r.id===editId) || {id:uid()})) : {id:uid(), cLogic:'legacy', appVersion:'1.6 / 5.56'};
   rec = Object.assign({}, rec, prefill || {});
   if(!editId && !rec.cLogic) rec.cLogic = 'legacy';
-  if(!editId && !rec.appVersion) rec.appVersion = '1.6 / 5.55';
+  if(!editId && !rec.appVersion) rec.appVersion = '1.6 / 5.56';
 
   // 🔥 AUTO DOPLNĚNÍ Z HISTORIE PODLE VÝROBNÍHO ČÍSLA
   if(rec.vc){
@@ -2807,7 +2811,7 @@ async function nextStep(){
   const okSave = confirm('Chceš protokol uložit?');
   if(!okSave) return;
   if(!rec.cLogic) rec.cLogic = 'legacy';
-  if(!rec.appVersion) rec.appVersion = '1.6 / 5.55';
+  if(!rec.appVersion) rec.appVersion = '1.6 / 5.56';
   rec.savedAt = new Date().toISOString();
   await saveProtocol(rec);
   closeWizard();
@@ -3761,7 +3765,7 @@ async function saveWorkPlanFromForm(){
     place,
     extraPlaces,
     note,
-    appVersion:'1.6 / 5.55'
+    appVersion:'1.6 / 5.56'
   });
   if(!record.createdAt) record.createdAt = new Date().toISOString();
   await saveWorkPlan(record);
@@ -3795,6 +3799,17 @@ function colorForTechnician(name){
   const colors = ['#2563eb','#16a34a','#7c3aed','#f59e0b','#06b6d4','#ef4444','#84cc16','#ec4899'];
   const idx = Math.abs(String(name||'').split('').reduce((a,c)=>a+c.charCodeAt(0),0)) % colors.length;
   return colors[idx];
+}
+
+function hexToRgba(hex, alpha){
+  const clean = String(hex || '#2563eb').replace('#','');
+  const full = clean.length === 3 ? clean.split('').map(ch => ch + ch).join('') : clean;
+  const num = parseInt(full, 16);
+  if(Number.isNaN(num)) return `rgba(37,99,235,${alpha})`;
+  const r = (num >> 16) & 255;
+  const g = (num >> 8) & 255;
+  const b = num & 255;
+  return `rgba(${r},${g},${b},${alpha})`;
 }
 
 const CZECH_NAMEDAYS = {
@@ -3857,28 +3872,28 @@ function renderHomeOverview(){
   const title = document.getElementById('homeDayTitle');
   const topLabel = document.getElementById('homeTopDateLabel');
   const list = document.getElementById('homeDayList');
-  const strip = document.getElementById('homeWeekStrip');
   const nameBox = document.getElementById('homeNameDayBox');
-  if(!title || !list || !strip) return;
+  const note = document.getElementById('homeTodayPlanNote');
+  if(!title || !list) return;
   currentHomeDate = new Date();
   const todayDate = new Date();
   const todayYmd = ymd(todayDate);
   title.textContent = formatHumanDate(todayDate);
   if(topLabel) topLabel.textContent = formatHumanDate(todayDate);
   if(nameBox) nameBox.innerHTML = '<strong>Dnes má svátek:</strong> ' + escapeHtml(getLightHolidayText(todayDate));
-  const start = startOfWeek(todayDate);
-  strip.innerHTML = Array.from({length:7}).map((_,i)=>{
-    const d = addDays(start,i);
-    const ds = ymd(d);
-    const dayRows = (scheduleData || []).filter(r => r.date === ds);
-    const isToday = ds === todayYmd;
-    const count = dayRows.length;
-    return `<div class="week-pill ${isToday?'today active':''}"><div>${d.toLocaleDateString('cs-CZ',{weekday:'short'})}</div><strong>${d.getDate()}.</strong>${count ? `<small>${count}× plán</small>` : ''}</div>`;
-  }).join('');
+
+  const todaysRows = (scheduleData || []).filter(r => r.date === todayYmd);
   const activeRows = TECHNICI.map(name => ({
     name,
-    items:(scheduleData||[]).filter(r => r.date === todayYmd && r.technician === name)
+    items: todaysRows.filter(r => r.technician === name)
   })).filter(r => r.items.length);
+
+  if(note){
+    note.innerHTML = activeRows.length
+      ? `Dnes je v plánu <strong>${activeRows.length}</strong> technik${activeRows.length === 1 ? '' : activeRows.length < 5 ? 'ové' : 'ů'} / <strong>${todaysRows.length}</strong> záznam${todaysRows.length === 1 ? '' : todaysRows.length < 5 ? 'y' : 'ů'}.`
+      : 'Dnes zatím není zadaný žádný plán práce.';
+  }
+
   if(!activeRows.length){
     list.innerHTML = '<div class="day-empty">Na dnešek zatím není zadaný žádný plán práce.</div>';
   } else {
@@ -3886,10 +3901,11 @@ function renderHomeOverview(){
       const color = colorForTechnician(row.name);
       const places = row.items.flatMap(it => getWorkPlanPlaces(it)).filter(Boolean);
       const notes = row.items.map(it => it.note).filter(Boolean);
-      return `<div class="day-row today-focus"><div class="day-tech"><span class="tech-dot" style="background:${color}"></span>${escapeHtml(row.name)}</div><div class="day-place"><div class="day-place-main">${places.map(p => `<span class="place-pill">${escapeHtml(p)}</span>`).join('')}</div>${notes.length ? `<div class="day-place-muted">${notes.map(n => escapeHtml(n)).join(' · ')}</div>` : ''}</div></div>`;
+      return `<div class="day-row today-focus" style="--tech-color:${color};border-left-color:${color};background:linear-gradient(90deg, ${hexToRgba(color,.12)} 0%, var(--panel2) 72%);"><div class="day-tech"><span class="tech-dot" style="background:${color}"></span>${escapeHtml(row.name)}</div><div class="day-place"><div class="day-place-main">${places.map(p => `<span class="place-pill" style="border-color:${hexToRgba(color,.38)}">${escapeHtml(p)}</span>`).join('')}</div>${notes.length ? `<div class="day-place-muted">${notes.map(n => escapeHtml(n)).join(' · ')}</div>` : ''}</div></div>`;
     }).join('');
   }
 }
+
 
 function faultUid(){ return 'porucha_' + Date.now() + '_' + Math.random().toString(36).slice(2,8); }
 function loadLocalFaults(){ try { return JSON.parse(localStorage.getItem('liftcheck_faults_local') || '[]'); } catch(e) { return []; } }
@@ -4113,7 +4129,7 @@ async function saveFaultFromForm(){
     inService: status === 'service' ? true : (existing ? !!existing.inService : false),
     waitingParts: status === 'waiting_parts' ? true : (existing ? !!existing.waitingParts : false),
     photos: currentFaultPhotos,
-    appVersion:'1.6 / 5.55'
+    appVersion:'1.6 / 5.56'
   });
   if(!record.createdAt) record.createdAt = new Date().toISOString();
   if(status === 'repaired'){
@@ -4226,7 +4242,7 @@ function printRepairProtocol(id){
   const style = Array.from(document.querySelectorAll('style')).map(s => s.innerHTML).join('\n');
   w.document.open();
   w.document.write(html.replace('</head>', `<style>${style}
-/* v1.6 / 5.55 – fonty, plán práce více míst, menu */
+/* v1.6 / 5.56 – fonty, plán práce více míst, menu */
 html, body, input, select, textarea, button, option {
   font-family: Inter, "Segoe UI", Arial, sans-serif !important;
 }
@@ -4253,7 +4269,7 @@ input, select, textarea, button,
 }
 
 
-/* v1.6 / 5.55 – provozní doladění */
+/* v1.6 / 5.56 – provozní doladění */
 .backup-row{
   padding:12px;
   border:1px solid #bfdbfe;
@@ -4303,7 +4319,7 @@ body.dark .mobile-tech-panel{
 }
 
 
-/* v1.6 / 5.55 – jasné označení čtvrtletních kontrol */
+/* v1.6 / 5.56 – jasné označení čtvrtletních kontrol */
 .module-kicker{
   display:inline-flex;
   width:max-content;
@@ -4572,7 +4588,7 @@ async function savePartFromForm(){
     partNumber,
     partName: document.getElementById('partName').value.trim(),
     note: document.getElementById('partNote').value.trim(),
-    appVersion:'1.6 / 5.55'
+    appVersion:'1.6 / 5.56'
   });
   if(currentPartPhoto) record.photo = currentPartPhoto;
   if(!record.createdAt) record.createdAt = new Date().toISOString();

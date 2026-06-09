@@ -636,7 +636,7 @@ header .header-sub{
 }
 
 
-/* v1.5 / 5.46 plan práce */
+/* v1.5 / 5.47 plan práce */
 .work-plan-modal{width:min(96vw,1180px)!important}
 .work-plan-toolbar{display:flex;gap:8px;flex-wrap:wrap;margin:8px 0 12px}
 .work-plan-title{font-weight:800;margin:8px 0 12px;color:var(--text)}
@@ -662,7 +662,7 @@ body.dark .work-plan-form{background:var(--panel2)}
 @media print{#workPlanModal{display:none!important}}
 
 
-/* v1.5 / 5.46 main dashboard + náhradní díly */
+/* v1.5 / 5.47 main dashboard + náhradní díly */
 .main-overview{margin-bottom:18px}
 .overview-head{background:var(--panel);border:1px solid rgba(219,230,242,.8);border-radius:var(--radius);box-shadow:var(--shadow);padding:18px;margin-bottom:14px}
 .overview-head h1{margin:0 0 5px;font-size:1.35rem}
@@ -702,7 +702,7 @@ body.dark .part-card{background:var(--panel2)}
 @media print{#partsModal{display:none!important}.main-overview{display:none!important}}
 
 
-/* v1.5 / 5.46 koncept 5 */
+/* v1.5 / 5.47 koncept 5 */
 .page-section{display:none}
 .page-section.active{display:block}
 .page-title-row{display:flex;justify-content:space-between;align-items:flex-start;gap:14px;margin:6px 0 16px}
@@ -755,7 +755,7 @@ body .main-overview,body .dashboard{display:none!important}
 @media print{.page-section{display:block!important}.home-page,.plan-page,.parts-page{display:none!important}}
 
 
-/* v1.5 / 5.46 sjednocení písma ve všech formulářích */
+/* v1.5 / 5.47 sjednocení písma ve všech formulářích */
 input,
 select,
 textarea,
@@ -788,7 +788,7 @@ datalist {
 }
 
 
-/* v1.5 / 5.46 – sjednocení písma u datumových polí */
+/* v1.5 / 5.47 – sjednocení písma u datumových polí */
 input[type="date"],
 input[type="datetime-local"],
 input[type="time"]{
@@ -813,7 +813,7 @@ input[type="datetime-local"]::-webkit-calendar-picker-indicator{
 }
 
 
-/* v1.5 / 5.46 – hlášení poruch */
+/* v1.5 / 5.47 – hlášení poruch */
 .home-summary-grid{grid-template-columns:repeat(4,1fr)}
 .summary-box.summary-faults{border-top:4px solid #dc2626}
 .faults-page .inline-page-shell{padding:18px}
@@ -842,7 +842,7 @@ body.dark .fault-card{background:var(--panel2)}
 @media print{#section-faults{display:none!important}}
 
 
-/* v1.5 / 5.46 – stav stroje, karta stroje, pozornost */
+/* v1.5 / 5.47 – stav stroje, karta stroje, pozornost */
 .attention-panel{margin-top:16px;background:var(--panel);border:1px solid rgba(219,230,242,.85);border-radius:22px;box-shadow:var(--shadow);padding:18px}
 .attention-head{display:flex;justify-content:space-between;align-items:flex-start;gap:12px;margin-bottom:10px}
 .attention-list{display:grid;gap:8px}
@@ -860,7 +860,7 @@ body.dark .fault-card{background:var(--panel2)}
 .machine-card-row:first-child{border-top:none;padding-top:0}
 
 
-/* v1.5 / 5.46 – svátky a jmeniny na hlavní stránce */
+/* v1.5 / 5.47 – svátky a jmeniny na hlavní stránce */
 .top-date-stack{
   display:grid;
   gap:8px;
@@ -887,7 +887,7 @@ body.dark .fault-card{background:var(--panel2)}
 }
 
 
-/* v1.5 / 5.46 – více stavů poruchy a protokol po opravě */
+/* v1.5 / 5.47 – více stavů poruchy a protokol po opravě */
 .fault-status-row{
   display:flex;
   gap:6px;
@@ -945,7 +945,7 @@ body.dark .fault-card{background:var(--panel2)}
 }
 
 
-/* v1.5 / 5.46 – protokol po opravě bez automatického tisku */
+/* v1.5 / 5.47 – protokol po opravě bez automatického tisku */
 .repair-protocol-toolbar{
   position:sticky;
   top:0;
@@ -967,7 +967,7 @@ body.dark .fault-card{background:var(--panel2)}
 }
 
 
-/* v1.5 / 5.46 – fonty, plán práce více míst, menu */
+/* v1.5 / 5.47 – fonty, plán práce více míst, menu */
 html, body, input, select, textarea, button, option {
   font-family: Inter, "Segoe UI", Arial, sans-serif !important;
 }
@@ -1024,7 +1024,7 @@ input, select, textarea, button,
     <button type="button" class="side-small" id="sideThemeBtn">Tmavý / světlý režim</button>
     <button type="button" class="side-small" onclick="exportBackup()">Export zálohy</button>
     <button type="button" class="side-small" id="sideImportBtn">Import zálohy</button>
-    <div class="side-version">Vlastník/Admin: Jan Bartoš<br>Verze: 1.5 / 5.46</div>
+    <div class="side-version">Vlastník/Admin: Jan Bartoš<br>Verze: 1.5 / 5.47</div>
   </div>
 </aside>
 
@@ -1081,17 +1081,7 @@ input, select, textarea, button,
         <div class="summary-box-lines"><div><b id="dashFaultsService">0</b> do servisu</div><div><b id="dashFaultsRepaired">0</b> opraveno</div></div>
       </div>
     </div>
-
-    <div class="attention-panel">
-      <div class="attention-head">
-        <div>
-          <div class="card-title">Vyžaduje pozornost</div>
-          <div class="card-sub">Automaticky z kontrol, poruch a náhradních dílů.</div>
-        </div>
-      </div>
-      <div id="attentionList" class="attention-list"></div>
-    </div>
-  </section>
+</section>
 
   <section id="section-archive" class="page-section archive-page">
     <div class="page-title-row">
@@ -2110,10 +2100,10 @@ function openModal(el){ el.classList.add('show'); }
 function closeModal(el){ el.classList.remove('show'); }
 
 function openWizard(editId=null, prefill={}){
-  rec = editId ? JSON.parse(JSON.stringify(data.find(r=>r.id===editId) || {id:uid()})) : {id:uid(), cLogic:'legacy', appVersion:'1.5 / 5.46'};
+  rec = editId ? JSON.parse(JSON.stringify(data.find(r=>r.id===editId) || {id:uid()})) : {id:uid(), cLogic:'legacy', appVersion:'1.5 / 5.47'};
   rec = Object.assign({}, rec, prefill || {});
   if(!editId && !rec.cLogic) rec.cLogic = 'legacy';
-  if(!editId && !rec.appVersion) rec.appVersion = '1.5 / 5.46';
+  if(!editId && !rec.appVersion) rec.appVersion = '1.5 / 5.47';
 
   // 🔥 AUTO DOPLNĚNÍ Z HISTORIE PODLE VÝROBNÍHO ČÍSLA
   if(rec.vc){
@@ -2485,7 +2475,7 @@ async function nextStep(){
   const okSave = confirm('Chceš protokol uložit?');
   if(!okSave) return;
   if(!rec.cLogic) rec.cLogic = 'legacy';
-  if(!rec.appVersion) rec.appVersion = '1.5 / 5.46';
+  if(!rec.appVersion) rec.appVersion = '1.5 / 5.47';
   rec.savedAt = new Date().toISOString();
   await saveProtocol(rec);
   closeWizard();
@@ -3260,7 +3250,7 @@ async function saveWorkPlanFromForm(){
     place,
     extraPlaces,
     note,
-    appVersion:'1.5 / 5.46'
+    appVersion:'1.5 / 5.47'
   });
   if(!record.createdAt) record.createdAt = new Date().toISOString();
   await saveWorkPlan(record);
@@ -3603,7 +3593,7 @@ async function saveFaultFromForm(){
     description,
     status,
     photos: currentFaultPhotos,
-    appVersion:'1.5 / 5.46'
+    appVersion:'1.5 / 5.47'
   });
   if(!record.createdAt) record.createdAt = new Date().toISOString();
   if(status === 'repaired' && !record.repairedAt) record.repairedAt = new Date().toISOString();
@@ -3706,7 +3696,7 @@ function printRepairProtocol(id){
   const style = Array.from(document.querySelectorAll('style')).map(s => s.innerHTML).join('\n');
   w.document.open();
   w.document.write(html.replace('</head>', `<style>${style}
-/* v1.5 / 5.46 – fonty, plán práce více míst, menu */
+/* v1.5 / 5.47 – fonty, plán práce více míst, menu */
 html, body, input, select, textarea, button, option {
   font-family: Inter, "Segoe UI", Arial, sans-serif !important;
 }
@@ -3975,7 +3965,7 @@ async function savePartFromForm(){
     partNumber,
     partName: document.getElementById('partName').value.trim(),
     note: document.getElementById('partNote').value.trim(),
-    appVersion:'1.5 / 5.46'
+    appVersion:'1.5 / 5.47'
   });
   if(currentPartPhoto) record.photo = currentPartPhoto;
   if(!record.createdAt) record.createdAt = new Date().toISOString();

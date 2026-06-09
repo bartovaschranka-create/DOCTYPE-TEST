@@ -636,7 +636,7 @@ header .header-sub{
 }
 
 
-/* v1.6 / 5.54 plan práce */
+/* v1.6 / 5.55 plan práce */
 .work-plan-modal{width:min(96vw,1180px)!important}
 .work-plan-toolbar{display:flex;gap:8px;flex-wrap:wrap;margin:8px 0 12px}
 .work-plan-title{font-weight:800;margin:8px 0 12px;color:var(--text)}
@@ -662,7 +662,7 @@ body.dark .work-plan-form{background:var(--panel2)}
 @media print{#workPlanModal{display:none!important}}
 
 
-/* v1.6 / 5.54 main dashboard + náhradní díly */
+/* v1.6 / 5.55 main dashboard + náhradní díly */
 .main-overview{margin-bottom:18px}
 .overview-head{background:var(--panel);border:1px solid rgba(219,230,242,.8);border-radius:var(--radius);box-shadow:var(--shadow);padding:18px;margin-bottom:14px}
 .overview-head h1{margin:0 0 5px;font-size:1.35rem}
@@ -702,7 +702,7 @@ body.dark .part-card{background:var(--panel2)}
 @media print{#partsModal{display:none!important}.main-overview{display:none!important}}
 
 
-/* v1.6 / 5.54 koncept 5 */
+/* v1.6 / 5.55 koncept 5 */
 .page-section{display:none}
 .page-section.active{display:block}
 .page-title-row{display:flex;justify-content:space-between;align-items:flex-start;gap:14px;margin:6px 0 16px}
@@ -728,6 +728,12 @@ body.dark .week-pill.active{background:rgba(37,99,235,.18);color:#bfdbfe}
 .day-place{display:flex;flex-wrap:wrap;gap:8px}
 .place-pill{display:inline-flex;align-items:center;padding:6px 10px;border-radius:999px;background:#f8fafc;border:1px solid var(--line);font-size:.83rem}
 body.dark .place-pill{background:rgba(255,255,255,.04)}
+.week-pill.today{border-color:#16a34a;background:#ecfdf5;color:#166534;box-shadow:0 0 0 2px rgba(22,163,74,.08) inset}
+body.dark .week-pill.today{background:rgba(22,163,74,.18);color:#bbf7d0;border-color:#22c55e}
+.day-row.today-focus{border-color:#16a34a;background:#f0fdf4}
+body.dark .day-row.today-focus{background:rgba(22,163,74,.1);border-color:#22c55e}
+.day-place-main{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+.day-place-muted{font-size:.78rem;color:var(--muted);margin-top:5px}
 .day-empty{padding:16px;border:1px dashed var(--line);border-radius:14px;color:var(--muted);text-align:center}
 .home-summary-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
 .summary-box{background:var(--panel);border:1px solid rgba(219,230,242,.85);border-radius:20px;box-shadow:var(--shadow);padding:16px;display:grid;gap:8px;cursor:pointer}
@@ -755,7 +761,7 @@ body .main-overview,body .dashboard{display:none!important}
 @media print{.page-section{display:block!important}.home-page,.plan-page,.parts-page{display:none!important}}
 
 
-/* v1.6 / 5.54 sjednocení písma ve všech formulářích */
+/* v1.6 / 5.55 sjednocení písma ve všech formulářích */
 input,
 select,
 textarea,
@@ -788,7 +794,7 @@ datalist {
 }
 
 
-/* v1.6 / 5.54 – sjednocení písma u datumových polí */
+/* v1.6 / 5.55 – sjednocení písma u datumových polí */
 input[type="date"],
 input[type="datetime-local"],
 input[type="time"]{
@@ -813,7 +819,7 @@ input[type="datetime-local"]::-webkit-calendar-picker-indicator{
 }
 
 
-/* v1.6 / 5.54 – hlášení poruch */
+/* v1.6 / 5.55 – hlášení poruch */
 .home-summary-grid{grid-template-columns:repeat(4,1fr)}
 .summary-box.summary-faults{border-top:4px solid #dc2626}
 .faults-page .inline-page-shell{padding:18px}
@@ -842,7 +848,7 @@ body.dark .fault-card{background:var(--panel2)}
 @media print{#section-faults{display:none!important}}
 
 
-/* v1.6 / 5.54 – stav stroje, karta stroje, pozornost */
+/* v1.6 / 5.55 – stav stroje, karta stroje, pozornost */
 .attention-panel{margin-top:16px;background:var(--panel);border:1px solid rgba(219,230,242,.85);border-radius:22px;box-shadow:var(--shadow);padding:18px}
 .attention-head{display:flex;justify-content:space-between;align-items:flex-start;gap:12px;margin-bottom:10px}
 .attention-list{display:grid;gap:8px}
@@ -860,7 +866,7 @@ body.dark .fault-card{background:var(--panel2)}
 .machine-card-row:first-child{border-top:none;padding-top:0}
 
 
-/* v1.6 / 5.54 – svátky a jmeniny na hlavní stránce */
+/* v1.6 / 5.55 – svátky a jmeniny na hlavní stránce */
 .top-date-stack{
   display:grid;
   gap:8px;
@@ -887,7 +893,7 @@ body.dark .fault-card{background:var(--panel2)}
 }
 
 
-/* v1.6 / 5.54 – více stavů poruchy a protokol po opravě */
+/* v1.6 / 5.55 – více stavů poruchy a protokol po opravě */
 .fault-status-row{
   display:flex;
   gap:6px;
@@ -945,7 +951,7 @@ body.dark .fault-card{background:var(--panel2)}
 }
 
 
-/* v1.6 / 5.54 – protokol po opravě bez automatického tisku */
+/* v1.6 / 5.55 – protokol po opravě bez automatického tisku */
 .repair-protocol-toolbar{
   position:sticky;
   top:0;
@@ -967,7 +973,7 @@ body.dark .fault-card{background:var(--panel2)}
 }
 
 
-/* v1.6 / 5.54 – fonty, plán práce více míst, menu */
+/* v1.6 / 5.55 – fonty, plán práce více míst, menu */
 html, body, input, select, textarea, button, option {
   font-family: Inter, "Segoe UI", Arial, sans-serif !important;
 }
@@ -1006,7 +1012,7 @@ body.dark .work-extra-add{background:#0f172a;color:var(--text);border-color:var(
 }
 
 
-/* v1.6 / 5.54 – Vyžaduje pozornost / 48 hodin bez víkendu */
+/* v1.6 / 5.55 – Vyžaduje pozornost / 48 hodin bez víkendu */
 .attention-board{
   margin-top:18px;
   background:linear-gradient(180deg,#ffffff 0%,#f8fafc 100%);
@@ -1162,7 +1168,7 @@ html[data-theme="dark"] .attention-rich-sub, body.dark .attention-rich-sub{
 }
 
 
-/* v1.6 / 5.54 – provozní doladění */
+/* v1.6 / 5.55 – provozní doladění */
 .backup-row{
   padding:12px;
   border:1px solid #bfdbfe;
@@ -1212,7 +1218,7 @@ body.dark .mobile-tech-panel{
 }
 
 
-/* v1.6 / 5.54 – jasné označení čtvrtletních kontrol */
+/* v1.6 / 5.55 – jasné označení čtvrtletních kontrol */
 .module-kicker{
   display:inline-flex;
   width:max-content;
@@ -1267,7 +1273,7 @@ body.dark .module-kicker{
     <button type="button" class="side-small" id="sideThemeBtn">Tmavý / světlý režim</button>
     <button type="button" class="side-small" onclick="exportBackup()">Export zálohy</button>
     <button type="button" class="side-small" id="sideImportBtn">Import zálohy</button>
-    <div class="side-version">Vlastník/Admin: Jan Bartoš<br>Verze: 1.6 / 5.54</div>
+    <div class="side-version">Vlastník/Admin: Jan Bartoš<br>Verze: 1.6 / 5.55</div>
   </div>
 </aside>
 
@@ -1295,9 +1301,11 @@ body.dark .module-kicker{
       </div>
       <div class="day-calendar-card">
         <div class="calendar-head">
-          <button class="secondary mini" type="button" id="homePrevDayBtn">‹</button>
-          <div class="calendar-head-title" id="homeDayTitle">—</div>
-          <button class="secondary mini" type="button" id="homeNextDayBtn">›</button>
+          <div>
+            <div class="module-kicker">DNEŠNÍ PLÁN PRÁCE</div>
+            <div class="calendar-head-title" id="homeDayTitle">—</div>
+          </div>
+          <button class="secondary mini" type="button" id="homeOpenWeekPlanBtn">Celý týden</button>
         </div>
         <div class="calendar-mini-wrap">
           <div class="calendar-week-strip" id="homeWeekStrip"></div>
@@ -1446,11 +1454,11 @@ body.dark .module-kicker{
       </div>
       <div class="field hidden" id="workPlanCustomWrap">
         <label>Jiné místo</label>
-        <input id="workPlanCustomPlace" type="text" placeholder="Zákazník, stavba, servis mimo pobočku...">
+        <input id="workPlanCustomPlace" type="text" list="workPlanPlaceList" placeholder="Zákazník, stavba, servis mimo pobočku...">
       </div>
       <div class="field work-plan-extra">
         <label>Další místa práce</label>
-        <input id="workPlanExtraPlaces" type="hidden">
+        <input id="workPlanExtraPlaces" type="hidden"><datalist id="workPlanPlaceList"></datalist>
         <div id="workPlanExtraList" class="work-extra-list"></div>
         <button id="addWorkExtraPlaceBtn" class="ghost work-extra-add" type="button" title="Přidat další místo práce">＋ Přidat další místo</button>
         <div class="helper">Klikni na tlačítko a doplň další místo. Každé místo bude samostatný řádek v plánu.</div>
@@ -2424,10 +2432,10 @@ function openModal(el){ el.classList.add('show'); }
 function closeModal(el){ el.classList.remove('show'); }
 
 function openWizard(editId=null, prefill={}){
-  rec = editId ? JSON.parse(JSON.stringify(data.find(r=>r.id===editId) || {id:uid()})) : {id:uid(), cLogic:'legacy', appVersion:'1.6 / 5.54'};
+  rec = editId ? JSON.parse(JSON.stringify(data.find(r=>r.id===editId) || {id:uid()})) : {id:uid(), cLogic:'legacy', appVersion:'1.6 / 5.55'};
   rec = Object.assign({}, rec, prefill || {});
   if(!editId && !rec.cLogic) rec.cLogic = 'legacy';
-  if(!editId && !rec.appVersion) rec.appVersion = '1.6 / 5.54';
+  if(!editId && !rec.appVersion) rec.appVersion = '1.6 / 5.55';
 
   // 🔥 AUTO DOPLNĚNÍ Z HISTORIE PODLE VÝROBNÍHO ČÍSLA
   if(rec.vc){
@@ -2799,7 +2807,7 @@ async function nextStep(){
   const okSave = confirm('Chceš protokol uložit?');
   if(!okSave) return;
   if(!rec.cLogic) rec.cLogic = 'legacy';
-  if(!rec.appVersion) rec.appVersion = '1.6 / 5.54';
+  if(!rec.appVersion) rec.appVersion = '1.6 / 5.55';
   rec.savedAt = new Date().toISOString();
   await saveProtocol(rec);
   closeWizard();
@@ -3603,7 +3611,7 @@ function addWorkExtraPlaceRow(value=''){
   if(!list) return;
   const row = document.createElement('div');
   row.className = 'work-extra-row';
-  row.innerHTML = `<input type="text" data-work-extra-input placeholder="Další místo práce" value="${escapeHtml(value || '')}"><button type="button" class="danger mini work-extra-remove" title="Odebrat místo">×</button>`;
+  row.innerHTML = `<input type="text" data-work-extra-input list="workPlanPlaceList" placeholder="Další místo práce" value="${escapeHtml(value || '')}"><button type="button" class="danger mini work-extra-remove" title="Odebrat místo">×</button>`;
   const input = row.querySelector('[data-work-extra-input]');
   const remove = row.querySelector('.work-extra-remove');
   input.addEventListener('input', syncWorkExtraPlacesFromRows);
@@ -3632,11 +3640,24 @@ function getWorkPlanRowsForDate(dateStr){
     .filter(r => techFilter === 'all' || String(r.technician || '') === techFilter)
     .sort((a,b) => String(a.technician||'').localeCompare(String(b.technician||''), 'cs'));
 }
+function getWorkPlaceSuggestions(){
+  return uniqueNonEmpty([
+    ...(BRANCHES || []),
+    ...(scheduleData || []).map(r => r.place),
+    ...(scheduleData || []).flatMap(r => Array.isArray(r.extraPlaces) ? r.extraPlaces : parseExtraPlaces(r.extraPlaces)),
+    ...(data || []).map(r => r.umisteni),
+    ...(faultsData || []).map(r => r.place),
+    ...(partsData || []).map(r => r.place)
+  ]).sort((a,b) => String(a).localeCompare(String(b), 'cs'));
+}
 function fillWorkPlanSelects(){
   const tech = document.getElementById('workPlanTech');
   const place = document.getElementById('workPlanPlace');
+  const placeList = document.getElementById('workPlanPlaceList');
+  const placeValues = getWorkPlaceSuggestions();
   if(tech) tech.innerHTML = TECHNICI.map(t => `<option value="${escapeHtml(t)}">${escapeHtml(t)}</option>`).join('');
   if(place) place.innerHTML = '<option value="">Nevyplněno</option>' + BRANCHES.map(b => `<option value="${escapeHtml(b)}">${escapeHtml(b)}</option>`).join('') + '<option value="__custom__">Jiné místo</option>';
+  if(placeList) placeList.innerHTML = placeValues.map(v => `<option value="${escapeHtml(v)}"></option>`).join('');
   populateTechnicianFilters();
 }
 function openWorkPlanModal(){
@@ -3740,7 +3761,7 @@ async function saveWorkPlanFromForm(){
     place,
     extraPlaces,
     note,
-    appVersion:'1.6 / 5.54'
+    appVersion:'1.6 / 5.55'
   });
   if(!record.createdAt) record.createdAt = new Date().toISOString();
   await saveWorkPlan(record);
@@ -3839,26 +3860,33 @@ function renderHomeOverview(){
   const strip = document.getElementById('homeWeekStrip');
   const nameBox = document.getElementById('homeNameDayBox');
   if(!title || !list || !strip) return;
-  title.textContent = formatHumanDate(currentHomeDate);
-  topLabel.textContent = formatHumanDate(currentHomeDate);
-  if(nameBox) nameBox.innerHTML = '<strong>Dnes má svátek:</strong> ' + escapeHtml(getLightHolidayText(currentHomeDate));
-  const start = startOfWeek(currentHomeDate);
-  const currentYmd = ymd(currentHomeDate);
+  currentHomeDate = new Date();
+  const todayDate = new Date();
+  const todayYmd = ymd(todayDate);
+  title.textContent = formatHumanDate(todayDate);
+  if(topLabel) topLabel.textContent = formatHumanDate(todayDate);
+  if(nameBox) nameBox.innerHTML = '<strong>Dnes má svátek:</strong> ' + escapeHtml(getLightHolidayText(todayDate));
+  const start = startOfWeek(todayDate);
   strip.innerHTML = Array.from({length:7}).map((_,i)=>{
     const d = addDays(start,i);
-    const isActive = ymd(d) === currentYmd;
-    return `<button type="button" class="week-pill ${isActive?'active':''}" data-day="${ymd(d)}"><div>${d.toLocaleDateString('cs-CZ',{weekday:'short'})}</div><strong>${d.getDate()}.</strong></button>`;
+    const ds = ymd(d);
+    const dayRows = (scheduleData || []).filter(r => r.date === ds);
+    const isToday = ds === todayYmd;
+    const count = dayRows.length;
+    return `<div class="week-pill ${isToday?'today active':''}"><div>${d.toLocaleDateString('cs-CZ',{weekday:'short'})}</div><strong>${d.getDate()}.</strong>${count ? `<small>${count}× plán</small>` : ''}</div>`;
   }).join('');
-  strip.querySelectorAll('[data-day]').forEach(btn => btn.addEventListener('click', ()=>{ currentHomeDate = new Date(btn.dataset.day + 'T12:00:00'); renderHomeOverview(); }));
-  const rows = TECHNICI.map(name => ({name, items:(scheduleData||[]).filter(r => r.date === currentYmd && r.technician === name)})).filter(r => r.items.length || true);
-  const activeRows = rows.filter(r => r.items.length);
+  const activeRows = TECHNICI.map(name => ({
+    name,
+    items:(scheduleData||[]).filter(r => r.date === todayYmd && r.technician === name)
+  })).filter(r => r.items.length);
   if(!activeRows.length){
-    list.innerHTML = '<div class="day-empty">Na tento den zatím není zadaný žádný plán práce.</div>';
+    list.innerHTML = '<div class="day-empty">Na dnešek zatím není zadaný žádný plán práce.</div>';
   } else {
     list.innerHTML = activeRows.map(row => {
       const color = colorForTechnician(row.name);
       const places = row.items.flatMap(it => getWorkPlanPlaces(it)).filter(Boolean);
-      return `<div class="day-row"><div class="day-tech"><span class="tech-dot" style="background:${color}"></span>${escapeHtml(row.name)}</div><div class="day-place">${places.map(p => `<span class="place-pill">${escapeHtml(p)}</span>`).join('')}</div></div>`;
+      const notes = row.items.map(it => it.note).filter(Boolean);
+      return `<div class="day-row today-focus"><div class="day-tech"><span class="tech-dot" style="background:${color}"></span>${escapeHtml(row.name)}</div><div class="day-place"><div class="day-place-main">${places.map(p => `<span class="place-pill">${escapeHtml(p)}</span>`).join('')}</div>${notes.length ? `<div class="day-place-muted">${notes.map(n => escapeHtml(n)).join(' · ')}</div>` : ''}</div></div>`;
     }).join('');
   }
 }
@@ -4085,7 +4113,7 @@ async function saveFaultFromForm(){
     inService: status === 'service' ? true : (existing ? !!existing.inService : false),
     waitingParts: status === 'waiting_parts' ? true : (existing ? !!existing.waitingParts : false),
     photos: currentFaultPhotos,
-    appVersion:'1.6 / 5.54'
+    appVersion:'1.6 / 5.55'
   });
   if(!record.createdAt) record.createdAt = new Date().toISOString();
   if(status === 'repaired'){
@@ -4198,7 +4226,7 @@ function printRepairProtocol(id){
   const style = Array.from(document.querySelectorAll('style')).map(s => s.innerHTML).join('\n');
   w.document.open();
   w.document.write(html.replace('</head>', `<style>${style}
-/* v1.6 / 5.54 – fonty, plán práce více míst, menu */
+/* v1.6 / 5.55 – fonty, plán práce více míst, menu */
 html, body, input, select, textarea, button, option {
   font-family: Inter, "Segoe UI", Arial, sans-serif !important;
 }
@@ -4225,7 +4253,7 @@ input, select, textarea, button,
 }
 
 
-/* v1.6 / 5.54 – provozní doladění */
+/* v1.6 / 5.55 – provozní doladění */
 .backup-row{
   padding:12px;
   border:1px solid #bfdbfe;
@@ -4275,7 +4303,7 @@ body.dark .mobile-tech-panel{
 }
 
 
-/* v1.6 / 5.54 – jasné označení čtvrtletních kontrol */
+/* v1.6 / 5.55 – jasné označení čtvrtletních kontrol */
 .module-kicker{
   display:inline-flex;
   width:max-content;
@@ -4544,7 +4572,7 @@ async function savePartFromForm(){
     partNumber,
     partName: document.getElementById('partName').value.trim(),
     note: document.getElementById('partNote').value.trim(),
-    appVersion:'1.6 / 5.54'
+    appVersion:'1.6 / 5.55'
   });
   if(currentPartPhoto) record.photo = currentPartPhoto;
   if(!record.createdAt) record.createdAt = new Date().toISOString();
@@ -4602,6 +4630,7 @@ document.getElementById('closeSettingsBtn')?.addEventListener('click', () => clo
 document.getElementById('newProtocolHomeBtn')?.addEventListener('click', () => window._openWizard());
 document.getElementById('homeArchiveBtn')?.addEventListener('click', () => showSection('archive'));
 document.getElementById('homePlanBtn')?.addEventListener('click', openWorkPlanModal);
+document.getElementById('homeOpenWeekPlanBtn')?.addEventListener('click', openWorkPlanModal);
 document.getElementById('homePartsBtn')?.addEventListener('click', openPartsModal);
 document.getElementById('homeFaultsBtn')?.addEventListener('click', openFaultsModal);
 document.getElementById('homeOpenPlanCard')?.addEventListener('click', openWorkPlanModal);

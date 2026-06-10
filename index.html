@@ -697,6 +697,9 @@ body.dark .part-card{background:var(--panel2)}
 .part-meta-value{font-weight:700;font-size:.86rem}
 .part-photo{display:flex;gap:10px;align-items:flex-start}
 .part-photo img{width:86px;height:70px;object-fit:cover;border-radius:12px;border:1px solid var(--line)}
+.part-photo-grid{display:flex;gap:8px;flex-wrap:wrap;margin-top:8px}
+.part-photo-item{position:relative;display:inline-flex;flex-direction:column;gap:5px;align-items:flex-start}
+.part-photo-item img{width:90px;height:70px;object-fit:cover;border-radius:12px;border:1px solid var(--line)}
 .part-actions{display:flex;gap:8px;flex-wrap:wrap}
 .status-pill{display:inline-flex;padding:5px 9px;border-radius:999px;font-size:.74rem;font-weight:750;border:1px solid transparent}
 .status-open{background:#fff7ed;color:#9a3412;border-color:#fed7aa}
@@ -902,7 +905,7 @@ body.dark .fault-card{background:var(--panel2)}
 
 
 /* v1.6 / 5.66 – karta stroje: modal nad hlavičkou a bez usekávání */
-/* v1.6 / 5.72 – plán práce: stabilní barvy techniků */
+/* v1.6 / 5.74 – plán práce: stabilní barvy techniků */
 .modal{z-index:140!important}
 #historyModal{
   align-items:flex-start!important;
@@ -949,7 +952,7 @@ body.dark .fault-card{background:var(--panel2)}
 }
 
 
-/* v1.6 / 5.72 – tmavý režim: výraznější barvy techniků v plánu práce */
+/* v1.6 / 5.74 – tmavý režim: výraznější barvy techniků v plánu práce */
 .work-event{border-left-color:var(--tech-color,#2563eb)!important;background:var(--tech-bg,rgba(37,99,235,.10))!important}
 .work-event .work-event-tech{color:var(--tech-color,#2563eb)!important}
 .day-row{border-left-color:var(--tech-color,#2563eb)!important;background:linear-gradient(90deg,var(--tech-bg,rgba(37,99,235,.12)) 0%,var(--panel2) 72%)!important}
@@ -1343,6 +1346,40 @@ body.dark .module-kicker{
   border-color:#1d4ed8;
 }
 
+
+
+/* v1.6 / 5.74 – externí zákazník */
+.external-customer-card{
+  border-color:#7c3aed!important;
+  box-shadow:0 0 0 2px rgba(124,58,237,.10), var(--shadow)!important;
+  background:linear-gradient(180deg,#faf5ff 0%,#ffffff 100%)!important;
+}
+body.dark .external-customer-card{
+  background:linear-gradient(180deg,rgba(124,58,237,.18) 0%,var(--panel) 100%)!important;
+  border-color:#a78bfa!important;
+}
+.badge-external,.status-external{
+  background:#f3e8ff!important;
+  color:#6d28d9!important;
+  border-color:#d8b4fe!important;
+}
+body.dark .badge-external,body.dark .status-external{
+  background:rgba(124,58,237,.22)!important;
+  color:#ddd6fe!important;
+  border-color:#a78bfa!important;
+}
+.external-check{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  padding:12px 14px;
+  border:1px solid var(--line);
+  border-radius:16px;
+  background:var(--panel2);
+}
+.external-check input{width:auto;min-width:20px;height:20px}
+.external-check strong{display:block}
+.external-check span{display:block;color:var(--muted);font-size:.83rem;margin-top:2px}
 </style>
 </head>
 <body>
@@ -1373,7 +1410,7 @@ body.dark .module-kicker{
     <button type="button" class="side-small" id="sideThemeBtn">Tmavý / světlý režim</button>
     <button type="button" class="side-small" onclick="exportBackup()">Export zálohy</button>
     <button type="button" class="side-small" id="sideImportBtn">Import zálohy</button>
-    <div class="side-version">Vlastník/Admin: Jan Bartoš<br>Verze: 1.6 / 5.72</div>
+    <div class="side-version">Vlastník/Admin: Jan Bartoš<br>Verze: 1.6 / 5.74</div>
   </div>
 </aside>
 
@@ -1485,6 +1522,11 @@ body.dark .module-kicker{
             <option value="all">Vše</option>
             <option value="issues">Jen se závadou</option>
             <option value="ok">Jen bez závad</option>
+          </select>
+          <select id="protocolCustomerFilter" class="filter">
+            <option value="all">Všechny zakázky</option>
+            <option value="internal">Půjčovna / interní</option>
+            <option value="external">Externí zákazník</option>
           </select>
           <select id="protocolTechFilter" class="filter">
             <option value="all">Všichni technici</option>
@@ -1606,6 +1648,11 @@ body.dark .module-kicker{
   <div class="parts-toolbar">
     <button id="addPartBtn" class="primary mini" type="button">Přidat požadavek</button>
 <input id="partsSearch" class="search" placeholder="Hledat PN, výrobní číslo, typ nebo místo">
+    <select id="partsCustomerFilter" class="filter">
+      <option value="all">Všechny zakázky</option>
+      <option value="internal">Půjčovna / interní</option>
+      <option value="external">Externí zákazník</option>
+    </select>
   </div>
 
   <div id="partsFormWrap" class="parts-form hidden">
@@ -1638,9 +1685,15 @@ body.dark .module-kicker{
         <input id="partName" type="text">
       </div>
       <div class="field">
-        <label>Fotka dílu / štítku</label>
-        <input id="partPhotoInput" type="file" accept="image/*" capture="environment">
+        <label>Fotky dílu / štítku</label>
+        <input id="partPhotoInput" type="file" accept="image/*" capture="environment" class="hidden">
+        <button id="addPartPhotoBtn" class="secondary mini" type="button">＋ Přidat fotku</button>
+        <div class="helper">Každým kliknutím přidáš další fotku. Nová fotka už nepřemaže původní.</div>
         <div id="partPhotoPreview" class="helper"></div>
+      </div>
+      <div class="field parts-note">
+        <label>Typ zakázky</label>
+        <label class="external-check"><input id="partExternalCustomer" type="checkbox"><div><strong>Externí zákazník</strong><span>Zakázka mimo běžnou půjčovnu. Záznam se v přehledu barevně oddělí.</span></div></label>
       </div>
       <div class="field parts-note">
         <label>Poznámka</label>
@@ -2025,6 +2078,7 @@ const introSteps = [
   {k:'dalsiKontrola',t:'Následná kontrola nejpozději do',type:'date',section:'Úvodní údaje'},
   {k:'rok',t:'Rok výroby',type:'yearInput',section:'Úvodní údaje'},
   {k:'umisteni',t:'Umístění / pobočka',type:'branchSelect',section:'Úvodní údaje'},
+  {k:'externalCustomer',t:'Externí zákazník',type:'externalCustomer',section:'Úvodní údaje'},
   {k:'technik',t:'Kontrolu provedl',type:'technikSelect',section:'Úvodní údaje'},
   {k:'poznamka',t:'Poznámka k protokolu',type:'textarea',section:'Úvodní údaje'}
 ];
@@ -2217,7 +2271,7 @@ async function exportBackup(){
     }
     const payload = {
       app: 'LiftControl CZ',
-      appVersion: '1.6 / 5.72',
+      appVersion: '1.6 / 5.74',
       backupType: 'complete',
       schemaVersion: 2,
       exportedAt: new Date().toISOString(),
@@ -2396,7 +2450,7 @@ let partsData = [];
 let faultsData = [];
 let currentFaultPhotos = [];
 let editingFaultId = null;
-let currentPartPhoto = null;
+let currentPartPhotos = [];
 let editingPartId = null;
 let currentWorkWeekStart = null;
 let currentHomeDate = new Date();
@@ -2612,20 +2666,24 @@ function render(){
   const query = els.searchInput.value.trim().toLowerCase();
   const filter = els.statusFilter.value;
   const techFilter = document.getElementById('protocolTechFilter')?.value || 'all';
+  const customerFilter = document.getElementById('protocolCustomerFilter')?.value || 'all';
   if(query) rows = rows.filter(r => [r.vc,r.typ,r.umisteni,r.technik].some(v => String(v||'').toLowerCase().includes(query)));
   if(techFilter !== 'all') rows = rows.filter(r => String(r.technik || '') === techFilter);
+  if(customerFilter === 'external') rows = rows.filter(r => !!r.externalCustomer);
+  if(customerFilter === 'internal') rows = rows.filter(r => !r.externalCustomer);
   if(filter === 'issues') rows = rows.filter(hasIssue);
   if(filter === 'ok') rows = rows.filter(r => !hasIssue(r));
   rows.sort((a,b)=>String(b.datum||'').localeCompare(String(a.datum||'')));
   if(!rows.length){ els.list.innerHTML = '<div class="empty"><div>Zatím tu nic není.</div></div>'; updateStats([]); return; }
   els.list.innerHTML = rows.map(r => `
-    <div class="card">
+    <div class="card ${r.externalCustomer ? 'external-customer-card' : ''}">
       <div class="card-head">
         <div>
           <div class="card-title">${escapeHtml(r.vc||'')}</div>
           <div class="card-sub">${escapeHtml(r.typ||'')} ${r.umisteni ? '· '+escapeHtml(r.umisteni) : ''}</div><div class="card-sub">Uloženo: ${escapeHtml(formatDateTime(r.savedAt || r.datum))}</div>
           <div class="badges">
             <span class="badge ${hasIssue(r)?'badge-warn':'badge-ok'}">${hasIssue(r)?'Se závadou':'Bez závad'}</span>
+            ${r.externalCustomer ? '<span class="badge badge-external">Externí zákazník</span>' : ''}
             ${firebaseAvailable ? '' : '<span class="badge badge-warn">Sdílení vypnuté</span>'}
           </div>
         </div>
@@ -2651,10 +2709,10 @@ function openModal(el){ el.classList.add('show'); }
 function closeModal(el){ el.classList.remove('show'); }
 
 function openWizard(editId=null, prefill={}){
-  rec = editId ? JSON.parse(JSON.stringify(data.find(r=>r.id===editId) || {id:uid()})) : {id:uid(), cLogic:'legacy', appVersion:'1.6 / 5.72'};
+  rec = editId ? JSON.parse(JSON.stringify(data.find(r=>r.id===editId) || {id:uid()})) : {id:uid(), cLogic:'legacy', appVersion:'1.6 / 5.74'};
   rec = Object.assign({}, rec, prefill || {});
   if(!editId && !rec.cLogic) rec.cLogic = 'legacy';
-  if(!editId && !rec.appVersion) rec.appVersion = '1.6 / 5.72';
+  if(!editId && !rec.appVersion) rec.appVersion = '1.6 / 5.74';
 
   // 🔥 AUTO DOPLNĚNÍ Z HISTORIE PODLE VÝROBNÍHO ČÍSLA
   if(rec.vc){
@@ -2739,6 +2797,8 @@ function showStep(){
     const src = p.dataUrl || p.url || '';
     const size = p.bytes ? ` · ${Math.round(p.bytes/1024)} kB` : '';
     html = `<div class="field"><label>${s.t}</label><input id="photoInput" type="file" accept="image/*" capture="environment"><div class="helper">Max. 500 kB po automatické kompresi. Fotku můžeš přeskočit tlačítkem Další.</div>${src ? `<div class="photo-preview"><img src="${escapeHtml(src)}" data-full-src="${escapeHtml(src)}" onclick="openLightbox(this.dataset.fullSrc)" alt="${escapeHtml(s.t)}"></div><div class="helper">Uloženo v kroku${size}</div><div class="photo-tools"><button class="danger mini" type="button" id="deleteMainPhotoBtn">Smazat tuto fotku</button></div>` : ''}</div>`;
+  } else if(s.type === 'externalCustomer'){
+    html = `<label class="external-check"><input id="externalCustomerInput" type="checkbox" ${rec.externalCustomer ? 'checked' : ''}><div><strong>Externí zákazník</strong><span>Zaškrtni jen u zakázek mimo běžnou půjčovnu. Protokol bude barevně oddělený v archivu.</span></div></label>`;
   } else if(s.type === 'textarea'){
     html = `<div class="field suggest-wrap"><textarea id="mainTextarea">${escapeHtml(rec[s.k]||'')}</textarea><div id="suggestHost"></div></div>`;
   } else if(s.type === 'date'){
@@ -2754,6 +2814,10 @@ function showStep(){
   const mainInput = document.getElementById('mainInput');
   const mainTextarea = document.getElementById('mainTextarea');
   const descInput = document.getElementById('descInput');
+  const externalCustomerInput = document.getElementById('externalCustomerInput');
+  if(externalCustomerInput){
+    externalCustomerInput.addEventListener('change', () => { rec.externalCustomer = !!externalCustomerInput.checked; });
+  }
 
   if(mainInput){
     mainInput.addEventListener('input', () => { rec[s.k] = mainInput.value; refreshSuggestions(); });
@@ -3051,10 +3115,8 @@ async function nextStep(){
   }
   syncRevizeIssue(rec);
   syncModelPreferences(rec);
-  const okSave = confirm('Chceš protokol uložit?');
-  if(!okSave) return;
   if(!rec.cLogic) rec.cLogic = 'legacy';
-  if(!rec.appVersion) rec.appVersion = '1.6 / 5.72';
+  if(!rec.appVersion) rec.appVersion = '1.6 / 5.74';
   rec.savedAt = new Date().toISOString();
   await saveProtocol(rec);
   closeWizard();
@@ -3575,7 +3637,7 @@ function renderPaper(r){
           <tr><td class="label">Datum kontroly:</td><td class="value">${escapeHtml(r.datum||'')}</td><td class="label">Následná kontrola do:</td><td class="value">${escapeHtml(r.dalsiKontrola||'')}</td></tr>
           <tr><td class="label">Rok výroby:</td><td class="value">${escapeHtml(r.rok||'')}</td><td class="label">Druh kontroly:</td><td class="value">Běžná čtvrtletní</td></tr>
           <tr><td class="label">Stav motohodin:</td><td class="value">${escapeHtml(r.mh||'')} h</td><td class="label">Interval:</td><td class="value">3 měsíce</td></tr>
-          <tr><td class="label">Umístění:</td><td class="value" colspan="3">${r.umisteni ? 'půjčovna ' + escapeHtml(r.umisteni) : ''}</td></tr>
+          <tr><td class="label">Umístění:</td><td class="value" colspan="3">${r.externalCustomer ? 'externí zákazník' + (r.umisteni ? ' – ' + escapeHtml(r.umisteni) : '') : (r.umisteni ? 'půjčovna ' + escapeHtml(r.umisteni) : '')}</td></tr>
         </table>
         <div class="paper-row-2">
           <div class="section-card">
@@ -4035,7 +4097,7 @@ async function saveWorkPlanFromForm(){
     place,
     extraPlaces,
     note,
-    appVersion:'1.6 / 5.72'
+    appVersion:'1.6 / 5.74'
   });
   if(!record.createdAt) record.createdAt = new Date().toISOString();
   await saveWorkPlan(record);
@@ -4542,7 +4604,7 @@ async function saveFaultFromForm(){
     inService: status === 'service' ? true : (existing ? !!existing.inService : false),
     waitingParts: status === 'waiting_parts' ? true : (existing ? !!existing.waitingParts : false),
     photos: currentFaultPhotos,
-    appVersion:'1.6 / 5.72'
+    appVersion:'1.6 / 5.74'
   });
   if(!record.createdAt) record.createdAt = new Date().toISOString();
   if(status === 'repaired'){
@@ -4758,6 +4820,40 @@ body.dark .module-kicker{
   border-color:#1d4ed8;
 }
 
+
+/* v1.6 / 5.74 – externí zákazník */
+.external-customer-card{
+  border-color:#7c3aed!important;
+  box-shadow:0 0 0 2px rgba(124,58,237,.10), var(--shadow)!important;
+  background:linear-gradient(180deg,#faf5ff 0%,#ffffff 100%)!important;
+}
+body.dark .external-customer-card{
+  background:linear-gradient(180deg,rgba(124,58,237,.18) 0%,var(--panel) 100%)!important;
+  border-color:#a78bfa!important;
+}
+.badge-external,.status-external{
+  background:#f3e8ff!important;
+  color:#6d28d9!important;
+  border-color:#d8b4fe!important;
+}
+body.dark .badge-external,body.dark .status-external{
+  background:rgba(124,58,237,.22)!important;
+  color:#ddd6fe!important;
+  border-color:#a78bfa!important;
+}
+.external-check{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  padding:12px 14px;
+  border:1px solid var(--line);
+  border-radius:16px;
+  background:var(--panel2);
+}
+.external-check input{width:auto;min-width:20px;height:20px}
+.external-check strong{display:block}
+.external-check span{display:block;color:var(--muted);font-size:.83rem;margin-top:2px}
+
 </style></head>`));
   w.document.close();
   try { w.focus(); } catch(e){}
@@ -4780,15 +4876,13 @@ function createPartFromFault(id){
     document.getElementById('partType').value = f.type || '';
     document.getElementById('partSerial').value = f.serial || '';
     document.getElementById('partNote').value = f.description ? ('Z poruchy: ' + f.description) : '';
+    const extChk = document.getElementById('partExternalCustomer');
+    if(extChk) extChk.checked = !!f.externalCustomer;
 
-    const firstFaultPhoto = Array.isArray(f.photos) ? f.photos.find(p => p && (p.url || p.dataUrl)) : null;
-    if(firstFaultPhoto){
-      currentPartPhoto = JSON.parse(JSON.stringify(firstFaultPhoto));
-      const src = currentPartPhoto.url || currentPartPhoto.dataUrl || '';
-      const preview = document.getElementById('partPhotoPreview');
-      if(preview && src){
-        preview.innerHTML = `<img src="${escapeHtml(src)}" data-full-src="${escapeHtml(src)}" onclick="openLightbox(this.dataset.fullSrc)" style="width:90px;height:70px;object-fit:cover;border-radius:12px;border:1px solid var(--line);margin-top:6px"><div class="helper">Fotka převzata z hlášení poruchy.</div>`;
-      }
+    const faultPhotos = Array.isArray(f.photos) ? f.photos.filter(p => p && (p.url || p.dataUrl)) : [];
+    if(faultPhotos.length){
+      currentPartPhotos = JSON.parse(JSON.stringify(faultPhotos));
+      renderPartPhotoPreview('Fotky převzaty z hlášení poruchy.');
     }
 
     if(f.place){
@@ -4865,12 +4959,50 @@ function partUid(){ return 'nd_' + Date.now() + '_' + Math.random().toString(36)
 function loadLocalParts(){ try { return JSON.parse(localStorage.getItem('liftcheck_parts_local') || '[]'); } catch(e) { return []; } }
 function saveLocalParts(rows){ try { localStorage.setItem('liftcheck_parts_local', JSON.stringify(rows)); } catch(e) {} }
 function startLocalPartsMode(){ partsData = loadLocalParts(); renderParts(); updateMainOverview(); }
-async function preparePartForSave(record){
-  if(record.photo && record.photo.dataUrl && firebaseAvailable && storageAvailable && storage){
-    const path = `nahradni-dily/${record.id}/photo.jpg`;
-    const url = await uploadDataUrl(path, record.photo.dataUrl);
-    record.photo = {url, path, bytes:record.photo.bytes||0, updatedAt:new Date().toISOString()};
+function getPartPhotoList(p){
+  if(!p) return [];
+  if(Array.isArray(p.photos)) return p.photos.filter(Boolean);
+  if(p.photo) return [p.photo];
+  return [];
+}
+function renderPartPhotoPreview(note=''){
+  const box = document.getElementById('partPhotoPreview');
+  if(!box) return;
+  const list = Array.isArray(currentPartPhotos) ? currentPartPhotos : [];
+  const btn = document.getElementById('addPartPhotoBtn');
+  if(btn) btn.textContent = list.length ? '＋ Přidat další fotku' : '＋ Přidat fotku';
+  if(!list.length){
+    box.innerHTML = note ? `<div class="helper">${escapeHtml(note)}</div>` : '';
+    return;
   }
+  box.innerHTML = (note ? `<div class="helper">${escapeHtml(note)}</div>` : '') + `<div class="part-photo-grid">${list.map((ph, idx) => {
+    const src = ph ? (ph.url || ph.dataUrl || '') : '';
+    if(!src) return '';
+    return `<span class="part-photo-item"><img src="${escapeHtml(src)}" data-full-src="${escapeHtml(src)}" onclick="openLightbox(this.dataset.fullSrc)"><button class="danger mini" type="button" data-part-photo-del="${idx}">Smazat</button></span>`;
+  }).join('')}</div>`;
+  box.querySelectorAll('[data-part-photo-del]').forEach(btn => btn.addEventListener('click', () => {
+    const idx = Number(btn.dataset.partPhotoDel);
+    if(confirm('Smazat tuto fotku z požadavku na ND?')){
+      currentPartPhotos.splice(idx, 1);
+      renderPartPhotoPreview();
+    }
+  }));
+}
+async function preparePartForSave(record){
+  const photos = getPartPhotoList(record);
+  const out = [];
+  for(let i=0;i<photos.length;i++){
+    const p = photos[i];
+    if(p && p.dataUrl && firebaseAvailable && storageAvailable && storage){
+      const path = `nahradni-dily/${record.id}/photo_${i+1}.jpg`;
+      const url = await uploadDataUrl(path, p.dataUrl);
+      out.push({url, path, bytes:p.bytes||0, width:p.width, height:p.height, updatedAt:new Date().toISOString()});
+    } else if(p) {
+      out.push(p);
+    }
+  }
+  record.photos = out;
+  record.photo = out[0] || null; // kompatibilita se staršími záznamy
   return record;
 }
 async function savePartRecord(record){
@@ -4927,27 +5059,31 @@ function renderParts(){
   const list = document.getElementById('partsList');
   if(!list) return;
   const query = (document.getElementById('partsSearch')?.value || '').toLowerCase().trim();
+  const customerFilter = document.getElementById('partsCustomerFilter')?.value || 'all';
   let rows = [...(partsData || [])];
   if(query) rows = rows.filter(p => [p.type,p.serial,p.place,p.partNumber,p.partName,p.note].some(v => String(v||'').toLowerCase().includes(query)));
+  if(customerFilter === 'external') rows = rows.filter(p => !!p.externalCustomer);
+  if(customerFilter === 'internal') rows = rows.filter(p => !p.externalCustomer);
   rows.sort((a,b) => String(b.createdAt||'').localeCompare(String(a.createdAt||'')));
   if(!rows.length){ list.innerHTML = '<div class="empty">Žádné záznamy náhradních dílů.</div>'; return; }
   list.innerHTML = rows.map(p => {
     const st = getPartStatus(p);
-    const src = p.photo ? (p.photo.url || p.photo.dataUrl || '') : '';
-    return `<div class="part-card">
+    const partPhotos = getPartPhotoList(p);
+    const photoHtml = partPhotos.length ? `<div class="part-photo-grid">${partPhotos.map(ph => { const src = ph ? (ph.url || ph.dataUrl || '') : ''; return src ? `<span class="part-photo-item"><img src="${escapeHtml(src)}" data-full-src="${escapeHtml(src)}" onclick="openLightbox(this.dataset.fullSrc)"></span>` : ''; }).join('')}</div>` : '';
+    return `<div class="part-card ${p.externalCustomer ? 'external-customer-card' : ''}">
       <div class="part-head">
         <div>
           <div class="part-title">${escapeHtml(p.partNumber || 'Bez PN')} · ${escapeHtml(p.partName || 'Bez popisu')}</div>
           <div class="part-sub">${escapeHtml(p.type || 'Bez typu')} · v.č. ${escapeHtml(p.serial || '—')} · ${escapeHtml(p.place || '—')}</div>
         </div>
-        <span class="status-pill ${st.cls}">${st.txt}</span>
+        <div style="display:flex;gap:8px;flex-wrap:wrap;justify-content:flex-end"><span class="status-pill ${st.cls}">${st.txt}</span>${p.externalCustomer ? '<span class="status-pill status-external">Externí zákazník</span>' : ''}</div>
       </div>
       <div class="part-grid">
         <div class="part-meta"><div class="part-meta-label">Vytvořeno</div><div class="part-meta-value">${escapeHtml(formatDateTime(p.createdAt))}</div></div>
         <div class="part-meta"><div class="part-meta-label">Objednáno</div><div class="part-meta-value">${p.ordered ? escapeHtml(formatDateTime(p.orderedAt)) : 'Ne'}</div></div>
         <div class="part-meta"><div class="part-meta-label">Odesláno</div><div class="part-meta-value">${p.sent ? escapeHtml(formatDateTime(p.sentAt)) : 'Ne'}</div></div>
       </div>
-      ${src || p.note ? `<div class="part-photo">${src ? `<img src="${escapeHtml(src)}" data-full-src="${escapeHtml(src)}" onclick="openLightbox(this.dataset.fullSrc)">` : ''}${p.note ? `<div class="part-sub">${escapeHtml(p.note)}</div>` : ''}</div>` : ''}
+      ${photoHtml || p.note ? `<div class="part-photo">${photoHtml || ''}${p.note ? `<div class="part-sub">${escapeHtml(p.note)}</div>` : ''}</div>` : ''}
       <div class="part-actions">
         <button class="secondary mini" type="button" data-part-machine="${escapeHtml(p.serial || '')}">Karta stroje</button>
         <button class="secondary mini" type="button" data-part-edit="${p.id}">Upravit</button>
@@ -4966,7 +5102,7 @@ function renderParts(){
 function openPartForm(id=null){
   fillPartSelects();
   editingPartId = id;
-  currentPartPhoto = null;
+  currentPartPhotos = [];
   const p = id ? (partsData || []).find(x => x.id === id) : null;
   document.getElementById('partType').value = (p && p.type) || '';
   document.getElementById('partSerial').value = (p && p.serial) || '';
@@ -4985,16 +5121,18 @@ function openPartForm(id=null){
   }
   document.getElementById('partNumber').value = (p && p.partNumber) || '';
   document.getElementById('partName').value = (p && p.partName) || '';
+  const extChk = document.getElementById('partExternalCustomer');
+  if(extChk) extChk.checked = !!(p && p.externalCustomer);
   document.getElementById('partNote').value = (p && p.note) || '';
-  const src = p && p.photo ? (p.photo.url || p.photo.dataUrl || '') : '';
-  document.getElementById('partPhotoPreview').innerHTML = src ? `<img src="${escapeHtml(src)}" data-full-src="${escapeHtml(src)}" onclick="openLightbox(this.dataset.fullSrc)" style="width:90px;height:70px;object-fit:cover;border-radius:12px;border:1px solid var(--line);margin-top:6px">` : '';
+  currentPartPhotos = p ? JSON.parse(JSON.stringify(getPartPhotoList(p))) : [];
+  renderPartPhotoPreview();
   document.getElementById('partsFormWrap').classList.remove('hidden');
   attachPartSmartSuggests();
   document.getElementById('partsFormWrap').scrollIntoView({behavior:'smooth', block:'nearest'});
 }
 function closePartForm(){
   editingPartId = null;
-  currentPartPhoto = null;
+  currentPartPhotos = [];
   document.getElementById('partsFormWrap')?.classList.add('hidden');
 }
 
@@ -5014,10 +5152,12 @@ async function savePartFromForm(){
     place,
     partNumber,
     partName: document.getElementById('partName').value.trim(),
+    externalCustomer: !!document.getElementById('partExternalCustomer')?.checked,
     note: document.getElementById('partNote').value.trim(),
-    appVersion:'1.6 / 5.72'
+    appVersion:'1.6 / 5.74'
   });
-  if(currentPartPhoto) record.photo = currentPartPhoto;
+  record.photos = JSON.parse(JSON.stringify(currentPartPhotos || []));
+  record.photo = record.photos[0] || null;
   if(!record.createdAt) record.createdAt = new Date().toISOString();
   await savePartRecord(record);
   closePartForm();
@@ -5109,6 +5249,8 @@ document.getElementById('addPartBtn')?.addEventListener('click', () => openPartF
 document.getElementById('cancelPartBtn')?.addEventListener('click', closePartForm);
 document.getElementById('savePartBtn')?.addEventListener('click', savePartFromForm);
 document.getElementById('partsSearch')?.addEventListener('input', renderParts);
+document.getElementById('partsCustomerFilter')?.addEventListener('change', renderParts);
+document.getElementById('protocolCustomerFilter')?.addEventListener('change', render);
 document.getElementById('partSerial')?.addEventListener('change', () => applyMachineInfoToPart(document.getElementById('partSerial')?.value));
 
 document.getElementById('closeFaultsBtn')?.addEventListener('click', closeFaultsModal);
@@ -5175,13 +5317,16 @@ document.getElementById('partPlace')?.addEventListener('change', (e) => {
 });
 showSection('home');
 
+document.getElementById('addPartPhotoBtn')?.addEventListener('click', () => document.getElementById('partPhotoInput')?.click());
 document.getElementById('partPhotoInput')?.addEventListener('change', async (e) => {
   const file = e.target.files && e.target.files[0];
   if(!file) return;
   try{
     const out = await compressPhoto(file, MAX_PHOTO_BYTES);
-    currentPartPhoto = {dataUrl:out.dataUrl, bytes:out.bytes, width:out.width, height:out.height};
-    document.getElementById('partPhotoPreview').innerHTML = `<img src="${escapeHtml(out.dataUrl)}" data-full-src="${escapeHtml(out.dataUrl)}" onclick="openLightbox(this.dataset.fullSrc)" style="width:90px;height:70px;object-fit:cover;border-radius:12px;border:1px solid var(--line);margin-top:6px">`;
+    currentPartPhotos = Array.isArray(currentPartPhotos) ? currentPartPhotos : [];
+    currentPartPhotos.push({dataUrl:out.dataUrl, bytes:out.bytes, width:out.width, height:out.height});
+    renderPartPhotoPreview();
+    e.target.value = '';
   }catch(err){
     console.error(err);
     alert('Fotku se nepodařilo zpracovat.');

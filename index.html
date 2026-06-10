@@ -905,7 +905,7 @@ body.dark .fault-card{background:var(--panel2)}
 
 
 /* v1.6 / 5.66 – karta stroje: modal nad hlavičkou a bez usekávání */
-/* v1.6 / 5.74 – plán práce: stabilní barvy techniků */
+/* v1.6 / 5.78 – plán práce: stabilní barvy techniků */
 .modal{z-index:140!important}
 #historyModal{
   align-items:flex-start!important;
@@ -952,7 +952,7 @@ body.dark .fault-card{background:var(--panel2)}
 }
 
 
-/* v1.6 / 5.74 – tmavý režim: výraznější barvy techniků v plánu práce */
+/* v1.6 / 5.78 – tmavý režim: výraznější barvy techniků v plánu práce */
 .work-event{border-left-color:var(--tech-color,#2563eb)!important;background:var(--tech-bg,rgba(37,99,235,.10))!important}
 .work-event .work-event-tech{color:var(--tech-color,#2563eb)!important}
 .day-row{border-left-color:var(--tech-color,#2563eb)!important;background:linear-gradient(90deg,var(--tech-bg,rgba(37,99,235,.12)) 0%,var(--panel2) 72%)!important}
@@ -1348,7 +1348,7 @@ body.dark .module-kicker{
 
 
 
-/* v1.6 / 5.74 – externí zákazník */
+/* v1.6 / 5.78 – externí zákazník */
 .external-customer-card{
   border-color:#7c3aed!important;
   box-shadow:0 0 0 2px rgba(124,58,237,.10), var(--shadow)!important;
@@ -1380,6 +1380,27 @@ body.dark .badge-external,body.dark .status-external{
 .external-check input{width:auto;min-width:20px;height:20px}
 .external-check strong{display:block}
 .external-check span{display:block;color:var(--muted);font-size:.83rem;margin-top:2px}
+.customer-extra-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:10px}
+.customer-extra-note{font-size:.78rem;color:var(--muted);margin-top:6px}
+.operator-mini-row{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+@media(max-width:720px){.customer-extra-grid,.operator-mini-row{grid-template-columns:1fr}}
+
+/* v5.76 read-only ND cards + audit history */
+.part-note-display{border:1px solid var(--line);border-radius:14px;background:var(--panel2);padding:11px 12px;display:grid;gap:4px}
+.part-note-display strong{font-size:.78rem;color:var(--muted)}
+.part-note-display div{font-weight:650;line-height:1.35;white-space:pre-wrap;overflow-wrap:anywhere}
+.part-card.focus-flash{outline:3px solid #2563eb;outline-offset:3px}
+/* v1.6 / 5.78 – zvýraznění záznamu po prokliku z Vyžaduje pozornost */
+.card.focus-flash,.fault-card.focus-flash,.part-card.focus-flash{outline:3px solid #2563eb!important;outline-offset:3px;box-shadow:0 0 0 6px rgba(37,99,235,.14)!important}
+body.dark .card.focus-flash,body.dark .fault-card.focus-flash,body.dark .part-card.focus-flash{outline-color:#60a5fa!important;box-shadow:0 0 0 6px rgba(96,165,250,.22)!important}
+.attention-count{cursor:pointer}
+.attention-count:hover{filter:brightness(.98);transform:translateY(-1px)}
+
+.audit-list{display:grid;gap:10px;margin-top:12px}
+.audit-item{border:1px solid var(--line);border-radius:16px;background:#fff;padding:12px;display:grid;gap:5px}
+body.dark .audit-item{background:var(--panel2)}
+.audit-title{font-weight:850}.audit-sub{font-size:.84rem;color:var(--muted);line-height:1.35}.audit-action{display:inline-flex;width:max-content;border-radius:999px;padding:4px 8px;background:#eff6ff;color:#1d4ed8;font-size:.75rem;font-weight:800}
+.audit-action.delete{background:#fef2f2;color:#b91c1c}.audit-action.update{background:#fff7ed;color:#9a3412}.audit-action.create{background:#ecfdf5;color:#166534}
 </style>
 </head>
 <body>
@@ -1410,7 +1431,8 @@ body.dark .badge-external,body.dark .status-external{
     <button type="button" class="side-small" id="sideThemeBtn">Tmavý / světlý režim</button>
     <button type="button" class="side-small" onclick="exportBackup()">Export zálohy</button>
     <button type="button" class="side-small" id="sideImportBtn">Import zálohy</button>
-    <div class="side-version">Vlastník/Admin: Jan Bartoš<br>Verze: 1.6 / 5.74</div>
+    <button type="button" class="side-small" id="sideAuditBtn">Historie změn</button>
+    <div class="side-version">Vlastník/Admin: Jan Bartoš<br>Verze: 1.6 / 5.78</div>
   </div>
 </aside>
 
@@ -1554,6 +1576,17 @@ body.dark .badge-external,body.dark .status-external{
   <div class="wizard-actions"><button id="closeSettingsBtn" class="secondary" type="button">Zavřít</button></div>
 </div></div></div>
 
+
+<div class="modal" id="auditModal"><div class="modal-content"><div class="wizard-shell">
+  <div class="preview-header">
+    <div><div class="preview-title">Historie změn</div><div class="card-sub">Přehled posledních změn, mazání a stavů v aplikaci.</div></div>
+    <button id="closeAuditTopBtn" class="secondary mini" type="button">Zavřít</button>
+  </div>
+  <div class="toolbar-right" style="margin-bottom:10px"><button id="refreshAuditBtn" class="secondary mini" type="button">Obnovit</button></div>
+  <div id="auditList" class="audit-list"></div>
+  <div class="preview-actions"><div class="preview-actions-left"><button id="closeAuditBtn" class="secondary" type="button">Zavřít</button></div></div>
+</div></div></div>
+
 <div class="modal" id="upcomingModal"><div class="modal-content"><div class="preview-shell">
   <div class="preview-header">
     <div>
@@ -1669,6 +1702,10 @@ body.dark .badge-external,body.dark .status-external{
         <datalist id="partSerialList"></datalist>
       </div>
       <div class="field">
+        <label>Zadal</label>
+        <select id="partEnteredBy"></select>
+      </div>
+      <div class="field">
         <label>Místo / pobočka</label>
         <select id="partPlace"></select>
       </div>
@@ -1693,11 +1730,25 @@ body.dark .badge-external,body.dark .status-external{
       </div>
       <div class="field parts-note">
         <label>Typ zakázky</label>
-        <label class="external-check"><input id="partExternalCustomer" type="checkbox"><div><strong>Externí zákazník</strong><span>Zakázka mimo běžnou půjčovnu. Záznam se v přehledu barevně oddělí.</span></div></label>
+        <label class="external-check"><input id="partExternalCustomer" type="checkbox"><div><strong>Externí zákazník</strong><span>Jen u zakázek mimo půjčovnu. Po zaškrtnutí se zobrazí firma a adresa.</span></div></label>
+      </div>
+      <div id="partExternalDetails" class="field parts-note hidden">
+        <div class="customer-extra-grid">
+          <div class="field"><label>Název firmy</label><input id="partCustomerName" type="text" autocomplete="off" placeholder="Název externí firmy"></div>
+          <div class="field"><label>Adresa firmy</label><input id="partCustomerAddress" type="text" autocomplete="off" placeholder="Adresa / město"></div>
+        </div>
       </div>
       <div class="field parts-note">
-        <label>Poznámka</label>
+        <label>Poznámka / popis závady</label>
         <textarea id="partNote" placeholder="Volitelné upřesnění"></textarea>
+      </div>
+      <div class="field">
+        <label>Stav požadavku</label>
+        <select id="partStatusSelect">
+          <option value="open">Požadavek</option>
+          <option value="ordered">Objednáno</option>
+          <option value="sent">Odesláno</option>
+        </select>
       </div>
     </div>
     <div class="preview-actions">
@@ -1748,6 +1799,10 @@ body.dark .badge-external,body.dark .status-external{
         <datalist id="faultSerialList"></datalist>
       </div>
       <div class="field">
+        <label>Zadal</label>
+        <select id="faultEnteredBy"></select>
+      </div>
+      <div class="field">
         <label>Datum *</label>
         <input id="faultDate" type="date">
       </div>
@@ -1770,6 +1825,16 @@ body.dark .badge-external,body.dark .status-external{
           <option value="customer">Způsobeno zákazníkem</option>
           <option value="warranty">Lze uplatnit záruku</option>
         </select>
+      </div>
+      <div class="field fault-note">
+        <label>Typ zakázky</label>
+        <label class="external-check"><input id="faultExternalCustomer" type="checkbox"><div><strong>Externí zákazník</strong><span>Jen u zakázek mimo půjčovnu. Po zaškrtnutí se zobrazí firma a adresa.</span></div></label>
+      </div>
+      <div id="faultExternalDetails" class="field fault-note hidden">
+        <div class="customer-extra-grid">
+          <div class="field"><label>Název firmy</label><input id="faultCustomerName" type="text" autocomplete="off" placeholder="Název externí firmy"></div>
+          <div class="field"><label>Adresa firmy</label><input id="faultCustomerAddress" type="text" autocomplete="off" placeholder="Adresa / město"></div>
+        </div>
       </div>
       <div class="field fault-note">
         <label>Popis závady *</label>
@@ -1863,6 +1928,7 @@ const COLLECTION_NAME = 'protokoly_test';
 const SCHEDULE_COLLECTION_NAME = 'plan_prace';
 const PARTS_COLLECTION_NAME = 'nahradni_dily';
 const FAULTS_COLLECTION_NAME = 'hlaseni_poruch';
+const AUDIT_COLLECTION_NAME = 'historie_zmen';
 const STORAGE_PREFIX = 'ctvrtletni-test';
 const MAX_PHOTOS = 6;
 const MAX_PHOTO_BYTES = 500 * 1024;
@@ -2080,6 +2146,7 @@ const introSteps = [
   {k:'umisteni',t:'Umístění / pobočka',type:'branchSelect',section:'Úvodní údaje'},
   {k:'externalCustomer',t:'Externí zákazník',type:'externalCustomer',section:'Úvodní údaje'},
   {k:'technik',t:'Kontrolu provedl',type:'technikSelect',section:'Úvodní údaje'},
+  {k:'enteredBy',t:'Zadal záznam',type:'enteredBySelect',section:'Úvodní údaje'},
   {k:'poznamka',t:'Poznámka k protokolu',type:'textarea',section:'Úvodní údaje'}
 ];
 
@@ -2140,6 +2207,51 @@ function loadLocalData(){
 function saveLocalData(rows){
   try { localStorage.setItem('ctvrtletni_protokoly_local', JSON.stringify(rows)); } catch(e) {}
 }
+
+function getLastEnteredBy(){ try { return localStorage.getItem('liftcontrol_last_entered_by') || ''; } catch(e) { return ''; } }
+function setLastEnteredBy(name){ try { if(name) localStorage.setItem('liftcontrol_last_entered_by', name); } catch(e) {} }
+function getEnteredByDefault(){ return getLastEnteredBy() || 'Jan Bartoš'; }
+function operatorOptionsHtml(selected=''){
+  const names = uniqueNonEmpty([selected, getLastEnteredBy(), ...(TECHNICI || [])]);
+  return names.map(n => `<option value="${escapeHtml(n)}" ${n===selected?'selected':''}>${escapeHtml(n)}</option>`).join('');
+}
+function externalDetailsHtml(prefix, obj={}){
+  const on = !!(obj && obj.externalCustomer);
+  return `<div class="field ${prefix==='protocol'?'':'parts-note'} ${on ? '' : 'hidden'}" id="${prefix}ExternalDetails">
+    <div class="customer-extra-grid">
+      <div class="field"><label>Název firmy</label><input id="${prefix}CustomerName" type="text" value="${escapeHtml((obj && (obj.customerName || obj.companyName)) || '')}" autocomplete="off" placeholder="Jen u externí zakázky"></div>
+      <div class="field"><label>Adresa firmy</label><input id="${prefix}CustomerAddress" type="text" value="${escapeHtml((obj && (obj.customerAddress || obj.companyAddress)) || '')}" autocomplete="off" placeholder="Volitelné"></div>
+    </div>
+    <div class="customer-extra-note">U interní půjčovny nech prázdné. Pole se ukládají jen když je zaškrtnutý externí zákazník.</div>
+  </div>`;
+}
+function wireExternalDetails(prefix, targetObj=null){
+  const chk = document.getElementById(prefix + 'ExternalCustomer') || document.getElementById('externalCustomerInput');
+  const details = document.getElementById(prefix + 'ExternalDetails');
+  const name = document.getElementById(prefix + 'CustomerName');
+  const addr = document.getElementById(prefix + 'CustomerAddress');
+  const sync = () => {
+    const on = !!(chk && chk.checked);
+    details?.classList.toggle('hidden', !on);
+    if(targetObj){
+      targetObj.externalCustomer = on;
+      targetObj.customerName = on ? (name?.value || '').trim() : '';
+      targetObj.customerAddress = on ? (addr?.value || '').trim() : '';
+    }
+  };
+  chk?.addEventListener('change', sync);
+  name?.addEventListener('input', sync);
+  addr?.addEventListener('input', sync);
+  sync();
+}
+function customerDisplayText(r){
+  if(!r || !r.externalCustomer) return 'Půjčovna / interní';
+  const name = r.customerName || r.companyName || 'Externí zákazník';
+  const addr = r.customerAddress || r.companyAddress || '';
+  return addr ? `${name}, ${addr}` : name;
+}
+function getCompanyNameSuggestionsAll(){ return uniqueNonEmpty([...(data||[]).map(r=>r.customerName||r.companyName), ...(faultsData||[]).map(r=>r.customerName||r.companyName), ...(partsData||[]).map(r=>r.customerName||r.companyName)]); }
+function getCompanyAddressSuggestionsAll(){ return uniqueNonEmpty([...(data||[]).map(r=>r.customerAddress||r.companyAddress), ...(faultsData||[]).map(r=>r.customerAddress||r.companyAddress), ...(partsData||[]).map(r=>r.customerAddress||r.companyAddress)]); }
 
 function dataUrlBytes(dataUrl){
   if(!dataUrl || !dataUrl.includes(',')) return 0;
@@ -2256,7 +2368,8 @@ function backupCollectionsDef(){
     {key:'protokoly', collection:COLLECTION_NAME, label:'Čtvrtletní kontroly', loadLocal:loadLocalData, saveLocal:saveLocalData, setMemory:(rows)=>{data=rows;}},
     {key:'planPrace', collection:SCHEDULE_COLLECTION_NAME, label:'Plán práce', loadLocal:loadLocalSchedule, saveLocal:saveLocalSchedule, setMemory:(rows)=>{scheduleData=rows;}},
     {key:'nahradniDily', collection:PARTS_COLLECTION_NAME, label:'Náhradní díly', loadLocal:loadLocalParts, saveLocal:saveLocalParts, setMemory:(rows)=>{partsData=rows;}},
-    {key:'hlaseniPoruch', collection:FAULTS_COLLECTION_NAME, label:'Hlášení poruch', loadLocal:loadLocalFaults, saveLocal:saveLocalFaults, setMemory:(rows)=>{faultsData=rows;}}
+    {key:'hlaseniPoruch', collection:FAULTS_COLLECTION_NAME, label:'Hlášení poruch', loadLocal:loadLocalFaults, saveLocal:saveLocalFaults, setMemory:(rows)=>{faultsData=rows;}},
+    {key:'historieZmen', collection:AUDIT_COLLECTION_NAME, label:'Historie změn', loadLocal:loadLocalAudit, saveLocal:saveLocalAudit, setMemory:(rows)=>{auditData=rows;}}
   ];
 }
 async function exportBackup(){
@@ -2271,7 +2384,7 @@ async function exportBackup(){
     }
     const payload = {
       app: 'LiftControl CZ',
-      appVersion: '1.6 / 5.74',
+      appVersion: '1.6 / 5.78',
       backupType: 'complete',
       schemaVersion: 2,
       exportedAt: new Date().toISOString(),
@@ -2656,6 +2769,10 @@ function createProtocolFromFault(id){
     typ: f.type || '',
     vc: f.serial || '',
     umisteni: f.place || '',
+    externalCustomer: !!f.externalCustomer,
+    customerName: f.customerName || f.companyName || '',
+    customerAddress: f.customerAddress || f.companyAddress || '',
+    enteredBy: getEnteredByDefault(),
     datum: todayLocal(),
     poznamka: f.description ? ('Navazuje na hlášení poruchy: ' + f.description) : ''
   });
@@ -2667,7 +2784,7 @@ function render(){
   const filter = els.statusFilter.value;
   const techFilter = document.getElementById('protocolTechFilter')?.value || 'all';
   const customerFilter = document.getElementById('protocolCustomerFilter')?.value || 'all';
-  if(query) rows = rows.filter(r => [r.vc,r.typ,r.umisteni,r.technik].some(v => String(v||'').toLowerCase().includes(query)));
+  if(query) rows = rows.filter(r => [r.vc,r.typ,r.umisteni,r.technik,r.enteredBy,r.customerName,r.customerAddress].some(v => String(v||'').toLowerCase().includes(query)));
   if(techFilter !== 'all') rows = rows.filter(r => String(r.technik || '') === techFilter);
   if(customerFilter === 'external') rows = rows.filter(r => !!r.externalCustomer);
   if(customerFilter === 'internal') rows = rows.filter(r => !r.externalCustomer);
@@ -2676,7 +2793,7 @@ function render(){
   rows.sort((a,b)=>String(b.datum||'').localeCompare(String(a.datum||'')));
   if(!rows.length){ els.list.innerHTML = '<div class="empty"><div>Zatím tu nic není.</div></div>'; updateStats([]); return; }
   els.list.innerHTML = rows.map(r => `
-    <div class="card ${r.externalCustomer ? 'external-customer-card' : ''}">
+    <div class="card ${r.externalCustomer ? 'external-customer-card' : ''}" id="protocol-card-${escapeHtml(r.id || '')}">
       <div class="card-head">
         <div>
           <div class="card-title">${escapeHtml(r.vc||'')}</div>
@@ -2691,6 +2808,8 @@ function render(){
       </div>
       <div class="meta-grid">
         <div class="meta"><div class="meta-label">Technik</div><div class="meta-value">${escapeHtml(r.technik||'—')}</div></div>
+        <div class="meta"><div class="meta-label">Zadal</div><div class="meta-value">${escapeHtml(r.enteredBy || r.zadal || r.technik || '—')}</div></div>
+        <div class="meta"><div class="meta-label">Firma</div><div class="meta-value">${escapeHtml(customerDisplayText(r))}</div></div>
         <div class="meta"><div class="meta-label">Rok výroby</div><div class="meta-value">${escapeHtml(r.rok||'—')}</div></div>
         <div class="meta"><div class="meta-label">Následná kontrola</div><div class="meta-value">${escapeHtml(formatDate(r.dalsiKontrola))}</div></div>
         <div class="meta"><div class="meta-label">Bezpečný provoz</div><div class="meta-value">${escapeHtml(r.zaverBezpecny||'—')}</div></div>
@@ -2709,10 +2828,10 @@ function openModal(el){ el.classList.add('show'); }
 function closeModal(el){ el.classList.remove('show'); }
 
 function openWizard(editId=null, prefill={}){
-  rec = editId ? JSON.parse(JSON.stringify(data.find(r=>r.id===editId) || {id:uid()})) : {id:uid(), cLogic:'legacy', appVersion:'1.6 / 5.74'};
+  rec = editId ? JSON.parse(JSON.stringify(data.find(r=>r.id===editId) || {id:uid()})) : {id:uid(), cLogic:'legacy', appVersion:'1.6 / 5.78'};
   rec = Object.assign({}, rec, prefill || {});
   if(!editId && !rec.cLogic) rec.cLogic = 'legacy';
-  if(!editId && !rec.appVersion) rec.appVersion = '1.6 / 5.74';
+  if(!editId && !rec.appVersion) rec.appVersion = '1.6 / 5.78';
 
   // 🔥 AUTO DOPLNĚNÍ Z HISTORIE PODLE VÝROBNÍHO ČÍSLA
   if(rec.vc){
@@ -2798,7 +2917,11 @@ function showStep(){
     const size = p.bytes ? ` · ${Math.round(p.bytes/1024)} kB` : '';
     html = `<div class="field"><label>${s.t}</label><input id="photoInput" type="file" accept="image/*" capture="environment"><div class="helper">Max. 500 kB po automatické kompresi. Fotku můžeš přeskočit tlačítkem Další.</div>${src ? `<div class="photo-preview"><img src="${escapeHtml(src)}" data-full-src="${escapeHtml(src)}" onclick="openLightbox(this.dataset.fullSrc)" alt="${escapeHtml(s.t)}"></div><div class="helper">Uloženo v kroku${size}</div><div class="photo-tools"><button class="danger mini" type="button" id="deleteMainPhotoBtn">Smazat tuto fotku</button></div>` : ''}</div>`;
   } else if(s.type === 'externalCustomer'){
-    html = `<label class="external-check"><input id="externalCustomerInput" type="checkbox" ${rec.externalCustomer ? 'checked' : ''}><div><strong>Externí zákazník</strong><span>Zaškrtni jen u zakázek mimo běžnou půjčovnu. Protokol bude barevně oddělený v archivu.</span></div></label>`;
+    html = `<label class="external-check"><input id="externalCustomerInput" type="checkbox" ${rec.externalCustomer ? 'checked' : ''}><div><strong>Externí zákazník</strong><span>Zaškrtni jen u zakázek mimo běžnou půjčovnu. Údaje firmy se vyplní jen tady a v protokolu budou vidět.</span></div></label>${externalDetailsHtml('protocol', rec)}`;
+  } else if(s.type === 'enteredBySelect'){
+    const val = rec.enteredBy || rec.zadal || rec.technik || getEnteredByDefault();
+    rec.enteredBy = val;
+    html = `<div class="field"><label>Zadal záznam</label><select id="enteredBySelect">${operatorOptionsHtml(val)}</select><div class="helper">Předvyplní se poslední použitý člověk. Slouží jen pro dohledání, kdo záznam založil.</div></div>`;
   } else if(s.type === 'textarea'){
     html = `<div class="field suggest-wrap"><textarea id="mainTextarea">${escapeHtml(rec[s.k]||'')}</textarea><div id="suggestHost"></div></div>`;
   } else if(s.type === 'date'){
@@ -2816,7 +2939,12 @@ function showStep(){
   const descInput = document.getElementById('descInput');
   const externalCustomerInput = document.getElementById('externalCustomerInput');
   if(externalCustomerInput){
-    externalCustomerInput.addEventListener('change', () => { rec.externalCustomer = !!externalCustomerInput.checked; });
+    wireExternalDetails('protocol', rec);
+  }
+  const enteredBySelect = document.getElementById('enteredBySelect');
+  if(enteredBySelect){
+    enteredBySelect.addEventListener('change', () => { rec.enteredBy = enteredBySelect.value; setLastEnteredBy(rec.enteredBy); });
+    rec.enteredBy = enteredBySelect.value;
   }
 
   if(mainInput){
@@ -2960,7 +3088,7 @@ function refreshSuggestions(){
   if(s.k === 'vc') source = getSuggestions(s.k, getSerialSuggestionsAll());
   else if(s.k === 'typ' || s.type === 'modelSelect') source = getSuggestions(s.k, getModelSuggestionsAll());
   else if(s.k === 'umisteni' || s.type === 'branchSelect') source = getSuggestions(s.k, getPlaceSuggestionsAll());
-  else if(s.type === 'technikSelect') source = getSuggestions(s.k, TECHNICI);
+  else if(s.type === 'technikSelect' || s.type === 'enteredBySelect') source = getSuggestions(s.k, TECHNICI);
   else if(s.type === 'yearInput') source = yearOptions(rec.datum);
   else source = getSuggestions(s.k);
   host.innerHTML = renderSuggestBox(filterSuggestions(source, val), s.k, s.type === 'textarea');
@@ -3096,7 +3224,7 @@ async function nextStep(){
     const needsNote = s.k === 'B1' ? rec[s.k] === 'NE' : (isGeneralCheckKey(s.k) ? isProblemAnswer(s.k, rec[s.k], rec) : rec[s.k] === 'NE');
     if(needsNote) rec[s.textKey] = document.getElementById('descInput')?.value || rec[s.textKey] || '';
   }
-  if(['text','textarea','branchSelect','technikSelect','yearInput','date','modelSelect','number'].includes(s.type)) addSuggestion(s.k, rec[s.k]);
+  if(['text','textarea','branchSelect','technikSelect','enteredBySelect','yearInput','date','modelSelect','number'].includes(s.type)) addSuggestion(s.k, rec[s.k]);
   if(s.k === 'vc' && rec.vc){
     applyProtocolDefaultsFromSerial(rec.vc);
   }
@@ -3116,9 +3244,13 @@ async function nextStep(){
   syncRevizeIssue(rec);
   syncModelPreferences(rec);
   if(!rec.cLogic) rec.cLogic = 'legacy';
-  if(!rec.appVersion) rec.appVersion = '1.6 / 5.74';
+  if(!rec.appVersion) rec.appVersion = '1.6 / 5.78';
+  if(!rec.enteredBy) rec.enteredBy = rec.technik || getEnteredByDefault();
+  setLastEnteredBy(rec.enteredBy);
   rec.savedAt = new Date().toISOString();
+  const wasExistingProtocol = data.some(x => x.id === rec.id);
   await saveProtocol(rec);
+  await logAuditAction(wasExistingProtocol ? 'update' : 'create','protocol',rec,rec.enteredBy || rec.technik);
   closeWizard();
   render();
   alert('Protokol uložen.');
@@ -3172,6 +3304,59 @@ function downloadById(id){
   openModal(els.preview);
 }
 
+
+let auditData = [];
+function loadLocalAudit(){ try { return JSON.parse(localStorage.getItem('liftcontrol_audit_local') || '[]'); } catch(e) { return []; } }
+function saveLocalAudit(rows){ try { localStorage.setItem('liftcontrol_audit_local', JSON.stringify(rows)); } catch(e) {} }
+function auditUid(){ return 'audit_' + Date.now() + '_' + Math.random().toString(36).slice(2,8); }
+function summarizeRecordForAudit(record){
+  record = record || {};
+  return [record.typ || record.type, record.vc || record.serial, record.partNumber, record.partName, record.place || record.umisteni].filter(Boolean).join(' · ') || 'Bez detailu';
+}
+function auditEntityLabel(entity){
+  return ({protocol:'Čtvrtletní kontrola', part:'Náhradní díl', fault:'Hlášení poruchy', plan:'Plán práce'})[entity] || entity || 'Záznam';
+}
+function auditActionLabel(action){
+  return ({create:'Vytvořeno', update:'Upraveno', delete:'Smazáno', status:'Změna stavu'})[action] || action || 'Změna';
+}
+async function logAuditAction(action, entity, record, by, detail){
+  try{
+    const item = {
+      id: auditUid(), action, entity,
+      entityId: record?.id || '',
+      by: String(by || getEnteredByDefault() || '').trim() || 'Neuvedeno',
+      detail: detail || summarizeRecordForAudit(record),
+      serial: record?.vc || record?.serial || '',
+      type: record?.typ || record?.type || '',
+      createdAt: new Date().toISOString(),
+      appVersion: '1.6 / 5.78'
+    };
+    if(firebaseAvailable && db){ await db.collection(AUDIT_COLLECTION_NAME).doc(item.id).set(item); }
+    else { const rows = loadLocalAudit(); rows.unshift(item); saveLocalAudit(rows.slice(0,300)); auditData = rows.slice(0,300); }
+  }catch(e){ console.warn('Nepodařilo se zapsat historii změn:', e); }
+}
+function promptDeleteActor(recordLabel){
+  const who = prompt(`Opravdu chceš smazat záznam${recordLabel ? ' - ' + recordLabel : ''}?\n\nZadej, kdo záznam maže:` , getEnteredByDefault() || '');
+  if(who === null) return '';
+  const out = String(who || '').trim();
+  if(!out){ alert('Mazání zrušeno. Je potřeba zadat, kdo záznam maže.'); return ''; }
+  return out;
+}
+function renderAuditHistory(){
+  const box = document.getElementById('auditList');
+  if(!box) return;
+  const rows = [...(auditData || loadLocalAudit() || [])].sort((a,b)=>String(b.createdAt||'').localeCompare(String(a.createdAt||''))).slice(0,80);
+  if(!rows.length){ box.innerHTML = '<div class="empty">Zatím není žádná historie změn.</div>'; return; }
+  box.innerHTML = rows.map(r => `<div class="audit-item"><span class="audit-action ${escapeHtml(r.action||'')}">${escapeHtml(auditActionLabel(r.action))}</span><div class="audit-title">${escapeHtml(auditEntityLabel(r.entity))}</div><div class="audit-sub">${escapeHtml(r.detail || '')}</div><div class="audit-sub">${escapeHtml(formatDateTime(r.createdAt))} · provedl: <strong>${escapeHtml(r.by || 'Neuvedeno')}</strong></div></div>`).join('');
+}
+function openAuditModal(){ renderAuditHistory(); openModal(document.getElementById('auditModal')); }
+async function refreshAuditHistory(){
+  if(firebaseAvailable && db){
+    try{ const snap = await db.collection(AUDIT_COLLECTION_NAME).orderBy('createdAt','desc').limit(80).get(); auditData = snap.docs.map(d => ({id:d.id, ...d.data()})); }catch(e){ console.warn(e); }
+  } else auditData = loadLocalAudit();
+  renderAuditHistory();
+}
+
 function requireDeletePassword(message){
   const pass = prompt(message || 'Pro smazání zadej heslo:');
   if(pass !== '1985'){
@@ -3182,9 +3367,11 @@ function requireDeletePassword(message){
 }
 
 async function delById(id){
-  if(!confirm('Opravdu smazat uložený protokol?')) return;
-  if(!requireDeletePassword('Pro smazání uloženého protokolu zadej heslo:')) return;
+  const record = data.find(r => r.id === id);
+  const who = promptDeleteActor(summarizeRecordForAudit(record));
+  if(!who) return;
   await deleteProtocol(id);
+  await logAuditAction('delete','protocol',record,who);
 }
 async function clearAllData(){
   if(!data.length) return;
@@ -3366,7 +3553,7 @@ function renderAttentionList(){
   const kickerMap = {protocol:'Kontrola', fault:'Porucha', 'fault-repaired':'Porucha opraveno', part:'Náhradní díly'};
 
   box.innerHTML = items.map((x, i) => {
-    const openAttr = x.type === 'part' ? `data-attention-part-open="${escapeHtml(x.id || '')}"` : ((x.type === 'fault' || x.type === 'fault-repaired') ? `data-attention-fault-open="${escapeHtml(x.id || '')}"` : '');
+    const openAttr = x.type === 'part' ? `data-attention-part-open="${escapeHtml(x.id || '')}"` : ((x.type === 'fault' || x.type === 'fault-repaired') ? `data-attention-fault-open="${escapeHtml(x.id || '')}" data-attention-fault-filter="${x.type === 'fault-repaired' ? 'repaired' : 'open'}"` : (x.type === 'protocol' ? `data-attention-protocol-open="${escapeHtml(x.id || '')}"` : ''));
     return `
     <div class="attention-rich-item ${x.type}" ${openAttr} role="button" tabindex="0">
       <div class="attention-top">
@@ -3384,28 +3571,92 @@ function renderAttentionList(){
       </div>
       <div class="attention-rich-actions">
         ${x.serial ? `<button class="secondary mini" type="button" data-machine-card="${escapeHtml(x.serial)}">Karta stroje</button>` : ''}
-        ${(x.type === 'fault' || x.type === 'fault-repaired') ? `<button class="secondary mini" type="button" data-open-fault-id="${escapeHtml(x.id || '')}">Otevřít poruchu</button>` : ''}
-        ${x.type === 'part' ? `<button class="secondary mini" type="button" data-open-part-id="${escapeHtml(x.id || '')}">Otevřít ND</button>` : ''}
-        ${x.type === 'protocol' ? `<button class="secondary mini" type="button" data-jump-archive="1">Otevřít protokoly</button>` : ''}
+        ${(x.type === 'fault' || x.type === 'fault-repaired') ? `<button class="secondary mini" type="button" data-open-fault-id="${escapeHtml(x.id || '')}" data-fault-list-filter="${x.type === 'fault-repaired' ? 'repaired' : 'open'}">Otevřít v seznamu</button>` : ''}
+        ${x.type === 'part' ? `<button class="secondary mini" type="button" data-open-part-id="${escapeHtml(x.id || '')}">Otevřít v seznamu</button>` : ''}
+        ${x.type === 'protocol' ? `<button class="secondary mini" type="button" data-open-protocol-id="${escapeHtml(x.id || '')}">Otevřít v seznamu</button>` : ''}
       </div>
     </div>
   `;
   }).join('');
 
   box.querySelectorAll('[data-machine-card]').forEach(btn => btn.addEventListener('click', (ev) => { ev.stopPropagation(); openMachineCard(btn.dataset.machineCard); }));
-  box.querySelectorAll('[data-open-fault-id]').forEach(btn => btn.addEventListener('click', (ev) => { ev.stopPropagation(); openFaultsModal(); openFaultForm(btn.dataset.openFaultId); }));
-  box.querySelectorAll('[data-open-part-id]').forEach(btn => btn.addEventListener('click', (ev) => { ev.stopPropagation(); openPartsModal(); openPartForm(btn.dataset.openPartId); }));
+  box.querySelectorAll('[data-open-fault-id]').forEach(btn => btn.addEventListener('click', (ev) => { ev.stopPropagation(); openFaultsList(btn.dataset.openFaultId, btn.dataset.faultListFilter || 'all'); }));
+  box.querySelectorAll('[data-open-part-id]').forEach(btn => btn.addEventListener('click', (ev) => { ev.stopPropagation(); openPartsList(btn.dataset.openPartId); }));
+  box.querySelectorAll('[data-open-protocol-id]').forEach(btn => btn.addEventListener('click', (ev) => { ev.stopPropagation(); openProtocolsList(btn.dataset.openProtocolId); }));
+  box.querySelectorAll('[data-attention-protocol-open]').forEach(card => {
+    const open = () => { const id = card.dataset.attentionProtocolOpen; openProtocolsList(id || null); };
+    card.addEventListener('click', (ev) => { if(ev.target.closest('button')) return; open(); });
+    card.addEventListener('keydown', (ev) => { if(ev.key === 'Enter' || ev.key === ' '){ ev.preventDefault(); open(); } });
+  });
   box.querySelectorAll('[data-attention-fault-open]').forEach(card => {
-    const open = () => { const id = card.dataset.attentionFaultOpen; if(id){ openFaultsModal(); openFaultForm(id); } };
+    const open = () => { const id = card.dataset.attentionFaultOpen; openFaultsList(id || null, card.dataset.attentionFaultFilter || 'all'); };
     card.addEventListener('click', (ev) => { if(ev.target.closest('button')) return; open(); });
     card.addEventListener('keydown', (ev) => { if(ev.key === 'Enter' || ev.key === ' '){ ev.preventDefault(); open(); } });
   });
   box.querySelectorAll('[data-attention-part-open]').forEach(card => {
-    const open = () => { const id = card.dataset.attentionPartOpen; if(id){ openPartsModal(); openPartForm(id); } };
+    const open = () => { const id = card.dataset.attentionPartOpen; openPartsList(id || null); };
     card.addEventListener('click', (ev) => { if(ev.target.closest('button')) return; open(); });
     card.addEventListener('keydown', (ev) => { if(ev.key === 'Enter' || ev.key === ' '){ ev.preventDefault(); open(); } });
   });
-  box.querySelectorAll('[data-jump-archive]').forEach(btn => btn.addEventListener('click', (ev) => { ev.stopPropagation(); showSection('archive'); }));
+}
+
+function flashAndScrollToElement(el){
+  if(!el) return;
+  el.scrollIntoView({behavior:'smooth', block:'center'});
+  el.classList.add('focus-flash');
+  setTimeout(() => el.classList.remove('focus-flash'), 2200);
+}
+function scrollToProtocolCard(id){
+  if(!id) return;
+  setTimeout(() => {
+    const el = document.getElementById('protocol-card-' + CSS.escape(String(id || '')));
+    flashAndScrollToElement(el);
+  }, 160);
+}
+function scrollToFaultCard(id){
+  if(!id) return;
+  setTimeout(() => {
+    const el = document.getElementById('fault-card-' + CSS.escape(String(id || '')));
+    flashAndScrollToElement(el);
+  }, 160);
+}
+function openProtocolsList(id=null){
+  const filter = document.getElementById('statusFilter');
+  if(filter) filter.value = 'all';
+  const search = document.getElementById('searchInput');
+  if(search) search.value = '';
+  showSection('archive');
+  render();
+  scrollToProtocolCard(id);
+}
+function openFaultsList(id=null, status='all'){
+  const filter = document.getElementById('faultStatusFilter');
+  if(filter) filter.value = status || 'all';
+  const search = document.getElementById('faultsSearch');
+  if(search) search.value = '';
+  fillFaultSelects();
+  renderFaults();
+  showSection('faults');
+  closeFaultForm();
+  scrollToFaultCard(id);
+}
+function openPartsList(id=null){
+  const search = document.getElementById('partsSearch');
+  if(search) search.value = '';
+  const customerFilter = document.getElementById('partsCustomerFilter');
+  if(customerFilter) customerFilter.value = 'all';
+  fillPartSelects();
+  renderParts();
+  showSection('parts');
+  closePartForm();
+  scrollToPartCard(id);
+}
+
+function bindAttentionCounterClicks(){
+  document.querySelector('.attention-count-protocols')?.addEventListener('click', () => openProtocolsList());
+  document.querySelector('.attention-count-faults')?.addEventListener('click', () => openFaultsList(null, 'open'));
+  document.querySelector('.attention-count-repaired')?.addEventListener('click', () => openFaultsList(null, 'repaired'));
+  document.querySelector('.attention-count-parts')?.addEventListener('click', () => openPartsList());
 }
 
 function openMachineCard(serial){
@@ -3458,7 +3709,7 @@ function openHistoryModal(serial){
   els.historyBody.querySelectorAll('[data-fault-open]').forEach(btn => btn.addEventListener('click', () => { closeHistoryModal(); openFaultsModal(); openFaultForm(btn.dataset.faultOpen); }));
   els.historyBody.querySelectorAll('[data-fault-protocol]').forEach(btn => btn.addEventListener('click', () => printRepairProtocol(btn.dataset.faultProtocol)));
   els.historyBody.querySelectorAll('[data-fault-create-protocol]').forEach(btn => btn.addEventListener('click', () => { closeHistoryModal(); createProtocolFromFault(btn.dataset.faultCreateProtocol); }));
-  els.historyBody.querySelectorAll('[data-part-open]').forEach(btn => btn.addEventListener('click', () => { closeHistoryModal(); openPartsModal(); openPartForm(btn.dataset.partOpen); }));
+  els.historyBody.querySelectorAll('[data-part-open]').forEach(btn => btn.addEventListener('click', () => { closeHistoryModal(); openPartsModal(); closePartForm(); scrollToPartCard(btn.dataset.partOpen); }));
   openModal(els.historyModal);
   requestAnimationFrame(() => {
     const scroller = els.historyModal?.querySelector('.history-modal-content');
@@ -3638,6 +3889,8 @@ function renderPaper(r){
           <tr><td class="label">Rok výroby:</td><td class="value">${escapeHtml(r.rok||'')}</td><td class="label">Druh kontroly:</td><td class="value">Běžná čtvrtletní</td></tr>
           <tr><td class="label">Stav motohodin:</td><td class="value">${escapeHtml(r.mh||'')} h</td><td class="label">Interval:</td><td class="value">3 měsíce</td></tr>
           <tr><td class="label">Umístění:</td><td class="value" colspan="3">${r.externalCustomer ? 'externí zákazník' + (r.umisteni ? ' – ' + escapeHtml(r.umisteni) : '') : (r.umisteni ? 'půjčovna ' + escapeHtml(r.umisteni) : '')}</td></tr>
+          <tr><td class="label">Firma:</td><td class="value" colspan="3">${escapeHtml(customerDisplayText(r))}</td></tr>
+          <tr><td class="label">Záznam zadal:</td><td class="value" colspan="3">${escapeHtml(r.enteredBy || r.zadal || r.technik || '')}</td></tr>
         </table>
         <div class="paper-row-2">
           <div class="section-card">
@@ -3826,8 +4079,9 @@ async function saveWorkPlan(record){
   }
 }
 async function deleteWorkPlan(id){
-  if(!confirm('Smazat tento záznam plánu práce?')) return;
-  if(!requireDeletePassword('Pro smazání záznamu z kalendáře zadej heslo:')) return;
+  const record = (scheduleData || []).find(x => x.id === id);
+  const who = promptDeleteActor(summarizeRecordForAudit(record));
+  if(!who) return;
   if(firebaseAvailable && db){
     await db.collection(SCHEDULE_COLLECTION_NAME).doc(id).delete();
   } else {
@@ -4097,10 +4351,11 @@ async function saveWorkPlanFromForm(){
     place,
     extraPlaces,
     note,
-    appVersion:'1.6 / 5.74'
+    appVersion:'1.6 / 5.78'
   });
   if(!record.createdAt) record.createdAt = new Date().toISOString();
   await saveWorkPlan(record);
+  await logAuditAction(existing ? 'update' : 'create','plan',record,record.technician);
   closeWorkPlanForm();
   currentWorkWeekStart = startOfWeek(new Date(date + 'T00:00:00'));
   renderWorkPlan();
@@ -4317,8 +4572,9 @@ async function saveFaultRecord(record){
   }
 }
 async function deleteFaultRecord(id){
-  if(!confirm('Smazat toto hlášení poruchy?')) return;
-  if(!requireDeletePassword('Pro smazání hlášení poruchy zadej heslo:')) return;
+  const record = (faultsData || []).find(x => x.id === id);
+  const who = promptDeleteActor(summarizeRecordForAudit(record));
+  if(!who) return;
   if(firebaseAvailable && db){
     await db.collection(FAULTS_COLLECTION_NAME).doc(id).delete();
   } else {
@@ -4327,6 +4583,7 @@ async function deleteFaultRecord(id){
     renderFaults();
     updateMainOverview();
   }
+  await logAuditAction('delete','fault',record,who);
 }
 async function deleteAllFaultRecords(){
   if(!confirm('Opravdu smazat celou historii hlášení poruch?')) return;
@@ -4434,12 +4691,16 @@ function attachPartSmartSuggests(){
   attachSmartSuggest(document.getElementById('partNumber'), getPartNumberSuggestionsAll);
   attachSmartSuggest(document.getElementById('partName'), getPartNameSuggestionsAll);
   attachSmartSuggest(document.getElementById('partNote'), getPartNoteSuggestionsAll);
+  attachSmartSuggest(document.getElementById('partCustomerName'), getCompanyNameSuggestionsAll);
+  attachSmartSuggest(document.getElementById('partCustomerAddress'), getCompanyAddressSuggestionsAll);
 }
 function attachFaultSmartSuggests(){
   attachSmartSuggest(document.getElementById('faultType'), getModelSuggestionsAll);
   attachSmartSuggest(document.getElementById('faultSerial'), getSerialSuggestionsAll, () => document.getElementById('faultSerial')?.dispatchEvent(new Event('change', {bubbles:true})));
   attachSmartSuggest(document.getElementById('faultCustomPlace'), getPlaceSuggestionsAll);
   attachSmartSuggest(document.getElementById('faultDesc'), getFaultDescSuggestionsAll);
+  attachSmartSuggest(document.getElementById('faultCustomerName'), getCompanyNameSuggestionsAll);
+  attachSmartSuggest(document.getElementById('faultCustomerAddress'), getCompanyAddressSuggestionsAll);
 }
 function attachWorkSmartSuggests(){
   attachSmartSuggest(document.getElementById('workPlanCustomPlace'), getPlaceSuggestionsAll);
@@ -4544,6 +4805,12 @@ function openFaultForm(id=null){
   currentFaultPhotos = f && Array.isArray(f.photos) ? JSON.parse(JSON.stringify(f.photos)) : [];
   document.getElementById('faultType').value = (f && f.type) || '';
   document.getElementById('faultSerial').value = (f && f.serial) || '';
+  const faultEntered = document.getElementById('faultEnteredBy');
+  if(faultEntered){
+    const val = (f && (f.enteredBy || f.zadal)) || getEnteredByDefault();
+    faultEntered.innerHTML = operatorOptionsHtml(val);
+    faultEntered.value = val;
+  }
   document.getElementById('faultDate').value = (f && f.date) || todayLocal();
   document.getElementById('faultMh').value = (f && f.mh) || '';
   const placeSelect = document.getElementById('faultPlace');
@@ -4566,6 +4833,11 @@ function openFaultForm(id=null){
   document.getElementById('faultDesc').value = (f && f.description) || '';
   const catEl = document.getElementById('faultCategory');
   if(catEl) catEl.value = (f && (f.faultCategory || f.category)) || 'normal';
+  const faultExt = document.getElementById('faultExternalCustomer');
+  if(faultExt) faultExt.checked = !!(f && f.externalCustomer);
+  document.getElementById('faultCustomerName').value = (f && (f.customerName || f.companyName)) || '';
+  document.getElementById('faultCustomerAddress').value = (f && (f.customerAddress || f.companyAddress)) || '';
+  wireExternalDetails('fault');
   document.getElementById('faultInitialStatus').value = f ? (faultIsRepaired(f) ? 'repaired' : (faultInService(f) ? 'service' : (faultWaitingParts(f) ? 'waiting_parts' : 'open'))) : 'open';
   renderFaultPhotoPreview();
   document.getElementById('faultFormWrap').classList.remove('hidden');
@@ -4600,13 +4872,18 @@ async function saveFaultFromForm(){
     place,
     description,
     faultCategory,
+    enteredBy: document.getElementById('faultEnteredBy')?.value || getEnteredByDefault(),
+    externalCustomer: !!document.getElementById('faultExternalCustomer')?.checked,
+    customerName: !!document.getElementById('faultExternalCustomer')?.checked ? document.getElementById('faultCustomerName').value.trim() : '',
+    customerAddress: !!document.getElementById('faultExternalCustomer')?.checked ? document.getElementById('faultCustomerAddress').value.trim() : '',
     status: status === 'repaired' ? 'repaired' : 'open',
     inService: status === 'service' ? true : (existing ? !!existing.inService : false),
     waitingParts: status === 'waiting_parts' ? true : (existing ? !!existing.waitingParts : false),
     photos: currentFaultPhotos,
-    appVersion:'1.6 / 5.74'
+    appVersion:'1.6 / 5.78'
   });
   if(!record.createdAt) record.createdAt = new Date().toISOString();
+  setLastEnteredBy(record.enteredBy);
   if(status === 'repaired'){
     record.repaired = true;
     record.inService = false;
@@ -4614,6 +4891,7 @@ async function saveFaultFromForm(){
     if(!record.repairedAt) record.repairedAt = new Date().toISOString();
   }
   await saveFaultRecord(record);
+  await logAuditAction(existing ? 'update' : 'create','fault',record,record.enteredBy);
   closeFaultForm();
   renderFaults();
 }
@@ -4626,7 +4904,7 @@ function renderFaults(){
   let rows = [...(faultsData || [])];
   if(statusFilter === 'open') rows = rows.filter(f => !faultIsRepaired(f));
   if(statusFilter === 'repaired') rows = rows.filter(f => faultIsRepaired(f));
-  if(query) rows = rows.filter(f => [f.type,f.serial,f.place,f.description,f.mh,getFaultCategoryLabel(f)].some(v => String(v||'').toLowerCase().includes(query)));
+  if(query) rows = rows.filter(f => [f.type,f.serial,f.place,f.description,f.mh,getFaultCategoryLabel(f),f.enteredBy,f.customerName,f.customerAddress].some(v => String(v||'').toLowerCase().includes(query)));
   rows.sort((a,b) => String(b.createdAt||b.date||'').localeCompare(String(a.createdAt||a.date||'')));
   if(!rows.length){ list.innerHTML = '<div class="empty">Žádná hlášení poruch.</div>'; return; }
   list.innerHTML = rows.map(f => {
@@ -4636,7 +4914,7 @@ function renderFaults(){
       const src = p.url || p.dataUrl || '';
       return src ? `<img src="${escapeHtml(src)}" data-full-src="${escapeHtml(src)}" onclick="openLightbox(this.dataset.fullSrc)">` : '';
     }).join('')}</div>` : '';
-    return `<div class="fault-card">
+    return `<div class="fault-card ${f.externalCustomer ? 'external-customer-card' : ''}" id="fault-card-${escapeHtml(f.id || '')}">
       <div class="fault-head">
         <div>
           <div class="fault-title">${escapeHtml(f.type || 'Bez typu')} · v.č. ${escapeHtml(f.serial || '—')}</div>
@@ -4646,6 +4924,8 @@ function renderFaults(){
       </div>
       <div class="fault-grid">
         <div class="fault-meta"><div class="fault-meta-label">Druh závady</div><div class="fault-meta-value"><span class="fault-category-pill ${getFaultCategoryClass(f)}">${escapeHtml(getFaultCategoryLabel(f))}</span></div></div>
+        <div class="fault-meta"><div class="fault-meta-label">Zadal</div><div class="fault-meta-value">${escapeHtml(f.enteredBy || f.zadal || '—')}</div></div>
+        <div class="fault-meta"><div class="fault-meta-label">Firma</div><div class="fault-meta-value">${escapeHtml(customerDisplayText(f))}</div></div>
         <div class="fault-meta"><div class="fault-meta-label">Motohodiny</div><div class="fault-meta-value">${escapeHtml(f.mh || '—')}</div></div>
         <div class="fault-meta"><div class="fault-meta-label">Zadáno</div><div class="fault-meta-value">${escapeHtml(formatDateTime(f.createdAt))}</div></div>
         <div class="fault-meta"><div class="fault-meta-label">Opraveno</div><div class="fault-meta-value">${faultIsRepaired(f) ? escapeHtml(formatDateTime(f.repairedAt || f.updatedAt)) : 'Ne'}</div></div>
@@ -4821,7 +5101,7 @@ body.dark .module-kicker{
 }
 
 
-/* v1.6 / 5.74 – externí zákazník */
+/* v1.6 / 5.78 – externí zákazník */
 .external-customer-card{
   border-color:#7c3aed!important;
   box-shadow:0 0 0 2px rgba(124,58,237,.10), var(--shadow)!important;
@@ -4853,7 +5133,22 @@ body.dark .badge-external,body.dark .status-external{
 .external-check input{width:auto;min-width:20px;height:20px}
 .external-check strong{display:block}
 .external-check span{display:block;color:var(--muted);font-size:.83rem;margin-top:2px}
+.customer-extra-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:10px}
+.customer-extra-note{font-size:.78rem;color:var(--muted);margin-top:6px}
+.operator-mini-row{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+@media(max-width:720px){.customer-extra-grid,.operator-mini-row{grid-template-columns:1fr}}
 
+
+/* v5.76 read-only ND cards + audit history */
+.part-note-display{border:1px solid var(--line);border-radius:14px;background:var(--panel2);padding:11px 12px;display:grid;gap:4px}
+.part-note-display strong{font-size:.78rem;color:var(--muted)}
+.part-note-display div{font-weight:650;line-height:1.35;white-space:pre-wrap;overflow-wrap:anywhere}
+.part-card.focus-flash{outline:3px solid #2563eb;outline-offset:3px}
+.audit-list{display:grid;gap:10px;margin-top:12px}
+.audit-item{border:1px solid var(--line);border-radius:16px;background:#fff;padding:12px;display:grid;gap:5px}
+body.dark .audit-item{background:var(--panel2)}
+.audit-title{font-weight:850}.audit-sub{font-size:.84rem;color:var(--muted);line-height:1.35}.audit-action{display:inline-flex;width:max-content;border-radius:999px;padding:4px 8px;background:#eff6ff;color:#1d4ed8;font-size:.75rem;font-weight:800}
+.audit-action.delete{background:#fef2f2;color:#b91c1c}.audit-action.update{background:#fff7ed;color:#9a3412}.audit-action.create{background:#ecfdf5;color:#166534}
 </style></head>`));
   w.document.close();
   try { w.focus(); } catch(e){}
@@ -4878,6 +5173,9 @@ function createPartFromFault(id){
     document.getElementById('partNote').value = f.description ? ('Z poruchy: ' + f.description) : '';
     const extChk = document.getElementById('partExternalCustomer');
     if(extChk) extChk.checked = !!f.externalCustomer;
+    document.getElementById('partCustomerName').value = f.customerName || f.companyName || '';
+    document.getElementById('partCustomerAddress').value = f.customerAddress || f.companyAddress || '';
+    wireExternalDetails('part');
 
     const faultPhotos = Array.isArray(f.photos) ? f.photos.filter(p => p && (p.url || p.dataUrl)) : [];
     if(faultPhotos.length){
@@ -5021,8 +5319,9 @@ async function savePartRecord(record){
   }
 }
 async function deletePartRecord(id){
-  if(!confirm('Smazat tento požadavek na náhradní díl?')) return;
-  if(!requireDeletePassword('Pro smazání požadavku na náhradní díl zadej heslo:')) return;
+  const record = (partsData || []).find(x => x.id === id);
+  const who = promptDeleteActor(summarizeRecordForAudit(record));
+  if(!who) return;
   if(firebaseAvailable && db){
     await db.collection(PARTS_COLLECTION_NAME).doc(id).delete();
   } else {
@@ -5031,6 +5330,7 @@ async function deletePartRecord(id){
     renderParts();
     updateMainOverview();
   }
+  await logAuditAction('delete','part',record,who);
 }
 function fillPartSelects(){
   const place = document.getElementById('partPlace');
@@ -5054,6 +5354,13 @@ function closePartsModal(){
   closePartForm();
   showSection('home');
 }
+function scrollToPartCard(id){
+  if(!id) return;
+  setTimeout(() => {
+    const el = document.getElementById('part-card-' + CSS.escape(String(id || '')));
+    flashAndScrollToElement(el);
+  }, 160);
+}
 function renderParts(){
   updateMainOverview();
   const list = document.getElementById('partsList');
@@ -5061,7 +5368,7 @@ function renderParts(){
   const query = (document.getElementById('partsSearch')?.value || '').toLowerCase().trim();
   const customerFilter = document.getElementById('partsCustomerFilter')?.value || 'all';
   let rows = [...(partsData || [])];
-  if(query) rows = rows.filter(p => [p.type,p.serial,p.place,p.partNumber,p.partName,p.note].some(v => String(v||'').toLowerCase().includes(query)));
+  if(query) rows = rows.filter(p => [p.type,p.serial,p.place,p.partNumber,p.partName,p.note,p.enteredBy,p.customerName,p.customerAddress].some(v => String(v||'').toLowerCase().includes(query)));
   if(customerFilter === 'external') rows = rows.filter(p => !!p.externalCustomer);
   if(customerFilter === 'internal') rows = rows.filter(p => !p.externalCustomer);
   rows.sort((a,b) => String(b.createdAt||'').localeCompare(String(a.createdAt||'')));
@@ -5070,7 +5377,7 @@ function renderParts(){
     const st = getPartStatus(p);
     const partPhotos = getPartPhotoList(p);
     const photoHtml = partPhotos.length ? `<div class="part-photo-grid">${partPhotos.map(ph => { const src = ph ? (ph.url || ph.dataUrl || '') : ''; return src ? `<span class="part-photo-item"><img src="${escapeHtml(src)}" data-full-src="${escapeHtml(src)}" onclick="openLightbox(this.dataset.fullSrc)"></span>` : ''; }).join('')}</div>` : '';
-    return `<div class="part-card ${p.externalCustomer ? 'external-customer-card' : ''}">
+    return `<div class="part-card ${p.externalCustomer ? 'external-customer-card' : ''}" id="part-card-${escapeHtml(p.id || '')}">
       <div class="part-head">
         <div>
           <div class="part-title">${escapeHtml(p.partNumber || 'Bez PN')} · ${escapeHtml(p.partName || 'Bez popisu')}</div>
@@ -5080,15 +5387,16 @@ function renderParts(){
       </div>
       <div class="part-grid">
         <div class="part-meta"><div class="part-meta-label">Vytvořeno</div><div class="part-meta-value">${escapeHtml(formatDateTime(p.createdAt))}</div></div>
+        <div class="part-meta"><div class="part-meta-label">Zadal</div><div class="part-meta-value">${escapeHtml(p.enteredBy || p.zadal || '—')}</div></div>
+        <div class="part-meta"><div class="part-meta-label">Firma</div><div class="part-meta-value">${escapeHtml(customerDisplayText(p))}</div></div>
         <div class="part-meta"><div class="part-meta-label">Objednáno</div><div class="part-meta-value">${p.ordered ? escapeHtml(formatDateTime(p.orderedAt)) : 'Ne'}</div></div>
         <div class="part-meta"><div class="part-meta-label">Odesláno</div><div class="part-meta-value">${p.sent ? escapeHtml(formatDateTime(p.sentAt)) : 'Ne'}</div></div>
       </div>
-      ${photoHtml || p.note ? `<div class="part-photo">${photoHtml || ''}${p.note ? `<div class="part-sub">${escapeHtml(p.note)}</div>` : ''}</div>` : ''}
+      ${p.note ? `<div class="part-note-display"><strong>Popis závady / poznámka</strong><div>${escapeHtml(p.note)}</div></div>` : ''}
+      ${photoHtml ? `<div class="part-photo">${photoHtml}</div>` : ''}
       <div class="part-actions">
         <button class="secondary mini" type="button" data-part-machine="${escapeHtml(p.serial || '')}">Karta stroje</button>
-        <button class="secondary mini" type="button" data-part-edit="${p.id}">Upravit</button>
-        ${!p.ordered ? `<button class="primary mini" type="button" data-part-ordered="${p.id}">Objednáno</button>` : ''}
-        ${!p.sent ? `<button class="primary mini" type="button" data-part-sent="${p.id}">Odesláno</button>` : ''}
+        <button class="primary mini" type="button" data-part-edit="${p.id}">Upravit</button>
         <button class="danger mini" type="button" data-part-delete="${p.id}">Smazat</button>
       </div>
     </div>`;
@@ -5106,6 +5414,12 @@ function openPartForm(id=null){
   const p = id ? (partsData || []).find(x => x.id === id) : null;
   document.getElementById('partType').value = (p && p.type) || '';
   document.getElementById('partSerial').value = (p && p.serial) || '';
+  const partEntered = document.getElementById('partEnteredBy');
+  if(partEntered){
+    const val = (p && (p.enteredBy || p.zadal)) || getEnteredByDefault();
+    partEntered.innerHTML = operatorOptionsHtml(val);
+    partEntered.value = val;
+  }
   const placeSelect = document.getElementById('partPlace');
   const customWrap = document.getElementById('partCustomPlaceWrap');
   const customInput = document.getElementById('partCustomPlace');
@@ -5123,7 +5437,12 @@ function openPartForm(id=null){
   document.getElementById('partName').value = (p && p.partName) || '';
   const extChk = document.getElementById('partExternalCustomer');
   if(extChk) extChk.checked = !!(p && p.externalCustomer);
+  document.getElementById('partCustomerName').value = (p && (p.customerName || p.companyName)) || '';
+  document.getElementById('partCustomerAddress').value = (p && (p.customerAddress || p.companyAddress)) || '';
+  wireExternalDetails('part');
   document.getElementById('partNote').value = (p && p.note) || '';
+  const partStatusSel = document.getElementById('partStatusSelect');
+  if(partStatusSel) partStatusSel.value = p ? (p.sent ? 'sent' : (p.ordered ? 'ordered' : 'open')) : 'open';
   currentPartPhotos = p ? JSON.parse(JSON.stringify(getPartPhotoList(p))) : [];
   renderPartPhotoPreview();
   document.getElementById('partsFormWrap').classList.remove('hidden');
@@ -5136,6 +5455,80 @@ function closePartForm(){
   document.getElementById('partsFormWrap')?.classList.add('hidden');
 }
 
+
+
+/* v5.78 – mobilní gesto zpět zleva doprava */
+function getActivePageView(){
+  const active = document.querySelector('.page-section.active');
+  if(!active) return 'home';
+  if(active.id === 'section-archive') return 'archive';
+  if(active.id === 'section-plan') return 'plan';
+  if(active.id === 'section-parts') return 'parts';
+  if(active.id === 'section-faults') return 'faults';
+  return 'home';
+}
+function isShown(el){ return !!(el && el.classList && el.classList.contains('show')); }
+function handleMobileSwipeBack(){
+  if(window.innerWidth > 920) return false;
+  if(document.body.classList.contains('side-open')){ closeSidePanel(); return true; }
+  if(document.querySelector('.lightbox.show')){ document.querySelector('.lightbox.show')?.classList.remove('show'); return true; }
+  if(isShown(els.preview)){ closeModal(els.preview); return true; }
+  if(isShown(els.historyModal)){ closeHistoryModal(); return true; }
+  if(isShown(els.qrModal)){ closeQrModal(); return true; }
+  const settingsModal = document.getElementById('settingsModal');
+  if(isShown(settingsModal)){ closeModal(settingsModal); return true; }
+  const auditModal = document.getElementById('auditModal');
+  if(isShown(auditModal)){ closeModal(auditModal); return true; }
+  const upcomingModal = document.getElementById('upcomingModal');
+  if(isShown(upcomingModal)){ closeUpcomingModal(); return true; }
+  if(isShown(els.wizard)){
+    if(typeof stepIndex !== 'undefined' && stepIndex > 0){ prevStep(); return true; }
+    closeWizard();
+    return true;
+  }
+  const view = getActivePageView();
+  if(view === 'plan'){
+    if(!document.getElementById('workPlanFormWrap')?.classList.contains('hidden')){ closeWorkPlanForm(); return true; }
+    closeWorkPlanModal();
+    return true;
+  }
+  if(view === 'parts'){
+    if(!document.getElementById('partsFormWrap')?.classList.contains('hidden')){ closePartForm(); return true; }
+    closePartsModal();
+    return true;
+  }
+  if(view === 'faults'){
+    if(!document.getElementById('faultFormWrap')?.classList.contains('hidden')){ closeFaultForm(); return true; }
+    closeFaultsModal();
+    return true;
+  }
+  if(view === 'archive'){
+    showSection('home');
+    return true;
+  }
+  return false;
+}
+function installMobileSwipeBack(){
+  let startX = 0, startY = 0, startTarget = null, tracking = false;
+  document.addEventListener('touchstart', ev => {
+    if(!ev.touches || ev.touches.length !== 1) return;
+    const t = ev.touches[0];
+    startX = t.clientX; startY = t.clientY; startTarget = ev.target; tracking = startX <= 32;
+  }, {passive:true});
+  document.addEventListener('touchend', ev => {
+    if(!tracking || !ev.changedTouches || ev.changedTouches.length !== 1) return;
+    const tag = String(startTarget?.tagName || '').toLowerCase();
+    const t = ev.changedTouches[0];
+    const dx = t.clientX - startX;
+    const dy = Math.abs(t.clientY - startY);
+    tracking = false;
+    if(dx < 85 || dy > 70) return;
+    if(['input','textarea','select'].includes(tag) && dx < 125) return;
+    ev.preventDefault?.();
+    handleMobileSwipeBack();
+  }, {passive:false});
+}
+
 async function savePartFromForm(){
   const placeSel = document.getElementById('partPlace').value;
   const place = placeSel === '__custom__' ? document.getElementById('partCustomPlace').value.trim() : placeSel;
@@ -5145,6 +5538,7 @@ async function savePartFromForm(){
   if(!type){ alert('Vyplň typ zařízení.'); return; }
   if(!serial){ alert('Vyplň výrobní číslo.'); return; }
   const existing = editingPartId ? (partsData || []).find(x => x.id === editingPartId) : null;
+  const statusVal = document.getElementById('partStatusSelect')?.value || 'open';
   const record = Object.assign({}, existing || {}, {
     id: editingPartId || partUid(),
     type,
@@ -5152,14 +5546,23 @@ async function savePartFromForm(){
     place,
     partNumber,
     partName: document.getElementById('partName').value.trim(),
+    enteredBy: document.getElementById('partEnteredBy')?.value || getEnteredByDefault(),
     externalCustomer: !!document.getElementById('partExternalCustomer')?.checked,
+    customerName: !!document.getElementById('partExternalCustomer')?.checked ? document.getElementById('partCustomerName').value.trim() : '',
+    customerAddress: !!document.getElementById('partExternalCustomer')?.checked ? document.getElementById('partCustomerAddress').value.trim() : '',
     note: document.getElementById('partNote').value.trim(),
-    appVersion:'1.6 / 5.74'
+    ordered: statusVal === 'ordered' || statusVal === 'sent',
+    sent: statusVal === 'sent',
+    orderedAt: (statusVal === 'ordered' || statusVal === 'sent') ? ((existing && existing.orderedAt) || new Date().toISOString()) : '',
+    sentAt: statusVal === 'sent' ? ((existing && existing.sentAt) || new Date().toISOString()) : '',
+    appVersion:'1.6 / 5.78'
   });
   record.photos = JSON.parse(JSON.stringify(currentPartPhotos || []));
   record.photo = record.photos[0] || null;
   if(!record.createdAt) record.createdAt = new Date().toISOString();
+  setLastEnteredBy(record.enteredBy);
   await savePartRecord(record);
+  await logAuditAction(existing ? 'update' : 'create','part',record,record.enteredBy);
   closePartForm();
   renderParts();
 }
@@ -5169,6 +5572,7 @@ async function markPartOrdered(id){
   p.ordered = true;
   p.orderedAt = new Date().toISOString();
   await savePartRecord(p);
+  await logAuditAction('status','part',p,getEnteredByDefault(),'Označeno jako objednáno · ' + summarizeRecordForAudit(p));
 }
 async function markPartSent(id){
   const p = (partsData || []).find(x => x.id === id);
@@ -5176,6 +5580,7 @@ async function markPartSent(id){
   p.sent = true;
   p.sentAt = new Date().toISOString();
   await savePartRecord(p);
+  await logAuditAction('status','part',p,getEnteredByDefault(),'Označeno jako odesláno · ' + summarizeRecordForAudit(p));
 }
 
 // events
@@ -5229,6 +5634,7 @@ document.getElementById('homeMachineSearch')?.addEventListener('change', () => {
 document.getElementById('homeOpenPlanCard')?.addEventListener('click', openWorkPlanModal);
 document.getElementById('homeOpenPartsCard')?.addEventListener('click', openPartsModal);
 document.getElementById('homeOpenFaultsCard')?.addEventListener('click', openFaultsModal);
+bindAttentionCounterClicks();
 
 document.getElementById('mobileNewProtocolBtn')?.addEventListener('click', () => window._openWizard());
 document.getElementById('mobileFaultBtn')?.addEventListener('click', () => { openFaultsModal(); openFaultForm(); });
@@ -5355,6 +5761,10 @@ document.getElementById('newProtocolBtn')?.addEventListener('click', () => openW
 document.getElementById('clearAllBtn')?.addEventListener('click', clearAllData);
 document.getElementById('importBackupBtn')?.addEventListener('click', () => document.getElementById('importBackupInput')?.click());
 document.getElementById('sideImportBtn')?.addEventListener('click', () => { closeSidePanel?.(); document.getElementById('importBackupInput')?.click(); });
+document.getElementById('sideAuditBtn')?.addEventListener('click', () => { closeSidePanel?.(); openAuditModal(); refreshAuditHistory(); });
+document.getElementById('closeAuditBtn')?.addEventListener('click', () => closeModal(document.getElementById('auditModal')));
+document.getElementById('closeAuditTopBtn')?.addEventListener('click', () => closeModal(document.getElementById('auditModal')));
+document.getElementById('refreshAuditBtn')?.addEventListener('click', refreshAuditHistory);
 document.getElementById('importBackupInput')?.addEventListener('change', (e) => {
   const file = e.target.files && e.target.files[0];
   importBackupFile(file);
@@ -5417,6 +5827,7 @@ document.getElementById('clearQrBtn')?.addEventListener('click', () => {
   resetQr();
   triggerQrPicker();
 });
+installMobileSwipeBack();
 if(document.getElementById('qrBtn')) document.getElementById('qrBtn').addEventListener('click', openQrModal);
 document.getElementById('qrFileInput')?.addEventListener('change', (e)=>{
   const file = e.target.files[0];
@@ -5488,11 +5899,16 @@ if(firebaseAvailable && db){
       startLocalFaultsMode();
     }
   );
+  db.collection(AUDIT_COLLECTION_NAME).orderBy('createdAt','desc').limit(80).onSnapshot(
+    snap => { auditData = snap.docs.map(d => ({...d.data(), id:d.id})); renderAuditHistory(); },
+    err => { console.error('Firebase historie změn sync error:', err); auditData = loadLocalAudit(); }
+  );
 } else {
   startLocalMode();
   startLocalScheduleMode();
   startLocalPartsMode();
   startLocalFaultsMode();
+  auditData = loadLocalAudit();
 }
 </script>
 <script>

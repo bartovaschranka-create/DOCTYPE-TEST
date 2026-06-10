@@ -898,6 +898,54 @@ body.dark .fault-card{background:var(--panel2)}
 @media(max-width:640px){.home-machine-search-row{grid-template-columns:1fr}.home-machine-search-row button{width:100%}}
 
 
+
+
+/* v1.6 / 5.66 – karta stroje: modal nad hlavičkou a bez usekávání */
+.modal{z-index:140!important}
+#historyModal{
+  align-items:flex-start!important;
+  justify-content:center!important;
+  padding:calc(env(safe-area-inset-top,0px) + 12px) 12px 12px!important;
+  overflow:auto!important;
+}
+#historyModal .history-modal-content{
+  width:min(96vw,920px)!important;
+  max-height:calc(100dvh - env(safe-area-inset-top,0px) - 24px)!important;
+  overflow-y:auto!important;
+  -webkit-overflow-scrolling:touch!important;
+}
+#historyModal .preview-shell{
+  overflow:visible!important;
+}
+#historyModal .machine-card-row{
+  align-items:flex-start!important;
+  flex-wrap:wrap!important;
+}
+#historyModal .machine-card-row > span:first-child,
+#historyModal .machine-card-row > strong{
+  min-width:0!important;
+  overflow-wrap:anywhere!important;
+}
+#historyModal .machine-card-row button{
+  flex:0 0 auto;
+}
+@media(max-width:640px){
+  #historyModal{padding:calc(env(safe-area-inset-top,0px) + 8px) 8px 8px!important}
+  #historyModal .history-modal-content{
+    width:100%!important;
+    max-height:calc(100dvh - env(safe-area-inset-top,0px) - 16px)!important;
+    border-radius:18px!important;
+  }
+  #historyModal .machine-card-row{
+    display:grid!important;
+    grid-template-columns:1fr!important;
+    gap:8px!important;
+  }
+  #historyModal .machine-card-row button{
+    width:100%;
+  }
+}
+
 /* v1.6 / 5.64 – svátky a jmeniny na hlavní stránce */
 .top-date-stack{
   display:grid;
@@ -1308,7 +1356,7 @@ body.dark .module-kicker{
     <button type="button" class="side-small" id="sideThemeBtn">Tmavý / světlý režim</button>
     <button type="button" class="side-small" onclick="exportBackup()">Export zálohy</button>
     <button type="button" class="side-small" id="sideImportBtn">Import zálohy</button>
-    <div class="side-version">Vlastník/Admin: Jan Bartoš<br>Verze: 1.6 / 5.65</div>
+    <div class="side-version">Vlastník/Admin: Jan Bartoš<br>Verze: 1.6 / 5.66</div>
   </div>
 </aside>
 
@@ -2487,10 +2535,10 @@ function openModal(el){ el.classList.add('show'); }
 function closeModal(el){ el.classList.remove('show'); }
 
 function openWizard(editId=null, prefill={}){
-  rec = editId ? JSON.parse(JSON.stringify(data.find(r=>r.id===editId) || {id:uid()})) : {id:uid(), cLogic:'legacy', appVersion:'1.6 / 5.64'};
+  rec = editId ? JSON.parse(JSON.stringify(data.find(r=>r.id===editId) || {id:uid()})) : {id:uid(), cLogic:'legacy', appVersion:'1.6 / 5.66'};
   rec = Object.assign({}, rec, prefill || {});
   if(!editId && !rec.cLogic) rec.cLogic = 'legacy';
-  if(!editId && !rec.appVersion) rec.appVersion = '1.6 / 5.64';
+  if(!editId && !rec.appVersion) rec.appVersion = '1.6 / 5.66';
 
   // 🔥 AUTO DOPLNĚNÍ Z HISTORIE PODLE VÝROBNÍHO ČÍSLA
   if(rec.vc){
@@ -2862,7 +2910,7 @@ async function nextStep(){
   const okSave = confirm('Chceš protokol uložit?');
   if(!okSave) return;
   if(!rec.cLogic) rec.cLogic = 'legacy';
-  if(!rec.appVersion) rec.appVersion = '1.6 / 5.64';
+  if(!rec.appVersion) rec.appVersion = '1.6 / 5.66';
   rec.savedAt = new Date().toISOString();
   await saveProtocol(rec);
   closeWizard();
@@ -3838,7 +3886,7 @@ async function saveWorkPlanFromForm(){
     place,
     extraPlaces,
     note,
-    appVersion:'1.6 / 5.64'
+    appVersion:'1.6 / 5.66'
   });
   if(!record.createdAt) record.createdAt = new Date().toISOString();
   await saveWorkPlan(record);
@@ -4235,7 +4283,7 @@ async function saveFaultFromForm(){
     inService: status === 'service' ? true : (existing ? !!existing.inService : false),
     waitingParts: status === 'waiting_parts' ? true : (existing ? !!existing.waitingParts : false),
     photos: currentFaultPhotos,
-    appVersion:'1.6 / 5.64'
+    appVersion:'1.6 / 5.66'
   });
   if(!record.createdAt) record.createdAt = new Date().toISOString();
   if(status === 'repaired'){
@@ -4707,7 +4755,7 @@ async function savePartFromForm(){
     partNumber,
     partName: document.getElementById('partName').value.trim(),
     note: document.getElementById('partNote').value.trim(),
-    appVersion:'1.6 / 5.64'
+    appVersion:'1.6 / 5.66'
   });
   if(currentPartPhoto) record.photo = currentPartPhoto;
   if(!record.createdAt) record.createdAt = new Date().toISOString();

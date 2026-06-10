@@ -639,7 +639,7 @@ header .header-sub{
 }
 
 
-/* v1.6 / 5.63 plan práce */
+/* v1.6 / 5.64 plan práce */
 .work-plan-modal{width:min(96vw,1180px)!important}
 .work-plan-toolbar{display:flex;gap:8px;flex-wrap:wrap;margin:8px 0 12px}
 .work-plan-title{font-weight:800;margin:8px 0 12px;color:var(--text)}
@@ -665,7 +665,7 @@ body.dark .work-plan-form{background:var(--panel2)}
 @media print{#workPlanModal{display:none!important}}
 
 
-/* v1.6 / 5.63 main dashboard + náhradní díly */
+/* v1.6 / 5.64 main dashboard + náhradní díly */
 .main-overview{margin-bottom:18px}
 .overview-head{background:var(--panel);border:1px solid rgba(219,230,242,.8);border-radius:var(--radius);box-shadow:var(--shadow);padding:18px;margin-bottom:14px}
 .overview-head h1{margin:0 0 5px;font-size:1.35rem}
@@ -705,7 +705,7 @@ body.dark .part-card{background:var(--panel2)}
 @media print{#partsModal{display:none!important}.main-overview{display:none!important}}
 
 
-/* v1.6 / 5.63 koncept 5 */
+/* v1.6 / 5.64 koncept 5 */
 .page-section{display:none}
 .page-section.active{display:block}
 .page-title-row{display:flex;justify-content:space-between;align-items:flex-start;gap:14px;margin:6px 0 16px}
@@ -768,7 +768,7 @@ body .main-overview,body .dashboard{display:none!important}
 @media print{.page-section{display:block!important}.home-page,.plan-page,.parts-page{display:none!important}}
 
 
-/* v1.6 / 5.63 sjednocení písma ve všech formulářích */
+/* v1.6 / 5.64 sjednocení písma ve všech formulářích */
 input,
 select,
 textarea,
@@ -801,7 +801,7 @@ datalist {
 }
 
 
-/* v1.6 / 5.63 – sjednocení písma u datumových polí */
+/* v1.6 / 5.64 – sjednocení písma u datumových polí */
 input[type="date"],
 input[type="datetime-local"],
 input[type="time"]{
@@ -826,7 +826,7 @@ input[type="datetime-local"]::-webkit-calendar-picker-indicator{
 }
 
 
-/* v1.6 / 5.63 – hlášení poruch */
+/* v1.6 / 5.64 – hlášení poruch */
 .home-summary-grid{grid-template-columns:repeat(4,1fr)}
 .summary-box.summary-faults{border-top:4px solid #dc2626}
 .faults-page .inline-page-shell{padding:18px}
@@ -855,7 +855,7 @@ body.dark .fault-card{background:var(--panel2)}
 @media print{#section-faults{display:none!important}}
 
 
-/* v1.6 / 5.63 – stav stroje, karta stroje, pozornost */
+/* v1.6 / 5.64 – stav stroje, karta stroje, pozornost */
 .attention-panel{margin-top:16px;background:var(--panel);border:1px solid rgba(219,230,242,.85);border-radius:22px;box-shadow:var(--shadow);padding:18px}
 .attention-head{display:flex;justify-content:space-between;align-items:flex-start;gap:12px;margin-bottom:10px}
 .attention-list{display:grid;gap:8px}
@@ -871,9 +871,17 @@ body.dark .fault-card{background:var(--panel2)}
 .machine-card-list{display:grid;gap:8px}
 .machine-card-row{display:flex;justify-content:space-between;gap:10px;align-items:center;border-top:1px solid var(--line);padding-top:8px}
 .machine-card-row:first-child{border-top:none;padding-top:0}
+.home-machine-search{margin-top:10px;padding:12px;border:1px solid var(--line);border-radius:16px;background:var(--panel2);display:grid;gap:8px}
+.home-machine-search-row{display:grid;grid-template-columns:1fr auto;gap:8px;align-items:center}
+.home-machine-search .helper{margin-top:0}
+.fault-category-pill{display:inline-flex;align-items:center;width:max-content;border-radius:999px;padding:5px 9px;font-size:.75rem;font-weight:800;border:1px solid var(--line);background:var(--panel2);color:var(--text)}
+.fault-category-customer{background:#fff7ed;color:#9a3412;border-color:#fed7aa}
+.fault-category-warranty{background:#eff6ff;color:#1d4ed8;border-color:#bfdbfe}
+.fault-category-normal{background:#f1f5f9;color:#334155;border-color:#cbd5e1}
+@media(max-width:640px){.home-machine-search-row{grid-template-columns:1fr}.home-machine-search-row button{width:100%}}
 
 
-/* v1.6 / 5.63 – svátky a jmeniny na hlavní stránce */
+/* v1.6 / 5.64 – svátky a jmeniny na hlavní stránce */
 .top-date-stack{
   display:grid;
   gap:8px;
@@ -900,7 +908,7 @@ body.dark .fault-card{background:var(--panel2)}
 }
 
 
-/* v1.6 / 5.63 – více stavů poruchy a protokol po opravě */
+/* v1.6 / 5.64 – více stavů poruchy a protokol po opravě */
 .fault-status-row{
   display:flex;
   gap:6px;
@@ -958,7 +966,7 @@ body.dark .fault-card{background:var(--panel2)}
 }
 
 
-/* v1.6 / 5.63 – protokol po opravě bez automatického tisku */
+/* v1.6 / 5.64 – protokol po opravě bez automatického tisku */
 .repair-protocol-toolbar{
   position:sticky;
   top:0;
@@ -980,7 +988,7 @@ body.dark .fault-card{background:var(--panel2)}
 }
 
 
-/* v1.6 / 5.63 – fonty, plán práce více míst, menu */
+/* v1.6 / 5.64 – fonty, plán práce více míst, menu */
 html, body, input, select, textarea, button, option {
   font-family: Inter, "Segoe UI", Arial, sans-serif !important;
 }
@@ -1019,7 +1027,7 @@ body.dark .work-extra-add{background:#0f172a;color:var(--text);border-color:var(
 }
 
 
-/* v1.6 / 5.63 – Vyžaduje pozornost / 48 hodin bez víkendu */
+/* v1.6 / 5.64 – Vyžaduje pozornost / 48 hodin bez víkendu */
 .attention-board{
   margin-top:18px;
   background:linear-gradient(180deg,#ffffff 0%,#f8fafc 100%);
@@ -1178,7 +1186,7 @@ html[data-theme="dark"] .attention-rich-sub, body.dark .attention-rich-sub{
 }
 
 
-/* v1.6 / 5.63 – provozní doladění */
+/* v1.6 / 5.64 – provozní doladění */
 .backup-row{
   padding:12px;
   border:1px solid #bfdbfe;
@@ -1228,7 +1236,7 @@ body.dark .mobile-tech-panel{
 }
 
 
-/* v1.6 / 5.63 – jasné označení čtvrtletních kontrol */
+/* v1.6 / 5.64 – jasné označení čtvrtletních kontrol */
 .module-kicker{
   display:inline-flex;
   width:max-content;
@@ -1283,7 +1291,7 @@ body.dark .module-kicker{
     <button type="button" class="side-small" id="sideThemeBtn">Tmavý / světlý režim</button>
     <button type="button" class="side-small" onclick="exportBackup()">Export zálohy</button>
     <button type="button" class="side-small" id="sideImportBtn">Import zálohy</button>
-    <div class="side-version">Vlastník/Admin: Jan Bartoš<br>Verze: 1.6 / 5.63</div>
+    <div class="side-version">Vlastník/Admin: Jan Bartoš<br>Verze: 1.6 / 5.64</div>
   </div>
 </aside>
 
@@ -1305,6 +1313,15 @@ body.dark .module-kicker{
           <button type="button" class="ghost small" id="homePlanBtn">Plán práce</button>
           <button type="button" class="ghost small" id="homePartsBtn">Náhradní díly</button>
           <button type="button" class="ghost small" id="homeFaultsBtn">Hlášení poruch</button>
+          <button type="button" class="ghost small" id="homeMachineCardBtn">Karta stroje</button>
+        </div>
+        <div id="homeMachineSearchWrap" class="home-machine-search hidden">
+          <div class="helper">Vyhledej plošinu podle výrobního čísla. Bere se z kontrol, poruch a náhradních dílů.</div>
+          <div class="home-machine-search-row">
+            <input id="homeMachineSearch" class="search" type="text" list="homeMachineList" placeholder="Zadej nebo vyber výrobní číslo" autocomplete="off">
+            <button id="homeMachineOpenBtn" class="primary mini" type="button">Otevřít kartu</button>
+          </div>
+          <datalist id="homeMachineList"></datalist>
         </div>
       </div>
       <div class="day-calendar-card">
@@ -1610,6 +1627,14 @@ body.dark .module-kicker{
       <div class="field hidden" id="faultCustomPlaceWrap">
         <label>Jiné místo</label>
         <input id="faultCustomPlace" type="text" list="faultPlaceList"><datalist id="faultPlaceList"></datalist>
+      </div>
+      <div class="field">
+        <label>Druh závady</label>
+        <select id="faultCategory">
+          <option value="normal">Běžná závada</option>
+          <option value="customer">Způsobeno zákazníkem</option>
+          <option value="warranty">Lze uplatnit záruku</option>
+        </select>
       </div>
       <div class="field fault-note">
         <label>Popis závady *</label>
@@ -2445,10 +2470,10 @@ function openModal(el){ el.classList.add('show'); }
 function closeModal(el){ el.classList.remove('show'); }
 
 function openWizard(editId=null, prefill={}){
-  rec = editId ? JSON.parse(JSON.stringify(data.find(r=>r.id===editId) || {id:uid()})) : {id:uid(), cLogic:'legacy', appVersion:'1.6 / 5.63'};
+  rec = editId ? JSON.parse(JSON.stringify(data.find(r=>r.id===editId) || {id:uid()})) : {id:uid(), cLogic:'legacy', appVersion:'1.6 / 5.64'};
   rec = Object.assign({}, rec, prefill || {});
   if(!editId && !rec.cLogic) rec.cLogic = 'legacy';
-  if(!editId && !rec.appVersion) rec.appVersion = '1.6 / 5.63';
+  if(!editId && !rec.appVersion) rec.appVersion = '1.6 / 5.64';
 
   // 🔥 AUTO DOPLNĚNÍ Z HISTORIE PODLE VÝROBNÍHO ČÍSLA
   if(rec.vc){
@@ -2820,7 +2845,7 @@ async function nextStep(){
   const okSave = confirm('Chceš protokol uložit?');
   if(!okSave) return;
   if(!rec.cLogic) rec.cLogic = 'legacy';
-  if(!rec.appVersion) rec.appVersion = '1.6 / 5.63';
+  if(!rec.appVersion) rec.appVersion = '1.6 / 5.64';
   rec.savedAt = new Date().toISOString();
   await saveProtocol(rec);
   closeWizard();
@@ -3147,7 +3172,7 @@ function openHistoryModal(serial){
     <div class="machine-card-block">
       <h4>Poruchy</h4>
       <div class="machine-card-list">
-        ${rows.faults.length ? rows.faults.slice(0,8).map(f => `<div class="machine-card-row"><span>${escapeHtml(f.date||'Bez data')} · ${escapeHtml(getFaultStatus(f).txt)} · ${escapeHtml(f.description||'')}</span><span style="display:flex;gap:6px;flex-wrap:wrap"><button class="secondary mini" data-fault-open="${f.id}">Upravit</button>${faultIsRepaired(f) ? `<button class="primary mini" data-fault-protocol="${f.id}">Protokol</button><button class="secondary mini" data-fault-create-protocol="${f.id}">Kontrolní protokol</button>` : ''}</span></div>`).join('') : '<div class="part-sub">Bez hlášených poruch.</div>'}
+        ${rows.faults.length ? rows.faults.slice(0,8).map(f => `<div class="machine-card-row"><span>${escapeHtml(f.date||'Bez data')} · ${escapeHtml(getFaultStatus(f).txt)} · ${escapeHtml(getFaultCategoryLabel(f))} · ${escapeHtml(f.description||'')}</span><span style="display:flex;gap:6px;flex-wrap:wrap"><button class="secondary mini" data-fault-open="${f.id}">Upravit</button>${faultIsRepaired(f) ? `<button class="primary mini" data-fault-protocol="${f.id}">Protokol</button><button class="secondary mini" data-fault-create-protocol="${f.id}">Kontrolní protokol</button>` : ''}</span></div>`).join('') : '<div class="part-sub">Bez hlášených poruch.</div>'}
       </div>
     </div>
 
@@ -3796,7 +3821,7 @@ async function saveWorkPlanFromForm(){
     place,
     extraPlaces,
     note,
-    appVersion:'1.6 / 5.63'
+    appVersion:'1.6 / 5.64'
   });
   if(!record.createdAt) record.createdAt = new Date().toISOString();
   await saveWorkPlan(record);
@@ -4046,6 +4071,33 @@ function lastMachineInfo(serial){
   rows.sort((a,b) => String(b.created || '').localeCompare(String(a.created || '')));
   return rows[0] || null;
 }
+function getFaultCategoryLabel(f){
+  const c = String((f && (f.faultCategory || f.category)) || 'normal');
+  if(c === 'customer') return 'Způsobeno zákazníkem';
+  if(c === 'warranty') return 'Lze uplatnit záruku';
+  return 'Běžná závada';
+}
+function getFaultCategoryClass(f){
+  const c = String((f && (f.faultCategory || f.category)) || 'normal');
+  if(c === 'customer') return 'fault-category-customer';
+  if(c === 'warranty') return 'fault-category-warranty';
+  return 'fault-category-normal';
+}
+function updateHomeMachineDatalist(){
+  const dl = document.getElementById('homeMachineList');
+  if(!dl) return;
+  const machines = allKnownMachines().sort((a,b)=>a.localeCompare(b,'cs'));
+  dl.innerHTML = machines.map(v => `<option value="${escapeHtml(v)}"></option>`).join('');
+}
+function openSelectedHomeMachine(){
+  const input = document.getElementById('homeMachineSearch');
+  const serial = String(input?.value || '').trim();
+  if(!serial){ alert('Vyber nebo zadej výrobní číslo stroje.'); return; }
+  if(!allKnownMachines().includes(serial)){
+    if(!confirm('Toto výrobní číslo zatím není v záznamech. Otevřít prázdnou kartu?')) return;
+  }
+  openMachineCard(serial);
+}
 function fillFaultSelects(){
   const place = document.getElementById('faultPlace');
   if(place) place.innerHTML = '<option value="">Nevyplněno</option>' + BRANCHES.map(b => `<option value="${escapeHtml(b)}">${escapeHtml(b)}</option>`).join('') + '<option value="__custom__">Jiné místo</option>';
@@ -4127,6 +4179,8 @@ function openFaultForm(id=null){
     customInput.value = '';
   }
   document.getElementById('faultDesc').value = (f && f.description) || '';
+  const catEl = document.getElementById('faultCategory');
+  if(catEl) catEl.value = (f && (f.faultCategory || f.category)) || 'normal';
   document.getElementById('faultInitialStatus').value = f ? (faultIsRepaired(f) ? 'repaired' : (faultInService(f) ? 'service' : (faultWaitingParts(f) ? 'waiting_parts' : 'open'))) : 'open';
   renderFaultPhotoPreview();
   document.getElementById('faultFormWrap').classList.remove('hidden');
@@ -4150,6 +4204,7 @@ async function saveFaultFromForm(){
   if(!description){ alert('Vyplň popis závady.'); return; }
   const existing = editingFaultId ? (faultsData || []).find(x => x.id === editingFaultId) : null;
   const status = document.getElementById('faultInitialStatus').value;
+  const faultCategory = document.getElementById('faultCategory')?.value || 'normal';
   const record = Object.assign({}, existing || {}, {
     id: editingFaultId || faultUid(),
     type,
@@ -4158,11 +4213,12 @@ async function saveFaultFromForm(){
     mh: document.getElementById('faultMh').value.trim(),
     place,
     description,
+    faultCategory,
     status: status === 'repaired' ? 'repaired' : 'open',
     inService: status === 'service' ? true : (existing ? !!existing.inService : false),
     waitingParts: status === 'waiting_parts' ? true : (existing ? !!existing.waitingParts : false),
     photos: currentFaultPhotos,
-    appVersion:'1.6 / 5.63'
+    appVersion:'1.6 / 5.64'
   });
   if(!record.createdAt) record.createdAt = new Date().toISOString();
   if(status === 'repaired'){
@@ -4184,7 +4240,7 @@ function renderFaults(){
   let rows = [...(faultsData || [])];
   if(statusFilter === 'open') rows = rows.filter(f => !faultIsRepaired(f));
   if(statusFilter === 'repaired') rows = rows.filter(f => faultIsRepaired(f));
-  if(query) rows = rows.filter(f => [f.type,f.serial,f.place,f.description,f.mh].some(v => String(v||'').toLowerCase().includes(query)));
+  if(query) rows = rows.filter(f => [f.type,f.serial,f.place,f.description,f.mh,getFaultCategoryLabel(f)].some(v => String(v||'').toLowerCase().includes(query)));
   rows.sort((a,b) => String(b.createdAt||b.date||'').localeCompare(String(a.createdAt||a.date||'')));
   if(!rows.length){ list.innerHTML = '<div class="empty">Žádná hlášení poruch.</div>'; return; }
   list.innerHTML = rows.map(f => {
@@ -4203,6 +4259,7 @@ function renderFaults(){
         <div class="fault-status-row">${getFaultStatusList(f).map(s => `<span class="status-pill ${s.cls}">${s.txt}</span>`).join('')}</div>
       </div>
       <div class="fault-grid">
+        <div class="fault-meta"><div class="fault-meta-label">Druh závady</div><div class="fault-meta-value"><span class="fault-category-pill ${getFaultCategoryClass(f)}">${escapeHtml(getFaultCategoryLabel(f))}</span></div></div>
         <div class="fault-meta"><div class="fault-meta-label">Motohodiny</div><div class="fault-meta-value">${escapeHtml(f.mh || '—')}</div></div>
         <div class="fault-meta"><div class="fault-meta-label">Zadáno</div><div class="fault-meta-value">${escapeHtml(formatDateTime(f.createdAt))}</div></div>
         <div class="fault-meta"><div class="fault-meta-label">Opraveno</div><div class="fault-meta-value">${faultIsRepaired(f) ? escapeHtml(formatDateTime(f.repairedAt || f.updatedAt)) : 'Ne'}</div></div>
@@ -4275,7 +4332,7 @@ function printRepairProtocol(id){
   const style = Array.from(document.querySelectorAll('style')).map(s => s.innerHTML).join('\n');
   w.document.open();
   w.document.write(html.replace('</head>', `<style>${style}
-/* v1.6 / 5.63 – fonty, plán práce více míst, menu */
+/* v1.6 / 5.64 – fonty, plán práce více míst, menu */
 html, body, input, select, textarea, button, option {
   font-family: Inter, "Segoe UI", Arial, sans-serif !important;
 }
@@ -4302,7 +4359,7 @@ input, select, textarea, button,
 }
 
 
-/* v1.6 / 5.63 – provozní doladění */
+/* v1.6 / 5.64 – provozní doladění */
 .backup-row{
   padding:12px;
   border:1px solid #bfdbfe;
@@ -4352,7 +4409,7 @@ body.dark .mobile-tech-panel{
 }
 
 
-/* v1.6 / 5.63 – jasné označení čtvrtletních kontrol */
+/* v1.6 / 5.64 – jasné označení čtvrtletních kontrol */
 .module-kicker{
   display:inline-flex;
   width:max-content;
@@ -4451,6 +4508,7 @@ async function markFaultRepaired(id){
   await saveFaultRecord(f);
 }
 function updateMainOverview(){
+  updateHomeMachineDatalist();
   populateTechnicianFilters();
   renderHomeOverview();
   const set = (id,val) => { const el = document.getElementById(id); if(el) el.textContent = val; };
@@ -4632,7 +4690,7 @@ async function savePartFromForm(){
     partNumber,
     partName: document.getElementById('partName').value.trim(),
     note: document.getElementById('partNote').value.trim(),
-    appVersion:'1.6 / 5.63'
+    appVersion:'1.6 / 5.64'
   });
   if(currentPartPhoto) record.photo = currentPartPhoto;
   if(!record.createdAt) record.createdAt = new Date().toISOString();
@@ -4694,6 +4752,15 @@ document.getElementById('homePlanBtn')?.addEventListener('click', openWorkPlanMo
 document.getElementById('homeOpenWeekPlanBtn')?.addEventListener('click', openWorkPlanModal);
 document.getElementById('homePartsBtn')?.addEventListener('click', openPartsModal);
 document.getElementById('homeFaultsBtn')?.addEventListener('click', openFaultsModal);
+document.getElementById('homeMachineCardBtn')?.addEventListener('click', () => {
+  updateHomeMachineDatalist();
+  const wrap = document.getElementById('homeMachineSearchWrap');
+  wrap?.classList.toggle('hidden');
+  if(wrap && !wrap.classList.contains('hidden')) setTimeout(() => document.getElementById('homeMachineSearch')?.focus(), 0);
+});
+document.getElementById('homeMachineOpenBtn')?.addEventListener('click', openSelectedHomeMachine);
+document.getElementById('homeMachineSearch')?.addEventListener('keydown', (ev) => { if(ev.key === 'Enter'){ ev.preventDefault(); openSelectedHomeMachine(); } });
+document.getElementById('homeMachineSearch')?.addEventListener('change', () => { const v = document.getElementById('homeMachineSearch')?.value || ''; if(v && allKnownMachines().includes(v)) openSelectedHomeMachine(); });
 document.getElementById('homeOpenPlanCard')?.addEventListener('click', openWorkPlanModal);
 document.getElementById('homeOpenPartsCard')?.addEventListener('click', openPartsModal);
 document.getElementById('homeOpenFaultsCard')?.addEventListener('click', openFaultsModal);

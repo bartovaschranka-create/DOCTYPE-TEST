@@ -10,7 +10,7 @@
 <meta name="apple-mobile-web-app-title" content="LiftControl CZ">
 <title>LiftControl CZ</title>
 <link rel="manifest" href="manifest.json">
-<link rel="apple-touch-icon" href="icon-192.png">
+<link rel="apple-touch-icon" href="icon-192-v2.png">
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
 :root{--bg:#eef4fb;--panel:#ffffff;--panel2:#f8fbff;--text:#0f172a;--muted:#64748b;--line:#dbe6f2;--primary:#2563eb;--primary2:#1d4ed8;--danger:#dc2626;--ok:#16a34a;--shadow:0 10px 30px rgba(15,23,42,.08);--radius:18px}
@@ -901,6 +901,7 @@ body.dark .fault-card{background:var(--panel2)}
 
 
 /* v1.6 / 5.66 – karta stroje: modal nad hlavičkou a bez usekávání */
+/* v1.6 / 5.69 – plán práce: stabilní barvy techniků */
 .modal{z-index:140!important}
 #historyModal{
   align-items:flex-start!important;
@@ -945,6 +946,21 @@ body.dark .fault-card{background:var(--panel2)}
     width:100%;
   }
 }
+
+
+/* v1.6 / 5.69 – tmavý režim: výraznější barvy techniků v plánu práce */
+.work-event{border-left-color:var(--tech-color,#2563eb)!important;background:var(--tech-bg,rgba(37,99,235,.10))!important}
+.work-event .work-event-tech{color:var(--tech-color,#2563eb)!important}
+.day-row{border-left-color:var(--tech-color,#2563eb)!important;background:linear-gradient(90deg,var(--tech-bg,rgba(37,99,235,.12)) 0%,var(--panel2) 72%)!important}
+.day-row .tech-dot{background:var(--tech-color,#2563eb)!important}
+.day-row .place-pill{border-color:var(--tech-border,rgba(37,99,235,.38))!important}
+body.dark .work-event{background:var(--tech-bg-dark,rgba(96,165,250,.24))!important;border-color:var(--tech-border-dark,rgba(147,197,253,.62))!important;border-left-color:var(--tech-color-dark,#60a5fa)!important}
+body.dark .work-event .work-event-tech{color:var(--tech-color-dark,#93c5fd)!important}
+body.dark .work-event-place{color:#e5e7eb!important}
+body.dark .day-row{background:linear-gradient(90deg,var(--tech-bg-dark,rgba(96,165,250,.24)) 0%,rgba(15,23,42,.96) 78%)!important;border-color:var(--tech-border-dark,rgba(147,197,253,.62))!important;border-left-color:var(--tech-color-dark,#60a5fa)!important}
+body.dark .day-tech{color:#f8fafc!important}
+body.dark .day-row .tech-dot{background:var(--tech-color-dark,#93c5fd)!important;box-shadow:0 0 0 4px var(--tech-bg-dark,rgba(96,165,250,.24))}
+body.dark .day-row .place-pill{background:rgba(2,6,23,.66)!important;color:#f8fafc!important;border-color:var(--tech-border-dark,rgba(147,197,253,.62))!important}
 
 /* v1.6 / 5.64 – svátky a jmeniny na hlavní stránce */
 .top-date-stack{
@@ -1356,7 +1372,7 @@ body.dark .module-kicker{
     <button type="button" class="side-small" id="sideThemeBtn">Tmavý / světlý režim</button>
     <button type="button" class="side-small" onclick="exportBackup()">Export zálohy</button>
     <button type="button" class="side-small" id="sideImportBtn">Import zálohy</button>
-    <div class="side-version">Vlastník/Admin: Jan Bartoš<br>Verze: 1.6 / 5.66</div>
+    <div class="side-version">Vlastník/Admin: Jan Bartoš<br>Verze: 1.6 / 5.69</div>
   </div>
 </aside>
 
@@ -2173,27 +2189,46 @@ async function deleteAllProtocols(){
   }
 }
 
+async function getBackupRows(collectionName, localLoader){
+  if(firebaseAvailable && db){
+    const snap = await db.collection(collectionName).get();
+    return snap.docs.map(d => ({id:d.id, ...d.data()}));
+  }
+  return localLoader();
+}
+function backupCollectionsDef(){
+  return [
+    {key:'protokoly', collection:COLLECTION_NAME, label:'Čtvrtletní kontroly', loadLocal:loadLocalData, saveLocal:saveLocalData, setMemory:(rows)=>{data=rows;}},
+    {key:'planPrace', collection:SCHEDULE_COLLECTION_NAME, label:'Plán práce', loadLocal:loadLocalSchedule, saveLocal:saveLocalSchedule, setMemory:(rows)=>{scheduleData=rows;}},
+    {key:'nahradniDily', collection:PARTS_COLLECTION_NAME, label:'Náhradní díly', loadLocal:loadLocalParts, saveLocal:saveLocalParts, setMemory:(rows)=>{partsData=rows;}},
+    {key:'hlaseniPoruch', collection:FAULTS_COLLECTION_NAME, label:'Hlášení poruch', loadLocal:loadLocalFaults, saveLocal:saveLocalFaults, setMemory:(rows)=>{faultsData=rows;}}
+  ];
+}
 async function exportBackup(){
   try{
-    let rows = [];
-    if(firebaseAvailable && db){
-      const snap = await db.collection(COLLECTION_NAME).get();
-      rows = snap.docs.map(d => ({id:d.id, ...d.data()}));
-    } else {
-      rows = loadLocalData();
+    const collections = {};
+    const counts = {};
+    for(const def of backupCollectionsDef()){
+      const rows = await getBackupRows(def.collection, def.loadLocal);
+      collections[def.collection] = rows;
+      collections[def.key] = rows;
+      counts[def.collection] = rows.length;
     }
     const payload = {
       app: 'LiftControl CZ',
-      collection: COLLECTION_NAME,
+      appVersion: '1.6 / 5.69',
+      backupType: 'complete',
+      schemaVersion: 2,
       exportedAt: new Date().toISOString(),
-      count: rows.length,
-      data: rows
+      firebaseProject: firebaseConfig.projectId || '',
+      collections,
+      counts
     };
     const blob = new Blob([JSON.stringify(payload, null, 2)], {type:'application/json'});
     const a = document.createElement('a');
     const stamp = new Date().toISOString().slice(0,19).replace(/[:T]/g,'-');
     a.href = URL.createObjectURL(blob);
-    a.download = `liftcontrol_cz_backup_${stamp}.json`;
+    a.download = `liftcontrol_cz_kompletni_zaloha_${stamp}.json`;
     document.body.appendChild(a);
     a.click();
     a.remove();
@@ -2238,6 +2273,70 @@ function migrateImportedRecord(record){
   if(!r.savedAt) r.savedAt = new Date().toISOString();
   return r;
 }
+function getRowsFromParsedBackup(parsed, def){
+  const collections = parsed && parsed.collections ? parsed.collections : null;
+  if(collections){
+    const rows = collections[def.collection] || collections[def.key] || [];
+    return Array.isArray(rows) ? rows : [];
+  }
+  // Starší zálohy obsahovaly jen pole protokolů nebo {data:[...]}
+  if(def.collection === COLLECTION_NAME){
+    if(Array.isArray(parsed)) return parsed;
+    if(Array.isArray(parsed.data)) return parsed.data;
+  }
+  return [];
+}
+function normalizeImportedRow(row, def, legacyProtocolBackup=false){
+  const r = Object.assign({}, row || {});
+  if(!r.id) r.id = uid();
+  if(def.collection === COLLECTION_NAME && legacyProtocolBackup){
+    return migrateImportedRecord(r);
+  }
+  if(!r.savedAt && def.collection === COLLECTION_NAME) r.savedAt = new Date().toISOString();
+  if(!r.createdAt && def.collection !== COLLECTION_NAME) r.createdAt = new Date().toISOString();
+  r.importedAt = r.importedAt || new Date().toISOString();
+  return r;
+}
+async function importRowsIntoCollection(def, rows, legacyProtocolBackup=false){
+  if(!rows.length) return {imported:0, skipped:0};
+  let imported = 0;
+  let skipped = 0;
+  if(firebaseAvailable && db){
+    const snap = await db.collection(def.collection).get();
+    const existing = new Set(snap.docs.map(d => d.id));
+    for(const row of rows){
+      if(!row) continue;
+      const candidateId = row.id || uid();
+      if(existing.has(candidateId)){
+        skipped++;
+        continue;
+      }
+      const normalized = normalizeImportedRow({...row, id:candidateId}, def, legacyProtocolBackup);
+      await db.collection(def.collection).doc(normalized.id).set(normalized);
+      existing.add(normalized.id);
+      imported++;
+    }
+  } else {
+    const current = def.loadLocal();
+    const existing = new Set(current.map(r => r.id));
+    const merged = [...current];
+    for(const row of rows){
+      if(!row) continue;
+      const candidateId = row.id || uid();
+      if(existing.has(candidateId)){
+        skipped++;
+        continue;
+      }
+      const normalized = normalizeImportedRow({...row, id:candidateId}, def, legacyProtocolBackup);
+      merged.unshift(normalized);
+      existing.add(normalized.id);
+      imported++;
+    }
+    def.saveLocal(merged);
+    def.setMemory(merged);
+  }
+  return {imported, skipped};
+}
 async function importBackupFile(file){
   if(!file) return;
   let parsed;
@@ -2249,30 +2348,34 @@ async function importBackupFile(file){
     alert('Soubor se nepodařilo načíst jako JSON zálohu.');
     return;
   }
-  const rows = Array.isArray(parsed) ? parsed : (Array.isArray(parsed.data) ? parsed.data : []);
-  if(!rows.length){
-    alert('V souboru nejsou nalezené žádné protokoly.');
+
+  const defs = backupCollectionsDef();
+  const hasCompleteCollections = !!(parsed && parsed.collections);
+  const legacyProtocolBackup = !hasCompleteCollections;
+  const available = defs.map(def => ({def, rows:getRowsFromParsedBackup(parsed, def)})).filter(x => x.rows.length);
+  const totalRows = available.reduce((sum, x) => sum + x.rows.length, 0);
+
+  if(!totalRows){
+    alert('V souboru nejsou nalezená žádná data pro import.');
     return;
   }
 
-  const ok = confirm(`Načíst ${rows.length} protokolů ze zálohy?\n\nImport pouze doplní chybějící protokoly. Existující stejné ID se přeskočí.`);
+  const summary = available.map(x => `${x.def.label}: ${x.rows.length}`).join('\n');
+  const ok = confirm(`Načíst zálohu LiftControl CZ?\n\n${summary}\n\nImport pouze doplní chybějící záznamy. Existující stejné ID se přeskočí.`);
   if(!ok) return;
 
-  const existing = new Set((data || []).map(r => r.id));
-  let imported = 0;
-  let skipped = 0;
-  for(const row of rows){
-    if(row && row.id && existing.has(row.id)){
-      skipped++;
-      continue;
-    }
-    const migrated = migrateImportedRecord(row);
-    await saveProtocol(migrated);
-    existing.add(migrated.id);
-    imported++;
+  const results = [];
+  for(const item of available){
+    const res = await importRowsIntoCollection(item.def, item.rows, legacyProtocolBackup && item.def.collection === COLLECTION_NAME);
+    results.push(`${item.def.label}: načteno ${res.imported}, přeskočeno ${res.skipped}`);
   }
+
   render();
-  alert(`Import hotový.\nNačteno: ${imported}\nPřeskočeno duplicit: ${skipped}`);
+  renderWorkPlan?.();
+  renderParts?.();
+  renderFaults?.();
+  updateMainOverview?.();
+  alert(`Import hotový.\n\n${results.join('\n')}`);
 }
 window.importBackupFile = importBackupFile;
 
@@ -2535,10 +2638,10 @@ function openModal(el){ el.classList.add('show'); }
 function closeModal(el){ el.classList.remove('show'); }
 
 function openWizard(editId=null, prefill={}){
-  rec = editId ? JSON.parse(JSON.stringify(data.find(r=>r.id===editId) || {id:uid()})) : {id:uid(), cLogic:'legacy', appVersion:'1.6 / 5.66'};
+  rec = editId ? JSON.parse(JSON.stringify(data.find(r=>r.id===editId) || {id:uid()})) : {id:uid(), cLogic:'legacy', appVersion:'1.6 / 5.69'};
   rec = Object.assign({}, rec, prefill || {});
   if(!editId && !rec.cLogic) rec.cLogic = 'legacy';
-  if(!editId && !rec.appVersion) rec.appVersion = '1.6 / 5.66';
+  if(!editId && !rec.appVersion) rec.appVersion = '1.6 / 5.69';
 
   // 🔥 AUTO DOPLNĚNÍ Z HISTORIE PODLE VÝROBNÍHO ČÍSLA
   if(rec.vc){
@@ -2603,15 +2706,18 @@ function showStep(){
   } else if(s.type === 'yntext' || s.type === 'yntextphoto'){
     const needsNote = s.k === 'B1' ? rec[s.k]==='NE' : (isGeneralCheckKey(s.k) ? isProblemAnswer(s.k, rec[s.k], rec) : rec[s.k]==='NE');
     const label = s.k === 'B1' ? 'Závady' : 'Popis závady';
-    const issuePhoto = (rec.issuePhotos || {})[s.k] || {};
-    const issueSrc = getPhotoSrc(issuePhoto);
-    const issueSize = issuePhoto.bytes ? ` · ${Math.round(issuePhoto.bytes/1024)} kB` : '';
+    const issuePhotoList = getIssuePhotoList(rec.issuePhotos || {}, s.k);
+    const issuePreviewHtml = issuePhotoList.map((p, idx) => {
+      const src = getPhotoSrc(p);
+      const size = p && p.bytes ? ` · ${Math.round(p.bytes/1024)} kB` : '';
+      return src ? `<div class="photo-thumb"><img src="${escapeHtml(src)}" data-full-src="${escapeHtml(src)}" onclick="openLightbox(this.dataset.fullSrc)" alt="Fotka závady"><div class="helper">Fotka závady ${idx+1}${size}</div><div class="photo-tools"><button class="danger mini delete-issue-photo-btn" type="button" data-issue-index="${idx}">Smazat fotku</button></div></div>` : '';
+    }).join('');
     const issuePhotoHtml = (s.type === 'yntextphoto' && needsNote) ? `
       <div class="field" id="issuePhotoWrap">
         <label>Fotka k závadě / poškození</label>
         <input id="issuePhotoInput" type="file" accept="image/*" capture="environment">
-        <div class="helper">Volitelné. Aplikace fotku automaticky zmenší na max. cca 500 kB.</div>
-        ${issueSrc ? `<div class="photo-thumb"><img src="${escapeHtml(issueSrc)}" data-full-src="${escapeHtml(issueSrc)}" onclick="openLightbox(this.dataset.fullSrc)" alt="Fotka závady"></div><div class="helper">Fotka uložena${issueSize}</div><div class="photo-tools"><button class="danger mini" type="button" id="deleteIssuePhotoBtn">Smazat fotku závady</button></div>` : ''}
+        <div class="helper">Volitelné. Aplikace fotku automaticky zmenší na max. cca 500 kB. K jedné závadě lze uložit až 4 fotky.</div>
+        ${issuePreviewHtml}
       </div>` : '';
     html = `<div class="yesno"><button class="yn-btn ${yesClass}" data-answer-text="ANO">✔ ANO</button><button class="yn-btn ${noClass}" data-answer-text="NE">✖ NE</button></div><div class="field ${needsNote ? '' : 'hidden'}" id="descWrap"><label>${label}</label><textarea id="descInput">${escapeHtml(rec[s.textKey]||'')}</textarea></div>${issuePhotoHtml}`;
   } else if(s.type === 'photo'){
@@ -2797,7 +2903,25 @@ function shouldShowIssuePhoto(step, value){
   if(isGeneralCheckKey(step.k)) return isProblemAnswer(step.k, value, rec);
   return value === 'NE';
 }
-function getPhotoSrc(photo){ return photo ? (photo.url || photo.dataUrl || '') : ''; }
+function getIssuePhotoList(store, key){
+  if(!store) return [];
+  const raw = store[key];
+  if(!raw) return [];
+  return Array.isArray(raw) ? raw.filter(Boolean) : [raw].filter(Boolean);
+}
+function setIssuePhotoList(store, key, list){
+  if(!store) return;
+  const cleaned = (list || []).filter(Boolean);
+  if(!cleaned.length){ delete store[key]; return; }
+  store[key] = cleaned;
+}
+function getPhotoSrc(photo){
+  if(Array.isArray(photo)){
+    const first = photo.find(Boolean);
+    return first ? (first.url || first.dataUrl || '') : '';
+  }
+  return photo ? (photo.url || photo.dataUrl || '') : '';
+}
 let lightboxImages = [];
 let lightboxIndex = 0;
 let lightboxTouchStartX = 0;
@@ -2910,7 +3034,7 @@ async function nextStep(){
   const okSave = confirm('Chceš protokol uložit?');
   if(!okSave) return;
   if(!rec.cLogic) rec.cLogic = 'legacy';
-  if(!rec.appVersion) rec.appVersion = '1.6 / 5.66';
+  if(!rec.appVersion) rec.appVersion = '1.6 / 5.69';
   rec.savedAt = new Date().toISOString();
   await saveProtocol(rec);
   closeWizard();
@@ -3661,6 +3785,8 @@ async function deleteAllPartRecords(){
   alert('Historie náhradních dílů byla smazána.');
 }
 
+const TECH_COLOR_PALETTE = ['#2563eb','#16a34a','#f97316','#7c3aed','#dc2626','#0891b2','#be123c','#65a30d','#ca8a04','#0f766e','#9333ea','#ea580c'];
+const TECH_COLOR_PALETTE_DARK = ['#93c5fd','#86efac','#fdba74','#c4b5fd','#fca5a5','#67e8f9','#fda4af','#bef264','#fde68a','#5eead4','#d8b4fe','#fed7aa'];
 const TECH_COLORS = {
   'Jan Bartoš':'#2563eb',
   'Petr Čáp':'#16a34a',
@@ -3668,7 +3794,7 @@ const TECH_COLORS = {
   'Vít Procházka':'#7c3aed',
   'Ondřej Lakva':'#dc2626'
 };
-function techColor(name){ return TECH_COLORS[name] || '#64748b'; }
+function techColor(name){ return colorForTechnician(name); }
 function ymd(date){
   const d = new Date(date);
   const pad = n => String(n).padStart(2,'0');
@@ -3811,8 +3937,9 @@ function renderWorkPlan(){
     const rows = getWorkPlanRowsForDate(ds);
     const events = rows.length ? rows.map(r => {
       const c = techColor(r.technician);
-      return `<div class="work-event" style="border-left-color:${c};background:color-mix(in srgb, ${c} 10%, white)">
-        <div class="work-event-tech" style="color:${c}">${escapeHtml(r.technician || '')}</div>
+      const cd = techColorDark(r.technician);
+      return `<div class="work-event" style="--tech-color:${c};--tech-color-dark:${cd};--tech-bg:${hexToRgba(c,.10)};--tech-bg-dark:${hexToRgba(cd,.24)};--tech-border:${hexToRgba(c,.38)};--tech-border-dark:${hexToRgba(cd,.62)}">
+        <div class="work-event-tech">${escapeHtml(r.technician || '')}</div>
         <div class="work-event-place">${getWorkPlanPlaces(r).map(p => `<span class="work-event-place-line">${escapeHtml(p)}</span>`).join('')}</div>
         ${r.note ? `<div class="work-event-note">${escapeHtml(r.note)}</div>` : ''}
         <div class="work-event-actions">
@@ -3886,7 +4013,7 @@ async function saveWorkPlanFromForm(){
     place,
     extraPlaces,
     note,
-    appVersion:'1.6 / 5.66'
+    appVersion:'1.6 / 5.69'
   });
   if(!record.createdAt) record.createdAt = new Date().toISOString();
   await saveWorkPlan(record);
@@ -3917,9 +4044,29 @@ function formatHumanDate(d){
   return dt.toLocaleDateString('cs-CZ',{day:'numeric', month:'long', year:'numeric', weekday:'long'});
 }
 function colorForTechnician(name){
-  const colors = ['#2563eb','#16a34a','#7c3aed','#f59e0b','#06b6d4','#ef4444','#84cc16','#ec4899'];
-  const idx = Math.abs(String(name||'').split('').reduce((a,c)=>a+c.charCodeAt(0),0)) % colors.length;
-  return colors[idx];
+  const key = String(name || '').trim();
+  if(!key) return '#64748b';
+  if(TECH_COLORS[key]) return TECH_COLORS[key];
+  const known = uniqueNonEmpty([
+    ...(TECHNICI || []),
+    ...(scheduleData || []).map(r => r.technician)
+  ]);
+  const idx = known.indexOf(key);
+  if(idx >= 0) return TECH_COLOR_PALETTE[idx % TECH_COLOR_PALETTE.length];
+  const hash = Math.abs(key.split('').reduce((a,c)=>a + c.charCodeAt(0),0));
+  return TECH_COLOR_PALETTE[hash % TECH_COLOR_PALETTE.length];
+}
+function techColorDark(name){
+  const key = String(name || '').trim();
+  if(!key) return '#cbd5e1';
+  const known = uniqueNonEmpty([
+    ...(TECHNICI || []),
+    ...(scheduleData || []).map(r => r.technician)
+  ]);
+  const idx = known.indexOf(key);
+  if(idx >= 0) return TECH_COLOR_PALETTE_DARK[idx % TECH_COLOR_PALETTE_DARK.length];
+  const hash = Math.abs(key.split('').reduce((a,c)=>a + c.charCodeAt(0),0));
+  return TECH_COLOR_PALETTE_DARK[hash % TECH_COLOR_PALETTE_DARK.length];
 }
 
 function hexToRgba(hex, alpha){
@@ -4020,9 +4167,10 @@ function renderHomeOverview(){
   } else {
     list.innerHTML = activeRows.map(row => {
       const color = colorForTechnician(row.name);
+      const darkColor = techColorDark(row.name);
       const places = row.items.flatMap(it => getWorkPlanPlaces(it)).filter(Boolean);
       const notes = row.items.map(it => it.note).filter(Boolean);
-      return `<div class="day-row today-focus" style="--tech-color:${color};border-left-color:${color};background:linear-gradient(90deg, ${hexToRgba(color,.12)} 0%, var(--panel2) 72%);"><div class="day-tech"><span class="tech-dot" style="background:${color}"></span>${escapeHtml(row.name)}</div><div class="day-place"><div class="day-place-main">${places.map(p => `<span class="place-pill" style="border-color:${hexToRgba(color,.38)}">${escapeHtml(p)}</span>`).join('')}</div>${notes.length ? `<div class="day-place-muted">${notes.map(n => escapeHtml(n)).join(' · ')}</div>` : ''}</div></div>`;
+      return `<div class="day-row today-focus" style="--tech-color:${color};--tech-color-dark:${darkColor};--tech-bg:${hexToRgba(color,.12)};--tech-bg-dark:${hexToRgba(darkColor,.26)};--tech-border:${hexToRgba(color,.38)};--tech-border-dark:${hexToRgba(darkColor,.66)};"><div class="day-tech"><span class="tech-dot"></span>${escapeHtml(row.name)}</div><div class="day-place"><div class="day-place-main">${places.map(p => `<span class="place-pill">${escapeHtml(p)}</span>`).join('')}</div>${notes.length ? `<div class="day-place-muted">${notes.map(n => escapeHtml(n)).join(' · ')}</div>` : ''}</div></div>`;
     }).join('');
   }
 }
@@ -4283,7 +4431,7 @@ async function saveFaultFromForm(){
     inService: status === 'service' ? true : (existing ? !!existing.inService : false),
     waitingParts: status === 'waiting_parts' ? true : (existing ? !!existing.waitingParts : false),
     photos: currentFaultPhotos,
-    appVersion:'1.6 / 5.66'
+    appVersion:'1.6 / 5.69'
   });
   if(!record.createdAt) record.createdAt = new Date().toISOString();
   if(status === 'repaired'){
@@ -4755,7 +4903,7 @@ async function savePartFromForm(){
     partNumber,
     partName: document.getElementById('partName').value.trim(),
     note: document.getElementById('partNote').value.trim(),
-    appVersion:'1.6 / 5.66'
+    appVersion:'1.6 / 5.69'
   });
   if(currentPartPhoto) record.photo = currentPartPhoto;
   if(!record.createdAt) record.createdAt = new Date().toISOString();

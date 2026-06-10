@@ -878,6 +878,23 @@ body.dark .fault-card{background:var(--panel2)}
 .fault-category-customer{background:#fff7ed;color:#9a3412;border-color:#fed7aa}
 .fault-category-warranty{background:#eff6ff;color:#1d4ed8;border-color:#bfdbfe}
 .fault-category-normal{background:#f1f5f9;color:#334155;border-color:#cbd5e1}
+/* v1.6 / 5.65 – karta stroje na hlavní stránce bez překrývání */
+.home-machine-search{
+  width:100%;
+  overflow:hidden;
+}
+.home-machine-search-row{
+  grid-template-columns:1fr!important;
+  width:100%;
+}
+.home-machine-search-row input{
+  min-width:0!important;
+  width:100%!important;
+}
+.home-machine-search-row button{
+  width:100%;
+  white-space:normal;
+}
 @media(max-width:640px){.home-machine-search-row{grid-template-columns:1fr}.home-machine-search-row button{width:100%}}
 
 
@@ -1291,7 +1308,7 @@ body.dark .module-kicker{
     <button type="button" class="side-small" id="sideThemeBtn">Tmavý / světlý režim</button>
     <button type="button" class="side-small" onclick="exportBackup()">Export zálohy</button>
     <button type="button" class="side-small" id="sideImportBtn">Import zálohy</button>
-    <div class="side-version">Vlastník/Admin: Jan Bartoš<br>Verze: 1.6 / 5.64</div>
+    <div class="side-version">Vlastník/Admin: Jan Bartoš<br>Verze: 1.6 / 5.65</div>
   </div>
 </aside>
 
@@ -1316,7 +1333,7 @@ body.dark .module-kicker{
           <button type="button" class="ghost small" id="homeMachineCardBtn">Karta stroje</button>
         </div>
         <div id="homeMachineSearchWrap" class="home-machine-search hidden">
-          <div class="helper">Vyhledej plošinu podle výrobního čísla. Bere se z kontrol, poruch a náhradních dílů.</div>
+          <div class="helper">Vyhledej plošinu podle výrobního čísla.</div>
           <div class="home-machine-search-row">
             <input id="homeMachineSearch" class="search" type="text" list="homeMachineList" placeholder="Zadej nebo vyber výrobní číslo" autocomplete="off">
             <button id="homeMachineOpenBtn" class="primary mini" type="button">Otevřít kartu</button>

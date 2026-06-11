@@ -705,6 +705,7 @@ body.dark .part-card{background:var(--panel2)}
 .status-open{background:#fff7ed;color:#9a3412;border-color:#fed7aa}
 .status-ordered{background:#eff6ff;color:#1d4ed8;border-color:#bfdbfe}
 .status-sent{background:#ecfdf5;color:#166534;border-color:#bbf7d0}
+.status-resolved{background:#f3e8ff;color:#6b21a8;border-color:#e9d5ff}
 @media(max-width:980px){.module-grid{grid-template-columns:1fr}.parts-form-grid,.part-grid{grid-template-columns:1fr}.part-head{flex-direction:column}.parts-toolbar .search{width:100%}}
 @media print{#partsModal{display:none!important}.main-overview{display:none!important}}
 
@@ -905,7 +906,7 @@ body.dark .fault-card{background:var(--panel2)}
 
 
 /* v1.6 / 5.66 – karta stroje: modal nad hlavičkou a bez usekávání */
-/* v1.6 / 5.79 – plán práce: stabilní barvy techniků */
+/* v1.6 / 5.82 – plán práce: stabilní barvy techniků */
 .modal{z-index:140!important}
 #historyModal{
   align-items:flex-start!important;
@@ -952,7 +953,7 @@ body.dark .fault-card{background:var(--panel2)}
 }
 
 
-/* v1.6 / 5.79 – tmavý režim: výraznější barvy techniků v plánu práce */
+/* v1.6 / 5.82 – tmavý režim: výraznější barvy techniků v plánu práce */
 .work-event{border-left-color:var(--tech-color,#2563eb)!important;background:var(--tech-bg,rgba(37,99,235,.10))!important}
 .work-event .work-event-tech{color:var(--tech-color,#2563eb)!important}
 .day-row{border-left-color:var(--tech-color,#2563eb)!important;background:linear-gradient(90deg,var(--tech-bg,rgba(37,99,235,.12)) 0%,var(--panel2) 72%)!important}
@@ -1348,7 +1349,7 @@ body.dark .module-kicker{
 
 
 
-/* v1.6 / 5.79 – externí zákazník */
+/* v1.6 / 5.82 – externí zákazník */
 .external-customer-card{
   border-color:#7c3aed!important;
   box-shadow:0 0 0 2px rgba(124,58,237,.10), var(--shadow)!important;
@@ -1390,7 +1391,7 @@ body.dark .badge-external,body.dark .status-external{
 .part-note-display strong{font-size:.78rem;color:var(--muted)}
 .part-note-display div{font-weight:650;line-height:1.35;white-space:pre-wrap;overflow-wrap:anywhere}
 .part-card.focus-flash{outline:3px solid #2563eb;outline-offset:3px}
-/* v1.6 / 5.79 – zvýraznění záznamu po prokliku z Vyžaduje pozornost */
+/* v1.6 / 5.82 – zvýraznění záznamu po prokliku z Vyžaduje pozornost */
 .card.focus-flash,.fault-card.focus-flash,.part-card.focus-flash{outline:3px solid #2563eb!important;outline-offset:3px;box-shadow:0 0 0 6px rgba(37,99,235,.14)!important}
 body.dark .card.focus-flash,body.dark .fault-card.focus-flash,body.dark .part-card.focus-flash{outline-color:#60a5fa!important;box-shadow:0 0 0 6px rgba(96,165,250,.22)!important}
 .attention-count{cursor:pointer}
@@ -1403,13 +1404,26 @@ body.dark .audit-item{background:var(--panel2)}
 .audit-action.delete{background:#fef2f2;color:#b91c1c}.audit-action.update{background:#fff7ed;color:#9a3412}.audit-action.create{background:#ecfdf5;color:#166534}
 
 
-/* v1.6 / 5.79 – opravy vrstev, našeptávače karty stroje a ND stavů */
+/* v1.6 / 5.82 – opravy vrstev, našeptávače karty stroje a ND stavů */
 .lightbox{z-index:2147483000!important;position:fixed!important}
 .lightbox.show{display:flex!important}
 .lightbox img{max-width:96vw!important;max-height:88dvh!important;object-fit:contain!important}
 .home-machine-search{overflow:visible!important}
 .home-machine-search-row{position:relative!important;overflow:visible!important}
 .home-machine-search-row .smart-suggest-box{z-index:2147482000!important;left:0!important;right:0!important;top:calc(100% + 6px)!important}
+
+/* v1.6 / 5.82 – spolehlivý našeptávač karty stroje na hlavní stránce */
+.home-machine-search-row{overflow:visible!important}
+.home-machine-suggest-box{position:absolute;left:0;right:0;top:calc(100% + 6px);display:none;max-height:220px;overflow:auto;background:#fff;border:1px solid var(--line);border-radius:14px;box-shadow:0 14px 30px rgba(15,23,42,.18);z-index:2147483000!important}
+.home-machine-suggest-box.show{display:block}
+.home-machine-suggest-item{padding:10px 12px;border-bottom:1px solid #eef2f7;cursor:pointer;line-height:1.25}
+.home-machine-suggest-item:last-child{border-bottom:none}
+.home-machine-suggest-item:hover{background:#f8fbff}
+.home-machine-suggest-main{font-weight:800;color:var(--text)}
+.home-machine-suggest-sub{font-size:.82rem;color:var(--muted);margin-top:2px}
+body.dark .home-machine-suggest-box{background:#0f172a;border-color:var(--line)}
+body.dark .home-machine-suggest-item{border-bottom-color:#243244}
+body.dark .home-machine-suggest-item:hover{background:#172033}
 .part-actions{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
 </style>
 </head>
@@ -1442,7 +1456,7 @@ body.dark .audit-item{background:var(--panel2)}
     <button type="button" class="side-small" onclick="exportBackup()">Export zálohy</button>
     <button type="button" class="side-small" id="sideImportBtn">Import zálohy</button>
     <button type="button" class="side-small" id="sideAuditBtn">Historie změn</button>
-    <div class="side-version">Vlastník/Admin: Jan Bartoš<br>Verze: 1.6 / 5.79</div>
+    <div class="side-version">Vlastník/Admin: Jan Bartoš<br>Verze: 1.6 / 5.82</div>
   </div>
 </aside>
 
@@ -1758,6 +1772,7 @@ body.dark .audit-item{background:var(--panel2)}
           <option value="open">Požadavek</option>
           <option value="ordered">Objednáno</option>
           <option value="sent">Odesláno</option>
+          <option value="resolved">Vyřešeno</option>
         </select>
       </div>
     </div>
@@ -2394,7 +2409,7 @@ async function exportBackup(){
     }
     const payload = {
       app: 'LiftControl CZ',
-      appVersion: '1.6 / 5.79',
+      appVersion: '1.6 / 5.82',
       backupType: 'complete',
       schemaVersion: 2,
       exportedAt: new Date().toISOString(),
@@ -2580,6 +2595,10 @@ let currentHomeDate = new Date();
 let editingWorkPlanId = null;
 let qrEnabled = false;
 let qrPickerActive = false;
+let protocolSaveInProgress = false;
+let workPlanSaveInProgress = false;
+let faultSaveInProgress = false;
+let partSaveInProgress = false;
 
 const els = {
   list: document.getElementById('list'),
@@ -2838,10 +2857,10 @@ function openModal(el){ el.classList.add('show'); }
 function closeModal(el){ el.classList.remove('show'); }
 
 function openWizard(editId=null, prefill={}){
-  rec = editId ? JSON.parse(JSON.stringify(data.find(r=>r.id===editId) || {id:uid()})) : {id:uid(), cLogic:'legacy', appVersion:'1.6 / 5.79'};
+  rec = editId ? JSON.parse(JSON.stringify(data.find(r=>r.id===editId) || {id:uid()})) : {id:uid(), cLogic:'legacy', appVersion:'1.6 / 5.82'};
   rec = Object.assign({}, rec, prefill || {});
   if(!editId && !rec.cLogic) rec.cLogic = 'legacy';
-  if(!editId && !rec.appVersion) rec.appVersion = '1.6 / 5.79';
+  if(!editId && !rec.appVersion) rec.appVersion = '1.6 / 5.82';
 
   // 🔥 AUTO DOPLNĚNÍ Z HISTORIE PODLE VÝROBNÍHO ČÍSLA
   if(rec.vc){
@@ -3228,6 +3247,7 @@ window.nextLightboxPhoto = nextLightboxPhoto;
 window.prevLightboxPhoto = prevLightboxPhoto;
 
 async function nextStep(){
+  if(protocolSaveInProgress) return;
   const activeSteps = getStepsForRecord(rec);
   const s = activeSteps[stepIndex];
   if(s.type === 'yntext' || s.type === 'yntextphoto'){
@@ -3251,19 +3271,29 @@ async function nextStep(){
     showStep();
     return;
   }
-  syncRevizeIssue(rec);
-  syncModelPreferences(rec);
-  if(!rec.cLogic) rec.cLogic = 'legacy';
-  if(!rec.appVersion) rec.appVersion = '1.6 / 5.79';
-  if(!rec.enteredBy) rec.enteredBy = rec.technik || getEnteredByDefault();
-  setLastEnteredBy(rec.enteredBy);
-  rec.savedAt = new Date().toISOString();
-  const wasExistingProtocol = data.some(x => x.id === rec.id);
-  await saveProtocol(rec);
-  await logAuditAction(wasExistingProtocol ? 'update' : 'create','protocol',rec,rec.enteredBy || rec.technik);
-  closeWizard();
-  render();
-  alert('Protokol uložen.');
+  protocolSaveInProgress = true;
+  if(els.nextBtn) els.nextBtn.disabled = true;
+  try{
+    syncRevizeIssue(rec);
+    syncModelPreferences(rec);
+    if(!rec.cLogic) rec.cLogic = 'legacy';
+    if(!rec.appVersion) rec.appVersion = '1.6 / 5.82';
+    if(!rec.enteredBy) rec.enteredBy = rec.technik || getEnteredByDefault();
+    setLastEnteredBy(rec.enteredBy);
+    rec.savedAt = new Date().toISOString();
+    const wasExistingProtocol = data.some(x => x.id === rec.id);
+    await saveProtocol(rec);
+    await logAuditAction(wasExistingProtocol ? 'update' : 'create','protocol',rec,rec.enteredBy || rec.technik);
+    closeWizard();
+    render();
+    alert('Protokol uložen.');
+  }catch(err){
+    console.error(err);
+    alert('Uložení protokolu se nepodařilo. Zkontroluj připojení a zkus to znovu.');
+  }finally{
+    protocolSaveInProgress = false;
+    if(els.nextBtn) els.nextBtn.disabled = false;
+  }
 }
 
 function openPreviewById(id){
@@ -3278,15 +3308,7 @@ function openPreviewById(id){
 function closePreview(){
   closeModal(els.preview);
 }
-async function savePreviewRecord(){
-  if(!currentPreview){
-    alert('Není otevřený žádný protokol k uložení.');
-    return;
-  }
-  await saveProtocol(currentPreview);
-  alert('Protokol byl uložen.');
-  closePreview();
-}
+/* v1.6 / 5.82: odstraněná duplicitní funkce savePreviewRecord; tlačítko Uložit PDF používá finální definici níže. */
 function printCurrent(){
   console.log('TISK kliknuto');
   if(!currentPreview){
@@ -3339,7 +3361,7 @@ async function logAuditAction(action, entity, record, by, detail){
       serial: record?.vc || record?.serial || '',
       type: record?.typ || record?.type || '',
       createdAt: new Date().toISOString(),
-      appVersion: '1.6 / 5.79'
+      appVersion: '1.6 / 5.82'
     };
     if(firebaseAvailable && db){ await db.collection(AUDIT_COLLECTION_NAME).doc(item.id).set(item); }
     else { const rows = loadLocalAudit(); rows.unshift(item); saveLocalAudit(rows.slice(0,300)); auditData = rows.slice(0,300); }
@@ -3409,7 +3431,7 @@ function getMachineState(serial){
     if(faultInService(openFault)) return {txt:'Stroj do servisu', cls:'status-machine-bad'};
     return {txt:'Hlášená porucha', cls:'status-machine-bad'};
   }
-  const openPart = rows.parts.find(p => !p.sent);
+  const openPart = rows.parts.find(p => !p.sent && !p.resolved);
   if(openPart) return {txt:'Čeká na ND', cls:'status-machine-warn'};
   const issueProtocol = rows.protocols.find(r => hasIssue(r));
   if(issueProtocol) return {txt:'Závada v protokolu', cls:'status-machine-warn'};
@@ -3523,7 +3545,7 @@ function renderAttentionList(){
   (partsData || []).forEach(p => {
     const stamp = p.createdAt || p.updatedAt || p.date;
     if(!withinLast48BusinessHours(stamp)) return;
-    if(p.sent || p.odeslano) return;
+    if(p.resolved || p.vyreseno || p.sent || p.odeslano) return;
     counters.parts++;
     const status = (p.ordered || p.objednano) ? 'Objednáno' : 'Nový požadavek';
     items.push({
@@ -4353,22 +4375,34 @@ async function saveWorkPlanFromForm(){
   if(!date){ alert('Vyplň datum ve formátu DD.MM.RRRR.'); return; }
   if(!technician){ alert('Vyber technika.'); return; }
   if(!place && !extraPlaces.length){ alert('Vyplň alespoň jedno místo práce.'); return; }
-  const existing = editingWorkPlanId ? (scheduleData || []).find(x => x.id === editingWorkPlanId) : null;
-  const record = Object.assign({}, existing || {}, {
-    id: editingWorkPlanId || scheduleUid(),
-    date,
-    technician,
-    place,
-    extraPlaces,
-    note,
-    appVersion:'1.6 / 5.79'
-  });
-  if(!record.createdAt) record.createdAt = new Date().toISOString();
-  await saveWorkPlan(record);
-  await logAuditAction(existing ? 'update' : 'create','plan',record,record.technician);
-  closeWorkPlanForm();
-  currentWorkWeekStart = startOfWeek(new Date(date + 'T00:00:00'));
-  renderWorkPlan();
+  if(workPlanSaveInProgress) return;
+  workPlanSaveInProgress = true;
+  const saveBtn = document.getElementById('saveWorkPlanBtn');
+  if(saveBtn) saveBtn.disabled = true;
+  try{
+    const existing = editingWorkPlanId ? (scheduleData || []).find(x => x.id === editingWorkPlanId) : null;
+    const record = Object.assign({}, existing || {}, {
+      id: editingWorkPlanId || scheduleUid(),
+      date,
+      technician,
+      place,
+      extraPlaces,
+      note,
+      appVersion:'1.6 / 5.82'
+    });
+    if(!record.createdAt) record.createdAt = new Date().toISOString();
+    await saveWorkPlan(record);
+    await logAuditAction(existing ? 'update' : 'create','plan',record,record.technician);
+    closeWorkPlanForm();
+    currentWorkWeekStart = startOfWeek(new Date(date + 'T00:00:00'));
+    renderWorkPlan();
+  }catch(err){
+    console.error(err);
+    alert('Uložení plánu práce se nepodařilo. Zkontroluj připojení a zkus to znovu.');
+  }finally{
+    workPlanSaveInProgress = false;
+    if(saveBtn) saveBtn.disabled = false;
+  }
 }
 
 
@@ -4739,18 +4773,77 @@ function getFaultCategoryClass(f){
   if(c === 'warranty') return 'fault-category-warranty';
   return 'fault-category-normal';
 }
+function getMachineSearchItems(){
+  const map = new Map();
+  const add = (serial, type='', place='') => {
+    const s = String(serial || '').trim();
+    if(!s) return;
+    const key = normalizeSerial(s);
+    const prev = map.get(key) || {serial:s, type:'', place:''};
+    if(type && !prev.type) prev.type = String(type || '').trim();
+    if(place && !prev.place) prev.place = String(place || '').trim();
+    map.set(key, prev);
+  };
+  (data || []).forEach(r => add(r.vc, r.typ, r.umisteni));
+  (faultsData || []).forEach(r => add(r.serial, r.type, r.place));
+  (partsData || []).forEach(r => add(r.serial, r.type, r.place));
+  return Array.from(map.values()).sort((a,b)=>String(a.serial).localeCompare(String(b.serial),'cs'));
+}
+function filterMachineSearchItems(q){
+  const norm = String(q || '').toLowerCase().replace(/\s+/g,'');
+  if(!norm) return [];
+  return getMachineSearchItems().filter(x => {
+    const hay = `${x.serial || ''} ${x.type || ''} ${x.place || ''}`.toLowerCase().replace(/\s+/g,'');
+    return hay.includes(norm);
+  }).slice(0,8);
+}
+function attachHomeMachineSuggest(){
+  const input = document.getElementById('homeMachineSearch');
+  const row = input?.closest('.home-machine-search-row');
+  if(!input || !row || input.dataset.homeMachineSuggestReady === '1') return;
+  input.dataset.homeMachineSuggestReady = '1';
+  input.setAttribute('autocomplete','off');
+  input.removeAttribute('list');
+  let box = row.querySelector('.home-machine-suggest-box');
+  if(!box){
+    box = document.createElement('div');
+    box.className = 'home-machine-suggest-box';
+    row.appendChild(box);
+  }
+  const close = () => { box.classList.remove('show'); box.innerHTML = ''; };
+  const open = () => {
+    const q = String(input.value || '').trim();
+    const items = filterMachineSearchItems(q);
+    if(!items.length){ close(); return; }
+    box.innerHTML = items.map(x => `
+      <div class="home-machine-suggest-item" data-serial="${escapeHtml(x.serial)}">
+        <div class="home-machine-suggest-main">${escapeHtml(x.serial)}</div>
+        <div class="home-machine-suggest-sub">${escapeHtml([x.type, x.place].filter(Boolean).join(' · ') || 'Záznam stroje')}</div>
+      </div>`).join('');
+    box.classList.add('show');
+    box.querySelectorAll('.home-machine-suggest-item').forEach(item => item.addEventListener('pointerdown', ev => {
+      ev.preventDefault();
+      input.value = item.dataset.serial || '';
+      input.dispatchEvent(new Event('input', {bubbles:true}));
+      input.dispatchEvent(new Event('change', {bubbles:true}));
+      close();
+    }));
+  };
+  input.addEventListener('input', open);
+  input.addEventListener('focus', open);
+  input.addEventListener('blur', () => setTimeout(close, 160));
+}
 function updateHomeMachineDatalist(){
   const dl = document.getElementById('homeMachineList');
-  const machines = allKnownMachines().sort((a,b)=>a.localeCompare(b,'cs'));
+  const machines = getMachineSearchItems().map(x => x.serial);
   if(dl) dl.innerHTML = machines.map(v => `<option value="${escapeHtml(v)}"></option>`).join('');
-  const input = document.getElementById('homeMachineSearch');
-  attachSmartSuggest(input, () => allKnownMachines().sort((a,b)=>String(a).localeCompare(String(b),'cs')), () => {});
+  attachHomeMachineSuggest();
 }
 function openSelectedHomeMachine(){
   const input = document.getElementById('homeMachineSearch');
   const serial = String(input?.value || '').trim();
   if(!serial){ alert('Vyber nebo zadej výrobní číslo stroje.'); return; }
-  const known = allKnownMachines();
+  const known = getMachineSearchItems().map(x => x.serial);
   const exact = known.find(v => normalizeSerial(v) === normalizeSerial(serial));
   if(!exact){
     if(!confirm('Toto výrobní číslo zatím není v záznamech. Otevřít prázdnou kartu?')) return;
@@ -4873,40 +4966,52 @@ async function saveFaultFromForm(){
   if(!serial){ alert('Vyplň výrobní číslo.'); return; }
   if(!date){ alert('Vyplň datum.'); return; }
   if(!description){ alert('Vyplň popis závady.'); return; }
-  const existing = editingFaultId ? (faultsData || []).find(x => x.id === editingFaultId) : null;
-  const status = document.getElementById('faultInitialStatus').value;
-  const faultCategory = document.getElementById('faultCategory')?.value || 'normal';
-  const record = Object.assign({}, existing || {}, {
-    id: editingFaultId || faultUid(),
-    type,
-    serial,
-    date,
-    mh: document.getElementById('faultMh').value.trim(),
-    place,
-    description,
-    faultCategory,
-    enteredBy: document.getElementById('faultEnteredBy')?.value || getEnteredByDefault(),
-    externalCustomer: !!document.getElementById('faultExternalCustomer')?.checked,
-    customerName: !!document.getElementById('faultExternalCustomer')?.checked ? document.getElementById('faultCustomerName').value.trim() : '',
-    customerAddress: !!document.getElementById('faultExternalCustomer')?.checked ? document.getElementById('faultCustomerAddress').value.trim() : '',
-    status: status === 'repaired' ? 'repaired' : 'open',
-    inService: status === 'service' ? true : (existing ? !!existing.inService : false),
-    waitingParts: status === 'waiting_parts' ? true : (existing ? !!existing.waitingParts : false),
-    photos: currentFaultPhotos,
-    appVersion:'1.6 / 5.79'
-  });
-  if(!record.createdAt) record.createdAt = new Date().toISOString();
-  setLastEnteredBy(record.enteredBy);
-  if(status === 'repaired'){
-    record.repaired = true;
-    record.inService = false;
-    record.waitingParts = false;
-    if(!record.repairedAt) record.repairedAt = new Date().toISOString();
+  if(faultSaveInProgress) return;
+  faultSaveInProgress = true;
+  const saveBtn = document.getElementById('saveFaultBtn');
+  if(saveBtn) saveBtn.disabled = true;
+  try{
+    const existing = editingFaultId ? (faultsData || []).find(x => x.id === editingFaultId) : null;
+    const status = document.getElementById('faultInitialStatus').value;
+    const faultCategory = document.getElementById('faultCategory')?.value || 'normal';
+    const record = Object.assign({}, existing || {}, {
+      id: editingFaultId || faultUid(),
+      type,
+      serial,
+      date,
+      mh: document.getElementById('faultMh').value.trim(),
+      place,
+      description,
+      faultCategory,
+      enteredBy: document.getElementById('faultEnteredBy')?.value || getEnteredByDefault(),
+      externalCustomer: !!document.getElementById('faultExternalCustomer')?.checked,
+      customerName: !!document.getElementById('faultExternalCustomer')?.checked ? document.getElementById('faultCustomerName').value.trim() : '',
+      customerAddress: !!document.getElementById('faultExternalCustomer')?.checked ? document.getElementById('faultCustomerAddress').value.trim() : '',
+      status: status === 'repaired' ? 'repaired' : 'open',
+      inService: status === 'service' ? true : (existing ? !!existing.inService : false),
+      waitingParts: status === 'waiting_parts' ? true : (existing ? !!existing.waitingParts : false),
+      photos: currentFaultPhotos,
+      appVersion:'1.6 / 5.82'
+    });
+    if(!record.createdAt) record.createdAt = new Date().toISOString();
+    setLastEnteredBy(record.enteredBy);
+    if(status === 'repaired'){
+      record.repaired = true;
+      record.inService = false;
+      record.waitingParts = false;
+      if(!record.repairedAt) record.repairedAt = new Date().toISOString();
+    }
+    await saveFaultRecord(record);
+    await logAuditAction(existing ? 'update' : 'create','fault',record,record.enteredBy);
+    closeFaultForm();
+    renderFaults();
+  }catch(err){
+    console.error(err);
+    alert('Uložení poruchy se nepodařilo. Zkontroluj připojení a zkus to znovu.');
+  }finally{
+    faultSaveInProgress = false;
+    if(saveBtn) saveBtn.disabled = false;
   }
-  await saveFaultRecord(record);
-  await logAuditAction(existing ? 'update' : 'create','fault',record,record.enteredBy);
-  closeFaultForm();
-  renderFaults();
 }
 function renderFaults(){
   updateMainOverview();
@@ -5114,7 +5219,7 @@ body.dark .module-kicker{
 }
 
 
-/* v1.6 / 5.79 – externí zákazník */
+/* v1.6 / 5.82 – externí zákazník */
 .external-customer-card{
   border-color:#7c3aed!important;
   box-shadow:0 0 0 2px rgba(124,58,237,.10), var(--shadow)!important;
@@ -5255,9 +5360,9 @@ function updateMainOverview(){
   set('dashWorkToday', (scheduleData || []).filter(r => r.date === today).length);
   set('dashWorkTomorrow', (scheduleData || []).filter(r => r.date === tomorrow).length);
   set('dashWorkWeek', (scheduleData || []).filter(r => r.date >= ymd(weekStart) && r.date <= weekEnd).length);
-  set('dashPartsOpen', (partsData || []).filter(p => !p.ordered && !p.sent).length);
-  set('dashPartsOrdered', (partsData || []).filter(p => p.ordered && !p.sent).length);
-  set('dashPartsSent', (partsData || []).filter(p => p.sent).length);
+  set('dashPartsOpen', (partsData || []).filter(p => !p.resolved && !p.ordered && !p.sent).length);
+  set('dashPartsOrdered', (partsData || []).filter(p => !p.resolved && p.ordered && !p.sent).length);
+  set('dashPartsSent', (partsData || []).filter(p => !p.resolved && p.sent).length);
   set('dashFaultsOpen', (faultsData || []).filter(f => !faultIsRepaired(f) && !faultInService(f) && !faultWaitingParts(f)).length);
   set('dashFaultsService', (faultsData || []).filter(f => faultInService(f) || faultWaitingParts(f)).length);
   set('dashFaultsRepaired', (faultsData || []).filter(f => faultIsRepaired(f)).length);
@@ -5354,6 +5459,7 @@ function fillPartSelects(){
   if(serialList) serialList.innerHTML = getSerialSuggestionsAll().map(v => `<option value="${escapeHtml(v)}"></option>`).join('');
 }
 function getPartStatus(p){
+  if(p.resolved || p.vyreseno) return {txt:'Vyřešeno', cls:'status-resolved'};
   if(p.sent) return {txt:'Odesláno', cls:'status-sent'};
   if(p.ordered) return {txt:'Objednáno', cls:'status-ordered'};
   return {txt:'Požadavek', cls:'status-open'};
@@ -5404,13 +5510,15 @@ function renderParts(){
         <div class="part-meta"><div class="part-meta-label">Firma</div><div class="part-meta-value">${escapeHtml(customerDisplayText(p))}</div></div>
         <div class="part-meta"><div class="part-meta-label">Objednáno</div><div class="part-meta-value">${p.ordered ? escapeHtml(formatDateTime(p.orderedAt)) : 'Ne'}</div></div>
         <div class="part-meta"><div class="part-meta-label">Odesláno</div><div class="part-meta-value">${p.sent ? escapeHtml(formatDateTime(p.sentAt)) : 'Ne'}</div></div>
+        <div class="part-meta"><div class="part-meta-label">Vyřešeno</div><div class="part-meta-value">${(p.resolved || p.vyreseno) ? escapeHtml(formatDateTime(p.resolvedAt || p.vyresenoAt || p.updatedAt)) : 'Ne'}</div></div>
       </div>
       ${p.note ? `<div class="part-note-display"><strong>Popis závady / poznámka</strong><div>${escapeHtml(p.note)}</div></div>` : ''}
       ${photoHtml ? `<div class="part-photo">${photoHtml}</div>` : ''}
       <div class="part-actions">
         <button class="secondary mini" type="button" data-part-machine="${escapeHtml(p.serial || '')}">Karta stroje</button>
-        ${!p.ordered ? `<button class="secondary mini" type="button" data-part-ordered="${p.id}">Objednáno</button>` : ''}
-        ${!p.sent ? `<button class="secondary mini" type="button" data-part-sent="${p.id}">Odesláno</button>` : ''}
+        ${!(p.resolved || p.vyreseno) && !p.ordered ? `<button class="secondary mini" type="button" data-part-ordered="${p.id}">Objednáno</button>` : ''}
+        ${!(p.resolved || p.vyreseno) && !p.sent ? `<button class="secondary mini" type="button" data-part-sent="${p.id}">Odesláno</button>` : ''}
+        ${!(p.resolved || p.vyreseno) ? `<button class="secondary mini" type="button" data-part-resolved="${p.id}">Vyřešeno</button>` : ''}
         <button class="primary mini" type="button" data-part-edit="${p.id}">Upravit</button>
         <button class="danger mini" type="button" data-part-delete="${p.id}">Smazat</button>
       </div>
@@ -5421,6 +5529,7 @@ function renderParts(){
   list.querySelectorAll('[data-part-delete]').forEach(btn => btn.addEventListener('click', () => deletePartRecord(btn.dataset.partDelete)));
   list.querySelectorAll('[data-part-ordered]').forEach(btn => btn.addEventListener('click', () => markPartOrdered(btn.dataset.partOrdered)));
   list.querySelectorAll('[data-part-sent]').forEach(btn => btn.addEventListener('click', () => markPartSent(btn.dataset.partSent)));
+  list.querySelectorAll('[data-part-resolved]').forEach(btn => btn.addEventListener('click', () => markPartResolved(btn.dataset.partResolved)));
 }
 function openPartForm(id=null){
   fillPartSelects();
@@ -5457,7 +5566,7 @@ function openPartForm(id=null){
   wireExternalDetails('part');
   document.getElementById('partNote').value = (p && p.note) || '';
   const partStatusSel = document.getElementById('partStatusSelect');
-  if(partStatusSel) partStatusSel.value = p ? (p.sent ? 'sent' : (p.ordered ? 'ordered' : 'open')) : 'open';
+  if(partStatusSel) partStatusSel.value = p ? ((p.resolved || p.vyreseno) ? 'resolved' : (p.sent ? 'sent' : (p.ordered ? 'ordered' : 'open'))) : 'open';
   currentPartPhotos = p ? JSON.parse(JSON.stringify(getPartPhotoList(p))) : [];
   renderPartPhotoPreview();
   document.getElementById('partsFormWrap').classList.remove('hidden');
@@ -5472,7 +5581,7 @@ function closePartForm(){
 
 
 
-/* v5.79 – mobilní gesto zpět zleva doprava */
+/* v5.81 – mobilní gesto zpět zleva doprava */
 function getActivePageView(){
   const active = document.querySelector('.page-section.active');
   if(!active) return 'home';
@@ -5552,34 +5661,48 @@ async function savePartFromForm(){
   const serial = document.getElementById('partSerial').value.trim();
   if(!type){ alert('Vyplň typ zařízení.'); return; }
   if(!serial){ alert('Vyplň výrobní číslo.'); return; }
-  const existing = editingPartId ? (partsData || []).find(x => x.id === editingPartId) : null;
-  const statusVal = document.getElementById('partStatusSelect')?.value || 'open';
-  const record = Object.assign({}, existing || {}, {
-    id: editingPartId || partUid(),
-    type,
-    serial,
-    place,
-    partNumber,
-    partName: document.getElementById('partName').value.trim(),
-    enteredBy: document.getElementById('partEnteredBy')?.value || getEnteredByDefault(),
-    externalCustomer: !!document.getElementById('partExternalCustomer')?.checked,
-    customerName: !!document.getElementById('partExternalCustomer')?.checked ? document.getElementById('partCustomerName').value.trim() : '',
-    customerAddress: !!document.getElementById('partExternalCustomer')?.checked ? document.getElementById('partCustomerAddress').value.trim() : '',
-    note: document.getElementById('partNote').value.trim(),
-    ordered: statusVal === 'ordered' || statusVal === 'sent',
-    sent: statusVal === 'sent',
-    orderedAt: (statusVal === 'ordered' || statusVal === 'sent') ? ((existing && existing.orderedAt) || new Date().toISOString()) : '',
-    sentAt: statusVal === 'sent' ? ((existing && existing.sentAt) || new Date().toISOString()) : '',
-    appVersion:'1.6 / 5.79'
-  });
-  record.photos = JSON.parse(JSON.stringify(currentPartPhotos || []));
-  record.photo = record.photos[0] || null;
-  if(!record.createdAt) record.createdAt = new Date().toISOString();
-  setLastEnteredBy(record.enteredBy);
-  await savePartRecord(record);
-  await logAuditAction(existing ? 'update' : 'create','part',record,record.enteredBy);
-  closePartForm();
-  renderParts();
+  if(partSaveInProgress) return;
+  partSaveInProgress = true;
+  const saveBtn = document.getElementById('savePartBtn');
+  if(saveBtn) saveBtn.disabled = true;
+  try{
+    const existing = editingPartId ? (partsData || []).find(x => x.id === editingPartId) : null;
+    const statusVal = document.getElementById('partStatusSelect')?.value || 'open';
+    const record = Object.assign({}, existing || {}, {
+      id: editingPartId || partUid(),
+      type,
+      serial,
+      place,
+      partNumber,
+      partName: document.getElementById('partName').value.trim(),
+      enteredBy: document.getElementById('partEnteredBy')?.value || getEnteredByDefault(),
+      externalCustomer: !!document.getElementById('partExternalCustomer')?.checked,
+      customerName: !!document.getElementById('partExternalCustomer')?.checked ? document.getElementById('partCustomerName').value.trim() : '',
+      customerAddress: !!document.getElementById('partExternalCustomer')?.checked ? document.getElementById('partCustomerAddress').value.trim() : '',
+      note: document.getElementById('partNote').value.trim(),
+      ordered: statusVal === 'ordered' || statusVal === 'sent' || statusVal === 'resolved',
+      sent: statusVal === 'sent' || statusVal === 'resolved',
+      resolved: statusVal === 'resolved',
+      orderedAt: (statusVal === 'ordered' || statusVal === 'sent' || statusVal === 'resolved') ? ((existing && existing.orderedAt) || new Date().toISOString()) : '',
+      sentAt: (statusVal === 'sent' || statusVal === 'resolved') ? ((existing && existing.sentAt) || new Date().toISOString()) : '',
+      resolvedAt: statusVal === 'resolved' ? ((existing && existing.resolvedAt) || new Date().toISOString()) : '',
+      appVersion:'1.6 / 5.82'
+    });
+    record.photos = JSON.parse(JSON.stringify(currentPartPhotos || []));
+    record.photo = record.photos[0] || null;
+    if(!record.createdAt) record.createdAt = new Date().toISOString();
+    setLastEnteredBy(record.enteredBy);
+    await savePartRecord(record);
+    await logAuditAction(existing ? 'update' : 'create','part',record,record.enteredBy);
+    closePartForm();
+    renderParts();
+  }catch(err){
+    console.error(err);
+    alert('Uložení požadavku na ND se nepodařilo. Zkontroluj připojení a zkus to znovu.');
+  }finally{
+    partSaveInProgress = false;
+    if(saveBtn) saveBtn.disabled = false;
+  }
 }
 async function markPartOrdered(id){
   const p = (partsData || []).find(x => x.id === id);
@@ -5601,6 +5724,18 @@ async function markPartSent(id){
   p.sentAt = now;
   await savePartRecord(p);
   await logAuditAction('status','part',p,getEnteredByDefault(),'Označeno jako odesláno · ' + summarizeRecordForAudit(p));
+}
+async function markPartResolved(id){
+  const p = (partsData || []).find(x => x.id === id);
+  if(!p) return;
+  const now = new Date().toISOString();
+  if(!confirm('Označit požadavek na ND jako vyřešený? Zůstane v historii, ale nebude svítit jako aktivní požadavek.')) return;
+  if(!p.ordered){ p.ordered = true; p.orderedAt = p.orderedAt || now; }
+  if(!p.sent){ p.sent = true; p.sentAt = p.sentAt || now; }
+  p.resolved = true;
+  p.resolvedAt = now;
+  await savePartRecord(p);
+  await logAuditAction('status','part',p,getEnteredByDefault(),'Označeno jako vyřešeno · ' + summarizeRecordForAudit(p));
 }
 
 // events

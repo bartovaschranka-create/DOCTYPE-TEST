@@ -51,7 +51,7 @@ body.dark .paper *{color:inherit}
 .list{display:grid;gap:14px}.card{padding:16px 18px}.card-head{display:flex;justify-content:space-between;gap:16px;align-items:flex-start}.card-title{font-size:1.06rem;font-weight:700}.card-sub{font-size:.88rem;color:var(--muted);margin-top:4px}.badges{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px}.badge{padding:6px 10px;border-radius:999px;font-size:.75rem;font-weight:600;border:1px solid transparent}.badge-ok{background:#ecfdf3;color:#166534;border-color:#bbf7d0}.badge-warn{background:#fff7ed;color:#9a3412;border-color:#fed7aa}.badge-info{background:#eff6ff;color:#1d4ed8;border-color:#bfdbfe}
 .meta-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-top:14px}.meta{background:#f8fbff;border:1px solid var(--line);padding:12px;border-radius:14px}.meta-label{font-size:.75rem;color:var(--muted);margin-bottom:4px}.meta-value{font-weight:600;font-size:.92rem}
 .actions{margin-top:14px;display:flex;gap:8px;flex-wrap:wrap}
-button{border:none;border-radius:14px;padding:11px 14px;cursor:pointer;font-weight:600;font-size:.94rem}button:disabled{opacity:.6;cursor:not-allowed}.primary{background:var(--primary);color:#fff}.primary:hover{background:var(--primary2)}.secondary{background:#e8eef6;color:#0f172a}.ghost{background:#fff;border:1px solid var(--line);color:#0f172a}.danger{background:var(--danger);color:#fff}.mini{padding:9px 12px;font-size:.86rem;border-radius:12px}
+button{border:none;border-radius:14px;padding:11px 14px;cursor:pointer;font-weight:600;font-size:.94rem}button:disabled{opacity:.6;cursor:not-allowed}.primary{background:var(--primary);color:#fff}.primary:hover{background:var(--primary2)}.secondary{background:#e8eef6;color:#0f172a}.ghost{background:#fff;border:1px solid var(--line);color:#0f172a}.danger{background:var(--danger);color:#fff}.success{background:var(--ok);color:#fff}.success:hover{filter:brightness(.95)}.mini{padding:9px 12px;font-size:.86rem;border-radius:12px}
 .empty{padding:28px;border:2px dashed var(--line);border-radius:18px;background:#fbfdff;text-align:center;color:var(--muted)}
 .modal{position:fixed;inset:0;background:rgba(15,23,42,.42);display:none;align-items:center;justify-content:center;padding:18px;z-index:40}.modal.show{display:flex}.modal-content{width:min(100%,760px);max-height:92vh;overflow:auto;background:#fff;border-radius:24px;box-shadow:0 24px 60px rgba(15,23,42,.28)}
 .wizard-shell{padding:22px;background:linear-gradient(180deg,#fff 0%,#f9fbff 100%)}.preview-shell{padding:18px;background:#f8fbff}
@@ -62,6 +62,8 @@ button{border:none;border-radius:14px;padding:11px 14px;cursor:pointer;font-weig
 input::placeholder, textarea::placeholder{color:#334155;font-weight:600;font-size:1rem;opacity:1} textarea{min-height:110px;resize:vertical}
 .suggest-wrap{position:relative}.suggest-box{position:absolute;left:0;right:0;top:calc(100% + 8px);border:1px solid var(--line);border-radius:14px;background:#fff;max-height:220px;overflow:auto;box-shadow:0 10px 24px rgba(15,23,42,.08);z-index:20}.suggest-item{padding:10px 12px;cursor:pointer;border-bottom:1px solid #eef2f7;font-size:.95rem}.suggest-item:last-child{border-bottom:none}.suggest-item:hover{background:#f8fbff}.helper{font-size:.8rem;color:var(--muted);margin-top:6px}
 .smart-suggest-wrap{position:relative}.smart-suggest-box{position:absolute;left:0;right:0;top:calc(100% + 6px);display:none;max-height:168px;overflow:auto;background:#fff;border:1px solid var(--line);border-radius:14px;box-shadow:0 12px 26px rgba(15,23,42,.14);z-index:90}.smart-suggest-box.show{display:block}.smart-suggest-item{padding:9px 12px;border-bottom:1px solid #eef2f7;cursor:pointer;font-size:.92rem;line-height:1.25}.smart-suggest-item:last-child{border-bottom:none}.smart-suggest-item:hover{background:#f8fbff}.smart-suggest-muted{padding:9px 12px;color:var(--muted);font-size:.86rem}.field textarea + .smart-suggest-box{top:calc(100% + 6px)}body.dark .smart-suggest-box{background:#0f172a;border-color:var(--line)}body.dark .smart-suggest-item{border-bottom-color:#243244}body.dark .smart-suggest-item:hover{background:#172033}
+/* v1.6 / 5.85 – iOS klávesnice: neschovávat/podsvěcovat spodní akční tlačítka pod klávesnicí */
+@media(max-width:920px){body.mobile-keyboard-open .wizard-actions,body.mobile-keyboard-open #partsFormWrap .preview-actions,body.mobile-keyboard-open #faultFormWrap .preview-actions,body.mobile-keyboard-open #workPlanFormWrap .preview-actions{position:static!important;display:none!important}}
 .wizard-actions{display:flex;justify-content:space-between;gap:10px;margin-top:18px;position:sticky;bottom:0;background:linear-gradient(180deg,rgba(255,255,255,0) 0%,#fff 20%);padding-top:16px}
 .preview-header{display:flex;justify-content:space-between;gap:10px;align-items:center;margin-bottom:12px}.preview-title{font-size:1.05rem;font-weight:700}.preview-actions{display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap;margin-top:14px}.preview-actions-left,.preview-actions-right{display:flex;gap:10px;flex-wrap:wrap}
 .paper-wrap{background:#fff;padding:12px;border-radius:18px;overflow:auto}.paper{background:#fff;color:#000;padding:9mm 8mm 8mm 8mm;font-size:10.9px;line-height:1.24;border:none;box-shadow:none;width:210mm;max-width:100%;margin:0 auto}.paper h2{margin:0 0 6px;text-align:center;font-size:18px;letter-spacing:.6px;font-weight:700}.paper .subhead{margin:0 0 9px;text-align:center;font-size:10.2px;color:#000}.paper table{width:100%;border-collapse:collapse;margin-bottom:6px;table-layout:auto}
@@ -705,7 +707,7 @@ body.dark .part-card{background:var(--panel2)}
 .status-open{background:#fff7ed;color:#9a3412;border-color:#fed7aa}
 .status-ordered{background:#eff6ff;color:#1d4ed8;border-color:#bfdbfe}
 .status-sent{background:#ecfdf5;color:#166534;border-color:#bbf7d0}
-.status-resolved{background:#f3e8ff;color:#6b21a8;border-color:#e9d5ff}
+.status-resolved{background:#ecfdf5;color:#166534;border-color:#bbf7d0}
 @media(max-width:980px){.module-grid{grid-template-columns:1fr}.parts-form-grid,.part-grid{grid-template-columns:1fr}.part-head{flex-direction:column}.parts-toolbar .search{width:100%}}
 @media print{#partsModal{display:none!important}.main-overview{display:none!important}}
 
@@ -906,7 +908,7 @@ body.dark .fault-card{background:var(--panel2)}
 
 
 /* v1.6 / 5.66 – karta stroje: modal nad hlavičkou a bez usekávání */
-/* v1.6 / 5.82 – plán práce: stabilní barvy techniků */
+/* v1.6 / 5.85 – plán práce: stabilní barvy techniků */
 .modal{z-index:140!important}
 #historyModal{
   align-items:flex-start!important;
@@ -953,7 +955,7 @@ body.dark .fault-card{background:var(--panel2)}
 }
 
 
-/* v1.6 / 5.82 – tmavý režim: výraznější barvy techniků v plánu práce */
+/* v1.6 / 5.85 – tmavý režim: výraznější barvy techniků v plánu práce */
 .work-event{border-left-color:var(--tech-color,#2563eb)!important;background:var(--tech-bg,rgba(37,99,235,.10))!important}
 .work-event .work-event-tech{color:var(--tech-color,#2563eb)!important}
 .day-row{border-left-color:var(--tech-color,#2563eb)!important;background:linear-gradient(90deg,var(--tech-bg,rgba(37,99,235,.12)) 0%,var(--panel2) 72%)!important}
@@ -1349,7 +1351,7 @@ body.dark .module-kicker{
 
 
 
-/* v1.6 / 5.82 – externí zákazník */
+/* v1.6 / 5.85 – externí zákazník */
 .external-customer-card{
   border-color:#7c3aed!important;
   box-shadow:0 0 0 2px rgba(124,58,237,.10), var(--shadow)!important;
@@ -1391,7 +1393,7 @@ body.dark .badge-external,body.dark .status-external{
 .part-note-display strong{font-size:.78rem;color:var(--muted)}
 .part-note-display div{font-weight:650;line-height:1.35;white-space:pre-wrap;overflow-wrap:anywhere}
 .part-card.focus-flash{outline:3px solid #2563eb;outline-offset:3px}
-/* v1.6 / 5.82 – zvýraznění záznamu po prokliku z Vyžaduje pozornost */
+/* v1.6 / 5.85 – zvýraznění záznamu po prokliku z Vyžaduje pozornost */
 .card.focus-flash,.fault-card.focus-flash,.part-card.focus-flash{outline:3px solid #2563eb!important;outline-offset:3px;box-shadow:0 0 0 6px rgba(37,99,235,.14)!important}
 body.dark .card.focus-flash,body.dark .fault-card.focus-flash,body.dark .part-card.focus-flash{outline-color:#60a5fa!important;box-shadow:0 0 0 6px rgba(96,165,250,.22)!important}
 .attention-count{cursor:pointer}
@@ -1404,7 +1406,7 @@ body.dark .audit-item{background:var(--panel2)}
 .audit-action.delete{background:#fef2f2;color:#b91c1c}.audit-action.update{background:#fff7ed;color:#9a3412}.audit-action.create{background:#ecfdf5;color:#166534}
 
 
-/* v1.6 / 5.82 – opravy vrstev, našeptávače karty stroje a ND stavů */
+/* v1.6 / 5.85 – opravy vrstev, našeptávače karty stroje a ND stavů */
 .lightbox{z-index:2147483000!important;position:fixed!important}
 .lightbox.show{display:flex!important}
 .lightbox img{max-width:96vw!important;max-height:88dvh!important;object-fit:contain!important}
@@ -1412,7 +1414,7 @@ body.dark .audit-item{background:var(--panel2)}
 .home-machine-search-row{position:relative!important;overflow:visible!important}
 .home-machine-search-row .smart-suggest-box{z-index:2147482000!important;left:0!important;right:0!important;top:calc(100% + 6px)!important}
 
-/* v1.6 / 5.82 – spolehlivý našeptávač karty stroje na hlavní stránce */
+/* v1.6 / 5.85 – spolehlivý našeptávač karty stroje na hlavní stránce */
 .home-machine-search-row{overflow:visible!important}
 .home-machine-suggest-box{position:absolute;left:0;right:0;top:calc(100% + 6px);display:none;max-height:220px;overflow:auto;background:#fff;border:1px solid var(--line);border-radius:14px;box-shadow:0 14px 30px rgba(15,23,42,.18);z-index:2147483000!important}
 .home-machine-suggest-box.show{display:block}
@@ -1425,6 +1427,9 @@ body.dark .home-machine-suggest-box{background:#0f172a;border-color:var(--line)}
 body.dark .home-machine-suggest-item{border-bottom-color:#243244}
 body.dark .home-machine-suggest-item:hover{background:#172033}
 .part-actions{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+
+.part-handler-note-display{border-color:#bfdbfe;background:#eff6ff}.part-handler-note-display small{display:block;margin-top:6px;color:var(--muted);font-size:.78rem}
+body.dark .part-handler-note-display{background:rgba(59,130,246,.12);border-color:rgba(96,165,250,.35)}
 </style>
 </head>
 <body>
@@ -1456,7 +1461,7 @@ body.dark .home-machine-suggest-item:hover{background:#172033}
     <button type="button" class="side-small" onclick="exportBackup()">Export zálohy</button>
     <button type="button" class="side-small" id="sideImportBtn">Import zálohy</button>
     <button type="button" class="side-small" id="sideAuditBtn">Historie změn</button>
-    <div class="side-version">Vlastník/Admin: Jan Bartoš<br>Verze: 1.6 / 5.82</div>
+    <div class="side-version">Vlastník/Admin: Jan Bartoš<br>Verze: 1.6 / 5.85</div>
   </div>
 </aside>
 
@@ -1765,6 +1770,11 @@ body.dark .home-machine-suggest-item:hover{background:#172033}
       <div class="field parts-note">
         <label>Poznámka / popis závady</label>
         <textarea id="partNote" placeholder="Volitelné upřesnění"></textarea>
+      </div>
+      <div class="field parts-note">
+        <label>Poznámka vyřizujícího</label>
+        <textarea id="partHandlerNote" placeholder="Volitelné doplnění při objednání / odeslání / vyřešení"></textarea>
+        <div class="helper">Pro toho, kdo požadavek vyřizuje. V detailu zůstane vidět jako servisní poznámka.</div>
       </div>
       <div class="field">
         <label>Stav požadavku</label>
@@ -2409,7 +2419,7 @@ async function exportBackup(){
     }
     const payload = {
       app: 'LiftControl CZ',
-      appVersion: '1.6 / 5.82',
+      appVersion: '1.6 / 5.85',
       backupType: 'complete',
       schemaVersion: 2,
       exportedAt: new Date().toISOString(),
@@ -2857,10 +2867,10 @@ function openModal(el){ el.classList.add('show'); }
 function closeModal(el){ el.classList.remove('show'); }
 
 function openWizard(editId=null, prefill={}){
-  rec = editId ? JSON.parse(JSON.stringify(data.find(r=>r.id===editId) || {id:uid()})) : {id:uid(), cLogic:'legacy', appVersion:'1.6 / 5.82'};
+  rec = editId ? JSON.parse(JSON.stringify(data.find(r=>r.id===editId) || {id:uid()})) : {id:uid(), cLogic:'legacy', appVersion:'1.6 / 5.85'};
   rec = Object.assign({}, rec, prefill || {});
   if(!editId && !rec.cLogic) rec.cLogic = 'legacy';
-  if(!editId && !rec.appVersion) rec.appVersion = '1.6 / 5.82';
+  if(!editId && !rec.appVersion) rec.appVersion = '1.6 / 5.85';
 
   // 🔥 AUTO DOPLNĚNÍ Z HISTORIE PODLE VÝROBNÍHO ČÍSLA
   if(rec.vc){
@@ -3277,7 +3287,7 @@ async function nextStep(){
     syncRevizeIssue(rec);
     syncModelPreferences(rec);
     if(!rec.cLogic) rec.cLogic = 'legacy';
-    if(!rec.appVersion) rec.appVersion = '1.6 / 5.82';
+    if(!rec.appVersion) rec.appVersion = '1.6 / 5.85';
     if(!rec.enteredBy) rec.enteredBy = rec.technik || getEnteredByDefault();
     setLastEnteredBy(rec.enteredBy);
     rec.savedAt = new Date().toISOString();
@@ -3308,7 +3318,7 @@ function openPreviewById(id){
 function closePreview(){
   closeModal(els.preview);
 }
-/* v1.6 / 5.82: odstraněná duplicitní funkce savePreviewRecord; tlačítko Uložit PDF používá finální definici níže. */
+/* v1.6 / 5.85: odstraněná duplicitní funkce savePreviewRecord; tlačítko Uložit PDF používá finální definici níže. */
 function printCurrent(){
   console.log('TISK kliknuto');
   if(!currentPreview){
@@ -3361,7 +3371,7 @@ async function logAuditAction(action, entity, record, by, detail){
       serial: record?.vc || record?.serial || '',
       type: record?.typ || record?.type || '',
       createdAt: new Date().toISOString(),
-      appVersion: '1.6 / 5.82'
+      appVersion: '1.6 / 5.85'
     };
     if(firebaseAvailable && db){ await db.collection(AUDIT_COLLECTION_NAME).doc(item.id).set(item); }
     else { const rows = loadLocalAudit(); rows.unshift(item); saveLocalAudit(rows.slice(0,300)); auditData = rows.slice(0,300); }
@@ -4388,7 +4398,7 @@ async function saveWorkPlanFromForm(){
       place,
       extraPlaces,
       note,
-      appVersion:'1.6 / 5.82'
+      appVersion:'1.6 / 5.85'
     });
     if(!record.createdAt) record.createdAt = new Date().toISOString();
     await saveWorkPlan(record);
@@ -4991,7 +5001,7 @@ async function saveFaultFromForm(){
       inService: status === 'service' ? true : (existing ? !!existing.inService : false),
       waitingParts: status === 'waiting_parts' ? true : (existing ? !!existing.waitingParts : false),
       photos: currentFaultPhotos,
-      appVersion:'1.6 / 5.82'
+      appVersion:'1.6 / 5.85'
     });
     if(!record.createdAt) record.createdAt = new Date().toISOString();
     setLastEnteredBy(record.enteredBy);
@@ -5219,7 +5229,7 @@ body.dark .module-kicker{
 }
 
 
-/* v1.6 / 5.82 – externí zákazník */
+/* v1.6 / 5.85 – externí zákazník */
 .external-customer-card{
   border-color:#7c3aed!important;
   box-shadow:0 0 0 2px rgba(124,58,237,.10), var(--shadow)!important;
@@ -5267,6 +5277,9 @@ body.dark .badge-external,body.dark .status-external{
 body.dark .audit-item{background:var(--panel2)}
 .audit-title{font-weight:850}.audit-sub{font-size:.84rem;color:var(--muted);line-height:1.35}.audit-action{display:inline-flex;width:max-content;border-radius:999px;padding:4px 8px;background:#eff6ff;color:#1d4ed8;font-size:.75rem;font-weight:800}
 .audit-action.delete{background:#fef2f2;color:#b91c1c}.audit-action.update{background:#fff7ed;color:#9a3412}.audit-action.create{background:#ecfdf5;color:#166534}
+
+.part-handler-note-display{border-color:#bfdbfe;background:#eff6ff}.part-handler-note-display small{display:block;margin-top:6px;color:var(--muted);font-size:.78rem}
+body.dark .part-handler-note-display{background:rgba(59,130,246,.12);border-color:rgba(96,165,250,.35)}
 </style></head>`));
   w.document.close();
   try { w.focus(); } catch(e){}
@@ -5487,7 +5500,7 @@ function renderParts(){
   const query = (document.getElementById('partsSearch')?.value || '').toLowerCase().trim();
   const customerFilter = document.getElementById('partsCustomerFilter')?.value || 'all';
   let rows = [...(partsData || [])];
-  if(query) rows = rows.filter(p => [p.type,p.serial,p.place,p.partNumber,p.partName,p.note,p.enteredBy,p.customerName,p.customerAddress].some(v => String(v||'').toLowerCase().includes(query)));
+  if(query) rows = rows.filter(p => [p.type,p.serial,p.place,p.partNumber,p.partName,p.note,p.handlerNote,p.enteredBy,p.customerName,p.customerAddress].some(v => String(v||'').toLowerCase().includes(query)));
   if(customerFilter === 'external') rows = rows.filter(p => !!p.externalCustomer);
   if(customerFilter === 'internal') rows = rows.filter(p => !p.externalCustomer);
   rows.sort((a,b) => String(b.createdAt||'').localeCompare(String(a.createdAt||'')));
@@ -5513,18 +5526,19 @@ function renderParts(){
         <div class="part-meta"><div class="part-meta-label">Vyřešeno</div><div class="part-meta-value">${(p.resolved || p.vyreseno) ? escapeHtml(formatDateTime(p.resolvedAt || p.vyresenoAt || p.updatedAt)) : 'Ne'}</div></div>
       </div>
       ${p.note ? `<div class="part-note-display"><strong>Popis závady / poznámka</strong><div>${escapeHtml(p.note)}</div></div>` : ''}
+      ${p.handlerNote ? `<div class="part-note-display part-handler-note-display"><strong>Poznámka vyřizujícího</strong><div>${escapeHtml(p.handlerNote)}</div>${(p.handlerNoteBy || p.handlerNoteAt) ? `<small>${escapeHtml(p.handlerNoteBy || '')}${p.handlerNoteAt ? ' · ' + escapeHtml(formatDateTime(p.handlerNoteAt)) : ''}</small>` : ''}</div>` : ''}
       ${photoHtml ? `<div class="part-photo">${photoHtml}</div>` : ''}
       <div class="part-actions">
-        <button class="secondary mini" type="button" data-part-machine="${escapeHtml(p.serial || '')}">Karta stroje</button>
+        ${!(p.resolved || p.vyreseno) ? `<button class="secondary mini" type="button" data-part-note="${p.id}">Poznámka</button>` : ''}
         ${!(p.resolved || p.vyreseno) && !p.ordered ? `<button class="secondary mini" type="button" data-part-ordered="${p.id}">Objednáno</button>` : ''}
         ${!(p.resolved || p.vyreseno) && !p.sent ? `<button class="secondary mini" type="button" data-part-sent="${p.id}">Odesláno</button>` : ''}
-        ${!(p.resolved || p.vyreseno) ? `<button class="secondary mini" type="button" data-part-resolved="${p.id}">Vyřešeno</button>` : ''}
-        <button class="primary mini" type="button" data-part-edit="${p.id}">Upravit</button>
+        ${!(p.resolved || p.vyreseno) ? `<button class="success mini" type="button" data-part-resolved="${p.id}">Vyřešeno</button>` : ''}
+        <button class="secondary mini" type="button" data-part-edit="${p.id}">Upravit</button>
         <button class="danger mini" type="button" data-part-delete="${p.id}">Smazat</button>
       </div>
     </div>`;
   }).join('');
-  list.querySelectorAll('[data-part-machine]').forEach(btn => btn.addEventListener('click', () => openMachineCard(btn.dataset.partMachine)));
+  list.querySelectorAll('[data-part-note]').forEach(btn => btn.addEventListener('click', () => addPartHandlerNote(btn.dataset.partNote)));
   list.querySelectorAll('[data-part-edit]').forEach(btn => btn.addEventListener('click', () => openPartForm(btn.dataset.partEdit)));
   list.querySelectorAll('[data-part-delete]').forEach(btn => btn.addEventListener('click', () => deletePartRecord(btn.dataset.partDelete)));
   list.querySelectorAll('[data-part-ordered]').forEach(btn => btn.addEventListener('click', () => markPartOrdered(btn.dataset.partOrdered)));
@@ -5565,6 +5579,8 @@ function openPartForm(id=null){
   document.getElementById('partCustomerAddress').value = (p && (p.customerAddress || p.companyAddress)) || '';
   wireExternalDetails('part');
   document.getElementById('partNote').value = (p && p.note) || '';
+  const handlerNoteEl = document.getElementById('partHandlerNote');
+  if(handlerNoteEl) handlerNoteEl.value = (p && (p.handlerNote || p.resolveNote || p.processingNote)) || '';
   const partStatusSel = document.getElementById('partStatusSelect');
   if(partStatusSel) partStatusSel.value = p ? ((p.resolved || p.vyreseno) ? 'resolved' : (p.sent ? 'sent' : (p.ordered ? 'ordered' : 'open'))) : 'open';
   currentPartPhotos = p ? JSON.parse(JSON.stringify(getPartPhotoList(p))) : [];
@@ -5680,13 +5696,16 @@ async function savePartFromForm(){
       customerName: !!document.getElementById('partExternalCustomer')?.checked ? document.getElementById('partCustomerName').value.trim() : '',
       customerAddress: !!document.getElementById('partExternalCustomer')?.checked ? document.getElementById('partCustomerAddress').value.trim() : '',
       note: document.getElementById('partNote').value.trim(),
+      handlerNote: document.getElementById('partHandlerNote')?.value.trim() || '',
+      handlerNoteBy: document.getElementById('partHandlerNote')?.value.trim() ? (document.getElementById('partEnteredBy')?.value || getEnteredByDefault()) : ((existing && existing.handlerNoteBy) || ''),
+      handlerNoteAt: document.getElementById('partHandlerNote')?.value.trim() ? ((existing && existing.handlerNote === document.getElementById('partHandlerNote')?.value.trim()) ? (existing.handlerNoteAt || '') : new Date().toISOString()) : ((existing && existing.handlerNoteAt) || ''),
       ordered: statusVal === 'ordered' || statusVal === 'sent' || statusVal === 'resolved',
       sent: statusVal === 'sent' || statusVal === 'resolved',
       resolved: statusVal === 'resolved',
       orderedAt: (statusVal === 'ordered' || statusVal === 'sent' || statusVal === 'resolved') ? ((existing && existing.orderedAt) || new Date().toISOString()) : '',
       sentAt: (statusVal === 'sent' || statusVal === 'resolved') ? ((existing && existing.sentAt) || new Date().toISOString()) : '',
       resolvedAt: statusVal === 'resolved' ? ((existing && existing.resolvedAt) || new Date().toISOString()) : '',
-      appVersion:'1.6 / 5.82'
+      appVersion:'1.6 / 5.85'
     });
     record.photos = JSON.parse(JSON.stringify(currentPartPhotos || []));
     record.photo = record.photos[0] || null;
@@ -5703,6 +5722,21 @@ async function savePartFromForm(){
     partSaveInProgress = false;
     if(saveBtn) saveBtn.disabled = false;
   }
+}
+async function addPartHandlerNote(id){
+  const p = (partsData || []).find(x => x.id === id);
+  if(!p) return;
+  const oldNote = p.handlerNote || p.resolveNote || p.processingNote || '';
+  const note = prompt('Poznámka vyřizujícího k ND:', oldNote);
+  if(note === null) return;
+  const cleaned = String(note || '').trim();
+  if(!cleaned && oldNote && !confirm('Smazat stávající poznámku vyřizujícího?')) return;
+  p.handlerNote = cleaned;
+  p.handlerNoteBy = cleaned ? getEnteredByDefault() : '';
+  p.handlerNoteAt = cleaned ? new Date().toISOString() : '';
+  await savePartRecord(p);
+  await logAuditAction('update','part',p,getEnteredByDefault(), cleaned ? ('Doplněna poznámka vyřizujícího · ' + summarizeRecordForAudit(p)) : ('Smazána poznámka vyřizujícího · ' + summarizeRecordForAudit(p)));
+  renderParts();
 }
 async function markPartOrdered(id){
   const p = (partsData || []).find(x => x.id === id);
@@ -5730,6 +5764,13 @@ async function markPartResolved(id){
   if(!p) return;
   const now = new Date().toISOString();
   if(!confirm('Označit požadavek na ND jako vyřešený? Zůstane v historii, ale nebude svítit jako aktivní požadavek.')) return;
+  const resolveNote = prompt('Poznámka k vyřešení / vyřízení ND (volitelné):', p.handlerNote || '');
+  if(resolveNote === null) return;
+  if(String(resolveNote || '').trim()){
+    p.handlerNote = String(resolveNote || '').trim();
+    p.handlerNoteBy = getEnteredByDefault();
+    p.handlerNoteAt = now;
+  }
   if(!p.ordered){ p.ordered = true; p.orderedAt = p.orderedAt || now; }
   if(!p.sent){ p.sent = true; p.sentAt = p.sentAt || now; }
   p.resolved = true;
@@ -6017,6 +6058,26 @@ els.list.addEventListener('click', (e) => {
   if(action === 'delete') delById(btn.dataset.id);
   if(action === 'history') openHistoryModal(btn.dataset.vc);
 });
+
+
+/* v1.6 / 5.85 – mobilní klávesnice: při psaní skrýt spodní akční lištu, aby neprosvítala pod iOS klávesnicí */
+function installMobileKeyboardGuard(){
+  const selector = 'input, textarea, select';
+  document.addEventListener('focusin', ev => {
+    if(window.innerWidth <= 920 && ev.target && ev.target.matches && ev.target.matches(selector)){
+      document.body.classList.add('mobile-keyboard-open');
+    }
+  });
+  document.addEventListener('focusout', () => {
+    setTimeout(() => {
+      const a = document.activeElement;
+      if(!(a && a.matches && a.matches(selector))){
+        document.body.classList.remove('mobile-keyboard-open');
+      }
+    }, 120);
+  });
+}
+installMobileKeyboardGuard();
 
 try {
   qrEnabled = false;

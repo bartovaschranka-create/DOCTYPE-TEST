@@ -62,7 +62,7 @@ button{border:none;border-radius:14px;padding:11px 14px;cursor:pointer;font-weig
 input::placeholder, textarea::placeholder{color:#334155;font-weight:600;font-size:1rem;opacity:1} textarea{min-height:110px;resize:vertical}
 .suggest-wrap{position:relative}.suggest-box{position:absolute;left:0;right:0;top:calc(100% + 8px);border:1px solid var(--line);border-radius:14px;background:#fff;max-height:220px;overflow:auto;box-shadow:0 10px 24px rgba(15,23,42,.08);z-index:20}.suggest-item{padding:10px 12px;cursor:pointer;border-bottom:1px solid #eef2f7;font-size:.95rem}.suggest-item:last-child{border-bottom:none}.suggest-item:hover{background:#f8fbff}.helper{font-size:.8rem;color:var(--muted);margin-top:6px}
 .smart-suggest-wrap{position:relative}.smart-suggest-box{position:absolute;left:0;right:0;top:calc(100% + 6px);display:none;max-height:168px;overflow:auto;background:#fff;border:1px solid var(--line);border-radius:14px;box-shadow:0 12px 26px rgba(15,23,42,.14);z-index:90}.smart-suggest-box.show{display:block}.smart-suggest-item{padding:9px 12px;border-bottom:1px solid #eef2f7;cursor:pointer;font-size:.92rem;line-height:1.25}.smart-suggest-item:last-child{border-bottom:none}.smart-suggest-item:hover{background:#f8fbff}.smart-suggest-muted{padding:9px 12px;color:var(--muted);font-size:.86rem}.field textarea + .smart-suggest-box{top:calc(100% + 6px)}body.dark .smart-suggest-box{background:#0f172a;border-color:var(--line)}body.dark .smart-suggest-item{border-bottom-color:#243244}body.dark .smart-suggest-item:hover{background:#172033}
-/* v1.6 / 5.85 – iOS klávesnice: neschovávat/podsvěcovat spodní akční tlačítka pod klávesnicí */
+/* v1.6 / 5.86 – iOS klávesnice: neschovávat/podsvěcovat spodní akční tlačítka pod klávesnicí */
 @media(max-width:920px){body.mobile-keyboard-open .wizard-actions,body.mobile-keyboard-open #partsFormWrap .preview-actions,body.mobile-keyboard-open #faultFormWrap .preview-actions,body.mobile-keyboard-open #workPlanFormWrap .preview-actions{position:static!important;display:none!important}}
 .wizard-actions{display:flex;justify-content:space-between;gap:10px;margin-top:18px;position:sticky;bottom:0;background:linear-gradient(180deg,rgba(255,255,255,0) 0%,#fff 20%);padding-top:16px}
 .preview-header{display:flex;justify-content:space-between;gap:10px;align-items:center;margin-bottom:12px}.preview-title{font-size:1.05rem;font-weight:700}.preview-actions{display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap;margin-top:14px}.preview-actions-left,.preview-actions-right{display:flex;gap:10px;flex-wrap:wrap}
@@ -908,7 +908,7 @@ body.dark .fault-card{background:var(--panel2)}
 
 
 /* v1.6 / 5.66 – karta stroje: modal nad hlavičkou a bez usekávání */
-/* v1.6 / 5.85 – plán práce: stabilní barvy techniků */
+/* v1.6 / 5.86 – plán práce: stabilní barvy techniků */
 .modal{z-index:140!important}
 #historyModal{
   align-items:flex-start!important;
@@ -955,7 +955,7 @@ body.dark .fault-card{background:var(--panel2)}
 }
 
 
-/* v1.6 / 5.85 – tmavý režim: výraznější barvy techniků v plánu práce */
+/* v1.6 / 5.86 – tmavý režim: výraznější barvy techniků v plánu práce */
 .work-event{border-left-color:var(--tech-color,#2563eb)!important;background:var(--tech-bg,rgba(37,99,235,.10))!important}
 .work-event .work-event-tech{color:var(--tech-color,#2563eb)!important}
 .day-row{border-left-color:var(--tech-color,#2563eb)!important;background:linear-gradient(90deg,var(--tech-bg,rgba(37,99,235,.12)) 0%,var(--panel2) 72%)!important}
@@ -1351,7 +1351,7 @@ body.dark .module-kicker{
 
 
 
-/* v1.6 / 5.85 – externí zákazník */
+/* v1.6 / 5.86 – externí zákazník */
 .external-customer-card{
   border-color:#7c3aed!important;
   box-shadow:0 0 0 2px rgba(124,58,237,.10), var(--shadow)!important;
@@ -1393,7 +1393,7 @@ body.dark .badge-external,body.dark .status-external{
 .part-note-display strong{font-size:.78rem;color:var(--muted)}
 .part-note-display div{font-weight:650;line-height:1.35;white-space:pre-wrap;overflow-wrap:anywhere}
 .part-card.focus-flash{outline:3px solid #2563eb;outline-offset:3px}
-/* v1.6 / 5.85 – zvýraznění záznamu po prokliku z Vyžaduje pozornost */
+/* v1.6 / 5.86 – zvýraznění záznamu po prokliku z Vyžaduje pozornost */
 .card.focus-flash,.fault-card.focus-flash,.part-card.focus-flash{outline:3px solid #2563eb!important;outline-offset:3px;box-shadow:0 0 0 6px rgba(37,99,235,.14)!important}
 body.dark .card.focus-flash,body.dark .fault-card.focus-flash,body.dark .part-card.focus-flash{outline-color:#60a5fa!important;box-shadow:0 0 0 6px rgba(96,165,250,.22)!important}
 .attention-count{cursor:pointer}
@@ -1406,7 +1406,7 @@ body.dark .audit-item{background:var(--panel2)}
 .audit-action.delete{background:#fef2f2;color:#b91c1c}.audit-action.update{background:#fff7ed;color:#9a3412}.audit-action.create{background:#ecfdf5;color:#166534}
 
 
-/* v1.6 / 5.85 – opravy vrstev, našeptávače karty stroje a ND stavů */
+/* v1.6 / 5.86 – opravy vrstev, našeptávače karty stroje a ND stavů */
 .lightbox{z-index:2147483000!important;position:fixed!important}
 .lightbox.show{display:flex!important}
 .lightbox img{max-width:96vw!important;max-height:88dvh!important;object-fit:contain!important}
@@ -1414,7 +1414,7 @@ body.dark .audit-item{background:var(--panel2)}
 .home-machine-search-row{position:relative!important;overflow:visible!important}
 .home-machine-search-row .smart-suggest-box{z-index:2147482000!important;left:0!important;right:0!important;top:calc(100% + 6px)!important}
 
-/* v1.6 / 5.85 – spolehlivý našeptávač karty stroje na hlavní stránce */
+/* v1.6 / 5.86 – spolehlivý našeptávač karty stroje na hlavní stránce */
 .home-machine-search-row{overflow:visible!important}
 .home-machine-suggest-box{position:absolute;left:0;right:0;top:calc(100% + 6px);display:none;max-height:220px;overflow:auto;background:#fff;border:1px solid var(--line);border-radius:14px;box-shadow:0 14px 30px rgba(15,23,42,.18);z-index:2147483000!important}
 .home-machine-suggest-box.show{display:block}
@@ -1461,7 +1461,7 @@ body.dark .part-handler-note-display{background:rgba(59,130,246,.12);border-colo
     <button type="button" class="side-small" onclick="exportBackup()">Export zálohy</button>
     <button type="button" class="side-small" id="sideImportBtn">Import zálohy</button>
     <button type="button" class="side-small" id="sideAuditBtn">Historie změn</button>
-    <div class="side-version">Vlastník/Admin: Jan Bartoš<br>Verze: 1.6 / 5.85</div>
+    <div class="side-version">Vlastník/Admin: Jan Bartoš<br>Verze: 1.6 / 5.86</div>
   </div>
 </aside>
 
@@ -2419,7 +2419,7 @@ async function exportBackup(){
     }
     const payload = {
       app: 'LiftControl CZ',
-      appVersion: '1.6 / 5.85',
+      appVersion: '1.6 / 5.86',
       backupType: 'complete',
       schemaVersion: 2,
       exportedAt: new Date().toISOString(),
@@ -2867,10 +2867,10 @@ function openModal(el){ el.classList.add('show'); }
 function closeModal(el){ el.classList.remove('show'); }
 
 function openWizard(editId=null, prefill={}){
-  rec = editId ? JSON.parse(JSON.stringify(data.find(r=>r.id===editId) || {id:uid()})) : {id:uid(), cLogic:'legacy', appVersion:'1.6 / 5.85'};
+  rec = editId ? JSON.parse(JSON.stringify(data.find(r=>r.id===editId) || {id:uid()})) : {id:uid(), cLogic:'legacy', appVersion:'1.6 / 5.86'};
   rec = Object.assign({}, rec, prefill || {});
   if(!editId && !rec.cLogic) rec.cLogic = 'legacy';
-  if(!editId && !rec.appVersion) rec.appVersion = '1.6 / 5.85';
+  if(!editId && !rec.appVersion) rec.appVersion = '1.6 / 5.86';
 
   // 🔥 AUTO DOPLNĚNÍ Z HISTORIE PODLE VÝROBNÍHO ČÍSLA
   if(rec.vc){
@@ -3287,7 +3287,7 @@ async function nextStep(){
     syncRevizeIssue(rec);
     syncModelPreferences(rec);
     if(!rec.cLogic) rec.cLogic = 'legacy';
-    if(!rec.appVersion) rec.appVersion = '1.6 / 5.85';
+    if(!rec.appVersion) rec.appVersion = '1.6 / 5.86';
     if(!rec.enteredBy) rec.enteredBy = rec.technik || getEnteredByDefault();
     setLastEnteredBy(rec.enteredBy);
     rec.savedAt = new Date().toISOString();
@@ -3318,7 +3318,7 @@ function openPreviewById(id){
 function closePreview(){
   closeModal(els.preview);
 }
-/* v1.6 / 5.85: odstraněná duplicitní funkce savePreviewRecord; tlačítko Uložit PDF používá finální definici níže. */
+/* v1.6 / 5.86: odstraněná duplicitní funkce savePreviewRecord; tlačítko Uložit PDF používá finální definici níže. */
 function printCurrent(){
   console.log('TISK kliknuto');
   if(!currentPreview){
@@ -3371,7 +3371,7 @@ async function logAuditAction(action, entity, record, by, detail){
       serial: record?.vc || record?.serial || '',
       type: record?.typ || record?.type || '',
       createdAt: new Date().toISOString(),
-      appVersion: '1.6 / 5.85'
+      appVersion: '1.6 / 5.86'
     };
     if(firebaseAvailable && db){ await db.collection(AUDIT_COLLECTION_NAME).doc(item.id).set(item); }
     else { const rows = loadLocalAudit(); rows.unshift(item); saveLocalAudit(rows.slice(0,300)); auditData = rows.slice(0,300); }
@@ -4398,7 +4398,7 @@ async function saveWorkPlanFromForm(){
       place,
       extraPlaces,
       note,
-      appVersion:'1.6 / 5.85'
+      appVersion:'1.6 / 5.86'
     });
     if(!record.createdAt) record.createdAt = new Date().toISOString();
     await saveWorkPlan(record);
@@ -5001,7 +5001,7 @@ async function saveFaultFromForm(){
       inService: status === 'service' ? true : (existing ? !!existing.inService : false),
       waitingParts: status === 'waiting_parts' ? true : (existing ? !!existing.waitingParts : false),
       photos: currentFaultPhotos,
-      appVersion:'1.6 / 5.85'
+      appVersion:'1.6 / 5.86'
     });
     if(!record.createdAt) record.createdAt = new Date().toISOString();
     setLastEnteredBy(record.enteredBy);
@@ -5065,9 +5065,9 @@ function renderFaults(){
         <button class="secondary mini" type="button" data-fault-machine="${escapeHtml(f.serial || '')}">Karta stroje</button>
         <button class="secondary mini" type="button" data-fault-edit="${f.id}">Upravit</button>
         <button class="secondary mini" type="button" data-fault-create-part="${f.id}">Objednej ND</button>
-        ${!faultInService(f) && !faultIsRepaired(f) ? `<button class="primary mini" type="button" data-fault-service="${f.id}">Stroj do servisu</button>` : ''}
-        ${!faultWaitingParts(f) && !faultIsRepaired(f) ? `<button class="primary mini" type="button" data-fault-waiting="${f.id}">Čeká na ND</button>` : ''}
-        ${!faultIsRepaired(f) ? `<button class="primary mini" type="button" data-fault-repaired="${f.id}">Opraveno / schopné provozu</button>` : ''}
+        ${!faultInService(f) && !faultIsRepaired(f) ? `<button class="secondary mini" type="button" data-fault-service="${f.id}">Stroj do servisu</button>` : ''}
+        ${!faultWaitingParts(f) && !faultIsRepaired(f) ? `<button class="secondary mini" type="button" data-fault-waiting="${f.id}">Čeká na ND</button>` : ''}
+        ${!faultIsRepaired(f) ? `<button class="success mini" type="button" data-fault-repaired="${f.id}">Opraveno / schopné provozu</button>` : ''}
         ${faultIsRepaired(f) ? `<button class="primary mini" type="button" data-fault-repair-protocol="${f.id}">Protokol po opravě</button>` : ''}
         ${faultIsRepaired(f) ? `<button class="secondary mini" type="button" data-fault-create-protocol="${f.id}">Vytvořit kontrolní protokol</button>` : ''}
         <button class="danger mini" type="button" data-fault-delete="${f.id}">Smazat</button>
@@ -5229,7 +5229,7 @@ body.dark .module-kicker{
 }
 
 
-/* v1.6 / 5.85 – externí zákazník */
+/* v1.6 / 5.86 – externí zákazník */
 .external-customer-card{
   border-color:#7c3aed!important;
   box-shadow:0 0 0 2px rgba(124,58,237,.10), var(--shadow)!important;
@@ -5530,10 +5530,10 @@ function renderParts(){
       ${photoHtml ? `<div class="part-photo">${photoHtml}</div>` : ''}
       <div class="part-actions">
         ${!(p.resolved || p.vyreseno) ? `<button class="secondary mini" type="button" data-part-note="${p.id}">Poznámka</button>` : ''}
+        <button class="secondary mini" type="button" data-part-edit="${p.id}">Upravit</button>
         ${!(p.resolved || p.vyreseno) && !p.ordered ? `<button class="secondary mini" type="button" data-part-ordered="${p.id}">Objednáno</button>` : ''}
         ${!(p.resolved || p.vyreseno) && !p.sent ? `<button class="secondary mini" type="button" data-part-sent="${p.id}">Odesláno</button>` : ''}
         ${!(p.resolved || p.vyreseno) ? `<button class="success mini" type="button" data-part-resolved="${p.id}">Vyřešeno</button>` : ''}
-        <button class="secondary mini" type="button" data-part-edit="${p.id}">Upravit</button>
         <button class="danger mini" type="button" data-part-delete="${p.id}">Smazat</button>
       </div>
     </div>`;
@@ -5705,7 +5705,7 @@ async function savePartFromForm(){
       orderedAt: (statusVal === 'ordered' || statusVal === 'sent' || statusVal === 'resolved') ? ((existing && existing.orderedAt) || new Date().toISOString()) : '',
       sentAt: (statusVal === 'sent' || statusVal === 'resolved') ? ((existing && existing.sentAt) || new Date().toISOString()) : '',
       resolvedAt: statusVal === 'resolved' ? ((existing && existing.resolvedAt) || new Date().toISOString()) : '',
-      appVersion:'1.6 / 5.85'
+      appVersion:'1.6 / 5.86'
     });
     record.photos = JSON.parse(JSON.stringify(currentPartPhotos || []));
     record.photo = record.photos[0] || null;
@@ -6060,7 +6060,7 @@ els.list.addEventListener('click', (e) => {
 });
 
 
-/* v1.6 / 5.85 – mobilní klávesnice: při psaní skrýt spodní akční lištu, aby neprosvítala pod iOS klávesnicí */
+/* v1.6 / 5.86 – mobilní klávesnice: při psaní skrýt spodní akční lištu, aby neprosvítala pod iOS klávesnicí */
 function installMobileKeyboardGuard(){
   const selector = 'input, textarea, select';
   document.addEventListener('focusin', ev => {

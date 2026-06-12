@@ -1430,6 +1430,87 @@ body.dark .home-machine-suggest-item:hover{background:#172033}
 
 .part-handler-note-display{border-color:#bfdbfe;background:#eff6ff}.part-handler-note-display small{display:block;margin-top:6px;color:var(--muted);font-size:.78rem}
 body.dark .part-handler-note-display{background:rgba(59,130,246,.12);border-color:rgba(96,165,250,.35)}
+
+
+/* v1.6 / 5.92 – tisk protokolu: poslední print override proti prázdné stránce */
+@media print{
+  html,body{
+    width:210mm!important;
+    min-width:210mm!important;
+    height:auto!important;
+    min-height:0!important;
+    margin:0!important;
+    padding:0!important;
+    background:#fff!important;
+    overflow:visible!important;
+    -webkit-print-color-adjust:exact!important;
+    print-color-adjust:exact!important;
+  }
+  body *{visibility:hidden!important;}
+  body > *{display:none!important;}
+  body > #preview{
+    display:block!important;
+    visibility:visible!important;
+    position:static!important;
+    inset:auto!important;
+    width:210mm!important;
+    min-width:210mm!important;
+    max-width:210mm!important;
+    height:auto!important;
+    min-height:0!important;
+    margin:0!important;
+    padding:0!important;
+    background:#fff!important;
+    overflow:visible!important;
+  }
+  #preview, #preview *{visibility:visible!important;}
+  #preview .modal-content,
+  #preview .preview-shell,
+  #preview .paper-wrap,
+  #previewBody,
+  #preview .paper,
+  #preview .paper-doc{
+    display:block!important;
+    position:static!important;
+    width:210mm!important;
+    min-width:0!important;
+    max-width:210mm!important;
+    height:auto!important;
+    min-height:0!important;
+    max-height:none!important;
+    margin:0!important;
+    padding:0!important;
+    border:0!important;
+    border-radius:0!important;
+    box-shadow:none!important;
+    overflow:visible!important;
+    background:#fff!important;
+  }
+  #preview .preview-header,
+  #preview .preview-actions{display:none!important;}
+  #preview .paper-page{
+    display:flex!important;
+    flex-direction:column!important;
+    width:210mm!important;
+    max-width:210mm!important;
+    min-height:296.5mm!important;
+    height:296.5mm!important;
+    max-height:296.5mm!important;
+    margin:0!important;
+    padding:10mm 8mm 8mm 8mm!important;
+    box-sizing:border-box!important;
+    overflow:hidden!important;
+    background:#fff!important;
+    page-break-after:always!important;
+    break-after:page!important;
+  }
+  #preview .paper-page:last-child{
+    page-break-after:auto!important;
+    break-after:auto!important;
+  }
+  @page{size:A4 portrait;margin:0;}
+}
+
 </style>
 </head>
 <body>
@@ -1457,7 +1538,7 @@ body.dark .part-handler-note-display{background:rgba(59,130,246,.12);border-colo
     <button type="button" class="side-small" onclick="exportBackup()">Export zálohy</button>
     <button type="button" class="side-small" id="sideImportBtn">Import zálohy</button>
     <button type="button" class="side-small" id="sideAuditBtn">Historie změn</button>
-    <div class="side-version">Vlastník/Admin: Jan Bartoš<br>Verze: 1.6 / 5.91</div>
+    <div class="side-version">Vlastník/Admin: Jan Bartoš<br>Verze: 1.6 / 5.92</div>
   </div>
 </aside>
 
@@ -2424,7 +2505,7 @@ async function exportBackup(){
     }
     const payload = {
       app: 'LiftControl CZ',
-      appVersion: '1.6 / 5.91',
+      appVersion: '1.6 / 5.92',
       backupType: 'complete',
       schemaVersion: 2,
       exportedAt: new Date().toISOString(),
@@ -2872,10 +2953,10 @@ function openModal(el){ el.classList.add('show'); }
 function closeModal(el){ el.classList.remove('show'); }
 
 function openWizard(editId=null, prefill={}){
-  rec = editId ? JSON.parse(JSON.stringify(data.find(r=>r.id===editId) || {id:uid()})) : {id:uid(), cLogic:'legacy', appVersion:'1.6 / 5.91'};
+  rec = editId ? JSON.parse(JSON.stringify(data.find(r=>r.id===editId) || {id:uid()})) : {id:uid(), cLogic:'legacy', appVersion:'1.6 / 5.92'};
   rec = Object.assign({}, rec, prefill || {});
   if(!editId && !rec.cLogic) rec.cLogic = 'legacy';
-  if(!editId && !rec.appVersion) rec.appVersion = '1.6 / 5.91';
+  if(!editId && !rec.appVersion) rec.appVersion = '1.6 / 5.92';
 
   // 🔥 AUTO DOPLNĚNÍ Z HISTORIE PODLE VÝROBNÍHO ČÍSLA
   if(rec.vc){
@@ -3292,7 +3373,7 @@ async function nextStep(){
     syncRevizeIssue(rec);
     syncModelPreferences(rec);
     if(!rec.cLogic) rec.cLogic = 'legacy';
-    if(!rec.appVersion) rec.appVersion = '1.6 / 5.91';
+    if(!rec.appVersion) rec.appVersion = '1.6 / 5.92';
     if(!rec.enteredBy) rec.enteredBy = rec.technik || getEnteredByDefault();
     setLastEnteredBy(rec.enteredBy);
     rec.savedAt = new Date().toISOString();
@@ -3323,25 +3404,7 @@ function openPreviewById(id){
 function closePreview(){
   closeModal(els.preview);
 }
-/* v1.6 / 5.89: odstraněná duplicitní funkce savePreviewRecord; tlačítko Uložit PDF používá finální definici níže. */
-function printCurrent(){
-  console.log('TISK kliknuto');
-  if(!currentPreview){
-    alert('Není otevřený protokol.');
-    return;
-  }
-  els.previewBody.innerHTML = renderPaper(currentPreview);
-  if(!els.preview.classList.contains('show')) openModal(els.preview);
-  // vynutit překreslení a spustit tisk přímo z kliknutí uživatele
-  void els.previewBody.offsetHeight;
-  try {
-    window.print();
-  } catch (e) {
-    console.error('Print error', e);
-    alert('Nepodařilo se otevřít tisk.');
-  }
-}
-window._printNow = printCurrent;
+/* v1.6 / 5.92: tisk protokolu používá finální definici printCurrent níže. */
 
 function downloadById(id){
   const record = data.find(r => r.id === id);
@@ -3376,7 +3439,7 @@ async function logAuditAction(action, entity, record, by, detail){
       serial: record?.vc || record?.serial || '',
       type: record?.typ || record?.type || '',
       createdAt: new Date().toISOString(),
-      appVersion: '1.6 / 5.91'
+      appVersion: '1.6 / 5.92'
     };
     if(firebaseAvailable && db){ await db.collection(AUDIT_COLLECTION_NAME).doc(item.id).set(item); }
     else { const rows = loadLocalAudit(); rows.unshift(item); saveLocalAudit(rows.slice(0,300)); auditData = rows.slice(0,300); }
@@ -4008,13 +4071,24 @@ async function savePreviewRecord(){
     alert('PDF knihovna se nenačetla.');
   }
 }
-function printCurrent(){
+async function printCurrent(){
   if(!currentPreview){ alert('Není otevřený protokol.'); return; }
   els.previewBody.innerHTML = renderPaper(currentPreview);
   if(!els.preview.classList.contains('show')) openModal(els.preview);
-  void els.previewBody.offsetHeight;
-  window.print();
+  try{
+    await waitForImages(els.previewBody);
+  }catch(e){
+    console.warn('Čekání na obrázky před tiskem selhalo', e);
+  }
+  // iOS/Safari někdy vytiskne prázdnou stránku, pokud se tisk spustí hned po překreslení modalu.
+  requestAnimationFrame(() => {
+    requestAnimationFrame(() => {
+      try{ window.print(); }
+      catch(e){ console.error('Print error', e); alert('Nepodařilo se otevřít tisk.'); }
+    });
+  });
 }
+window._printNow = printCurrent;
 
 function applyTheme(mode){
   const dark = mode === 'dark';
@@ -4403,7 +4477,7 @@ async function saveWorkPlanFromForm(){
       place,
       extraPlaces,
       note,
-      appVersion:'1.6 / 5.91'
+      appVersion:'1.6 / 5.92'
     });
     if(!record.createdAt) record.createdAt = new Date().toISOString();
     await saveWorkPlan(record);
@@ -5006,7 +5080,7 @@ async function saveFaultFromForm(){
       inService: status === 'service' ? true : (existing ? !!existing.inService : false),
       waitingParts: status === 'waiting_parts' ? true : (existing ? !!existing.waitingParts : false),
       photos: currentFaultPhotos,
-      appVersion:'1.6 / 5.91'
+      appVersion:'1.6 / 5.92'
     });
     if(!record.createdAt) record.createdAt = new Date().toISOString();
     setLastEnteredBy(record.enteredBy);
@@ -5729,7 +5803,7 @@ async function savePartFromForm(){
       orderedAt: (statusVal === 'ordered' || statusVal === 'sent' || statusVal === 'resolved') ? ((existing && existing.orderedAt) || new Date().toISOString()) : '',
       sentAt: (statusVal === 'sent' || statusVal === 'resolved') ? ((existing && existing.sentAt) || new Date().toISOString()) : '',
       resolvedAt: statusVal === 'resolved' ? ((existing && existing.resolvedAt) || new Date().toISOString()) : '',
-      appVersion:'1.6 / 5.91'
+      appVersion:'1.6 / 5.92'
     });
     record.photos = JSON.parse(JSON.stringify(currentPartPhotos || []));
     record.photo = record.photos[0] || null;

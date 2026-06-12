@@ -1538,7 +1538,7 @@ body.dark .part-handler-note-display{background:rgba(59,130,246,.12);border-colo
     <button type="button" class="side-small" onclick="exportBackup()">Export zálohy</button>
     <button type="button" class="side-small" id="sideImportBtn">Import zálohy</button>
     <button type="button" class="side-small" id="sideAuditBtn">Historie změn</button>
-    <div class="side-version">Vlastník/Admin: Jan Bartoš<br>Verze: 1.6 / 5.92</div>
+    <div class="side-version">Vlastník/Admin: Jan Bartoš<br>Verze: 1.6 / 5.93</div>
   </div>
 </aside>
 
@@ -2505,7 +2505,7 @@ async function exportBackup(){
     }
     const payload = {
       app: 'LiftControl CZ',
-      appVersion: '1.6 / 5.92',
+      appVersion: '1.6 / 5.93',
       backupType: 'complete',
       schemaVersion: 2,
       exportedAt: new Date().toISOString(),
@@ -2953,10 +2953,10 @@ function openModal(el){ el.classList.add('show'); }
 function closeModal(el){ el.classList.remove('show'); }
 
 function openWizard(editId=null, prefill={}){
-  rec = editId ? JSON.parse(JSON.stringify(data.find(r=>r.id===editId) || {id:uid()})) : {id:uid(), cLogic:'legacy', appVersion:'1.6 / 5.92'};
+  rec = editId ? JSON.parse(JSON.stringify(data.find(r=>r.id===editId) || {id:uid()})) : {id:uid(), cLogic:'legacy', appVersion:'1.6 / 5.93'};
   rec = Object.assign({}, rec, prefill || {});
   if(!editId && !rec.cLogic) rec.cLogic = 'legacy';
-  if(!editId && !rec.appVersion) rec.appVersion = '1.6 / 5.92';
+  if(!editId && !rec.appVersion) rec.appVersion = '1.6 / 5.93';
 
   // 🔥 AUTO DOPLNĚNÍ Z HISTORIE PODLE VÝROBNÍHO ČÍSLA
   if(rec.vc){
@@ -3373,7 +3373,7 @@ async function nextStep(){
     syncRevizeIssue(rec);
     syncModelPreferences(rec);
     if(!rec.cLogic) rec.cLogic = 'legacy';
-    if(!rec.appVersion) rec.appVersion = '1.6 / 5.92';
+    if(!rec.appVersion) rec.appVersion = '1.6 / 5.93';
     if(!rec.enteredBy) rec.enteredBy = rec.technik || getEnteredByDefault();
     setLastEnteredBy(rec.enteredBy);
     rec.savedAt = new Date().toISOString();
@@ -3404,7 +3404,7 @@ function openPreviewById(id){
 function closePreview(){
   closeModal(els.preview);
 }
-/* v1.6 / 5.92: tisk protokolu používá finální definici printCurrent níže. */
+/* v1.6 / 5.93: tisk protokolu používá izolovaný tisk přes iframe. */
 
 function downloadById(id){
   const record = data.find(r => r.id === id);
@@ -3439,7 +3439,7 @@ async function logAuditAction(action, entity, record, by, detail){
       serial: record?.vc || record?.serial || '',
       type: record?.typ || record?.type || '',
       createdAt: new Date().toISOString(),
-      appVersion: '1.6 / 5.92'
+      appVersion: '1.6 / 5.93'
     };
     if(firebaseAvailable && db){ await db.collection(AUDIT_COLLECTION_NAME).doc(item.id).set(item); }
     else { const rows = loadLocalAudit(); rows.unshift(item); saveLocalAudit(rows.slice(0,300)); auditData = rows.slice(0,300); }
@@ -4071,22 +4071,118 @@ async function savePreviewRecord(){
     alert('PDF knihovna se nenačetla.');
   }
 }
+function getPrintStyles(){
+  const css = Array.from(document.querySelectorAll('style')).map(st => st.textContent || '').join('\n');
+  return css + `
+/* v1.6 / 5.93 – izolovaný tisk protokolu mimo hlavní aplikaci */
+@media print{
+  html,body{
+    width:auto!important;
+    min-width:0!important;
+    height:auto!important;
+    min-height:0!important;
+    margin:0!important;
+    padding:0!important;
+    background:#fff!important;
+    overflow:visible!important;
+    -webkit-print-color-adjust:exact!important;
+    print-color-adjust:exact!important;
+  }
+  body *{visibility:visible!important;}
+  body > *{display:block!important;}
+  .preview-header,.preview-actions,.modal,.side-panel,.side-overlay,header{display:none!important;}
+  .paper{
+    display:block!important;
+    visibility:visible!important;
+    width:210mm!important;
+    min-width:210mm!important;
+    max-width:210mm!important;
+    margin:0!important;
+    padding:0!important;
+    background:#fff!important;
+    border:0!important;
+    box-shadow:none!important;
+    transform:none!important;
+  }
+  .paper-doc{
+    display:block!important;
+    width:210mm!important;
+    min-width:210mm!important;
+    max-width:210mm!important;
+    margin:0!important;
+    padding:0!important;
+    gap:0!important;
+  }
+  .paper-page{
+    display:flex!important;
+    flex-direction:column!important;
+    width:210mm!important;
+    min-width:210mm!important;
+    max-width:210mm!important;
+    height:296.5mm!important;
+    min-height:296.5mm!important;
+    max-height:296.5mm!important;
+    margin:0!important;
+    padding:10mm 8mm 8mm 8mm!important;
+    box-sizing:border-box!important;
+    overflow:hidden!important;
+    background:#fff!important;
+    border:0!important;
+    border-radius:0!important;
+    box-shadow:none!important;
+    page-break-after:always!important;
+    break-after:page!important;
+  }
+  .paper-page:last-child{page-break-after:auto!important;break-after:auto!important;}
+  @page{size:A4 portrait;margin:0;}
+}
+@media screen{
+  body{background:#fff!important;margin:0!important;padding:0!important;}
+  .paper{width:210mm!important;max-width:210mm!important;margin:0 auto!important;background:#fff!important;}
+}
+`;
+}
+
 async function printCurrent(){
   if(!currentPreview){ alert('Není otevřený protokol.'); return; }
-  els.previewBody.innerHTML = renderPaper(currentPreview);
+  const paperHtml = renderPaper(currentPreview);
+  els.previewBody.innerHTML = paperHtml;
   if(!els.preview.classList.contains('show')) openModal(els.preview);
+
+  const iframe = document.createElement('iframe');
+  iframe.setAttribute('title','Tisk protokolu');
+  iframe.style.position = 'fixed';
+  iframe.style.right = '0';
+  iframe.style.bottom = '0';
+  iframe.style.width = '0';
+  iframe.style.height = '0';
+  iframe.style.border = '0';
+  iframe.style.opacity = '0';
+  iframe.style.pointerEvents = 'none';
+  document.body.appendChild(iframe);
+
+  const doc = iframe.contentDocument || iframe.contentWindow.document;
+  doc.open();
+  doc.write(`<!doctype html><html lang="cs"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>LiftControl CZ – tisk protokolu</title><style>${getPrintStyles()}</style></head><body>${paperHtml}</body></html>`);
+  doc.close();
+
   try{
-    await waitForImages(els.previewBody);
-  }catch(e){
-    console.warn('Čekání na obrázky před tiskem selhalo', e);
-  }
-  // iOS/Safari někdy vytiskne prázdnou stránku, pokud se tisk spustí hned po překreslení modalu.
-  requestAnimationFrame(() => {
-    requestAnimationFrame(() => {
-      try{ window.print(); }
-      catch(e){ console.error('Print error', e); alert('Nepodařilo se otevřít tisk.'); }
+    await new Promise(resolve => {
+      if(doc.readyState === 'complete') resolve();
+      else iframe.onload = resolve;
+      setTimeout(resolve, 800);
     });
-  });
+    await waitForImages(doc.body);
+    await new Promise(resolve => setTimeout(resolve, 350));
+    const win = iframe.contentWindow;
+    win.focus();
+    win.print();
+    setTimeout(() => { try{ iframe.remove(); }catch(e){} }, 4000);
+  }catch(e){
+    console.error('Print error', e);
+    try{ iframe.remove(); }catch(_){}
+    alert('Nepodařilo se otevřít tisk.');
+  }
 }
 window._printNow = printCurrent;
 
@@ -4477,7 +4573,7 @@ async function saveWorkPlanFromForm(){
       place,
       extraPlaces,
       note,
-      appVersion:'1.6 / 5.92'
+      appVersion:'1.6 / 5.93'
     });
     if(!record.createdAt) record.createdAt = new Date().toISOString();
     await saveWorkPlan(record);
@@ -5080,7 +5176,7 @@ async function saveFaultFromForm(){
       inService: status === 'service' ? true : (existing ? !!existing.inService : false),
       waitingParts: status === 'waiting_parts' ? true : (existing ? !!existing.waitingParts : false),
       photos: currentFaultPhotos,
-      appVersion:'1.6 / 5.92'
+      appVersion:'1.6 / 5.93'
     });
     if(!record.createdAt) record.createdAt = new Date().toISOString();
     setLastEnteredBy(record.enteredBy);
@@ -5803,7 +5899,7 @@ async function savePartFromForm(){
       orderedAt: (statusVal === 'ordered' || statusVal === 'sent' || statusVal === 'resolved') ? ((existing && existing.orderedAt) || new Date().toISOString()) : '',
       sentAt: (statusVal === 'sent' || statusVal === 'resolved') ? ((existing && existing.sentAt) || new Date().toISOString()) : '',
       resolvedAt: statusVal === 'resolved' ? ((existing && existing.resolvedAt) || new Date().toISOString()) : '',
-      appVersion:'1.6 / 5.92'
+      appVersion:'1.6 / 5.93'
     });
     record.photos = JSON.parse(JSON.stringify(currentPartPhotos || []));
     record.photo = record.photos[0] || null;

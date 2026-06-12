@@ -1538,7 +1538,7 @@ body.dark .part-handler-note-display{background:rgba(59,130,246,.12);border-colo
     <button type="button" class="side-small" onclick="exportBackup()">Export zálohy</button>
     <button type="button" class="side-small" id="sideImportBtn">Import zálohy</button>
     <button type="button" class="side-small" id="sideAuditBtn">Historie změn</button>
-    <div class="side-version">Vlastník/Admin: Jan Bartoš<br>Verze: 1.6 / 5.95</div>
+    <div class="side-version">Vlastník/Admin: Jan Bartoš<br>Verze: 1.6 / 5.96</div>
   </div>
 </aside>
 
@@ -2505,7 +2505,7 @@ async function exportBackup(){
     }
     const payload = {
       app: 'LiftControl CZ',
-      appVersion: '1.6 / 5.95',
+      appVersion: '1.6 / 5.96',
       backupType: 'complete',
       schemaVersion: 2,
       exportedAt: new Date().toISOString(),
@@ -2953,10 +2953,10 @@ function openModal(el){ el.classList.add('show'); }
 function closeModal(el){ el.classList.remove('show'); }
 
 function openWizard(editId=null, prefill={}){
-  rec = editId ? JSON.parse(JSON.stringify(data.find(r=>r.id===editId) || {id:uid()})) : {id:uid(), cLogic:'legacy', appVersion:'1.6 / 5.95'};
+  rec = editId ? JSON.parse(JSON.stringify(data.find(r=>r.id===editId) || {id:uid()})) : {id:uid(), cLogic:'legacy', appVersion:'1.6 / 5.96'};
   rec = Object.assign({}, rec, prefill || {});
   if(!editId && !rec.cLogic) rec.cLogic = 'legacy';
-  if(!editId && !rec.appVersion) rec.appVersion = '1.6 / 5.95';
+  if(!editId && !rec.appVersion) rec.appVersion = '1.6 / 5.96';
 
   // 🔥 AUTO DOPLNĚNÍ Z HISTORIE PODLE VÝROBNÍHO ČÍSLA
   if(rec.vc){
@@ -3373,7 +3373,7 @@ async function nextStep(){
     syncRevizeIssue(rec);
     syncModelPreferences(rec);
     if(!rec.cLogic) rec.cLogic = 'legacy';
-    if(!rec.appVersion) rec.appVersion = '1.6 / 5.95';
+    if(!rec.appVersion) rec.appVersion = '1.6 / 5.96';
     if(!rec.enteredBy) rec.enteredBy = rec.technik || getEnteredByDefault();
     setLastEnteredBy(rec.enteredBy);
     rec.savedAt = new Date().toISOString();
@@ -3404,7 +3404,7 @@ function openPreviewById(id){
 function closePreview(){
   closeModal(els.preview);
 }
-/* v1.6 / 5.95: tisk protokolu přes samostatné tiskové okno s čistým CSS. */
+/* v1.6 / 5.96: tisk protokolu přes samostatnou čistou tiskovou stránku. */
 
 function downloadById(id){
   const record = data.find(r => r.id === id);
@@ -3439,7 +3439,7 @@ async function logAuditAction(action, entity, record, by, detail){
       serial: record?.vc || record?.serial || '',
       type: record?.typ || record?.type || '',
       createdAt: new Date().toISOString(),
-      appVersion: '1.6 / 5.95'
+      appVersion: '1.6 / 5.96'
     };
     if(firebaseAvailable && db){ await db.collection(AUDIT_COLLECTION_NAME).doc(item.id).set(item); }
     else { const rows = loadLocalAudit(); rows.unshift(item); saveLocalAudit(rows.slice(0,300)); auditData = rows.slice(0,300); }
@@ -4084,59 +4084,54 @@ table{width:100%;border-collapse:collapse;table-layout:fixed}.proto-meta{font-si
 .paper-row-2{display:grid;grid-template-columns:1fr 1fr;gap:8px}.section-card{display:flex;flex-direction:column;gap:0;page-break-inside:avoid;break-inside:avoid}.section-head{border:1px solid #707070;background:#ededed;padding:4.5px 6px;font-weight:700;font-size:10.8px}.section-note{float:right;font-weight:600;font-size:9px;color:#333}.status-bad{background:#fee2e2!important}.status-bad td,.status-bad th{background:#fee2e2!important;border-color:#dc2626!important}.muted-note{color:#555;font-size:9px}
 .findings-box{border:1px solid #707070;min-height:58px;padding:5px;font-size:10px}.findings-lines{display:grid;gap:7px;margin-top:5px}.findings-lines div{border-bottom:1px solid #999;height:13px}.photo-section{border:1px solid #707070}.photo-section .section-head{border:0;border-bottom:1px solid #707070}.photo-strip{display:grid;grid-template-columns:repeat(6,1fr);gap:0}.photo-mini{border-right:1px solid #707070;padding:4px;font-size:7.8px;text-align:center;min-height:86px}.photo-mini:last-child{border-right:none}.photo-mini img{width:100%;height:54px;object-fit:cover;border:1px solid #bdbdbd;margin-bottom:4px}.issue-strip{display:grid;grid-template-columns:repeat(4,1fr);border-top:1px solid #707070}.issue-mini{padding:4px;border-right:1px solid #707070;min-height:62px;font-size:8px;text-align:center}.issue-mini:last-child{border-right:none}.issue-mini img{width:100%;height:44px;object-fit:cover;border:1px solid #bdbdbd;margin-bottom:4px}
 .conclusion-grid{display:grid;grid-template-columns:1.1fr 1fr;gap:8px}.signature-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:0}.signature-grid>div{border:1px solid #707070;border-top:none;padding:6px;min-height:54px;font-size:10px}.page-number{text-align:right;font-size:9px;color:#333;margin-top:auto}
-button,.preview-header,.preview-actions{display:none!important}
+.print-toolbar{position:sticky;top:0;z-index:10;background:#0f172a;color:#fff;padding:10px 12px;display:flex;gap:10px;align-items:center;justify-content:space-between;font-family:Arial,Helvetica,sans-serif}.print-toolbar button{border:0;border-radius:10px;padding:10px 14px;font-weight:700;background:#2563eb;color:#fff;cursor:pointer}.print-toolbar .secondary{background:#e5e7eb;color:#111827}.print-toolbar small{color:#cbd5e1}
 @page{size:A4 portrait;margin:0}
-@media print{html,body{width:210mm;background:#fff}.paper{width:210mm;margin:0}.paper-doc{width:210mm}.paper-page{width:210mm;height:297mm;min-height:297mm;max-height:297mm}}
+@media print{.print-toolbar{display:none!important}html,body{width:210mm;background:#fff}.paper{width:210mm;margin:0}.paper-doc{width:210mm}.paper-page{width:210mm;height:297mm;min-height:297mm;max-height:297mm}}
 `;
 }
 
 async function printCurrent(){
   if(!currentPreview){ alert('Není otevřený protokol.'); return; }
 
-  // v1.6 / 5.95: Přímý tisk přes browser print byl na Edge/Chrome v provozu opakovaně prázdný.
-  // Proto tlačítko Tisk nyní vytvoří PDF z přesně stejného DOM jako Uložit PDF a otevře ho v nové záložce.
-  // Uživatel pak tiskne přímo PDF náhled, což obchází konflikty modalů, @media print a service worker cache.
+  // v1.6 / 5.96: Přímý tisk z modalu i PDF generování přes html2pdf v některých prohlížečích vracelo prázdnou stránku.
+  // Proto se protokol otevře jako samostatná čistá tisková stránka s vlastním CSS. Tisk se spustí až z této viditelné stránky.
   els.previewBody.innerHTML = renderPaper(currentPreview);
-  if(!els.preview.classList.contains('show')) openModal(els.preview);
   const element = els.previewBody.querySelector('.paper');
   if(!element){ alert('Nepodařilo se připravit protokol pro tisk.'); return; }
   await waitForImages(element);
 
-  if(window.html2pdf){
-    try{
-      const fileBase = (currentPreview.id || currentPreview.vc || 'protokol').replace(/[^a-z0-9_-]+/gi,'_');
-      const worker = window.html2pdf().set({
-        margin:[0,0,0,0],
-        filename:`${fileBase}.pdf`,
-        image:{type:'jpeg', quality:0.96},
-        html2canvas:{scale:2, useCORS:true, backgroundColor:'#ffffff'},
-        jsPDF:{unit:'mm', format:'a4', orientation:'portrait'},
-        pagebreak:{mode:['css','legacy']}
-      }).from(element).toPdf();
-      const blob = await worker.outputPdf('blob');
-      const url = URL.createObjectURL(blob);
-      const opened = window.open(url, '_blank');
-      if(!opened){
-        const a = document.createElement('a');
-        a.href = url;
-        a.download = `${fileBase}.pdf`;
-        document.body.appendChild(a);
-        a.click();
-        a.remove();
-        alert('Prohlížeč zablokoval nové okno. PDF jsem stáhl do zařízení. Otevři ho a vytiskni jako běžný PDF soubor.');
-      } else {
-        alert('Otevřel jsem protokol jako PDF v nové záložce. V PDF náhledu dej Tisk / Ctrl+P.');
-      }
-      setTimeout(()=>URL.revokeObjectURL(url), 120000);
-      return;
-    }catch(e){
-      console.error('PDF print fallback error', e);
-      alert('Nepodařilo se připravit PDF pro tisk. Zkus tlačítko Uložit PDF.');
-      return;
-    }
-  }
+  const fileBase = (currentPreview.id || currentPreview.vc || 'protokol').replace(/[^a-z0-9_-]+/gi,'_');
+  const html = `<!DOCTYPE html>
+<html lang="cs">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>${escapeHtml(fileBase)} - tisk protokolu</title>
+<style>${getPrintStyles()}</style>
+</head>
+<body>
+  <div class="print-toolbar">
+    <div><strong>LiftControl CZ – tisk protokolu</strong><br><small>Nejdřív zkontroluj náhled. Potom klikni na Tisk / PDF.</small></div>
+    <div><button type="button" onclick="window.print()">Tisk / PDF</button> <button type="button" class="secondary" onclick="window.close()">Zavřít</button></div>
+  </div>
+  ${element.outerHTML}
+</body>
+</html>`;
 
-  alert('PDF knihovna se nenačetla. Zkus prosím stránku obnovit a potom znovu Tisk.');
+  const blob = new Blob([html], {type:'text/html;charset=utf-8'});
+  const url = URL.createObjectURL(blob);
+  const opened = window.open(url, '_blank');
+  if(!opened){
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = `${fileBase}_tisk.html`;
+    document.body.appendChild(a);
+    a.click();
+    a.remove();
+    alert('Prohlížeč zablokoval novou záložku. Stáhl jsem tiskový HTML soubor. Otevři ho a dej Tisk / PDF.');
+  } else {
+    setTimeout(()=>URL.revokeObjectURL(url), 120000);
+  }
 }
 window._printNow = printCurrent;
 
@@ -4527,7 +4522,7 @@ async function saveWorkPlanFromForm(){
       place,
       extraPlaces,
       note,
-      appVersion:'1.6 / 5.95'
+      appVersion:'1.6 / 5.96'
     });
     if(!record.createdAt) record.createdAt = new Date().toISOString();
     await saveWorkPlan(record);
@@ -5130,7 +5125,7 @@ async function saveFaultFromForm(){
       inService: status === 'service' ? true : (existing ? !!existing.inService : false),
       waitingParts: status === 'waiting_parts' ? true : (existing ? !!existing.waitingParts : false),
       photos: currentFaultPhotos,
-      appVersion:'1.6 / 5.95'
+      appVersion:'1.6 / 5.96'
     });
     if(!record.createdAt) record.createdAt = new Date().toISOString();
     setLastEnteredBy(record.enteredBy);
@@ -5853,7 +5848,7 @@ async function savePartFromForm(){
       orderedAt: (statusVal === 'ordered' || statusVal === 'sent' || statusVal === 'resolved') ? ((existing && existing.orderedAt) || new Date().toISOString()) : '',
       sentAt: (statusVal === 'sent' || statusVal === 'resolved') ? ((existing && existing.sentAt) || new Date().toISOString()) : '',
       resolvedAt: statusVal === 'resolved' ? ((existing && existing.resolvedAt) || new Date().toISOString()) : '',
-      appVersion:'1.6 / 5.95'
+      appVersion:'1.6 / 5.96'
     });
     record.photos = JSON.parse(JSON.stringify(currentPartPhotos || []));
     record.photo = record.photos[0] || null;

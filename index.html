@@ -62,6 +62,8 @@ button{border:none;border-radius:14px;padding:11px 14px;cursor:pointer;font-weig
 input::placeholder, textarea::placeholder{color:#334155;font-weight:600;font-size:1rem;opacity:1} textarea{min-height:110px;resize:vertical}
 .suggest-wrap{position:relative}.suggest-box{position:absolute;left:0;right:0;top:calc(100% + 8px);border:1px solid var(--line);border-radius:14px;background:#fff;max-height:220px;overflow:auto;box-shadow:0 10px 24px rgba(15,23,42,.08);z-index:20}.suggest-item{padding:10px 12px;cursor:pointer;border-bottom:1px solid #eef2f7;font-size:.95rem}.suggest-item:last-child{border-bottom:none}.suggest-item:hover{background:#f8fbff}.helper{font-size:.8rem;color:var(--muted);margin-top:6px}
 .smart-suggest-wrap{position:relative;overflow:visible}.smart-suggest-box{position:absolute;left:0;right:0;top:calc(100% + 6px);display:none;max-height:168px;overflow:auto;-webkit-overflow-scrolling:touch;background:#fff;border:1px solid var(--line);border-radius:14px;box-shadow:0 12px 26px rgba(15,23,42,.18);z-index:2147483000}.smart-suggest-box.show{display:block}.smart-suggest-box.mobile-floating{position:fixed!important;right:auto!important;top:auto;bottom:auto;z-index:2147483646!important;max-height:180px!important}.smart-suggest-item{padding:10px 12px;border-bottom:1px solid #eef2f7;cursor:pointer;font-size:.92rem;line-height:1.25;background:#fff}.smart-suggest-item:last-child{border-bottom:none}.smart-suggest-item:hover{background:#f8fbff}.smart-suggest-muted{padding:9px 12px;color:var(--muted);font-size:.86rem}.field textarea + .smart-suggest-box{top:calc(100% + 6px)}body.dark .smart-suggest-box{background:#0f172a;border-color:var(--line)}body.dark .smart-suggest-item{background:#0f172a;border-bottom-color:#243244}body.dark .smart-suggest-item:hover{background:#172033}
+/* v1.6 / 5.104 – našeptávač v samostatném portálovém okně mimo formulář */
+.smart-suggest-portal{position:fixed;display:none;z-index:2147483647;background:#fff;color:#0f172a;border:1px solid #cbd5e1;border-radius:16px;box-shadow:0 22px 60px rgba(15,23,42,.34);overflow:hidden;min-width:260px;max-width:min(520px,calc(100vw - 24px))}.smart-suggest-portal.show{display:block}.smart-suggest-portal-head{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:10px 12px;background:#f1f5f9;border-bottom:1px solid #dbe6f2;font-size:.84rem;font-weight:800}.smart-suggest-portal-close{padding:3px 9px;border-radius:9px;background:#e2e8f0;color:#0f172a;font-size:18px;line-height:1}.smart-suggest-portal-list{max-height:260px;overflow:auto;-webkit-overflow-scrolling:touch}.smart-suggest-portal .smart-suggest-item{padding:12px 14px;font-size:.96rem;background:#fff}.smart-suggest-portal .smart-suggest-item:active{background:#dbeafe}.smart-suggest-source{font-size:.74rem;color:#64748b;font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:70%}body.dark .smart-suggest-portal{background:#0f172a;color:#e5e7eb;border-color:#334155}body.dark .smart-suggest-portal-head{background:#111827;border-color:#334155}body.dark .smart-suggest-portal-close{background:#243244;color:#e5e7eb}body.dark .smart-suggest-portal .smart-suggest-item{background:#0f172a;color:#e5e7eb;border-bottom-color:#243244}@media(max-width:920px){.smart-suggest-portal{left:12px!important;right:12px!important;width:auto!important;max-width:none!important;border-radius:16px}.smart-suggest-portal-list{max-height:220px}.smart-suggest-portal .smart-suggest-item{padding:13px 14px;font-size:1rem}}
 /* v1.6 / 5.90 – iOS klávesnice: neschovávat/podsvěcovat spodní akční tlačítka pod klávesnicí */
 @media(max-width:920px){body.mobile-keyboard-open .wizard-actions,body.mobile-keyboard-open #partsFormWrap .preview-actions,body.mobile-keyboard-open #faultFormWrap .preview-actions,body.mobile-keyboard-open #workPlanFormWrap .preview-actions{position:static!important;display:none!important}}
 .wizard-actions{display:flex;justify-content:space-between;gap:10px;margin-top:18px;position:sticky;bottom:0;background:linear-gradient(180deg,rgba(255,255,255,0) 0%,#fff 20%);padding-top:16px}
@@ -1513,7 +1515,7 @@ body.dark .part-handler-note-display{background:rgba(59,130,246,.12);border-colo
 
 
 
-/* v1.6 / 5.103: mobilní náhled protokolu bez vodorovného posouvání */
+/* v1.6 / 5.104: mobilní náhled protokolu bez vodorovného posouvání */
 @media (max-width: 700px){
   #preview .modal-content{
     width:100vw!important;
@@ -1665,7 +1667,7 @@ body.dark .part-handler-note-display{background:rgba(59,130,246,.12);border-colo
     <button type="button" class="side-small" onclick="exportBackup()">Export zálohy</button>
     <button type="button" class="side-small" id="sideImportBtn">Import zálohy</button>
     <button type="button" class="side-small" id="sideAuditBtn">Historie změn</button>
-    <div class="side-version">Vlastník/Admin: Jan Bartoš<br>Verze: 1.6 / 5.103</div>
+    <div class="side-version">Vlastník/Admin: Jan Bartoš<br>Verze: 1.6 / 5.104</div>
   </div>
 </aside>
 
@@ -2632,7 +2634,7 @@ async function exportBackup(){
     }
     const payload = {
       app: 'LiftControl CZ',
-      appVersion: '1.6 / 5.103',
+      appVersion: '1.6 / 5.104',
       backupType: 'complete',
       schemaVersion: 2,
       exportedAt: new Date().toISOString(),
@@ -3080,10 +3082,10 @@ function openModal(el){ el.classList.add('show'); }
 function closeModal(el){ el.classList.remove('show'); }
 
 function openWizard(editId=null, prefill={}){
-  rec = editId ? JSON.parse(JSON.stringify(data.find(r=>r.id===editId) || {id:uid()})) : {id:uid(), cLogic:'legacy', appVersion:'1.6 / 5.103'};
+  rec = editId ? JSON.parse(JSON.stringify(data.find(r=>r.id===editId) || {id:uid()})) : {id:uid(), cLogic:'legacy', appVersion:'1.6 / 5.104'};
   rec = Object.assign({}, rec, prefill || {});
   if(!editId && !rec.cLogic) rec.cLogic = 'legacy';
-  if(!editId && !rec.appVersion) rec.appVersion = '1.6 / 5.103';
+  if(!editId && !rec.appVersion) rec.appVersion = '1.6 / 5.104';
 
   // 🔥 AUTO DOPLNĚNÍ Z HISTORIE PODLE VÝROBNÍHO ČÍSLA
   if(rec.vc){
@@ -3500,7 +3502,7 @@ async function nextStep(){
     syncRevizeIssue(rec);
     syncModelPreferences(rec);
     if(!rec.cLogic) rec.cLogic = 'legacy';
-    if(!rec.appVersion) rec.appVersion = '1.6 / 5.103';
+    if(!rec.appVersion) rec.appVersion = '1.6 / 5.104';
     if(!rec.enteredBy) rec.enteredBy = rec.technik || getEnteredByDefault();
     setLastEnteredBy(rec.enteredBy);
     rec.savedAt = new Date().toISOString();
@@ -3531,7 +3533,7 @@ function openPreviewById(id){
 function closePreview(){
   closeModal(els.preview);
 }
-/* v1.6 / 5.103: tisk protokolu přes samostatnou čistou tiskovou stránku. */
+/* v1.6 / 5.104: tisk protokolu přes samostatnou čistou tiskovou stránku. */
 
 function downloadById(id){
   const record = data.find(r => r.id === id);
@@ -3566,7 +3568,7 @@ async function logAuditAction(action, entity, record, by, detail){
       serial: record?.vc || record?.serial || '',
       type: record?.typ || record?.type || '',
       createdAt: new Date().toISOString(),
-      appVersion: '1.6 / 5.103'
+      appVersion: '1.6 / 5.104'
     };
     if(firebaseAvailable && db){ await db.collection(AUDIT_COLLECTION_NAME).doc(item.id).set(item); }
     else { const rows = loadLocalAudit(); rows.unshift(item); saveLocalAudit(rows.slice(0,300)); auditData = rows.slice(0,300); }
@@ -4218,7 +4220,7 @@ table{width:100%;border-collapse:collapse;table-layout:fixed}.proto-meta{font-si
 async function printCurrent(){
   if(!currentPreview){ alert('Není otevřený protokol.'); return; }
 
-  // v1.6 / 5.103: Přímý tisk z modalu i PDF generování přes html2pdf v některých prohlížečích vracelo prázdnou stránku.
+  // v1.6 / 5.104: Přímý tisk z modalu i PDF generování přes html2pdf v některých prohlížečích vracelo prázdnou stránku.
   // Proto se protokol otevře jako samostatná čistá tisková stránka s vlastním CSS. Tisk se spustí až z této viditelné stránky.
   els.previewBody.innerHTML = renderPaper(currentPreview);
   const element = els.previewBody.querySelector('.paper');
@@ -4234,7 +4236,7 @@ async function printCurrent(){
 <title>${escapeHtml(fileBase)} - tisk protokolu</title>
 <style>${getPrintStyles()}
 
-/* v1.6 / 5.103: mobilní náhled protokolu bez vodorovného posouvání */
+/* v1.6 / 5.104: mobilní náhled protokolu bez vodorovného posouvání */
 @media (max-width: 700px){
   #preview .modal-content{
     width:100vw!important;
@@ -4774,7 +4776,7 @@ async function saveWorkPlanFromForm(){
       place,
       extraPlaces,
       note,
-      appVersion:'1.6 / 5.103'
+      appVersion:'1.6 / 5.104'
     });
     if(!record.createdAt) record.createdAt = new Date().toISOString();
     await saveWorkPlan(record);
@@ -5060,75 +5062,94 @@ function getPartNoteSuggestionsAll(){ return uniqueNonEmpty((partsData || []).ma
 function getFaultDescSuggestionsAll(){
   return uniqueNonEmpty([...(faultsData || []).map(r => r.description), ...(data || []).flatMap(r => Object.keys(r || {}).filter(k => k.endsWith('_p')).map(k => r[k]))]).sort((a,b)=>String(a).localeCompare(String(b),'cs'));
 }
+function getSmartSuggestPortal(){
+  let portal = document.getElementById('smartSuggestPortal');
+  if(portal) return portal;
+  portal = document.createElement('div');
+  portal.id = 'smartSuggestPortal';
+  portal.className = 'smart-suggest-portal';
+  portal.innerHTML = `<div class="smart-suggest-portal-head"><span>Našeptávač</span><span class="smart-suggest-source"></span><button type="button" class="smart-suggest-portal-close" aria-label="Zavřít">×</button></div><div class="smart-suggest-portal-list"></div>`;
+  document.body.appendChild(portal);
+  portal.querySelector('.smart-suggest-portal-close')?.addEventListener('pointerdown', ev => {
+    ev.preventDefault();
+    closeSmartSuggestPortal();
+  });
+  return portal;
+}
+let activeSmartSuggestInput = null;
+function closeSmartSuggestPortal(){
+  const portal = document.getElementById('smartSuggestPortal');
+  if(portal){
+    portal.classList.remove('show');
+    portal.querySelector('.smart-suggest-portal-list').innerHTML = '';
+  }
+  activeSmartSuggestInput = null;
+}
+function positionSmartSuggestPortal(input){
+  const portal = document.getElementById('smartSuggestPortal');
+  if(!portal || !portal.classList.contains('show') || !input) return;
+  const rect = input.getBoundingClientRect();
+  const vv = window.visualViewport;
+  const vpLeft = vv ? vv.offsetLeft : 0;
+  const vpTop = vv ? vv.offsetTop : 0;
+  const vpWidth = vv ? vv.width : window.innerWidth;
+  const vpHeight = vv ? vv.height : window.innerHeight;
+  const margin = 12;
+
+  if(window.matchMedia('(max-width: 920px)').matches){
+    // Samostatné okno nahoře v právě viditelné části obrazovky – nikdy pod klávesnicí.
+    portal.style.left = `${vpLeft + margin}px`;
+    portal.style.right = 'auto';
+    portal.style.width = `${Math.max(260, vpWidth - margin * 2)}px`;
+    portal.style.top = `${vpTop + margin}px`;
+    portal.style.maxHeight = `${Math.max(140, Math.min(300, vpHeight * 0.42))}px`;
+    const list = portal.querySelector('.smart-suggest-portal-list');
+    if(list) list.style.maxHeight = `${Math.max(90, Math.min(230, vpHeight * 0.32))}px`;
+  } else {
+    const desiredWidth = Math.min(460, Math.max(300, rect.width));
+    let left = rect.right + 12;
+    if(left + desiredWidth > vpLeft + vpWidth - margin) left = Math.max(vpLeft + margin, rect.left - desiredWidth - 12);
+    let top = Math.max(vpTop + margin, Math.min(rect.top, vpTop + vpHeight - 330));
+    portal.style.left = `${left}px`;
+    portal.style.right = 'auto';
+    portal.style.width = `${desiredWidth}px`;
+    portal.style.top = `${top}px`;
+    portal.style.maxHeight = `${Math.min(320, vpHeight - margin * 2)}px`;
+    const list = portal.querySelector('.smart-suggest-portal-list');
+    if(list) list.style.maxHeight = `${Math.min(260, vpHeight - 80)}px`;
+  }
+}
 function attachSmartSuggest(input, getItems, onPick){
   if(!input || input.dataset.smartSuggestReady === '1') return;
   input.dataset.smartSuggestReady = '1';
   input.setAttribute('autocomplete','off');
   input.removeAttribute('list');
-  const wrap = input.parentElement;
-  if(!wrap) return;
-  wrap.classList.add('smart-suggest-wrap');
-  const box = document.createElement('div');
-  box.className = 'smart-suggest-box';
-  input.insertAdjacentElement('afterend', box);
 
-  const resetMobilePosition = () => {
-    box.classList.remove('mobile-floating');
-    box.style.left = '';
-    box.style.top = '';
-    box.style.width = '';
-    box.style.maxHeight = '';
-  };
-
-  const positionMobileSuggest = () => {
-    if(!box.classList.contains('show')) return;
-    if(!window.matchMedia('(max-width: 920px)').matches){
-      resetMobilePosition();
-      return;
-    }
-    const rect = input.getBoundingClientRect();
-    const vv = window.visualViewport;
-    const viewportTop = vv ? vv.offsetTop : 0;
-    const viewportHeight = vv ? vv.height : window.innerHeight;
-    const viewportBottom = viewportTop + viewportHeight;
-    const margin = 8;
-    const availableAbove = Math.max(0, rect.top - viewportTop - margin);
-    const availableBelow = Math.max(0, viewportBottom - rect.bottom - margin);
-    const desiredHeight = Math.min(180, Math.max(92, box.scrollHeight || 140));
-    const useAbove = availableBelow < 125 || availableAbove > availableBelow;
-    const maxHeight = Math.max(72, Math.min(180, useAbove ? availableAbove : availableBelow));
-    const top = useAbove
-      ? Math.max(viewportTop + margin, rect.top - Math.min(desiredHeight, maxHeight) - 6)
-      : Math.min(viewportBottom - Math.min(desiredHeight, maxHeight) - margin, rect.bottom + 6);
-
-    box.classList.add('mobile-floating');
-    box.style.left = `${Math.max(margin, rect.left)}px`;
-    box.style.top = `${top}px`;
-    box.style.width = `${Math.min(rect.width, window.innerWidth - Math.max(margin, rect.left) - margin)}px`;
-    box.style.maxHeight = `${maxHeight}px`;
-  };
-
-  const close = () => {
-    box.classList.remove('show');
-    box.innerHTML = '';
-    resetMobilePosition();
-  };
-
+  const fieldLabel = input.closest('.field')?.querySelector('label')?.textContent?.trim() || input.getAttribute('placeholder') || 'Výběr hodnoty';
   const open = () => {
     const q = String(input.value || '').trim();
-    if(q.length < 1){ close(); return; }
-    const items = filterSuggestions(uniqueNonEmpty(getItems ? getItems() : []), q).slice(0,6);
-    if(!items.length){ close(); return; }
-    box.innerHTML = items.map(v => `<div class="smart-suggest-item" data-value="${escapeHtml(v)}">${escapeHtml(v)}</div>`).join('');
-    box.classList.add('show');
-    requestAnimationFrame(positionMobileSuggest);
-    box.querySelectorAll('.smart-suggest-item').forEach(item => item.addEventListener('pointerdown', (ev) => {
+    if(q.length < 1){ if(activeSmartSuggestInput === input) closeSmartSuggestPortal(); return; }
+    const items = filterSuggestions(uniqueNonEmpty(getItems ? getItems() : []), q).slice(0,8);
+    if(!items.length){ if(activeSmartSuggestInput === input) closeSmartSuggestPortal(); return; }
+
+    const portal = getSmartSuggestPortal();
+    activeSmartSuggestInput = input;
+    const source = portal.querySelector('.smart-suggest-source');
+    const list = portal.querySelector('.smart-suggest-portal-list');
+    if(source) source.textContent = fieldLabel;
+    list.innerHTML = items.map(v => `<div class="smart-suggest-item" data-value="${escapeHtml(v)}">${escapeHtml(v)}</div>`).join('');
+    portal.classList.add('show');
+    positionSmartSuggestPortal(input);
+
+    list.querySelectorAll('.smart-suggest-item').forEach(item => item.addEventListener('pointerdown', ev => {
       ev.preventDefault();
+      ev.stopPropagation();
       input.value = item.dataset.value || '';
       input.dispatchEvent(new Event('input', {bubbles:true}));
       input.dispatchEvent(new Event('change', {bubbles:true}));
-      close();
+      closeSmartSuggestPortal();
       if(typeof onPick === 'function') onPick(input.value);
+      try{ input.focus({preventScroll:true}); }catch(_e){ input.focus(); }
     }));
   };
 
@@ -5137,17 +5158,19 @@ function attachSmartSuggest(input, getItems, onPick){
     if(window.matchMedia('(max-width: 920px)').matches){
       setTimeout(() => {
         try{ input.scrollIntoView({behavior:'smooth', block:'center'}); }catch(_e){}
-        open();
-      }, 220);
-    } else {
-      open();
-    }
+        setTimeout(open, 180);
+      }, 120);
+    } else open();
   });
-  input.addEventListener('blur', () => setTimeout(close, 180));
-  window.visualViewport?.addEventListener('resize', () => requestAnimationFrame(positionMobileSuggest));
-  window.visualViewport?.addEventListener('scroll', () => requestAnimationFrame(positionMobileSuggest));
-  window.addEventListener('resize', () => requestAnimationFrame(positionMobileSuggest));
-  input.closest('.modal-content')?.addEventListener('scroll', () => requestAnimationFrame(positionMobileSuggest), {passive:true});
+  input.addEventListener('blur', () => setTimeout(() => {
+    const portal = document.getElementById('smartSuggestPortal');
+    if(portal && !portal.matches(':hover') && activeSmartSuggestInput === input) closeSmartSuggestPortal();
+  }, 220));
+
+  window.visualViewport?.addEventListener('resize', () => requestAnimationFrame(() => positionSmartSuggestPortal(activeSmartSuggestInput)));
+  window.visualViewport?.addEventListener('scroll', () => requestAnimationFrame(() => positionSmartSuggestPortal(activeSmartSuggestInput)));
+  window.addEventListener('resize', () => requestAnimationFrame(() => positionSmartSuggestPortal(activeSmartSuggestInput)));
+  input.closest('.modal-content')?.addEventListener('scroll', () => requestAnimationFrame(() => positionSmartSuggestPortal(activeSmartSuggestInput)), {passive:true});
 }
 
 function applyMachineInfoToPart(serial){
@@ -5433,7 +5456,7 @@ async function saveFaultFromForm(){
       inService: status === 'service' ? true : (existing ? !!existing.inService : false),
       waitingParts: status === 'waiting_parts' ? true : (existing ? !!existing.waitingParts : false),
       photos: currentFaultPhotos,
-      appVersion:'1.6 / 5.103'
+      appVersion:'1.6 / 5.104'
     });
     if(!record.createdAt) record.createdAt = new Date().toISOString();
     setLastEnteredBy(record.enteredBy);
@@ -5714,7 +5737,7 @@ body.dark .audit-item{background:var(--panel2)}
 body.dark .part-handler-note-display{background:rgba(59,130,246,.12);border-color:rgba(96,165,250,.35)}
 
 
-/* v1.6 / 5.103: mobilní náhled protokolu bez vodorovného posouvání */
+/* v1.6 / 5.104: mobilní náhled protokolu bez vodorovného posouvání */
 @media (max-width: 700px){
   #preview .modal-content{
     width:100vw!important;
@@ -6283,7 +6306,7 @@ async function savePartFromForm(){
       orderedAt: (statusVal === 'ordered' || statusVal === 'sent' || statusVal === 'resolved') ? ((existing && existing.orderedAt) || new Date().toISOString()) : '',
       sentAt: (statusVal === 'sent' || statusVal === 'resolved') ? ((existing && existing.sentAt) || new Date().toISOString()) : '',
       resolvedAt: statusVal === 'resolved' ? ((existing && existing.resolvedAt) || new Date().toISOString()) : '',
-      appVersion:'1.6 / 5.103'
+      appVersion:'1.6 / 5.104'
     });
     record.photos = JSON.parse(JSON.stringify(currentPartPhotos || []));
     record.photo = record.photos[0] || null;

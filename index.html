@@ -62,8 +62,9 @@ button{border:none;border-radius:14px;padding:11px 14px;cursor:pointer;font-weig
 input::placeholder, textarea::placeholder{color:#334155;font-weight:600;font-size:1rem;opacity:1} textarea{min-height:110px;resize:vertical}
 .suggest-wrap{position:relative}.suggest-box{position:absolute;left:0;right:0;top:calc(100% + 8px);border:1px solid var(--line);border-radius:14px;background:#fff;max-height:220px;overflow:auto;box-shadow:0 10px 24px rgba(15,23,42,.08);z-index:20}.suggest-item{padding:10px 12px;cursor:pointer;border-bottom:1px solid #eef2f7;font-size:.95rem}.suggest-item:last-child{border-bottom:none}.suggest-item:hover{background:#f8fbff}.helper{font-size:.8rem;color:var(--muted);margin-top:6px}
 .smart-suggest-wrap{position:relative;overflow:visible}.smart-suggest-box{position:absolute;left:0;right:0;top:calc(100% + 6px);display:none;max-height:168px;overflow:auto;-webkit-overflow-scrolling:touch;background:#fff;border:1px solid var(--line);border-radius:14px;box-shadow:0 12px 26px rgba(15,23,42,.18);z-index:2147483000}.smart-suggest-box.show{display:block}.smart-suggest-box.mobile-floating{position:fixed!important;right:auto!important;top:auto;bottom:auto;z-index:2147483646!important;max-height:180px!important}.smart-suggest-item{padding:10px 12px;border-bottom:1px solid #eef2f7;cursor:pointer;font-size:.92rem;line-height:1.25;background:#fff}.smart-suggest-item:last-child{border-bottom:none}.smart-suggest-item:hover{background:#f8fbff}.smart-suggest-muted{padding:9px 12px;color:var(--muted);font-size:.86rem}.field textarea + .smart-suggest-box{top:calc(100% + 6px)}body.dark .smart-suggest-box{background:#0f172a;border-color:var(--line)}body.dark .smart-suggest-item{background:#0f172a;border-bottom-color:#243244}body.dark .smart-suggest-item:hover{background:#172033}
-/* v1.6 / 5.104 – našeptávač v samostatném portálovém okně mimo formulář */
-.smart-suggest-portal{position:fixed;display:none;z-index:2147483647;background:#fff;color:#0f172a;border:1px solid #cbd5e1;border-radius:16px;box-shadow:0 22px 60px rgba(15,23,42,.34);overflow:hidden;min-width:260px;max-width:min(520px,calc(100vw - 24px))}.smart-suggest-portal.show{display:block}.smart-suggest-portal-head{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:10px 12px;background:#f1f5f9;border-bottom:1px solid #dbe6f2;font-size:.84rem;font-weight:800}.smart-suggest-portal-close{padding:3px 9px;border-radius:9px;background:#e2e8f0;color:#0f172a;font-size:18px;line-height:1}.smart-suggest-portal-list{max-height:260px;overflow:auto;-webkit-overflow-scrolling:touch}.smart-suggest-portal .smart-suggest-item{padding:12px 14px;font-size:.96rem;background:#fff}.smart-suggest-portal .smart-suggest-item:active{background:#dbeafe}.smart-suggest-source{font-size:.74rem;color:#64748b;font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:70%}body.dark .smart-suggest-portal{background:#0f172a;color:#e5e7eb;border-color:#334155}body.dark .smart-suggest-portal-head{background:#111827;border-color:#334155}body.dark .smart-suggest-portal-close{background:#243244;color:#e5e7eb}body.dark .smart-suggest-portal .smart-suggest-item{background:#0f172a;color:#e5e7eb;border-bottom-color:#243244}@media(max-width:920px){.smart-suggest-portal{left:12px!important;right:12px!important;width:auto!important;max-width:none!important;border-radius:16px}.smart-suggest-portal-list{max-height:220px}.smart-suggest-portal .smart-suggest-item{padding:13px 14px;font-size:1rem}}
+/* v1.6 / 5.105 – našeptávač v nadřazeném světle šedém okně nad formulářem */
+.smart-suggest-overlay{position:fixed;inset:0;display:none;z-index:2147483646;background:rgba(15,23,42,.16)}.smart-suggest-overlay.show{display:block}
+.smart-suggest-portal{position:fixed;display:none;z-index:2147483647;background:#eef2f7;color:#0f172a;border:1px solid #cbd5e1;border-radius:18px;box-shadow:0 28px 70px rgba(15,23,42,.28);overflow:hidden;min-width:320px;max-width:min(680px,calc(100vw - 24px))}.smart-suggest-portal.show{display:block}.smart-suggest-portal-head{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:12px 14px;background:#e2e8f0;border-bottom:1px solid #cbd5e1;font-size:.88rem;font-weight:800}.smart-suggest-portal-close{padding:4px 10px;border-radius:10px;background:#cbd5e1;color:#0f172a;font-size:18px;line-height:1}.smart-suggest-portal-body{padding:12px;background:#eef2f7}.smart-suggest-portal-list{max-height:300px;overflow:auto;-webkit-overflow-scrolling:touch;background:#fff;border:1px solid #d8e1eb;border-radius:14px}.smart-suggest-portal .smart-suggest-item{padding:12px 14px;font-size:.96rem;background:#fff}.smart-suggest-portal .smart-suggest-item:active{background:#dbeafe}.smart-suggest-source{font-size:.76rem;color:#475569;font-weight:700;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:72%}.smart-suggest-empty{padding:14px;color:#64748b;font-size:.9rem}body.dark .smart-suggest-overlay{background:rgba(2,6,23,.42)}body.dark .smart-suggest-portal{background:#1e293b;color:#e5e7eb;border-color:#334155}body.dark .smart-suggest-portal-head{background:#334155;border-color:#475569}body.dark .smart-suggest-portal-close{background:#475569;color:#e5e7eb}body.dark .smart-suggest-portal-body{background:#1e293b}body.dark .smart-suggest-portal-list{background:#0f172a;border-color:#334155}body.dark .smart-suggest-portal .smart-suggest-item{background:#0f172a;color:#e5e7eb;border-bottom-color:#243244}.smart-suggest-portal .smart-suggest-item:hover{background:#f8fbff}body.dark .smart-suggest-portal .smart-suggest-item:hover{background:#172033}@media(max-width:920px){.smart-suggest-portal{min-width:0;width:calc(100vw - 24px);max-width:none;border-radius:18px}.smart-suggest-portal-head{padding:12px 14px}.smart-suggest-portal-list{max-height:240px}.smart-suggest-portal .smart-suggest-item{padding:13px 14px;font-size:1rem}}
 /* v1.6 / 5.90 – iOS klávesnice: neschovávat/podsvěcovat spodní akční tlačítka pod klávesnicí */
 @media(max-width:920px){body.mobile-keyboard-open .wizard-actions,body.mobile-keyboard-open #partsFormWrap .preview-actions,body.mobile-keyboard-open #faultFormWrap .preview-actions,body.mobile-keyboard-open #workPlanFormWrap .preview-actions{position:static!important;display:none!important}}
 .wizard-actions{display:flex;justify-content:space-between;gap:10px;margin-top:18px;position:sticky;bottom:0;background:linear-gradient(180deg,rgba(255,255,255,0) 0%,#fff 20%);padding-top:16px}
@@ -5064,11 +5065,22 @@ function getFaultDescSuggestionsAll(){
 }
 function getSmartSuggestPortal(){
   let portal = document.getElementById('smartSuggestPortal');
+  let overlay = document.getElementById('smartSuggestOverlay');
+  if(!overlay){
+    overlay = document.createElement('div');
+    overlay.id = 'smartSuggestOverlay';
+    overlay.className = 'smart-suggest-overlay';
+    overlay.addEventListener('pointerdown', ev => {
+      if(ev.target === overlay) closeSmartSuggestPortal();
+    });
+    document.body.appendChild(overlay);
+  }
   if(portal) return portal;
   portal = document.createElement('div');
   portal.id = 'smartSuggestPortal';
   portal.className = 'smart-suggest-portal';
-  portal.innerHTML = `<div class="smart-suggest-portal-head"><span>Našeptávač</span><span class="smart-suggest-source"></span><button type="button" class="smart-suggest-portal-close" aria-label="Zavřít">×</button></div><div class="smart-suggest-portal-list"></div>`;
+  portal.innerHTML = `<div class="smart-suggest-portal-head"><span>Našeptávač</span><span class="smart-suggest-source"></span><button type="button" class="smart-suggest-portal-close" aria-label="Zavřít">×</button></div><div class="smart-suggest-portal-body"><div class="smart-suggest-portal-list"></div></div>`;
+  portal.addEventListener('pointerdown', ev => ev.stopPropagation());
   document.body.appendChild(portal);
   portal.querySelector('.smart-suggest-portal-close')?.addEventListener('pointerdown', ev => {
     ev.preventDefault();
@@ -5079,10 +5091,12 @@ function getSmartSuggestPortal(){
 let activeSmartSuggestInput = null;
 function closeSmartSuggestPortal(){
   const portal = document.getElementById('smartSuggestPortal');
+  const overlay = document.getElementById('smartSuggestOverlay');
   if(portal){
     portal.classList.remove('show');
     portal.querySelector('.smart-suggest-portal-list').innerHTML = '';
   }
+  overlay?.classList.remove('show');
   activeSmartSuggestInput = null;
 }
 function positionSmartSuggestPortal(input){
@@ -5095,28 +5109,27 @@ function positionSmartSuggestPortal(input){
   const vpWidth = vv ? vv.width : window.innerWidth;
   const vpHeight = vv ? vv.height : window.innerHeight;
   const margin = 12;
+  const panelWidth = Math.min(680, Math.max(320, vpWidth - margin * 2));
+  let left = vpLeft + ((vpWidth - panelWidth) / 2);
+  let top;
 
   if(window.matchMedia('(max-width: 920px)').matches){
-    // Samostatné okno nahoře v právě viditelné části obrazovky – nikdy pod klávesnicí.
-    portal.style.left = `${vpLeft + margin}px`;
-    portal.style.right = 'auto';
-    portal.style.width = `${Math.max(260, vpWidth - margin * 2)}px`;
-    portal.style.top = `${vpTop + margin}px`;
-    portal.style.maxHeight = `${Math.max(140, Math.min(300, vpHeight * 0.42))}px`;
-    const list = portal.querySelector('.smart-suggest-portal-list');
-    if(list) list.style.maxHeight = `${Math.max(90, Math.min(230, vpHeight * 0.32))}px`;
+    top = vpTop + margin;
   } else {
-    const desiredWidth = Math.min(460, Math.max(300, rect.width));
-    let left = rect.right + 12;
-    if(left + desiredWidth > vpLeft + vpWidth - margin) left = Math.max(vpLeft + margin, rect.left - desiredWidth - 12);
-    let top = Math.max(vpTop + margin, Math.min(rect.top, vpTop + vpHeight - 330));
-    portal.style.left = `${left}px`;
-    portal.style.right = 'auto';
-    portal.style.width = `${desiredWidth}px`;
-    portal.style.top = `${top}px`;
-    portal.style.maxHeight = `${Math.min(320, vpHeight - margin * 2)}px`;
-    const list = portal.querySelector('.smart-suggest-portal-list');
-    if(list) list.style.maxHeight = `${Math.min(260, vpHeight - 80)}px`;
+    top = Math.max(vpTop + 24, Math.min(rect.top - 20, vpTop + 90));
+  }
+
+  portal.style.left = `${Math.max(vpLeft + margin, left)}px`;
+  portal.style.right = 'auto';
+  portal.style.width = `${Math.min(panelWidth, vpWidth - margin * 2)}px`;
+  portal.style.top = `${top}px`;
+  portal.style.maxHeight = `${Math.max(180, vpHeight - (top - vpTop) - margin)}px`;
+  const list = portal.querySelector('.smart-suggest-portal-list');
+  if(list){
+    const listMax = window.matchMedia('(max-width: 920px)').matches
+      ? Math.max(120, Math.min(260, vpHeight * 0.38))
+      : Math.max(140, Math.min(340, vpHeight - (top - vpTop) - 110));
+    list.style.maxHeight = `${listMax}px`;
   }
 }
 function attachSmartSuggest(input, getItems, onPick){
@@ -5133,11 +5146,13 @@ function attachSmartSuggest(input, getItems, onPick){
     if(!items.length){ if(activeSmartSuggestInput === input) closeSmartSuggestPortal(); return; }
 
     const portal = getSmartSuggestPortal();
+    const overlay = document.getElementById('smartSuggestOverlay');
     activeSmartSuggestInput = input;
     const source = portal.querySelector('.smart-suggest-source');
     const list = portal.querySelector('.smart-suggest-portal-list');
     if(source) source.textContent = fieldLabel;
     list.innerHTML = items.map(v => `<div class="smart-suggest-item" data-value="${escapeHtml(v)}">${escapeHtml(v)}</div>`).join('');
+    overlay?.classList.add('show');
     portal.classList.add('show');
     positionSmartSuggestPortal(input);
 
@@ -5160,12 +5175,13 @@ function attachSmartSuggest(input, getItems, onPick){
         try{ input.scrollIntoView({behavior:'smooth', block:'center'}); }catch(_e){}
         setTimeout(open, 180);
       }, 120);
-    } else open();
+    } else {
+      open();
+    }
   });
-  input.addEventListener('blur', () => setTimeout(() => {
-    const portal = document.getElementById('smartSuggestPortal');
-    if(portal && !portal.matches(':hover') && activeSmartSuggestInput === input) closeSmartSuggestPortal();
-  }, 220));
+  input.addEventListener('keydown', ev => {
+    if(ev.key === 'Escape') closeSmartSuggestPortal();
+  });
 
   window.visualViewport?.addEventListener('resize', () => requestAnimationFrame(() => positionSmartSuggestPortal(activeSmartSuggestInput)));
   window.visualViewport?.addEventListener('scroll', () => requestAnimationFrame(() => positionSmartSuggestPortal(activeSmartSuggestInput)));

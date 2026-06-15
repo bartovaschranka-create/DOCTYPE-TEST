@@ -70,7 +70,7 @@ input::placeholder, textarea::placeholder{color:#334155;font-weight:600;font-siz
 .smart-suggest-item:last-child{border-bottom:none!important}.smart-suggest-item:hover,.smart-suggest-item:active{background:#e2e8f0!important}
 body.dark .smart-suggest-box{background:#1e293b!important;border-color:#475569!important}body.dark .smart-suggest-item{background:#0f172a!important;color:#e5e7eb!important;border-bottom-color:#334155!important}body.dark .smart-suggest-item:hover,body.dark .smart-suggest-item:active{background:#243244!important}
 @media(max-width:920px){.smart-suggest-box{max-height:190px}.smart-suggest-item{padding:13px 14px!important;font-size:1rem!important}.modal-content,.wizard-shell,.field{overflow:visible!important}}
-@media(max-width:920px){body.mobile-keyboard-open .wizard-actions,body.mobile-keyboard-open #partsFormWrap .preview-actions,body.mobile-keyboard-open #faultFormWrap .preview-actions{position:static!important;display:none!important}#workPlanFormWrap .preview-actions{position:sticky!important;bottom:0!important;z-index:40!important;display:flex!important;background:var(--panel)!important;padding:12px 0 4px!important;margin-top:14px!important;border-top:1px solid var(--line)!important}#workPlanFormWrap .preview-actions-left,#workPlanFormWrap .preview-actions-right{display:flex!important;flex:1!important}#workPlanFormWrap .preview-actions button{width:100%!important;min-height:48px!important}}
+@media(max-width:920px){body.mobile-keyboard-open .wizard-actions{position:static!important;display:none!important}#workPlanFormWrap .preview-actions,#partsFormWrap .preview-actions,#faultFormWrap .preview-actions{position:sticky!important;bottom:0!important;z-index:60!important;display:flex!important;background:var(--panel)!important;padding:12px 0 6px!important;margin-top:14px!important;border-top:1px solid var(--line)!important}#workPlanFormWrap .preview-actions-left,#workPlanFormWrap .preview-actions-right,#partsFormWrap .preview-actions-left,#partsFormWrap .preview-actions-right,#faultFormWrap .preview-actions-left,#faultFormWrap .preview-actions-right{display:flex!important;flex:1!important}#workPlanFormWrap .preview-actions button,#partsFormWrap .preview-actions button,#faultFormWrap .preview-actions button{width:100%!important;min-height:50px!important}body.mobile-keyboard-open #partsFormWrap .preview-actions,body.mobile-keyboard-open #faultFormWrap .preview-actions{display:flex!important;position:sticky!important;bottom:0!important}}
 .wizard-actions{display:flex;justify-content:space-between;gap:10px;margin-top:18px;position:sticky;bottom:0;background:linear-gradient(180deg,rgba(255,255,255,0) 0%,#fff 20%);padding-top:16px}
 .preview-header{display:flex;justify-content:space-between;gap:10px;align-items:center;margin-bottom:12px}.preview-title{font-size:1.05rem;font-weight:700}.preview-actions{display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap;margin-top:14px}.preview-actions-left,.preview-actions-right{display:flex;gap:10px;flex-wrap:wrap}
 .paper-wrap{background:#fff;padding:12px;border-radius:18px;overflow:auto}.paper{background:#fff;color:#000;padding:9mm 8mm 8mm 8mm;font-size:10.9px;line-height:1.24;border:none;box-shadow:none;width:210mm;max-width:100%;margin:0 auto}.paper h2{margin:0 0 6px;text-align:center;font-size:18px;letter-spacing:.6px;font-weight:700}.paper .subhead{margin:0 0 9px;text-align:center;font-size:10.2px;color:#000}.paper table{width:100%;border-collapse:collapse;margin-bottom:6px;table-layout:auto}
@@ -1672,7 +1672,7 @@ body.dark .part-handler-note-display{background:rgba(59,130,246,.12);border-colo
     <button type="button" class="side-small" onclick="exportBackup()">Export zálohy</button>
     <button type="button" class="side-small" id="sideImportBtn">Import zálohy</button>
     <button type="button" class="side-small" id="sideAuditBtn">Historie změn</button>
-    <div class="side-version">Vlastník/Admin: Jan Bartoš<br>Verze: 1.6 / 5.107</div>
+    <div class="side-version">Vlastník/Admin: Jan Bartoš<br>Verze: 1.6 / 5.108</div>
   </div>
 </aside>
 
@@ -2467,8 +2467,8 @@ function askHandlerBy(question='Kdo to řešil / doplnil?'){
   return clean;
 }
 function operatorOptionsHtml(selected=''){
-  const names = uniqueNonEmpty([selected, getLastEnteredBy(), ...(TECHNICI || [])]);
-  return names.map(n => `<option value="${escapeHtml(n)}" ${n===selected?'selected':''}>${escapeHtml(n)}</option>`).join('');
+  const names = uniqueNonEmpty([selected, ...(TECHNICI || [])]);
+  return `<option value="" ${selected ? '' : 'selected'}>Vyber technika</option>` + names.map(n => `<option value="${escapeHtml(n)}" ${n===selected?'selected':''}>${escapeHtml(n)}</option>`).join('');
 }
 function externalDetailsHtml(prefix, obj={}){
   const on = !!(obj && obj.externalCustomer);
@@ -3031,7 +3031,7 @@ function createProtocolFromFault(id){
     externalCustomer: !!f.externalCustomer,
     customerName: f.customerName || f.companyName || '',
     customerAddress: f.customerAddress || f.companyAddress || '',
-    enteredBy: getEnteredByDefault(),
+    enteredBy: '',
     datum: todayLocal(),
     poznamka: f.description ? ('Navazuje na hlášení poruchy: ' + f.description) : ''
   });
@@ -3087,7 +3087,7 @@ function openModal(el){ el.classList.add('show'); }
 function closeModal(el){ el.classList.remove('show'); }
 
 function openWizard(editId=null, prefill={}){
-  rec = editId ? JSON.parse(JSON.stringify(data.find(r=>r.id===editId) || {id:uid()})) : {id:uid(), cLogic:'legacy', appVersion:'1.6 / 5.107'};
+  rec = editId ? JSON.parse(JSON.stringify(data.find(r=>r.id===editId) || {id:uid()})) : {id:uid(), cLogic:'legacy', appVersion:'1.6 / 5.108'};
   rec = Object.assign({}, rec, prefill || {});
   if(!editId && !rec.cLogic) rec.cLogic = 'legacy';
   if(!editId && !rec.appVersion) rec.appVersion = '1.6 / 5.107';
@@ -3178,7 +3178,7 @@ function showStep(){
   } else if(s.type === 'externalCustomer'){
     html = `<label class="external-check"><input id="externalCustomerInput" type="checkbox" ${rec.externalCustomer ? 'checked' : ''}><div><strong>Externí zákazník</strong><span>Zaškrtni jen u zakázek mimo běžnou půjčovnu. Údaje firmy se vyplní jen tady a v protokolu budou vidět.</span></div></label>${externalDetailsHtml('protocol', rec)}`;
   } else if(s.type === 'enteredBySelect'){
-    const val = rec.enteredBy || rec.zadal || rec.technik || getEnteredByDefault();
+    const val = rec.enteredBy || rec.zadal || '';
     rec.enteredBy = val;
     html = `<div class="field"><label>Zadal záznam</label><select id="enteredBySelect">${operatorOptionsHtml(val)}</select><div class="helper">Předvyplní se poslední použitý člověk. Slouží jen pro dohledání, kdo záznam založil.</div></div>`;
   } else if(s.type === 'textarea'){
@@ -3484,6 +3484,10 @@ async function nextStep(){
     const needsNote = s.k === 'B1' ? rec[s.k] === 'NE' : (isGeneralCheckKey(s.k) ? isProblemAnswer(s.k, rec[s.k], rec) : rec[s.k] === 'NE');
     if(needsNote) rec[s.textKey] = document.getElementById('descInput')?.value || rec[s.textKey] || '';
   }
+  if(s.type === 'enteredBySelect' && !String(rec.enteredBy || '').trim()){
+    alert('Vyber, kdo záznam zadává.');
+    return;
+  }
   if(['text','textarea','branchSelect','technikSelect','enteredBySelect','yearInput','date','modelSelect','number'].includes(s.type)) addSuggestion(s.k, rec[s.k]);
   if(s.k === 'vc' && rec.vc){
     applyProtocolDefaultsFromSerial(rec.vc);
@@ -3507,8 +3511,8 @@ async function nextStep(){
     syncRevizeIssue(rec);
     syncModelPreferences(rec);
     if(!rec.cLogic) rec.cLogic = 'legacy';
-    if(!rec.appVersion) rec.appVersion = '1.6 / 5.107';
-    if(!rec.enteredBy) rec.enteredBy = rec.technik || getEnteredByDefault();
+    if(!rec.appVersion) rec.appVersion = '1.6 / 5.108';
+    if(!rec.enteredBy) rec.enteredBy = rec.technik || '';
     setLastEnteredBy(rec.enteredBy);
     rec.savedAt = new Date().toISOString();
     const wasExistingProtocol = data.some(x => x.id === rec.id);
@@ -4785,7 +4789,7 @@ async function saveWorkPlanFromForm(){
       place,
       extraPlaces,
       note,
-      appVersion:'1.6 / 5.107'
+      appVersion:'1.6 / 5.108'
     });
     if(!record.createdAt) record.createdAt = new Date().toISOString();
     await saveWorkPlan(record);
@@ -5336,7 +5340,7 @@ function openFaultForm(id=null){
   document.getElementById('faultSerial').value = (f && f.serial) || '';
   const faultEntered = document.getElementById('faultEnteredBy');
   if(faultEntered){
-    const val = (f && (f.enteredBy || f.zadal)) || getEnteredByDefault();
+    const val = (f && (f.enteredBy || f.zadal)) || '';
     faultEntered.innerHTML = operatorOptionsHtml(val);
     faultEntered.value = val;
   }
@@ -5389,6 +5393,8 @@ async function saveFaultFromForm(){
   if(!serial){ alert('Vyplň výrobní číslo.'); return; }
   if(!date){ alert('Vyplň datum.'); return; }
   if(!description){ alert('Vyplň popis závady.'); return; }
+  const enteredBy = document.getElementById('faultEnteredBy')?.value || '';
+  if(!enteredBy){ alert('Vyber, kdo hlášení zadává.'); return; }
   if(faultSaveInProgress) return;
   faultSaveInProgress = true;
   const saveBtn = document.getElementById('saveFaultBtn');
@@ -5406,7 +5412,7 @@ async function saveFaultFromForm(){
       place,
       description,
       faultCategory,
-      enteredBy: document.getElementById('faultEnteredBy')?.value || getEnteredByDefault(),
+      enteredBy,
       externalCustomer: !!document.getElementById('faultExternalCustomer')?.checked,
       customerName: !!document.getElementById('faultExternalCustomer')?.checked ? document.getElementById('faultCustomerName').value.trim() : '',
       customerAddress: !!document.getElementById('faultExternalCustomer')?.checked ? document.getElementById('faultCustomerAddress').value.trim() : '',
@@ -5414,7 +5420,7 @@ async function saveFaultFromForm(){
       inService: status === 'service' ? true : (existing ? !!existing.inService : false),
       waitingParts: status === 'waiting_parts' ? true : (existing ? !!existing.waitingParts : false),
       photos: currentFaultPhotos,
-      appVersion:'1.6 / 5.107'
+      appVersion:'1.6 / 5.108'
     });
     if(!record.createdAt) record.createdAt = new Date().toISOString();
     setLastEnteredBy(record.enteredBy);
@@ -6094,7 +6100,7 @@ function openPartForm(id=null){
   document.getElementById('partSerial').value = (p && p.serial) || '';
   const partEntered = document.getElementById('partEnteredBy');
   if(partEntered){
-    const val = (p && (p.enteredBy || p.zadal)) || getEnteredByDefault();
+    const val = (p && (p.enteredBy || p.zadal)) || '';
     partEntered.innerHTML = operatorOptionsHtml(val);
     partEntered.value = val;
   }
@@ -6226,6 +6232,8 @@ async function savePartFromForm(){
   const serial = document.getElementById('partSerial').value.trim();
   if(!type){ alert('Vyplň typ zařízení.'); return; }
   if(!serial){ alert('Vyplň výrobní číslo.'); return; }
+  const enteredBy = document.getElementById('partEnteredBy')?.value || '';
+  if(!enteredBy){ alert('Vyber, kdo požadavek zadává.'); return; }
   if(partSaveInProgress) return;
   partSaveInProgress = true;
   const saveBtn = document.getElementById('savePartBtn');
@@ -6254,7 +6262,7 @@ async function savePartFromForm(){
       place,
       partNumber,
       partName: document.getElementById('partName').value.trim(),
-      enteredBy: document.getElementById('partEnteredBy')?.value || getEnteredByDefault(),
+      enteredBy,
       externalCustomer: !!document.getElementById('partExternalCustomer')?.checked,
       customerName: !!document.getElementById('partExternalCustomer')?.checked ? document.getElementById('partCustomerName').value.trim() : '',
       customerAddress: !!document.getElementById('partExternalCustomer')?.checked ? document.getElementById('partCustomerAddress').value.trim() : '',
@@ -6268,7 +6276,7 @@ async function savePartFromForm(){
       orderedAt: (statusVal === 'ordered' || statusVal === 'sent' || statusVal === 'resolved') ? ((existing && existing.orderedAt) || new Date().toISOString()) : '',
       sentAt: (statusVal === 'sent' || statusVal === 'resolved') ? ((existing && existing.sentAt) || new Date().toISOString()) : '',
       resolvedAt: statusVal === 'resolved' ? ((existing && existing.resolvedAt) || new Date().toISOString()) : '',
-      appVersion:'1.6 / 5.107'
+      appVersion:'1.6 / 5.108'
     });
     record.photos = JSON.parse(JSON.stringify(currentPartPhotos || []));
     record.photo = record.photos[0] || null;
